@@ -11,5 +11,6 @@ theme:
     - search.suggest
     - search.highlight
 
-nav:
-  - 首页: index.md
+plugins:
+  - search
+  - awesome-nav
