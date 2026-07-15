@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+      
+      
+        <link rel="next" href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Markdown 学习笔记保存与建站总结 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Markdown 学习笔记保存与建站总结
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、最终目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-onedrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、GitHub 和 OneDrive 的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、GitHub 和 OneDrive 的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onedrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OneDrive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、是否可以全部放在 GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、每个工具到底负责什么
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、每个工具到底负责什么">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Markdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-obsidian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Obsidian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VS Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Material for MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servebuild-gh-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、serve、build 和 gh-deploy 的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、serve、build 和 gh-deploy 的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地预览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成静态网页
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成并发布
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、本地搭建完整步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、本地搭建完整步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一步：创建 Conda 环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：安装 MkDocs Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三步：创建项目文件夹
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四步：初始化 MkDocs 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五步：用 VS Code 打开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第六步：配置 Material 主题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第七步：编辑首页
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第八步：启动本地网站
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、如何增加新文章
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、导航有两种管理方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九、导航有两种管理方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法一：在 mkdocs.yml 中手写
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法二：自动导航插件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirementstxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、requirements.txt 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environmentyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、environment.yml 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十二、.gitignore 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十三、推荐的项目结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十四、图片如何保存
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十五、初始化 Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十六、创建 GitHub 仓库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十七、本地连接 GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十八、GitHub Actions 自动部署
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十九、在哪里查看 Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十、开启 GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十一、以后的日常工作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二十一、以后的日常工作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打开项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更新网站
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十二、最核心的理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、最终目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-onedrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、GitHub 和 OneDrive 的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、GitHub 和 OneDrive 的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#onedrive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OneDrive
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、是否可以全部放在 GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、每个工具到底负责什么
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、每个工具到底负责什么">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Markdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-obsidian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Obsidian
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. VS Code
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-github" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. GitHub
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-material-for-mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Material for MkDocs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. GitHub Actions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servebuild-gh-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、serve、build 和 gh-deploy 的区别
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、serve、build 和 gh-deploy 的区别">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地预览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成静态网页
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成并发布
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、本地搭建完整步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、本地搭建完整步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一步：创建 Conda 环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：安装 MkDocs Material
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三步：创建项目文件夹
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四步：初始化 MkDocs 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vs-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五步：用 VS Code 打开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第六步：配置 Material 主题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第七步：编辑首页
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第八步：启动本地网站
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、如何增加新文章
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、导航有两种管理方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九、导航有两种管理方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocsyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法一：在 mkdocs.yml 中手写
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法二：自动导航插件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirementstxt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十、requirements.txt 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#environmentyml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十一、environment.yml 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十二、.gitignore 是什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十三、推荐的项目结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十四、图片如何保存
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十五、初始化 Git
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十六、创建 GitHub 仓库
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十七、本地连接 GitHub
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十八、GitHub Actions 自动部署
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        十九、在哪里查看 Actions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十、开启 GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十一、以后的日常工作流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二十一、以后的日常工作流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        打开项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更新网站
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二十二、最核心的理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="markdown">Markdown 学习笔记保存与建站总结<a class="headerlink" href="#markdown" title="Permanent link">&para;</a></h1>
+<h2 id="_1">一、最终目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>你的学习笔记使用普通 <code>.md</code> 文件保存，然后通过下面这套工具链管理：</p>
+<pre><code>Obsidian / VS Code 写 Markdown
+              ↓
+Git 记录版本
+              ↓
+GitHub 保存远程仓库
+              ↓
+GitHub Actions 自动运行 MkDocs
+              ↓
+MkDocs 生成 HTML
+              ↓
+GitHub Pages 托管网站
+</code></pre>
+<p>以后每次更新笔记，只需要：</p>
+<pre><code class="language-powershell">git add .
+git commit -m &quot;更新学习笔记&quot;
+git push
+</code></pre>
+<p>GitHub 会自动重新生成并更新网站。</p>
+<hr />
+<h2 id="github-onedrive">二、GitHub 和 OneDrive 的区别<a class="headerlink" href="#github-onedrive" title="Permanent link">&para;</a></h2>
+<h3 id="github">GitHub<a class="headerlink" href="#github" title="Permanent link">&para;</a></h3>
+<p>GitHub 可以理解为：</p>
+<blockquote>
+<p>云端的 Git 仓库。</p>
+</blockquote>
+<p>适合：</p>
+<ul>
+<li>保存 Markdown 和代码；</li>
+<li>记录历史版本；</li>
+<li>恢复误删或错误修改；</li>
+<li>多人协作；</li>
+<li>自动生成和发布网站。</li>
+</ul>
+<p>GitHub 不是普通的实时同步网盘。电脑之间同步通常需要：</p>
+<pre><code class="language-powershell">git push
+</code></pre>
+<p>以及：</p>
+<pre><code class="language-powershell">git pull
+</code></pre>
+<h3 id="onedrive">OneDrive<a class="headerlink" href="#onedrive" title="Permanent link">&para;</a></h3>
+<p>OneDrive 是微软的云盘，可以理解为 Windows 版 iCloud。</p>
+<p>文件放进 OneDrive 文件夹后，会自动上传和同步，不需要 Git 命令。</p>
+<p>两者可以同时使用，但对于当前的 Markdown 知识库：</p>
+<pre><code>本地文件 + Git + GitHub 私有仓库
+</code></pre>
+<p>已经能够完成备份和版本管理。</p>
+<hr />
+<h2 id="github_1">三、是否可以全部放在 GitHub<a class="headerlink" href="#github_1" title="Permanent link">&para;</a></h2>
+<p>可以。</p>
+<p>建议至少把仓库设置为：</p>
+<pre><code>Private
+</code></pre>
+<p>这样只有自己可以访问。</p>
+<p>但如果要使用 GitHub Pages 公开分享知识网站，可以采用两个仓库：</p>
+<pre><code>polar-notes-private
+</code></pre>
+<p>保存：</p>
+<ul>
+<li>全部原始笔记；</li>
+<li>草稿；</li>
+<li>课程资料；</li>
+<li>个人计划；</li>
+<li>不适合公开的内容。</li>
+</ul>
+<p>另一个：</p>
+<pre><code>polar-notes
+</code></pre>
+<p>保存：</p>
+<ul>
+<li>整理完成的知识；</li>
+<li>准备公开分享的文章；</li>
+<li>个人作品集内容。</li>
+</ul>
+<p>也就是：</p>
+<pre><code>私人总知识库
+      ↓
+挑选和整理
+      ↓
+公开知识网站
+</code></pre>
+<p>这是比给 GitHub Pages 网站加密码更简单、可靠的方式。</p>
+<hr />
+<h2 id="_2">四、每个工具到底负责什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-markdown">1. Markdown<a class="headerlink" href="#1-markdown" title="Permanent link">&para;</a></h3>
+<p>Markdown 是真正保存知识的文件格式，例如：</p>
+<pre><code>MLP.md
+Git.md
+NumPy广播机制.md
+</code></pre>
+<p>它不依赖某一个软件，未来即使不用 Obsidian 或 MkDocs，文件仍然可以阅读。</p>
+<hr />
+<h3 id="2-obsidian">2. Obsidian<a class="headerlink" href="#2-obsidian" title="Permanent link">&para;</a></h3>
+<p>Obsidian主要负责：</p>
+<ul>
+<li>写笔记；</li>
+<li>浏览 Markdown；</li>
+<li>双向链接；</li>
+<li>搜索知识；</li>
+<li>管理个人知识库。</li>
+</ul>
+<p>它不是网站生成器。</p>
+<hr />
+<h3 id="3-vs-code">3. VS Code<a class="headerlink" href="#3-vs-code" title="Permanent link">&para;</a></h3>
+<p>VS Code 在这个项目中主要负责：</p>
+<ul>
+<li>编辑 Markdown；</li>
+<li>修改 <code>mkdocs.yml</code>；</li>
+<li>创建 <code>.gitignore</code>、<code>requirements.txt</code>；</li>
+<li>创建 GitHub Actions 配置；</li>
+<li>使用终端执行 Git 和 MkDocs 命令。</li>
+</ul>
+<p>它也不是网站生成器。</p>
+<p>可以这样分工：</p>
+<pre><code>Obsidian：主要写笔记
+VS Code：管理网站项目和配置
+</code></pre>
+<p>实际上只用 VS Code 也完全可以。</p>
+<hr />
+<h3 id="4-git">4. Git<a class="headerlink" href="#4-git" title="Permanent link">&para;</a></h3>
+<p>Git 负责记录文件变化。</p>
+<p>例如它会记录：</p>
+<pre><code>新增了哪几行
+删除了哪几行
+哪个文件被修改
+每一次提交时项目是什么状态
+</code></pre>
+<p>所以 Git 更像一个版本管理系统或时光机。</p>
+<hr />
+<h3 id="5-github">5. GitHub<a class="headerlink" href="#5-github" title="Permanent link">&para;</a></h3>
+<p>GitHub 负责保存远程 Git 仓库。</p>
+<p>它不只是网盘，还提供：</p>
+<ul>
+<li>GitHub Actions；</li>
+<li>GitHub Pages；</li>
+<li>Issues；</li>
+<li>Pull Requests；</li>
+<li>Wiki 等功能。</li>
+</ul>
+<p>仓库主要保存的是：</p>
+<pre><code>Markdown 源文件
+配置文件
+Git 历史
+自动化说明文件
+</code></pre>
+<hr />
+<h3 id="6-mkdocs">6. MkDocs<a class="headerlink" href="#6-mkdocs" title="Permanent link">&para;</a></h3>
+<p>MkDocs 是真正把 Markdown 转换成网页的软件。</p>
+<p>例如：</p>
+<pre><code>MLP.md
+   ↓
+MkDocs
+   ↓
+MLP/index.html
+</code></pre>
+<p>浏览器最终阅读的是 HTML，不是原始 Markdown。</p>
+<hr />
+<h3 id="7-material-for-mkdocs">7. Material for MkDocs<a class="headerlink" href="#7-material-for-mkdocs" title="Permanent link">&para;</a></h3>
+<p>Material 是 MkDocs 的主题。</p>
+<p>它负责网站的外观和部分界面功能，例如：</p>
+<ul>
+<li>顶部栏；</li>
+<li>左侧导航；</li>
+<li>搜索；</li>
+<li>深色模式；</li>
+<li>手机适配；</li>
+<li>代码高亮；</li>
+<li>页面目录。</li>
+</ul>
+<p>关系是：</p>
+<pre><code>MkDocs：生成网站
+Material：决定网站长什么样
+</code></pre>
+<p>Material 不是 GitHub 插件。</p>
+<hr />
+<h3 id="8-github-actions">8. GitHub Actions<a class="headerlink" href="#8-github-actions" title="Permanent link">&para;</a></h3>
+<p>GitHub Actions 是 GitHub 提供的自动化计算服务。</p>
+<p>每次你执行：</p>
+<pre><code class="language-powershell">git push
+</code></pre>
+<p>GitHub 可以根据配置文件：</p>
+<pre><code>.github/workflows/deploy.yml
+</code></pre>
+<p>临时创建一台 Ubuntu 虚拟机，然后执行：</p>
+<pre><code>下载仓库
+安装 Python
+安装 requirements.txt 中的软件
+运行 MkDocs
+生成 HTML
+发布 HTML
+销毁虚拟机
+</code></pre>
+<p>GitHub 并不是自己懂得如何生成 MkDocs 网站，而是临时提供一台电脑，让 MkDocs 在上面运行。</p>
+<hr />
+<h3 id="9-github-pages">9. GitHub Pages<a class="headerlink" href="#9-github-pages" title="Permanent link">&para;</a></h3>
+<p>GitHub Pages 负责托管已经生成好的 HTML。</p>
+<p>它本身不负责把 Markdown 转成网页。</p>
+<p>仓库地址和网站地址不同：</p>
+<pre><code>仓库：
+https://github.com/用户名/polar-notes
+</code></pre>
+<pre><code>网站：
+https://用户名.github.io/polar-notes/
+</code></pre>
+<p>别人访问网站地址时，看到的是最终网页，而不是 GitHub 文件列表。</p>
+<hr />
+<h2 id="servebuild-gh-deploy">五、<code>serve</code>、<code>build</code> 和 <code>gh-deploy</code> 的区别<a class="headerlink" href="#servebuild-gh-deploy" title="Permanent link">&para;</a></h2>
+<h3 id="_3">本地预览<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdocs serve
+</code></pre>
+<p>它会：</p>
+<ul>
+<li>启动本地服务器；</li>
+<li>监听 <code>docs</code> 和 <code>mkdocs.yml</code>；</li>
+<li>文件修改后自动重建；</li>
+<li>浏览器自动刷新。</li>
+</ul>
+<p>网站地址通常是：</p>
+<pre><code>http://127.0.0.1:8000/
+</code></pre>
+<p>这个地址只能在你自己的电脑上访问。</p>
+<h3 id="_4">生成静态网页<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdocs build
+</code></pre>
+<p>它会一次性生成：</p>
+<pre><code>site/
+</code></pre>
+<p>其中包含 HTML、CSS、JavaScript 等静态文件。</p>
+<p>生成结束后程序退出。</p>
+<h3 id="_5">生成并发布<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdocs gh-deploy --force
+</code></pre>
+<p>它会：</p>
+<ol>
+<li>构建网站；</li>
+<li>把生成结果推送到 <code>gh-pages</code> 分支。</li>
+</ol>
+<p>GitHub Actions 自动部署时通常使用这一条。</p>
+<hr />
+<h2 id="_6">七、本地搭建完整步骤<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="conda">第一步：创建 Conda 环境<a class="headerlink" href="#conda" title="Permanent link">&para;</a></h3>
+<p>打开 Anaconda Prompt、Miniconda Prompt 或已经支持 Conda 的 PowerShell。</p>
+<pre><code class="language-powershell">conda create -n polar-notes python=3.12 -y
+</code></pre>
+<p>激活：</p>
+<pre><code class="language-powershell">conda activate polar-notes
+</code></pre>
+<p>查看当前环境：</p>
+<pre><code class="language-powershell">conda env list
+</code></pre>
+<p>终端前面出现：</p>
+<pre><code>(polar-notes)
+</code></pre>
+<p>表示激活成功。</p>
+<hr />
+<h3 id="mkdocs-material">第二步：安装 MkDocs Material<a class="headerlink" href="#mkdocs-material" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">python -m pip install mkdocs-material
+</code></pre>
+<p>检查：</p>
+<pre><code class="language-powershell">mkdocs --version
+</code></pre>
+<p>安装 Material 时，MkDocs 会作为依赖一起安装。</p>
+<hr />
+<h3 id="_7">第三步：创建项目文件夹<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>你的实际位置是：</p>
+<pre><code>C:\PolarNotes
+</code></pre>
+<p>创建并进入：</p>
+<pre><code class="language-powershell">mkdir C:\PolarNotes
+cd C:\PolarNotes
+</code></pre>
+<hr />
+<h3 id="mkdocs">第四步：初始化 MkDocs 项目<a class="headerlink" href="#mkdocs" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdocs new .
+</code></pre>
+<p>最后的 <code>.</code> 表示：</p>
+<blockquote>
+<p>在当前目录初始化项目。</p>
+</blockquote>
+<p>生成：</p>
+<pre><code>C:\PolarNotes
+├── docs
+│   └── index.md
+└── mkdocs.yml
+</code></pre>
+<hr />
+<h3 id="vs-code">第五步：用 VS Code 打开<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">code .
+</code></pre>
+<p>VS Code 打开的是 <code>C:\PolarNotes</code> 整个项目文件夹。</p>
+<hr />
+<h3 id="material">第六步：配置 Material 主题<a class="headerlink" href="#material" title="Permanent link">&para;</a></h3>
+<p>打开 <code>mkdocs.yml</code>：</p>
+<pre><code class="language-yaml">site_name: Polar Notes
+site_description: Polar 的个人学习笔记
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+</code></pre>
+<p>YAML 使用空格缩进，不能随意使用 Tab。</p>
+<hr />
+<h3 id="_8">第七步：编辑首页<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>打开：</p>
+<pre><code>docs/index.md
+</code></pre>
+<p>例如写：</p>
+<pre><code class="language-markdown"># Polar Notes
+
+欢迎来到我的个人学习笔记。
+
+## 主要内容
+
+- 人工智能
+- 数学
+- 机械工程
+- 各种零碎知识和教学
+
+这是我的知识库网站。
+</code></pre>
+<hr />
+<h3 id="_9">第八步：启动本地网站<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdocs serve
+</code></pre>
+<p>打开：</p>
+<pre><code>http://127.0.0.1:8000/
+</code></pre>
+<p>终端出现：</p>
+<pre><code>Watching paths for changes
+Serving on http://127.0.0.1:8000/
+</code></pre>
+<p>说明网站已经正常运行。</p>
+<p>Material 曾显示一段关于 MkDocs 2.0 的警告，但当时网站仍然成功构建。这类信息不是当前项目报错，只要最后出现 <code>Serving on</code> 就说明本地服务器已经启动。</p>
+<hr />
+<h2 id="_10">八、如何增加新文章<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>例如创建：</p>
+<pre><code>docs/
+├── index.md
+└── AI/
+    ├── index.md
+    └── MLP.md
+</code></pre>
+<p><code>docs/AI/MLP.md</code>：</p>
+<pre><code class="language-markdown"># 多层感知机 MLP
+
+多层感知机由多个线性层和非线性激活函数组成。
+
+## 基本结构
+
+```text
+输入
+→ Linear
+→ ReLU
+→ Linear
+→ 输出
+```
+
+## 线性层
+
+$$
+Y = XW + b
+$$
+</code></pre>
+<p><code>AI/index.md</code> 可以作为 AI 分类的首页：</p>
+<pre><code class="language-markdown"># 人工智能
+
+这里保存我的人工智能学习笔记。
+</code></pre>
+<hr />
+<h2 id="_11">九、导航有两种管理方式<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="mkdocsyml">方法一：在 <code>mkdocs.yml</code> 中手写<a class="headerlink" href="#mkdocsyml" title="Permanent link">&para;</a></h3>
+<pre><code class="language-yaml">nav:
+  - 首页: index.md
+  - 人工智能:
+      - AI 概览: AI/index.md
+      - 多层感知机: AI/MLP.md
+</code></pre>
+<p>网站导航顺序完全由这里决定，而不是由 Windows 文件夹顺序决定。</p>
+<p>优点：</p>
+<ul>
+<li>顺序明确；</li>
+<li>控制精确；</li>
+<li>适合文章数量较少的网站。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>文章多后需要反复修改。</li>
+</ul>
+<hr />
+<h3 id="_12">方法二：自动导航插件<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>安装：</p>
+<pre><code class="language-powershell">python -m pip install mkdocs-awesome-nav
+</code></pre>
+<p><code>mkdocs.yml</code>：</p>
+<pre><code class="language-yaml">plugins:
+  - search
+  - awesome-nav
+</code></pre>
+<p>注意：手动写出 <code>plugins</code> 后，需要显式保留：</p>
+<pre><code class="language-yaml">- search
+</code></pre>
+<p>否则默认搜索插件可能不会加载。</p>
+<p>插件会根据：</p>
+<pre><code>docs/
+</code></pre>
+<p>自动生成导航。</p>
+<p>还可以在目录中使用：</p>
+<pre><code>.nav.yml
+</code></pre>
+<p>控制名称和顺序。</p>
+<p>例如：</p>
+<pre><code>docs/.nav.yml
+</code></pre>
+<pre><code class="language-yaml">nav:
+  - 首页: index.md
+  - 人工智能: AI
+  - 数学: Math
+</code></pre>
+<p>自动导航不是必需的，前期也可以先手写 <code>nav</code>。</p>
+<hr />
+<h2 id="requirementstxt">十、<code>requirements.txt</code> 是什么<a class="headerlink" href="#requirementstxt" title="Permanent link">&para;</a></h2>
+<p><code>requirements.txt</code> 不是 MkDocs 自动创建的，需要自己在项目根目录新建。</p>
+<p>路径：</p>
+<pre><code>C:\PolarNotes\requirements.txt
+</code></pre>
+<p>内容：</p>
+<pre><code>mkdocs-material
+mkdocs-awesome-nav
+</code></pre>
+<p>它只是依赖清单，不是软件本体。</p>
+<p>GitHub Actions 会运行：</p>
+<pre><code class="language-powershell">python -m pip install -r requirements.txt
+</code></pre>
+<p>从而知道需要安装什么。</p>
+<p>如果没有使用自动导航插件，就只写：</p>
+<pre><code>mkdocs-material
+</code></pre>
+<p>原则是：</p>
+<blockquote>
+<p><code>mkdocs.yml</code> 使用了什么插件，<code>requirements.txt</code> 就必须包含对应的软件包。</p>
+</blockquote>
+<p>本地虽然使用 Conda，GitHub Actions 仍然可以直接用 pip。两者不冲突。</p>
+<hr />
+<h2 id="environmentyml">十一、<code>environment.yml</code> 是什么<a class="headerlink" href="#environmentyml" title="Permanent link">&para;</a></h2>
+<p>这是给你自己恢复 Conda 环境使用的，可选。</p>
+<p>例如：</p>
+<pre><code class="language-yaml">name: polar-notes
+
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - mkdocs-material
+      - mkdocs-awesome-nav
+</code></pre>
+<p>以后换电脑，可以执行：</p>
+<pre><code class="language-powershell">conda env create -f environment.yml
+</code></pre>
+<p>重新创建环境。</p>
+<p>两份文件的用途不同：</p>
+<pre><code>environment.yml
+→ 给你自己的 Conda 使用
+</code></pre>
+<pre><code>requirements.txt
+→ 主要给 GitHub Actions 和普通 pip 环境使用
+</code></pre>
+<hr />
+<h2 id="gitignore">十二、<code>.gitignore</code> 是什么<a class="headerlink" href="#gitignore" title="Permanent link">&para;</a></h2>
+<p><code>.gitignore</code> 告诉 Git：</p>
+<blockquote>
+<p>哪些文件不要纳入版本管理，也不要上传 GitHub。</p>
+</blockquote>
+<p>在 VS Code 中：</p>
+<ol>
+<li>右键项目根目录 <code>PolarNotes</code>；</li>
+<li>选择 New File；</li>
+<li>输入：</li>
+</ol>
+<pre><code>.gitignore
+</code></pre>
+<p>注意开头有一个点，没有 <code>.txt</code> 后缀。</p>
+<p>内容：</p>
+<pre><code class="language-gitignore">site/
+__pycache__/
+*.pyc
+.DS_Store
+</code></pre>
+<p>含义：</p>
+<pre><code>site/
+</code></pre>
+<p>忽略 MkDocs 自动生成的网站文件。</p>
+<pre><code>__pycache__/
+*.pyc
+</code></pre>
+<p>忽略 Python 缓存。</p>
+<pre><code>.DS_Store
+</code></pre>
+<p>忽略 macOS 自动生成的文件。</p>
+<p>核心思想是：</p>
+<pre><code>docs/、mkdocs.yml
+是源文件，需要保存
+</code></pre>
+<pre><code>site/
+是自动生成文件，可以重新生成
+</code></pre>
+<hr />
+<h2 id="_13">十三、推荐的项目结构<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<pre><code>PolarNotes/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── docs/
+│   ├── index.md
+│   ├── AI/
+│   │   ├── index.md
+│   │   ├── LLM/
+│   │   ├── DeepLearning/
+│   │   └── PyTorch/
+│   ├── CS/
+│   │   ├── Python/
+│   │   ├── Git/
+│   │   ├── Linux/
+│   │   └── DataStructure/
+│   ├── Math/
+│   │   ├── Calculus/
+│   │   ├── LinearAlgebra/
+│   │   ├── Probability/
+│   │   └── Optimization/
+│   ├── Mechanical/
+│   │   ├── CAD/
+│   │   ├── CAE/
+│   │   └── FEM/
+│   ├── Projects/
+│   ├── Language/
+│   └── Assets/
+├── .gitignore
+├── environment.yml
+├── mkdocs.yml
+└── requirements.txt
+</code></pre>
+<p>不建议一开始分太多层。可以先建立主要大类，等文章真的增多后再细分。</p>
+<hr />
+<h2 id="_14">十四、图片如何保存<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>建议统一放在：</p>
+<pre><code>docs/Assets/
+</code></pre>
+<p>例如：</p>
+<pre><code>docs/Assets/relu.png
+</code></pre>
+<p>在 Markdown 中引用：</p>
+<pre><code class="language-markdown">![](../Assets/relu.png)
+</code></pre>
+<p>但如果笔记层级很深，相对路径会变得麻烦，也可以按主题建立图片目录，例如：</p>
+<pre><code>docs/Assets/AI/
+docs/Assets/Math/
+docs/Assets/Mechanical/
+</code></pre>
+<p>不要随意把图片散落在项目各处。</p>
+<hr />
+<h2 id="git">十五、初始化 Git<a class="headerlink" href="#git" title="Permanent link">&para;</a></h2>
+<p>先停止本地服务器：</p>
+<pre><code>Ctrl + C
+</code></pre>
+<p>确认位置：</p>
+<pre><code class="language-powershell">cd C:\PolarNotes
+</code></pre>
+<p>初始化：</p>
+<pre><code class="language-powershell">git init
+</code></pre>
+<p>查看文件：</p>
+<pre><code class="language-powershell">git status
+</code></pre>
+<p>加入暂存区：</p>
+<pre><code class="language-powershell">git add .
+</code></pre>
+<p>第一次提交：</p>
+<pre><code class="language-powershell">git commit -m &quot;Initialize Polar Notes&quot;
+</code></pre>
+<p>如果要求设置身份：</p>
+<pre><code class="language-powershell">git config --global user.name &quot;你的GitHub用户名&quot;
+git config --global user.email &quot;你的GitHub邮箱&quot;
+</code></pre>
+<p>然后重新提交。</p>
+<hr />
+<h2 id="github_2">十六、创建 GitHub 仓库<a class="headerlink" href="#github_2" title="Permanent link">&para;</a></h2>
+<p>在 GitHub 点击：</p>
+<pre><code>右上角 +
+→ New repository
+</code></pre>
+<p>仓库名：</p>
+<pre><code>polar-notes
+</code></pre>
+<p>作为公开分享版本时选择：</p>
+<pre><code>Public
+</code></pre>
+<p>因为本地已经有项目，因此不要额外勾选：</p>
+<pre><code>Add a README
+Add .gitignore
+Choose a license
+</code></pre>
+<p>否则远程仓库会先产生一个与本地无关的提交，首次推送可能需要额外合并。</p>
+<hr />
+<h2 id="github_3">十七、本地连接 GitHub<a class="headerlink" href="#github_3" title="Permanent link">&para;</a></h2>
+<p>先将主分支命名为 <code>main</code>：</p>
+<pre><code class="language-powershell">git branch -M main
+</code></pre>
+<p>添加远程仓库：</p>
+<pre><code class="language-powershell">git remote add origin https://github.com/Polar0216/polar-notes.git
+</code></pre>
+<p>检查：</p>
+<pre><code class="language-powershell">git remote -v
+</code></pre>
+<p>第一次推送：</p>
+<pre><code class="language-powershell">git push -u origin main
+</code></pre>
+<p><code>-u</code> 会建立本地 <code>main</code> 和远程 <code>origin/main</code> 的跟踪关系。</p>
+<p>以后只需：</p>
+<pre><code class="language-powershell">git push
+</code></pre>
+<hr />
+<h2 id="github-actions">十八、GitHub Actions 自动部署<a class="headerlink" href="#github-actions" title="Permanent link">&para;</a></h2>
+<p>创建：</p>
+<pre><code>C:\PolarNotes\.github\workflows\deploy.yml
+</code></pre>
+<p>内容：</p>
+<pre><code class="language-yaml">name: Deploy MkDocs
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: &quot;3.12&quot;
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Deploy website
+        run: mkdocs gh-deploy --force
+</code></pre>
+<p>逐段含义：</p>
+<pre><code class="language-yaml">on:
+  push:
+    branches:
+      - main
+</code></pre>
+<p>当 <code>main</code> 分支收到 Push 时运行。</p>
+<pre><code class="language-yaml">runs-on: ubuntu-latest
+</code></pre>
+<p>临时创建 Ubuntu 虚拟机。</p>
+<pre><code class="language-yaml">uses: actions/checkout@v4
+</code></pre>
+<p>把仓库内容下载到虚拟机。</p>
+<pre><code class="language-yaml">uses: actions/setup-python@v5
+</code></pre>
+<p>安装 Python。</p>
+<pre><code class="language-yaml">run: python -m pip install -r requirements.txt
+</code></pre>
+<p>安装 MkDocs、Material 和插件。</p>
+<pre><code class="language-yaml">run: mkdocs gh-deploy --force
+</code></pre>
+<p>生成网站并推送到 <code>gh-pages</code> 分支。</p>
+<p>提交和推送：</p>
+<pre><code class="language-powershell">git add .
+git commit -m &quot;Add automatic deployment&quot;
+git push
+</code></pre>
+<hr />
+<h2 id="actions">十九、在哪里查看 Actions<a class="headerlink" href="#actions" title="Permanent link">&para;</a></h2>
+<p>在 GitHub 仓库顶部菜单可以看到：</p>
+<pre><code>Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Settings
+</code></pre>
+<p><code>Actions</code> 就在顶部菜单中。</p>
+<p>点击后可以看到工作流：</p>
+<pre><code>Deploy MkDocs
+</code></pre>
+<p>状态：</p>
+<pre><code>黄色圆点：正在运行
+绿色对勾：成功
+红色叉号：失败
+</code></pre>
+<p>你之前截图中顶部已经出现了 <code>Actions</code>，而首页提交旁边的黄色状态点说明工作流当时可能正在运行或等待结果。</p>
+<p>如果完全没有工作流，检查：</p>
+<pre><code>.github/workflows/deploy.yml
+</code></pre>
+<p>路径是否正确，文件后缀是否真的是 <code>.yml</code>，以及 YAML 缩进是否正确。</p>
+<hr />
+<h2 id="github-pages">二十、开启 GitHub Pages<a class="headerlink" href="#github-pages" title="Permanent link">&para;</a></h2>
+<p>进入：</p>
+<pre><code>Settings
+→ Pages
+</code></pre>
+<p>选择：</p>
+<pre><code>Source: Deploy from a branch
+</code></pre>
+<p>然后：</p>
+<pre><code>Branch: gh-pages
+Folder: / (root)
+</code></pre>
+<p>保存。</p>
+<p>网站地址为：</p>
+<pre><code>https://Polar0216.github.io/polar-notes/
+</code></pre>
+<p>注意不是：</p>
+<pre><code>https://github.com/Polar0216/polar-notes
+</code></pre>
+<p>前者是网站，后者是仓库。</p>
+<hr />
+<h2 id="_15">二十一、以后的日常工作流程<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h3 id="_16">打开项目<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">conda activate polar-notes
+cd C:\PolarNotes
+code .
+</code></pre>
+<p>需要本地预览时：</p>
+<pre><code class="language-powershell">mkdocs serve
+</code></pre>
+<p>打开：</p>
+<pre><code>http://127.0.0.1:8000/
+</code></pre>
+<h3 id="_17">更新网站<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>修改 <code>docs</code> 中的 Markdown 后：</p>
+<pre><code class="language-powershell">git add .
+git commit -m &quot;更新 NumPy 广播机制笔记&quot;
+git push
+</code></pre>
+<p>后续自动发生：</p>
+<pre><code>Push 到 GitHub
+      ↓
+GitHub Actions 创建 Ubuntu
+      ↓
+安装 requirements.txt
+      ↓
+运行 MkDocs
+      ↓
+更新 gh-pages
+      ↓
+GitHub Pages 更新网站
+</code></pre>
+<hr />
+<h2 id="_18">二十二、最核心的理解<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>整套系统可以浓缩为：</p>
+<pre><code>Markdown 是知识源文件
+Git 是版本记录
+GitHub 是远程仓库
+GitHub Actions 是自动执行程序的云电脑
+MkDocs 是 Markdown 到 HTML 的转换器
+Material 是网站主题
+GitHub Pages 是静态网页服务器
+</code></pre>
+<p>你真正需要长期维护的主要内容只有：</p>
+<pre><code>docs/
+mkdocs.yml
+requirements.txt
+.github/workflows/deploy.yml
+</code></pre>
+<p>其中日常真正频繁修改的，基本只有：</p>
+<pre><code>docs/
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
