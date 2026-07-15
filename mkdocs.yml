@@ -4,6 +4,7 @@ site_description: Polar 的个人学习笔记
 theme:
   name: material
   language: zh
+
   features:
     - navigation.tabs
     - navigation.sections
@@ -11,7 +12,6 @@ theme:
     - search.suggest
     - search.highlight
     - toc.follow
-    - toc.integrate
 
 plugins:
   - search
