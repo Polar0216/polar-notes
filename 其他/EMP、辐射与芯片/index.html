@@ -1,0 +1,1257 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/">
+      
+      
+        <link rel="next" href="../%E4%BA%8C%E7%BB%B4%E7%A0%81/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="emp">为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响<a class="headerlink" href="#emp" title="Permanent link">&para;</a></h1>
+<p>EMP（电磁脉冲）对现代芯片和电子管（真空管）造成截然不同影响的核心，在于<strong>二者工作电压和物理结构的巨大差异</strong>。</p>
+<p>简单来说，EMP就像一场狂暴的“电压海啸”-，而现代芯片和电子管就像是建在海边但高度不同的建筑：</p>
+<p><strong>1. 芯片</strong><br />
+现代芯片（如CMOS）由极其微小的晶体管构成，工作电压很低（通常1-5V），内部绝缘层也极薄<a href="https://www.physicsforums.com/threads/why-does-emp-deactivate-electronic-devices.78727/">-21</a>。EMP感应的浪涌电压可能是正常工作电压的成千上万倍，足以<strong>直接击穿晶体管脆弱的PN结</strong><a href="https://www.physicsforums.com/threads/why-does-emp-deactivate-electronic-devices.78727/">-21</a>，导致内部短路或断路，这与修理电脑时类似，人体静电可能导致你的芯片内部晶体管直接被击穿报废。</p>
+<p><strong>2. 电子管</strong><br />
+电子管是<strong>电真空器件</strong>，通过真空中的电子流工作，本身工作电压就很高（上百伏特）<a href="https://www.physicsforums.com/threads/why-does-emp-deactivate-electronic-devices.78727/">-21</a>。EMP感应的电压对它来说只是“大浪”，远未达到其耐受极限<a href="https://www.physicsforums.com/threads/why-does-emp-deactivate-electronic-devices.78727/">-21</a>。即便电压过高，电子管内部最多只会发生短暂的电弧放电来释放能量-，一旦脉冲过去通常能恢复正常。</p>
+<p>此外，虽然电子管本身能扛住EMP，但<strong>整个设备并非无敌</strong>。例如老式收音机里的<strong>硒整流器</strong>等固态元件依然是薄弱环节。现代芯片也可以通过屏蔽、滤波等<strong>加固技术</strong>来提高抗EMP能力。</p>
+<h1 id="_1">给芯片套一层金属外壳形成屏蔽可以保护芯片吗<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>这个想法很符合直觉，但现实工程中，<strong>“完全屏蔽”几乎做不到</strong>。核心原因在于：芯片必须与外界连接。
+具体卡在三个环节：
+- <strong>引脚</strong>：芯片必须通过金属引脚与外部的电源、地线、信号线连接。这些外接导线在EMP下会像天线一样感生出巨大的<strong>传导性浪涌</strong>，顺着引脚直接灌入芯片内部。金属壳能挡住空间辐射，但挡不住顺着电线“游”进来的高压电流。（此处我之前不理解，因为按照我高中的理解，引脚也是金属，这还是一个金属外壳，依然是几个完美的屏蔽，但是实际上这和高中的静电场不一样在<strong>静电平衡</strong>状态下，屏蔽层上的感应电荷确实只分布在<strong>外表面</strong>，内部导线绝对安全——这是高中物理的完美结论。但EMP是<strong>瞬息万变的脉冲电磁场</strong>，不是静止的电场。这里有两个“破防”机制：<strong>1. “转移阻抗”（电流从外表面“窜”到内表面）</strong>  屏蔽层不是理想超导体，它是有<strong>电阻</strong>的。当EMP在屏蔽层外表面感应出<strong>巨大的瞬态电流</strong>（几千安培）时，这个电流会在屏蔽层的电阻上产生一个<strong>电压差</strong>。因为电流变化极快（纳秒级），这个电压差会通过屏蔽层的<strong>电感和电阻</strong>，强行“渗透”到屏蔽层的<strong>内表面</strong>。这个从外表面“传导”到内表面的压降，就构成了<strong>传导性浪涌</strong>的源头，它会顺着连接在屏蔽层和内芯之间的<strong>负载回路</strong>（也就是芯片引脚）形成电流。<strong>2. 接口处的地电位弹跳</strong>  ：更直接的是，当屏蔽层把巨大电流泄放到外壳大地时，由于接地电阻不可能为零，<strong>机壳的“大地”电位会瞬间被抬高几十伏</strong>。而芯片的引脚是直接连接内部信号线的，内部信号线的参考地就是机壳。  这时候，外部导线（或电缆屏蔽层内表面感应出的电压）与瞬间被抬高的“机壳地”之间，就产生了一个<strong>巨大的电位差</strong>。这个电位差直接加在了芯片的引脚和地之间——<strong>这就相当于高压电流顺着引脚“灌”进去了</strong>。电流走的路径是：<strong>外部导线 → 芯片引脚 → 芯片内部电路 → 瞬间跳动的机壳地</strong>。</p>
+<ul>
+<li>
+<p><strong>缝隙</strong>：金属壳需要接缝、散热孔或测试点。EMP的频率极宽（含高频微波），波长极短，只要缝隙尺寸大于波长的一小部分，电磁波就能“钻”进去。要达到完美屏蔽，接缝必须采用<strong>导电胶条密封或激光焊接</strong>，这在民用产品上成本过高，且不利于散热。</p>
+</li>
+<li>
+<p><strong>屏蔽本身有“副作用”</strong>：给芯片加厚重金属壳会影响散热，导致芯片过热；同时，金属壳会增加引脚的寄生电容，干扰高频信号的正常传输（比如5G射频芯片）。</p>
+</li>
+</ul>
+<p><strong>现实中的做法</strong>是“组合拳”：给机箱做屏蔽层，同时在所有进出的电源和信号线上加装<strong>滤波器和瞬态抑制二极管（TVS）</strong>，把“走线”进来的能量提前泄放到地。即便如此，面对极端强EMP，也只能做到<strong>提高生存概率</strong>，而非“<strong>绝对无损</strong>。</p>
+<h1 id="_2">军用级如何防护<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<p>具体有这几板斧：</p>
+<ul>
+<li>
+<p><strong>入口处直接“过滤”</strong>：在金属壳的穿墙接口处，安装<strong>穿心滤波器和馈通电容</strong>。它们专门滤除高频EMP成分，只允许50Hz工频或特定低频信号通过，把浪涌能量在进门前就<strong>短路到机壳大地</strong>泄放掉。</p>
+</li>
+<li>
+<p><strong>搭“浪涌泄洪道”</strong>：在每根信号线对地之间，并联<strong>瞬态抑制二极管（TVS）或气体放电管</strong>。一旦感应电压超过安全阈值（比如几十伏），它们会瞬间击穿导通，像“泄洪闸”一样把高压电流旁路到地，把后端芯片钳位在安全电压。</p>
+</li>
+<li>
+<p><strong>光电隔离</strong>：对关键控制信号，<strong>把电信号转为光信号</strong>通过光纤传输，穿过屏蔽层后再转回电信号。光纤是玻璃（绝缘体），EMP根本感应不出电流，属于<strong>物理级别的“断联”</strong>，这是最彻底的防护。</p>
+</li>
+<li>
+<p><strong>屏蔽层“360度无死角”接地</strong>：军用电缆屏蔽层不是简单拧一根线接地，而是通过<strong>专用的圆形连接器</strong>，让屏蔽层在接口处<strong>360度环绕接触</strong>金属壳体，确保阻抗连续。这样感应的表面电流直接沿着外壳流走，不会“窜”进内部导线。这相当于把导线也纳入了金属外壳内，将所有东西都包起来了。当然，代价极其高昂：经过这套处理的军用电缆粗硬无比，设备体积大、功耗高，且成本是民用级的几十上百倍。而且即使这样，也只是<strong>“极大提高生存率”</strong>，面对核爆中心区的极致EMP，依然可能被直接击穿。</p>
+</li>
+</ul>
+<p>所以，没有“完全免疫”，只有花大代价扛过去。</p>
+<h1 id="_3">没有完美的防护<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<p><strong>“绝对安全”在物理学里是不存在的</strong>。</p>
+<ul>
+<li>
+<p><strong>“泄洪闸”有反应时间（漏网之鱼）</strong>：TVS二极管动作虽快，但核爆EMP前沿极其陡峭。在TVS完全导通前的<strong>那几十亿分之一秒</strong>，一个极高的尖峰电压已经“溜”进去了。虽然能量极小，但对几纳米制程的芯片栅极来说，可能就是致命的“慢性毒药”，累积多次后性能就会退化。</p>
+</li>
+<li>
+<p><strong>“泄洪”导致“地动山摇”（地电位反击）</strong>：当几万安培的浪涌电流被瞬间泄放到“大地”时，设备内部的地线电位会瞬间被抬高几十甚至上百伏。如果机箱内不同模块的地线存在<strong>微小的阻抗差</strong>，这个电压差就会反向击穿芯片的I/O口——相当于洪水没从大门进来，却从自家院子的“污水井”里倒灌了。</p>
+</li>
+<li>
+<p><strong>屏蔽壳内部的“自激”</strong>：金属壳内部并非空腔。当外部强电磁场穿透极微小的缝隙时，会在壳体内部形成<strong>驻波或谐振</strong>，耦合到内部PCB板上的长导线或散热器上，感应出新的电压。</p>
+</li>
+<li>
+<p><strong>防护器件本身会“累”</strong>：TVS和滤波器是耗材。每扛一次大脉冲，内部晶格就会损伤一点。如果敌方连续多次打击，这些“盾牌”可能会先于芯片报废。</p>
+</li>
+<li>
+<p><strong>最致命的工程隐患，接地氧化</strong>：360度屏蔽接地靠的是金属接触，但战场上的盐雾、震动和热胀冷缩会导致接触面氧化或松动。哪怕只有<strong>微米级的缝隙</strong>，在高频EMP下就会变成高效天线，让之前的精密设计瞬间失效。</p>
+</li>
+</ul>
+<p>所以，军用防护的本质是 <strong>“把生存概率从10%提高到99%”</strong> ，而不是“100%无损”。工程学的终极魅力，恰恰在于承认物理极限后，在<strong>成本、重量、可靠性与风险</strong>之间做痛苦的权衡。</p>
+<h1 id="_4">辐射为什么会毁坏芯片<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<p>首先要厘清一个关键区别：<strong>强辐射（粒子/射线）和EMP（电磁脉冲）是两码事</strong>。EMP是“外部电涌”，而辐射是“内部破坏”。</p>
+<p>芯片在强辐射下“烧毁”，核心原因不是外部电压过高，而是内部发生了短路：</p>
+<ul>
+<li>
+<p><strong>闩锁效应（Latch-Up），直接“烧穿”</strong>：CMOS芯片内部天生有个寄生可控硅结构。强辐射粒子（如重离子）穿过时，会在硅中电离出大量电子-空穴对，瞬间触发这个寄生结构<strong>导通</strong>，导致电源和地之间形成<strong>低阻直通</strong>。此时电流会飙升到正常工作电流的<strong>数十甚至上百倍</strong>，局部功率密度极高，在<strong>几微秒内</strong>就能把硅片局部加热到超过<strong>1400℃</strong>（硅的熔点），直接熔断内部铝引线或烧毁PN结——这是物理层面的“炸裂”。</p>
+</li>
+<li>
+<p><strong>慢性毒药：总剂量效应，累加到“热跑脱”</strong>。长期辐射会让芯片的氧化层（栅极绝缘层）不断积累正电荷，导致寄生通道打开，<strong>静态漏电越来越大</strong>。漏电产生热量，热量让半导体电阻下降，电阻下降又导致漏电更大……形成恶性循环（热跑脱）。最终温度远超封装耐受极限，焊球熔化或硅片开裂，属于“温水煮青蛙”式的烧毁。</p>
+</li>
+<li>
+<p><strong>瞬时误触：单粒子烧毁（SEB），常见于功率器件</strong>。在高压功率芯片中，单个重离子撞击就可能瞬间产生巨大电流尖峰，直接超过器件的安全工作区，导致击穿烧毁。</p>
+</li>
+</ul>
+<p><strong>为什么金属壳挡不住？</strong><br />
+因为高能粒子（如宇宙射线、中子）拥有巨大动能，大部分能直接穿透金属外壳，把能量沉积在硅晶格内部。所以防辐射靠的不是“屏蔽”，而是<strong>工艺加固</strong>（如采用绝缘体上硅SOI工艺彻底消除寄生结构，或用错位晶体结构让载流子快速复合）。</p>
+<p>总结一句话：金属壳对EMP有效，但面对高能粒子就像纸糊的，必须从芯片“基因”上改造才能扛住。</p>
+<h1 id="_5">通过光纤控制<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
+<p><strong>“机器人光纤线控”并“不用芯片”能极大提升抗辐射能力，但无法做到“完全免疫”</strong>。</p>
+<p>这其实就是工程上应对极端环境的<strong>“无损长线传输 + 分层隔离”</strong>策略<a href="https://www.xjishu.com/zhuanli/14/201811567841.html">-4</a>-。具体拆解来看：</p>
+<ul>
+<li><strong>光纤传输（解决“大脑”问题）</strong>：光纤本身是石英玻璃，传输光信号，完全不受电磁干扰和大部分辐射影响-。将<strong>包含芯片的“大脑”（控制器）</strong> 放在安全区<a href="https://www.xjishu.com/zhuanli/14/201811567841.html">-4</a>，机器人本体只保留电机、液压等“肌肉”，通过光纤传递控制指令<a href="https://leaderobot.com/news/4655">-1</a>。这样芯片根本不在辐射区，自然就不会被烧毁。</li>
+<li>
+<p><strong>机器人本体（解决“身体”问题）</strong>：虽然“大脑”安全了，但进入高辐射区的“身体”依然面临挑战：</p>
+<ul>
+<li>
+<p><strong>执行器（肌肉）</strong>：传统的电机、液压系统等<strong>对辐射不敏感</strong>，可以正常工作。</p>
+</li>
+<li>
+<p><strong>传感器（神经）</strong>：这是最大软肋。为实现闭环控制必须采集信号<a href="https://www.xjishu.com/zhuanli/14/201811567841.html">-4</a>，传统电子传感器依然会坏。工程上会用<strong>光纤传感器</strong>（如FBG）-或<strong>耐辐射的模拟量传感器</strong><a href="https://www.xjishu.com/zhuanli/14/201811567841.html">-4</a>来代替。</p>
+</li>
+<li>
+<p><strong>本体材料</strong>：强辐射会让橡胶等绝缘体变性甚至导电<a href="https://www.zhihu.com/question/326625517#0">-28</a>，因此需要选用特种耐辐射线缆和材料-。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>现实应用</strong>：这并非纸上谈兵。在核聚变装置（EAST）的蛇形机器人-<a href="http://www.ipp.cas.cn/xwdt/kydt/201512/t20151204_352570.html">-23</a>、核电站巡检-及各类核环境机器人-中，都广泛采用了<strong>抗辐射光纤</strong>进行成像和控制<a href="http://www.ipp.cas.cn/xwdt/kydt/201512/t20151204_352570.html">-23</a>。</p>
+</li>
+</ul>
+<p><strong>但是，它绝非毫无漏洞：</strong></p>
+<ul>
+<li>
+<p><strong>辐致暗化效应</strong>：<strong>辐射诱导产生色心缺陷</strong>导致光吸收增加，透光性下降（“损伤”），导致信号衰减-。需用<strong>抗辐射光纤</strong>来延缓，但无法根除。</p>
+</li>
+<li>
+<p><strong>物理“脐带”的束缚</strong>：拖着长长的光纤限制了机器人的活动范围和灵活性<a href="https://leaderobot.com/news/4655">-1</a>。</p>
+</li>
+<li>
+<p><strong>末端执行器的难题</strong>：如果机器人需要精细操作（如拧螺丝），<strong>手部</strong>仍需高精度传感器和驱动芯片，这部分依然暴露在辐射中，是薄弱环节-。</p>
+</li>
+<li>
+<p><strong>极端辐射下的材料失效</strong>：在极强的辐射（如核反应堆堆芯）下，不仅是电子设备，金属和绝缘材料本身也会在原子层面被破坏，任何设备都难以幸免<a href="https://www.zhihu.com/question/326625517#0">-28</a>。</p>
+</li>
+</ul>
+<p>总而言之，“光纤线控”的精髓在于<strong>将“智能”与“身体”分离</strong>，是目前应对高辐射环境最有效的工程策略之一。但这并非“无懈可击”，更像是在“完全无智能的纯机械”和“进去就报废的智能芯片”之间，找到的一个巧妙平衡点。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
