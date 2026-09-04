@@ -1,0 +1,23 @@
+site_name: Polar Notes
+site_description: Polar 的个人学习笔记
+
+theme:
+  name: material
+  language: zh
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+
+plugins:
+  - search
+  - awesome-nav
+
+markdown_extensions:
+  - toc:
+      toc_depth: "2-6"
+      permalink: true
