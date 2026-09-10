@@ -1,0 +1,5757 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/">
+      
+      
+        <link rel="next" href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>PyTorch 从零使用指南 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pytorch_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PyTorch 从零使用指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-tabs__link">
+          
+  
+  
+  Ai学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-tabs__link">
+          
+  
+  
+  耳机
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 项目推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Conda_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy 广播机制：规则、形状与神经网络中的应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pytorch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、安装 PyTorch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、安装 PyTorch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 使用 Conda 创建学习环境（推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备用：使用 venv 创建环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 安装 CPU 版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nvidia-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安装 NVIDIA GPU 版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-condapip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conda、pip 与旧安装命令的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 创建 Tensor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 常用创建方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 对应元素运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 矩阵乘法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 常用统计运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-reshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. reshape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 增加维度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 删除长度为 1 的维度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 转置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯度为什么要清零
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐项理解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐项理解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nnmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 继承 nn.Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 初始化父类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 定义线性层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 定义前向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一步：模型预测
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：计算损失
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三步：清空旧梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四步：计算梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五步：更新参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 回归问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 多分类问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 二分类问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SGD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adam
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tensordataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 使用 TensorDataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自定义 Dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个重要原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        训练模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推理或验证模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 保存模型参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 加载模型参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 保存训练检查点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全连接层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        激活函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        卷积层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        池化层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 数据类型不匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 形状不匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 模型和数据不在同一设备
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crossentropyloss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CrossEntropyLoss 标签类型错误
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cuda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. CUDA 显存不足
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 忘记清零梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从计算机新手到 LLM Engineer：可执行学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 0：环境、命令行与学习方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1 课后 Project 标准答案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学补充：从变化率到梯度下降
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 与 PyTorch MLP 完整模型代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2 标准答案：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03_Tokenizer_Attention_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 3：Tokenizer、Attention 与 Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03A_Attention%E4%B8%8ETransformer%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention 与 Transformer 手算讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04_MiniGPT%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 4：MiniGPT 与预训练
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04A_%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%98%BE%E5%AD%98%E4%BC%B0%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT 训练原理、优化器与显存估算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05_%E6%8E%A8%E7%90%86%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 5：推理、量化与本地部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05A_%E9%87%87%E6%A0%B7_KVCache%E4%B8%8E%E9%87%8F%E5%8C%96%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    采样、KV Cache 与量化推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06_%E5%BE%AE%E8%B0%83_LoRA_QLoRA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 6：SFT、LoRA 与 QLoRA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06A_LoRA%E4%B8%8EQLoRA%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoRA、QLoRA 与监督微调推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07_RAG%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 7：RAG——从最小检索到高级与 GraphRAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07A_RAG%E6%A3%80%E7%B4%A2%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 检索、排序与评估手算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08_ToolCalling%E4%B8%8E%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 8：Tool Calling、Code Interpreter 与安全执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08A_%E4%BB%8ETool%E5%88%B0Agent%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从 Tool Calling 到可恢复 Agent：完整案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/09_Memory%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 9：Memory——从上下文到长期记忆
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/10_Agent%E4%B8%8EMultiAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 10：Agent、Browser/Coding Agent 与 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11_MCP_AI_OS%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 11：MCP、Second Brain OS 与工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11A_SecondBrain%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%93%9D%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain OS 工程实现蓝图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/12_%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 12（选修）：多模态、ROS 2 与机器人
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/13_%E9%A1%B9%E7%9B%AE%E4%B8%8E%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与学习资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线 框架优先版
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线 框架优先版
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从整机到零件：LLM 框架优先学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/00_LLM%E5%85%A8%E5%B1%80%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 0 课：从预测任务推导出 GPT 的结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/01_%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8CMiniGPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之一：第一次运行完整 MiniGPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/02_%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%AE%8C%E6%95%B4%E9%97%AD%E7%8E%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之二：训练与生成的完整闭环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/03_%E5%BC%A0%E9%87%8F_Linear_Softmax%E4%B8%8E%E6%8D%9F%E5%A4%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之一：张量、Linear、Softmax 与损失
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/04_Tokenizer_Embedding%E4%B8%8E%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之二：Tokenizer、Embedding 与位置信息
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/05_Attention%E4%B8%8ETransformerBlock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之三：Attention 与 Transformer Block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/06_%E6%A2%AF%E5%BA%A6_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之四：梯度、反向传播与参数优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/07_%E5%AE%8C%E6%95%B4MiniGPT%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%AF%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之五：完整 MiniGPT 的装配与源码导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/08_%E6%95%B0%E6%8D%AE_%E9%A2%84%E8%AE%AD%E7%BB%83_%E8%AF%84%E4%BC%B0%E4%B8%8ECheckpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之一：数据、预训练、评估与 Checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/09_%E6%8E%A8%E7%90%86_%E9%87%87%E6%A0%B7_KVCache_%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之二：推理、采样、KV Cache、量化与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/10_%E5%BE%AE%E8%B0%83_RAG_Agent%E4%B8%8E%E5%90%8E%E7%BB%AD%E6%96%B9%E5%90%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之三：微调、RAG、Agent 与后续方向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/11_%E9%A1%B9%E7%9B%AE%E9%98%B6%E6%A2%AF%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程终章：从全局地图到可复现 MiniGPT 项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/12_%E9%A1%B9%E7%9B%AE%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课后项目标准答案与结果核对
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM 框架优先学习记录模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_16" id="__nav_3_6_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniGPT 完整代码运行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳机
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    耳机
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOMENTUM 4 完整使用建议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统讲解耳机音质（拆分版）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/01-%E6%92%AD%E6%94%BE%E9%93%BE%E8%B7%AF%E4%B8%8E%E6%95%B0%E5%AD%97%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（1）：播放链路与数字基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/02-%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8E%E9%AB%98%E8%A7%84%E6%A0%BC%E9%9F%B3%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（2）：音频文件格式与高规格音频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/03-%E8%93%9D%E7%89%99%E9%9F%B3%E9%A2%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（3）：蓝牙音频与传输编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/04-%E6%89%8B%E6%9C%BA%E3%80%81DAC%E3%80%81%E8%80%B3%E6%94%BE%E4%B8%8E%E9%A9%B1%E5%8A%A8%E5%8A%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（4）：手机、DAC、耳放与驱动力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/05-DAP%E3%80%81%E5%B0%8F%E5%B0%BE%E5%B7%B4%E4%B8%8E%E5%B9%B3%E8%A1%A1%E8%BE%93%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（5）：DAP、小尾巴与平衡输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/06-%E6%92%AD%E6%94%BE%E8%AE%BE%E7%BD%AE%E3%80%81EQ%E4%B8%8E%E8%AE%BE%E5%A4%87%E9%80%89%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（6）：播放设置、EQ与设备选购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/07-%E8%80%B3%E6%9C%BA%E6%9C%AC%E4%BD%93%E4%B8%8E%E5%90%AC%E6%84%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（7）：耳机本体与听感
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/08-%E9%80%89%E8%B4%AD%E5%8E%9F%E5%88%99%E4%B8%8E%E7%9F%A5%E8%AF%86%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（8）：选购原则与知识树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pytorch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、安装 PyTorch
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、安装 PyTorch">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-conda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 使用 Conda 创建学习环境（推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        备用：使用 venv 创建环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-cpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 安装 CPU 版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-nvidia-gpu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 安装 NVIDIA GPU 版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-condapip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Conda、pip 与旧安装命令的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 创建 Tensor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 常用创建方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 对应元素运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 矩阵乘法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 常用统计运算
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-reshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. reshape
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 增加维度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 删除长度为 1 的维度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 转置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        梯度为什么要清零
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逐项理解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="逐项理解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nnmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 继承 nn.Module
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 初始化父类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 定义线性层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 定义前向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一步：模型预测
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二步：计算损失
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三步：清空旧梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第四步：计算梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第五步：更新参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 回归问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 多分类问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 二分类问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SGD
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adam" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adam
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-tensordataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 使用 TensorDataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 自定义 Dataset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个重要原则
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        训练模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        推理或验证模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 保存模型参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 加载模型参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 保存训练检查点
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全连接层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        激活函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        卷积层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        池化层
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dropout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dropout
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Embedding
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sequential
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 数据类型不匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 形状不匹配
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 模型和数据不在同一设备
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-crossentropyloss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CrossEntropyLoss 标签类型错误
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cuda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. CUDA 显存不足
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 忘记清零梯度
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="pytorch">PyTorch 从零使用指南<a class="headerlink" href="#pytorch" title="Permanent link">&para;</a></h1>
+<p>PyTorch 可以先理解成两部分：</p>
+<ol>
+<li><strong>带 GPU 加速的 NumPy</strong>：用 <code>Tensor</code> 做矩阵运算。</li>
+<li><strong>自动求导的神经网络框架</strong>：自动计算梯度、更新模型参数。</li>
+</ol>
+<p>官方文档目前把入门流程概括为：Tensor、Dataset/DataLoader、构建模型、自动求导、优化模型、保存与加载。</p>
+<hr />
+<h2 id="pytorch_1">一、安装 PyTorch<a class="headerlink" href="#pytorch_1" title="Permanent link">&para;</a></h2>
+<p>推荐在独立的 Conda 环境中学习 PyTorch。这样每个项目都有自己的 Python 和依赖包，不会把包混装到 <code>base</code> 环境，也不会影响其他项目。</p>
+<h3 id="0-conda">0. 使用 Conda 创建学习环境（推荐）<a class="headerlink" href="#0-conda" title="Permanent link">&para;</a></h3>
+<p>先在 <strong>Anaconda Prompt</strong>、PowerShell 或 VS Code 终端中检查 Conda 是否可用：</p>
+<pre><code class="language-powershell">conda --version
+</code></pre>
+<p>如果提示“<code>conda</code> 不是内部或外部命令”，优先打开 <strong>Anaconda Prompt</strong> 再执行后续命令。若想在普通 PowerShell 中使用，可在 Anaconda Prompt 中一次性运行 <code>conda init powershell</code>，关闭并重新打开 PowerShell 后再试；这是为 PowerShell 配置 Conda 初始化脚本。</p>
+<p>能显示版本号后，创建并激活一个专门学习 PyTorch 的环境：</p>
+<pre><code class="language-powershell">conda create -n pytorch-study python=3.11 -y
+conda activate pytorch-study
+python --version
+</code></pre>
+<p>这里的 <code>pytorch-study</code> 是环境名称；你可以改名，但后续激活时必须使用同一个名字。<code>python=3.11</code> 表示在这个隔离环境中安装 Python 3.11；如果课程明确要求 Python 3.10，可以改成 <code>python=3.10</code>。</p>
+<p>之后每次安装包或运行本项目，先执行：</p>
+<pre><code class="language-powershell">conda activate pytorch-study
+</code></pre>
+<p>Conda 负责隔离环境，<code>pip</code> 可以在这个 Conda 环境内部安装 PyTorch。下面统一使用 <code>python -m pip</code>，而不是直接写 <code>pip</code>，这样更容易保证包被安装到当前已激活环境的 Python 中。</p>
+<p>如果你暂时没有 Conda，也可以使用下面原有的 <code>venv</code> 方案；两者二选一，不要在同一个项目中嵌套使用。</p>
+<h3 id="venv">备用：使用 venv 创建环境<a class="headerlink" href="#venv" title="Permanent link">&para;</a></h3>
+<pre><code class="language-powershell">mkdir pytorch_demo
+cd pytorch_demo
+
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+
+python -m pip install --upgrade pip
+</code></pre>
+<h3 id="1-cpu">1. 安装 CPU 版本<a class="headerlink" href="#1-cpu" title="Permanent link">&para;</a></h3>
+<p>确认终端前缀是 <code>(pytorch-study)</code>（或已激活 <code>.venv</code>）后执行：</p>
+<pre><code class="language-powershell">python -m pip install torch torchvision torchaudio
+</code></pre>
+<h3 id="2-nvidia-gpu">2. 安装 NVIDIA GPU 版本<a class="headerlink" href="#2-nvidia-gpu" title="Permanent link">&para;</a></h3>
+<p>只有 NVIDIA 显卡才能使用 CUDA。先在已激活的 Conda 环境中检查驱动：</p>
+<pre><code class="language-powershell">nvidia-smi
+</code></pre>
+<p>如果该命令能显示显卡名称和驱动版本，再进入 <a href="https://pytorch.org/get-started/locally/">PyTorch 官方安装页</a>。不要随便复制网上旧命令；应根据：</p>
+<ul>
+<li>Windows</li>
+<li>Pip</li>
+<li>Python</li>
+<li>你的 CUDA 平台</li>
+</ul>
+<p>选择对应命令。官方也建议通过安装选择器生成当前适用的命令。</p>
+<p>命令通常形如：</p>
+<pre><code class="language-powershell"># 只作格式示意；cuXXX 必须以官网当前给出的值为准
+python -m pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cuXXX
+</code></pre>
+<p>不要从旧教程里照抄 <code>cu121</code>、<code>cu124</code> 等具体数字；可用版本会变化。多数学习任务不需要单独安装完整 CUDA Toolkit，PyTorch 的安装包通常已经带有运行所需组件；只有编译自定义 CUDA 扩展时才可能需要 Toolkit。</p>
+<h3 id="3-condapip">3. Conda、pip 与旧安装命令的关系<a class="headerlink" href="#3-condapip" title="Permanent link">&para;</a></h3>
+<p>有些旧资料会写 <code>conda install pytorch ... -c pytorch</code>。是否能用取决于 PyTorch 当前的发布方式；优先以官网安装选择器给出的命令为准。</p>
+<ul>
+<li>官网给 Conda 命令：在已激活的 <code>pytorch-study</code> 环境中运行。</li>
+<li>官网给 Pip 命令：仍在这个 Conda 环境中运行 <code>python -m pip ...</code>，这是正常用法。</li>
+<li>同一环境不要把 <code>torch</code> 的一部分从 Conda 安装、另一部分从 Pip 安装；若出现冲突，删除环境后按一种方案重建通常最快。</li>
+</ul>
+<p>安装后检查：</p>
+<pre><code class="language-python">import torch
+
+print(&quot;PyTorch 版本：&quot;, torch.__version__)
+print(&quot;CUDA 可用：&quot;, torch.cuda.is_available())
+
+if torch.cuda.is_available():
+    print(&quot;显卡：&quot;, torch.cuda.get_device_name(0))
+</code></pre>
+<p>可能输出：</p>
+<pre><code>PyTorch 版本： 2.x.x+cu...
+CUDA 可用： True
+显卡： NVIDIA GeForce RTX ...
+</code></pre>
+<p>这里：</p>
+<pre><code class="language-python">torch.cuda.is_available()
+</code></pre>
+<p>返回布尔值：</p>
+<ul>
+<li><code>True</code>：PyTorch 能使用 NVIDIA GPU。</li>
+<li><code>False</code>：目前只能使用 CPU。</li>
+</ul>
+<p>若怀疑“明明安装了却导入不到”，在已经执行 <code>conda activate pytorch-study</code> 的终端中运行：</p>
+<pre><code class="language-powershell">where python
+python -m pip --version
+</code></pre>
+<p>两条输出中的路径都应当指向 <code>pytorch-study</code> 环境。随后可以再运行下面的最小计算检查：</p>
+<pre><code class="language-python">import torch
+
+x = torch.randn(2, 3)
+linear = torch.nn.Linear(3, 4)
+y = linear(x)
+print(y.shape)  # 应为 torch.Size([2, 4])
+</code></pre>
+<p>在 Jupyter 或 VS Code Notebook 中，还要确认右上角选择的内核也是这个 Conda 环境；终端激活环境不会自动替 Notebook 更换内核。</p>
+<hr />
+<h1 id="tensorpytorch">二、Tensor：PyTorch 最核心的数据结构<a class="headerlink" href="#tensorpytorch" title="Permanent link">&para;</a></h1>
+<p>Tensor 就是一个多维数字数组。</p>
+<table>
+<thead>
+<tr>
+<th>维⁠数</th>
+<th>示⁠例</th>
+<th>常⁠见⁠含⁠义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0 维</td>
+<td><code>5</code></td>
+<td>一⁠个⁠数⁠字</td>
+</tr>
+<tr>
+<td>1 维</td>
+<td><code>[1, 2, 3]</code></td>
+<td>向⁠量</td>
+</tr>
+<tr>
+<td>2 维</td>
+<td><code>[[1, 2], [3, 4]]</code></td>
+<td>矩⁠阵</td>
+</tr>
+<tr>
+<td>3 维</td>
+<td>多⁠张⁠二⁠维⁠表</td>
+<td>彩⁠色⁠图⁠片⁠或⁠批⁠次</td>
+</tr>
+<tr>
+<td>更⁠高⁠维</td>
+<td>多⁠层⁠嵌⁠套</td>
+<td>图⁠片⁠批⁠次、文⁠本⁠批⁠次</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-tensor">1. 创建 Tensor<a class="headerlink" href="#1-tensor" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">import torch
+
+a = torch.tensor([1, 2, 3])
+print(a)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor([1, 2, 3])
+</code></pre>
+<p>二维 Tensor：</p>
+<pre><code class="language-python">x = torch.tensor([
+    [1, 2],
+    [3, 4]
+])
+
+print(x)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor([[1, 2],
+        [3, 4]])
+</code></pre>
+<h2 id="2">2. 常用创建方法<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">import torch
+
+a = torch.zeros(2, 3)
+b = torch.ones(2, 3)
+c = torch.rand(2, 3)
+d = torch.randn(2, 3)
+e = torch.arange(0, 10, 2)
+
+print(a)
+print(b)
+print(c)
+print(d)
+print(e)
+</code></pre>
+<p>含义：</p>
+<pre><code class="language-python">torch.zeros(2, 3)
+</code></pre>
+<p>创建一个 2 行 3 列、元素全是 0 的 Tensor。</p>
+<pre><code class="language-python">torch.rand(2, 3)
+</code></pre>
+<p>创建一个 2 行 3 列的 Tensor，元素来自 <code>[0, 1)</code> 均匀分布。</p>
+<pre><code class="language-python">torch.randn(2, 3)
+</code></pre>
+<p>元素来自均值为 0、标准差为 1 的正态分布。</p>
+<pre><code class="language-python">torch.arange(0, 10, 2)
+</code></pre>
+<p>类似 Python 的：</p>
+<pre><code class="language-python">range(0, 10, 2)
+</code></pre>
+<p>得到：</p>
+<pre><code>tensor([0, 2, 4, 6, 8])
+</code></pre>
+<hr />
+<h1 id="tensor">三、Tensor 的形状<a class="headerlink" href="#tensor" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">x = torch.randn(4, 3)
+
+print(x)
+print(x.shape)
+print(x.ndim)
+print(x.numel())
+</code></pre>
+<p>输出可能是：</p>
+<pre><code>torch.Size([4, 3])
+2
+12
+</code></pre>
+<p>分别表示：</p>
+<ul>
+<li><code>x.shape</code>：4 行 3 列。</li>
+<li><code>x.ndim</code>：二维 Tensor。</li>
+<li><code>x.numel()</code>：总共 12 个元素。</li>
+</ul>
+<p>在神经网络中，<strong>形状非常重要</strong>。大量 PyTorch 报错，本质上都是形状不匹配。</p>
+<hr />
+<h1 id="tensor_1">四、Tensor 的数据类型<a class="headerlink" href="#tensor_1" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">a = torch.tensor([1, 2, 3])
+b = torch.tensor([1.0, 2.0, 3.0])
+
+print(a.dtype)
+print(b.dtype)
+</code></pre>
+<p>通常输出：</p>
+<pre><code>torch.int64
+torch.float32
+</code></pre>
+<p>神经网络的大部分计算使用浮点数：</p>
+<pre><code class="language-python">x = torch.tensor([1, 2, 3], dtype=torch.float32)
+</code></pre>
+<p>或者转换：</p>
+<pre><code class="language-python">x = x.float()
+</code></pre>
+<p>常见类型：</p>
+<table>
+<thead>
+<tr>
+<th>类⁠型</th>
+<th>含⁠义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>torch.float32</code></td>
+<td>普⁠通⁠浮⁠点⁠数，训⁠练⁠最⁠常⁠用</td>
+</tr>
+<tr>
+<td><code>torch.float16</code></td>
+<td>半⁠精⁠度⁠浮⁠点⁠数</td>
+</tr>
+<tr>
+<td><code>torch.bfloat16</code></td>
+<td>另⁠一⁠种⁠低⁠精⁠度⁠浮⁠点⁠数</td>
+</tr>
+<tr>
+<td><code>torch.int64</code></td>
+<td>整⁠数，分⁠类⁠标⁠签⁠常⁠用</td>
+</tr>
+<tr>
+<td><code>torch.bool</code></td>
+<td>布⁠尔⁠值</td>
+</tr>
+</tbody>
+</table>
+<p>一个非常常见的规则是：</p>
+<pre><code class="language-python">输入 x：float32
+分类标签 y：int64
+</code></pre>
+<hr />
+<h1 id="_1">五、索引与切片<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">x = torch.tensor([
+    [10, 20, 30],
+    [40, 50, 60],
+    [70, 80, 90]
+])
+
+print(x[0])
+print(x[0, 1])
+print(x[:, 0])
+print(x[1:, :2])
+</code></pre>
+<p>分别得到：</p>
+<pre><code class="language-python">x[0]
+</code></pre>
+<p>第一行：</p>
+<pre><code>tensor([10, 20, 30])
+</code></pre>
+<pre><code class="language-python">x[0, 1]
+</code></pre>
+<p>第 0 行、第 1 列，也就是：</p>
+<pre><code>tensor(20)
+</code></pre>
+<pre><code class="language-python">x[:, 0]
+</code></pre>
+<p>所有行的第 0 列：</p>
+<pre><code>tensor([10, 40, 70])
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>:</code> 表示这一维全部选择。</li>
+<li><code>1:</code> 表示从索引 1 到最后。</li>
+<li><code>:2</code> 表示从开头到索引 2，但不包括索引 2。</li>
+</ul>
+<hr />
+<h1 id="tensor_2">六、Tensor 运算<a class="headerlink" href="#tensor_2" title="Permanent link">&para;</a></h1>
+<h2 id="1">1. 对应元素运算<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">a = torch.tensor([1.0, 2.0, 3.0])
+b = torch.tensor([4.0, 5.0, 6.0])
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+</code></pre>
+<p>注意：</p>
+<pre><code class="language-python">a * b
+</code></pre>
+<p>是对应元素相乘，不是矩阵乘法。</p>
+<h2 id="2_1">2. 矩阵乘法<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">a = torch.tensor([
+    [1.0, 2.0],
+    [3.0, 4.0]
+])
+
+b = torch.tensor([
+    [5.0, 6.0],
+    [7.0, 8.0]
+])
+
+c = a @ b
+print(c)
+</code></pre>
+<p>也可以写：</p>
+<pre><code class="language-python">c = torch.matmul(a, b)
+</code></pre>
+<p>神经网络里的线性层，本质上包含类似：</p>
+<p>$$
+Y=XW^T+b
+$$</p>
+<p>的矩阵运算。</p>
+<h2 id="3">3. 常用统计运算<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">x = torch.tensor([
+    [1.0, 2.0, 3.0],
+    [4.0, 5.0, 6.0]
+])
+
+print(x.sum())
+print(x.mean())
+print(x.max())
+print(x.sum(dim=0))
+print(x.sum(dim=1))
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">x.sum(dim=0)
+</code></pre>
+<p>把第 0 维消掉，也就是按列相加：</p>
+<pre><code>tensor([5., 7., 9.])
+</code></pre>
+<pre><code class="language-python">x.sum(dim=1)
+</code></pre>
+<p>把第 1 维消掉，也就是每一行内部相加：</p>
+<pre><code>tensor([ 6., 15.])
+</code></pre>
+<p>可以把 <code>dim</code> 理解为：</p>
+<blockquote>
+<p>指定“沿着哪一个方向压缩”。</p>
+</blockquote>
+<hr />
+<h1 id="tensor_3">七、改变 Tensor 形状<a class="headerlink" href="#tensor_3" title="Permanent link">&para;</a></h1>
+<h2 id="1-reshape">1. reshape<a class="headerlink" href="#1-reshape" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">x = torch.arange(12)
+
+y = x.reshape(3, 4)
+
+print(x)
+print(y)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor([ 0, 1, 2, ..., 11])
+
+tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]])
+</code></pre>
+<p>也可以让 PyTorch 自动推断一维：</p>
+<pre><code class="language-python">y = x.reshape(3, -1)
+</code></pre>
+<p>因为总共有 12 个元素，所以 <code>-1</code> 自动推断为 4。</p>
+<h2 id="2_2">2. 增加维度<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">x = torch.tensor([1.0, 2.0, 3.0])
+
+y = x.unsqueeze(0)
+z = x.unsqueeze(1)
+
+print(x.shape)
+print(y.shape)
+print(z.shape)
+</code></pre>
+<p>输出：</p>
+<pre><code>torch.Size([3])
+torch.Size([1, 3])
+torch.Size([3, 1])
+</code></pre>
+<h2 id="3-1">3. 删除长度为 1 的维度<a class="headerlink" href="#3-1" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">x = torch.randn(1, 3, 1)
+
+y = x.squeeze()
+
+print(x.shape)
+print(y.shape)
+</code></pre>
+<p>输出：</p>
+<pre><code>torch.Size([1, 3, 1])
+torch.Size([3])
+</code></pre>
+<h2 id="4">4. 转置<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">x = torch.randn(2, 3)
+y = x.T
+
+print(x.shape)
+print(y.shape)
+</code></pre>
+<p>输出：</p>
+<pre><code>torch.Size([2, 3])
+torch.Size([3, 2])
+</code></pre>
+<hr />
+<h1 id="_2">八、广播机制<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">x = torch.tensor([
+    [1.0, 2.0, 3.0],
+    [4.0, 5.0, 6.0]
+])
+
+b = torch.tensor([10.0, 20.0, 30.0])
+
+print(x + b)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor([[11., 22., 33.],
+        [14., 25., 36.]])
+</code></pre>
+<p>虽然：</p>
+<pre><code class="language-python">x.shape == (2, 3)
+b.shape == (3,)
+</code></pre>
+<p>但 PyTorch 会把 <code>b</code> 自动看成：</p>
+<pre><code>[[10, 20, 30],
+ [10, 20, 30]]
+</code></pre>
+<p>然后执行运算。</p>
+<p>这就是广播。</p>
+<hr />
+<h1 id="autograd">九、自动求导 autograd<a class="headerlink" href="#autograd" title="Permanent link">&para;</a></h1>
+<p>这是 PyTorch 最关键的能力之一。</p>
+<p>假设：</p>
+<p>$$
+y=x^2+3x
+$$</p>
+<p>那么：</p>
+<p>$$
+\frac{dy}{dx}=2x+3
+$$</p>
+<p>用 PyTorch：</p>
+<pre><code class="language-python">import torch
+
+x = torch.tensor(2.0, requires_grad=True)
+
+y = x**2 + 3*x
+
+y.backward()
+
+print(x.grad)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor(7.)
+</code></pre>
+<p>因为：</p>
+<p>$$
+2\times2+3=7
+$$</p>
+<p>这里：</p>
+<pre><code class="language-python">requires_grad=True
+</code></pre>
+<p>表示：</p>
+<blockquote>
+<p>请记录与这个 Tensor 有关的计算过程，以便之后求导。</p>
+</blockquote>
+<pre><code class="language-python">y.backward()
+</code></pre>
+<p>表示：</p>
+<blockquote>
+<p>从 <code>y</code> 开始，沿计算图反向传播，计算所有需要的梯度。</p>
+</blockquote>
+<pre><code class="language-python">x.grad
+</code></pre>
+<p>保存：</p>
+<p>$$
+\frac{\partial y}{\partial x}
+$$</p>
+<p>PyTorch 的自动求导会记录 Tensor 运算并计算梯度。</p>
+<hr />
+<h2 id="_3">梯度为什么要清零<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>看下面：</p>
+<pre><code class="language-python">x = torch.tensor(2.0, requires_grad=True)
+
+y = x**2
+y.backward()
+print(x.grad)
+
+y = x**2
+y.backward()
+print(x.grad)
+</code></pre>
+<p>输出：</p>
+<pre><code>tensor(4.)
+tensor(8.)
+</code></pre>
+<p>因为 PyTorch 默认会<strong>累加梯度</strong>。</p>
+<p>所以训练中每一轮通常都需要：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>否则这一轮的梯度会和上一轮叠加。</p>
+<hr />
+<h1 id="_4">十、建立一个神经网络<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<p>PyTorch 中的模型通常继承：</p>
+<pre><code class="language-python">torch.nn.Module
+</code></pre>
+<p>官方推荐在 <code>__init__</code> 中定义网络层，在 <code>forward</code> 中定义数据如何经过网络。</p>
+<pre><code class="language-python">import torch
+from torch import nn
+
+class SimpleNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.linear1 = nn.Linear(2, 8)
+        self.relu = nn.ReLU()
+        self.linear2 = nn.Linear(8, 1)
+
+    def forward(self, x):
+        x = self.linear1(x)
+        x = self.relu(x)
+        x = self.linear2(x)
+        return x
+
+model = SimpleNet()
+print(model)
+</code></pre>
+<p>输出大致是：</p>
+<pre><code>SimpleNet(
+  (linear1): Linear(in_features=2, out_features=8, bias=True)
+  (relu): ReLU()
+  (linear2): Linear(in_features=8, out_features=1, bias=True)
+)
+</code></pre>
+<hr />
+<h2 id="_5">逐项理解<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="1-nnmodule">1. 继承 nn.Module<a class="headerlink" href="#1-nnmodule" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class SimpleNet(nn.Module):
+</code></pre>
+<p>表示：</p>
+<blockquote>
+<p>我定义的 <code>SimpleNet</code> 是一种 PyTorch 模型。</p>
+</blockquote>
+<h3 id="2_3">2. 初始化父类<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">super().__init__()
+</code></pre>
+<p>让 <code>nn.Module</code> 帮助模型：</p>
+<ul>
+<li>管理参数；</li>
+<li>移动到 GPU；</li>
+<li>保存和加载参数；</li>
+<li>切换训练与推理状态。</li>
+</ul>
+<h3 id="3_1">3. 定义线性层<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">self.linear1 = nn.Linear(2, 8)
+</code></pre>
+<p>表示：</p>
+<ul>
+<li>输入每个样本有 2 个特征；</li>
+<li>输出每个样本有 8 个特征。</li>
+</ul>
+<p>数学上大致是：</p>
+<p>$$
+y=xW^T+b
+$$</p>
+<h3 id="4_1">4. 定义前向传播<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def forward(self, x):
+</code></pre>
+<p>描述输入如何经过模型。</p>
+<p>调用时通常不要直接写：</p>
+<pre><code class="language-python">model.forward(x)
+</code></pre>
+<p>而是写：</p>
+<pre><code class="language-python">output = model(x)
+</code></pre>
+<p>PyTorch 会自动调用 <code>forward()</code>。</p>
+<hr />
+<h1 id="_6">十一、完整训练示例：线性回归<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h1>
+<p>假设真实规律是：</p>
+<p>$$
+y=3x+2
+$$</p>
+<p>让模型自己学习参数 3 和 2。</p>
+<pre><code class="language-python">import torch
+from torch import nn
+
+torch.manual_seed(42)
+
+# 1. 创建训练数据
+x = torch.linspace(-2, 2, 100).reshape(-1, 1)
+y = 3 * x + 2
+
+# 加一点随机噪声
+y = y + 0.2 * torch.randn_like(y)
+
+# 2. 定义模型
+model = nn.Linear(1, 1)
+
+# 3. 定义损失函数
+loss_fn = nn.MSELoss()
+
+# 4. 定义优化器
+optimizer = torch.optim.SGD(
+    model.parameters(),
+    lr=0.05
+)
+
+# 5. 训练
+for epoch in range(500):
+    # 前向传播
+    prediction = model(x)
+
+    # 计算损失
+    loss = loss_fn(prediction, y)
+
+    # 清除上一轮梯度
+    optimizer.zero_grad()
+
+    # 反向传播
+    loss.backward()
+
+    # 更新参数
+    optimizer.step()
+
+    if epoch % 50 == 0:
+        print(
+            f&quot;epoch={epoch:3d}, &quot;
+            f&quot;loss={loss.item():.6f}&quot;
+        )
+
+# 6. 查看最终参数
+print(&quot;weight:&quot;, model.weight.item())
+print(&quot;bias:&quot;, model.bias.item())
+</code></pre>
+<p>最后可能得到：</p>
+<pre><code>weight: 3.01
+bias: 2.00
+</code></pre>
+<p>也就是模型学到了：</p>
+<p>$$
+y\approx3.01x+2.00
+$$</p>
+<hr />
+<h1 id="_7">十二、训练循环到底在做什么<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
+<p>PyTorch 的典型训练循环是：</p>
+<pre><code class="language-python">for x, y in dataloader:
+    prediction = model(x)
+    loss = loss_fn(prediction, y)
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+</code></pre>
+<p>可以拆成五步。</p>
+<h2 id="_8">第一步：模型预测<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">prediction = model(x)
+</code></pre>
+<p>把输入送入模型，得到预测值。</p>
+<h2 id="_9">第二步：计算损失<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">loss = loss_fn(prediction, y)
+</code></pre>
+<p>计算预测值和真实值相差多少。</p>
+<h2 id="_10">第三步：清空旧梯度<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>因为梯度默认会累加。</p>
+<h2 id="_11">第四步：计算梯度<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">loss.backward()
+</code></pre>
+<p>自动求出：</p>
+<p>$$
+\frac{\partial L}{\partial w}
+$$</p>
+<p>也就是损失函数对每个模型参数的导数。</p>
+<h2 id="_12">第五步：更新参数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">optimizer.step()
+</code></pre>
+<p>例如梯度下降大致执行：</p>
+<p>$$
+w_{\text{new}}
+=
+w_{\text{old}}
+-\eta\frac{\partial L}{\partial w}
+$$</p>
+<p>其中 $\eta$ 就是学习率 <code>lr</code>。</p>
+<hr />
+<h1 id="_13">十三、损失函数<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h1>
+<h2 id="1_1">1. 回归问题<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h2>
+<p>预测连续数字，例如房价、温度、力、位移。</p>
+<pre><code class="language-python">loss_fn = nn.MSELoss()
+</code></pre>
+<p>均方误差：</p>
+<p>$$
+L=\frac1n\sum_{i=1}^n(\hat y_i-y_i)^2
+$$</p>
+<h2 id="2_4">2. 多分类问题<a class="headerlink" href="#2_4" title="Permanent link">&para;</a></h2>
+<p>例如判断图片是：</p>
+<ul>
+<li>猫；</li>
+<li>狗；</li>
+<li>鸟。</li>
+</ul>
+<p>使用：</p>
+<pre><code class="language-python">loss_fn = nn.CrossEntropyLoss()
+</code></pre>
+<p>注意：模型最后一般<strong>不要手动加 Softmax</strong>。</p>
+<p>正确：</p>
+<pre><code class="language-python">model = nn.Linear(128, 3)
+loss_fn = nn.CrossEntropyLoss()
+
+logits = model(x)
+loss = loss_fn(logits, labels)
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">logits.shape == (batch_size, 3)
+labels.shape == (batch_size,)
+labels.dtype == torch.int64
+</code></pre>
+<p>标签应该类似：</p>
+<pre><code class="language-python">labels = torch.tensor([0, 2, 1, 0])
+</code></pre>
+<p>不是 one-hot：</p>
+<pre><code>[[1, 0, 0],
+ [0, 0, 1],
+ ...]
+</code></pre>
+<h2 id="3_2">3. 二分类问题<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h2>
+<p>常用：</p>
+<pre><code class="language-python">loss_fn = nn.BCEWithLogitsLoss()
+</code></pre>
+<p>模型输出一个未经 sigmoid 的数字：</p>
+<pre><code class="language-python">logits = model(x)
+loss = loss_fn(logits, labels)
+</code></pre>
+<p>预测时再使用：</p>
+<pre><code class="language-python">probability = torch.sigmoid(logits)
+prediction = probability &gt;= 0.5
+</code></pre>
+<hr />
+<h1 id="_14">十四、优化器<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h1>
+<p>常见优化器：</p>
+<h2 id="sgd">SGD<a class="headerlink" href="#sgd" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">optimizer = torch.optim.SGD(
+    model.parameters(),
+    lr=0.01
+)
+</code></pre>
+<p>带动量：</p>
+<pre><code class="language-python">optimizer = torch.optim.SGD(
+    model.parameters(),
+    lr=0.01,
+    momentum=0.9
+)
+</code></pre>
+<h2 id="adam">Adam<a class="headerlink" href="#adam" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">optimizer = torch.optim.Adam(
+    model.parameters(),
+    lr=0.001
+)
+</code></pre>
+<p>初学时可以粗略记忆：</p>
+<ul>
+<li>简单实验：<code>Adam</code> 容易上手。</li>
+<li>想理解梯度下降：从 <code>SGD</code> 开始。</li>
+<li><code>lr</code> 太大：损失可能震荡甚至爆炸。</li>
+<li><code>lr</code> 太小：训练速度很慢。</li>
+</ul>
+<hr />
+<h1 id="dataset-dataloader">十五、Dataset 和 DataLoader<a class="headerlink" href="#dataset-dataloader" title="Permanent link">&para;</a></h1>
+<p>实际数据通常不能一次全部塞进模型，所以需要分批读取。</p>
+<p>PyTorch 的 <code>DataLoader</code> 是一个可以遍历数据集的对象，并支持批处理、打乱和多进程加载。</p>
+<h2 id="1-tensordataset">1. 使用 TensorDataset<a class="headerlink" href="#1-tensordataset" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">import torch
+from torch.utils.data import TensorDataset, DataLoader
+
+x = torch.randn(1000, 10)
+y = torch.randint(0, 3, (1000,))
+
+dataset = TensorDataset(x, y)
+
+dataloader = DataLoader(
+    dataset,
+    batch_size=32,
+    shuffle=True
+)
+</code></pre>
+<p>训练时：</p>
+<pre><code class="language-python">for batch_x, batch_y in dataloader:
+    print(batch_x.shape)
+    print(batch_y.shape)
+    break
+</code></pre>
+<p>输出：</p>
+<pre><code>torch.Size([32, 10])
+torch.Size([32])
+</code></pre>
+<p>表示一次取 32 个样本。</p>
+<hr />
+<h2 id="2-dataset">2. 自定义 Dataset<a class="headerlink" href="#2-dataset" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">from torch.utils.data import Dataset
+
+class MyDataset(Dataset):
+    def __init__(self, features, labels):
+        self.features = features
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.features)
+
+    def __getitem__(self, index):
+        x = self.features[index]
+        y = self.labels[index]
+        return x, y
+</code></pre>
+<p>使用：</p>
+<pre><code class="language-python">dataset = MyDataset(x, y)
+
+dataloader = DataLoader(
+    dataset,
+    batch_size=32,
+    shuffle=True
+)
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">__len__()
+</code></pre>
+<p>告诉 PyTorch 数据集有多少条数据。</p>
+<pre><code class="language-python">__getitem__(index)
+</code></pre>
+<p>告诉 PyTorch：</p>
+<blockquote>
+<p>给我第 <code>index</code> 条数据时，应该返回什么。</p>
+</blockquote>
+<hr />
+<h1 id="gpu">十六、使用 GPU<a class="headerlink" href="#gpu" title="Permanent link">&para;</a></h1>
+<p>最常见写法：</p>
+<pre><code class="language-python">device = torch.device(
+    &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;
+)
+
+print(device)
+</code></pre>
+<p>然后把模型和数据都移动到同一个设备：</p>
+<pre><code class="language-python">model = model.to(device)
+
+x = x.to(device)
+y = y.to(device)
+</code></pre>
+<p>完整形式：</p>
+<pre><code class="language-python">for x, y in dataloader:
+    x = x.to(device)
+    y = y.to(device)
+
+    prediction = model(x)
+    loss = loss_fn(prediction, y)
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+</code></pre>
+<h2 id="_15">一个重要原则<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>模型和输入必须在同一个设备上。</p>
+<p>错误情况：</p>
+<pre><code class="language-python">model在cuda
+x在cpu
+</code></pre>
+<p>会出现类似错误：</p>
+<pre><code>Expected all tensors to be on the same device
+</code></pre>
+<hr />
+<h1 id="_16">十七、训练模式与推理模式<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h1>
+<h2 id="_17">训练模式<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">model.train()
+</code></pre>
+<h2 id="_18">推理或验证模式<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">model.eval()
+</code></pre>
+<p><code>train()</code> 和 <code>eval()</code> 会影响：</p>
+<ul>
+<li>Dropout；</li>
+<li>BatchNorm。</li>
+</ul>
+<p>推理时还应该关闭梯度计算：</p>
+<pre><code class="language-python">model.eval()
+
+with torch.no_grad():
+    prediction = model(x)
+</code></pre>
+<p>更现代的推理写法是：</p>
+<pre><code class="language-python">model.eval()
+
+with torch.inference_mode():
+    prediction = model(x)
+</code></pre>
+<p>这样可以：</p>
+<ul>
+<li>减少显存占用；</li>
+<li>提高推理速度；</li>
+<li>防止意外构建计算图。</li>
+</ul>
+<hr />
+<h1 id="_19">十八、完整分类训练模板<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">import torch
+from torch import nn
+from torch.utils.data import TensorDataset, DataLoader
+
+# -------------------------
+# 1. 基本设置
+# -------------------------
+
+torch.manual_seed(42)
+
+device = torch.device(
+    &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;
+)
+
+print(&quot;device:&quot;, device)
+
+# -------------------------
+# 2. 模拟数据
+# -------------------------
+
+# 1000 个样本，每个样本 10 个特征
+x = torch.randn(1000, 10)
+
+# 三分类标签：0、1、2
+y = torch.randint(0, 3, (1000,))
+
+# -------------------------
+# 3. 数据加载器
+# -------------------------
+
+dataset = TensorDataset(x, y)
+
+dataloader = DataLoader(
+    dataset,
+    batch_size=32,
+    shuffle=True
+)
+
+# -------------------------
+# 4. 定义模型
+# -------------------------
+
+class Classifier(nn.Module):
+    def __init__(self):
+        super().__init__()
+
+        self.network = nn.Sequential(
+            nn.Linear(10, 64),
+            nn.ReLU(),
+            nn.Linear(64, 32),
+            nn.ReLU(),
+            nn.Linear(32, 3)
+        )
+
+    def forward(self, x):
+        return self.network(x)
+
+model = Classifier().to(device)
+
+# -------------------------
+# 5. 损失函数和优化器
+# -------------------------
+
+loss_fn = nn.CrossEntropyLoss()
+
+optimizer = torch.optim.Adam(
+    model.parameters(),
+    lr=0.001
+)
+
+# -------------------------
+# 6. 训练
+# -------------------------
+
+epochs = 10
+
+for epoch in range(epochs):
+    model.train()
+
+    total_loss = 0.0
+    total_correct = 0
+    total_samples = 0
+
+    for batch_x, batch_y in dataloader:
+        batch_x = batch_x.to(device)
+        batch_y = batch_y.to(device)
+
+        logits = model(batch_x)
+
+        loss = loss_fn(logits, batch_y)
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        total_loss += loss.item() * batch_x.size(0)
+
+        predictions = logits.argmax(dim=1)
+
+        total_correct += (
+            predictions == batch_y
+        ).sum().item()
+
+        total_samples += batch_x.size(0)
+
+    average_loss = total_loss / total_samples
+    accuracy = total_correct / total_samples
+
+    print(
+        f&quot;epoch={epoch + 1:2d}, &quot;
+        f&quot;loss={average_loss:.4f}, &quot;
+        f&quot;accuracy={accuracy:.2%}&quot;
+    )
+</code></pre>
+<hr />
+<h1 id="argmaxdim1">十九、为什么 <code>argmax(dim=1)</code> 能得到类别<a class="headerlink" href="#argmaxdim1" title="Permanent link">&para;</a></h1>
+<p>假设模型输出：</p>
+<pre><code class="language-python">logits = torch.tensor([
+    [1.2, 3.5, 0.4],
+    [4.1, 1.2, 2.3]
+])
+</code></pre>
+<p>形状是：</p>
+<pre><code>(2, 3)
+</code></pre>
+<p>表示：</p>
+<ul>
+<li>2 个样本；</li>
+<li>每个样本有 3 个类别分数。</li>
+</ul>
+<pre><code class="language-python">predictions = logits.argmax(dim=1)
+</code></pre>
+<p>就是在每一行找最大值的位置：</p>
+<pre><code>tensor([1, 0])
+</code></pre>
+<p>表示：</p>
+<ul>
+<li>第一个样本预测为类别 1；</li>
+<li>第二个样本预测为类别 0。</li>
+</ul>
+<hr />
+<h1 id="_20">二十、保存和加载模型<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h1>
+<p>官方推荐保存模型的 <code>state_dict</code>，也就是参数字典。</p>
+<h2 id="1_2">1. 保存模型参数<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">torch.save(
+    model.state_dict(),
+    &quot;model_weights.pth&quot;
+)
+</code></pre>
+<h2 id="2_5">2. 加载模型参数<a class="headerlink" href="#2_5" title="Permanent link">&para;</a></h2>
+<p>必须先建立同样结构的模型：</p>
+<pre><code class="language-python">model = Classifier()
+
+state_dict = torch.load(
+    &quot;model_weights.pth&quot;,
+    map_location=&quot;cpu&quot;,
+    weights_only=True
+)
+
+model.load_state_dict(state_dict)
+model.eval()
+</code></pre>
+<p><code>map_location="cpu"</code> 表示：</p>
+<blockquote>
+<p>即使模型原来在 GPU 上保存，也先加载到 CPU。</p>
+</blockquote>
+<p>这也可以避免加载时突然占用 GPU 显存。</p>
+<hr />
+<h2 id="3_3">3. 保存训练检查点<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h2>
+<p>如果之后要继续训练，不能只保存模型，还要保存优化器状态和训练轮数。</p>
+<pre><code class="language-python">checkpoint = {
+    &quot;epoch&quot;: epoch,
+    &quot;model_state_dict&quot;: model.state_dict(),
+    &quot;optimizer_state_dict&quot;: optimizer.state_dict(),
+    &quot;loss&quot;: loss.item()
+}
+
+torch.save(checkpoint, &quot;checkpoint.pth&quot;)
+</code></pre>
+<p>加载：</p>
+<pre><code class="language-python">checkpoint = torch.load(
+    &quot;checkpoint.pth&quot;,
+    map_location=device,
+    weights_only=True
+)
+
+model.load_state_dict(
+    checkpoint[&quot;model_state_dict&quot;]
+)
+
+optimizer.load_state_dict(
+    checkpoint[&quot;optimizer_state_dict&quot;]
+)
+
+start_epoch = checkpoint[&quot;epoch&quot;] + 1
+</code></pre>
+<hr />
+<h1 id="pytorch-numpy">二十一、PyTorch 和 NumPy 相互转换<a class="headerlink" href="#pytorch-numpy" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">import numpy as np
+import torch
+
+array = np.array([1, 2, 3])
+
+tensor = torch.from_numpy(array)
+
+print(tensor)
+</code></pre>
+<p>Tensor 转 NumPy：</p>
+<pre><code class="language-python">array = tensor.numpy()
+</code></pre>
+<p>GPU Tensor 不能直接 <code>.numpy()</code>，需要：</p>
+<pre><code class="language-python">array = tensor.detach().cpu().numpy()
+</code></pre>
+<p>分别表示：</p>
+<ul>
+<li><code>detach()</code>：脱离计算图；</li>
+<li><code>cpu()</code>：移动到 CPU；</li>
+<li><code>numpy()</code>：转换成 NumPy 数组。</li>
+</ul>
+<hr />
+<h1 id="_21">二十二、常用神经网络层<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h1>
+<h2 id="_22">全连接层<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.Linear(输入特征数, 输出特征数)
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">nn.Linear(128, 64)
+</code></pre>
+<h2 id="_23">激活函数<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.ReLU()
+nn.GELU()
+nn.Sigmoid()
+nn.Tanh()
+</code></pre>
+<p>现代 Transformer 中常见：</p>
+<pre><code class="language-python">nn.GELU()
+</code></pre>
+<h2 id="_24">卷积层<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.Conv2d(
+    in_channels=3,
+    out_channels=16,
+    kernel_size=3
+)
+</code></pre>
+<h2 id="_25">池化层<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.MaxPool2d(kernel_size=2)
+</code></pre>
+<h2 id="dropout">Dropout<a class="headerlink" href="#dropout" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.Dropout(p=0.5)
+</code></pre>
+<p>训练时随机关闭一部分神经元，降低过拟合。</p>
+<h2 id="embedding">Embedding<a class="headerlink" href="#embedding" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">nn.Embedding(
+    num_embeddings=10000,
+    embedding_dim=256
+)
+</code></pre>
+<p>把 token 编号转换为向量，是 NLP 和 LLM 的基础组件。</p>
+<h2 id="sequential">Sequential<a class="headerlink" href="#sequential" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">model = nn.Sequential(
+    nn.Linear(10, 64),
+    nn.ReLU(),
+    nn.Linear(64, 3)
+)
+</code></pre>
+<p>适合按顺序连接网络层。</p>
+<hr />
+<h1 id="_26">二十三、查看模型参数<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">for name, parameter in model.named_parameters():
+    print(name, parameter.shape)
+</code></pre>
+<p>可能输出：</p>
+<pre><code>network.0.weight torch.Size([64, 10])
+network.0.bias torch.Size([64])
+network.2.weight torch.Size([32, 64])
+network.2.bias torch.Size([32])
+network.4.weight torch.Size([3, 32])
+network.4.bias torch.Size([3])
+</code></pre>
+<p>统计参数总数：</p>
+<pre><code class="language-python">total_params = sum(
+    p.numel()
+    for p in model.parameters()
+)
+
+print(total_params)
+</code></pre>
+<p>只统计需要训练的参数：</p>
+<pre><code class="language-python">trainable_params = sum(
+    p.numel()
+    for p in model.parameters()
+    if p.requires_grad
+)
+
+print(trainable_params)
+</code></pre>
+<hr />
+<h1 id="_27">二十四、随机种子<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">torch.manual_seed(42)
+</code></pre>
+<p>可以让随机初始化和随机数据尽量可复现。官方说明 <code>torch.manual_seed()</code> 会为 CPU 和 CUDA 设备设置 PyTorch 随机数种子。</p>
+<p>但需要注意：</p>
+<blockquote>
+<p>设置随机种子不保证所有平台、所有 GPU 算法、所有 PyTorch 版本的结果完全一致。</p>
+</blockquote>
+<hr />
+<h1 id="_28">二十五、常见报错<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h1>
+<h2 id="1_3">1. 数据类型不匹配<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h2>
+<p>报错类似：</p>
+<pre><code>mat1 and mat2 must have the same dtype
+</code></pre>
+<p>检查：</p>
+<pre><code class="language-python">print(x.dtype)
+print(next(model.parameters()).dtype)
+</code></pre>
+<p>通常把输入改成：</p>
+<pre><code class="language-python">x = x.float()
+</code></pre>
+<hr />
+<h2 id="2_6">2. 形状不匹配<a class="headerlink" href="#2_6" title="Permanent link">&para;</a></h2>
+<p>报错类似：</p>
+<pre><code>mat1 and mat2 shapes cannot be multiplied
+</code></pre>
+<p>假设模型是：</p>
+<pre><code class="language-python">nn.Linear(10, 64)
+</code></pre>
+<p>那么输入最后一维必须是 10：</p>
+<pre><code class="language-python">x.shape == (batch_size, 10)
+</code></pre>
+<p>先打印：</p>
+<pre><code class="language-python">print(x.shape)
+</code></pre>
+<hr />
+<h2 id="3_4">3. 模型和数据不在同一设备<a class="headerlink" href="#3_4" title="Permanent link">&para;</a></h2>
+<p>报错：</p>
+<pre><code>Expected all tensors to be on the same device
+</code></pre>
+<p>处理：</p>
+<pre><code class="language-python">model = model.to(device)
+x = x.to(device)
+y = y.to(device)
+</code></pre>
+<hr />
+<h2 id="4-crossentropyloss">4. CrossEntropyLoss 标签类型错误<a class="headerlink" href="#4-crossentropyloss" title="Permanent link">&para;</a></h2>
+<p>错误写法：</p>
+<pre><code class="language-python">labels = labels.float()
+</code></pre>
+<p>正确写法：</p>
+<pre><code class="language-python">labels = labels.long()
+</code></pre>
+<p>因为 <code>CrossEntropyLoss</code> 的类别标签一般需要整数索引。</p>
+<hr />
+<h2 id="5-cuda">5. CUDA 显存不足<a class="headerlink" href="#5-cuda" title="Permanent link">&para;</a></h2>
+<p>报错：</p>
+<pre><code>CUDA out of memory
+</code></pre>
+<p>优先尝试：</p>
+<pre><code class="language-python">batch_size = 16
+</code></pre>
+<p>改小为：</p>
+<pre><code class="language-python">batch_size = 8
+</code></pre>
+<p>并确认验证时使用：</p>
+<pre><code class="language-python">with torch.inference_mode():
+    ...
+</code></pre>
+<p>还可以删除无用变量：</p>
+<pre><code class="language-python">del large_tensor
+torch.cuda.empty_cache()
+</code></pre>
+<p>不过 <code>empty_cache()</code> 不能释放仍然被变量引用的 Tensor。</p>
+<hr />
+<h2 id="6">6. 忘记清零梯度<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>错误：</p>
+<pre><code class="language-python">loss.backward()
+optimizer.step()
+</code></pre>
+<p>训练多轮后梯度不断累积。</p>
+<p>通常应该：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+</code></pre>
+<hr />
+<h1 id="_29">二十六、建议的学习顺序<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h1>
+<p>第一阶段先掌握：</p>
+<pre><code>Tensor 创建
+Tensor 形状
+索引切片
+reshape
+矩阵乘法
+dim 参数
+CPU/GPU 转移
+</code></pre>
+<p>第二阶段掌握：</p>
+<pre><code>requires_grad
+loss.backward()
+parameter.grad
+计算图
+梯度清零
+</code></pre>
+<p>第三阶段掌握：</p>
+<pre><code>nn.Module
+nn.Linear
+激活函数
+损失函数
+优化器
+标准训练循环
+</code></pre>
+<p>第四阶段掌握：</p>
+<pre><code>Dataset
+DataLoader
+训练集和验证集
+model.train()
+model.eval()
+保存和加载
+</code></pre>
+<p>第五阶段再进入：</p>
+<pre><code>CNN
+RNN
+Attention
+Transformer
+混合精度训练
+多 GPU
+LLM 微调
+</code></pre>
+<hr />
+<h1 id="_30">二十七、你目前最应该记住的模板<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h1>
+<pre><code class="language-python">import torch
+from torch import nn
+
+device = torch.device(
+    &quot;cuda&quot; if torch.cuda.is_available() else &quot;cpu&quot;
+)
+
+model = nn.Sequential(
+    nn.Linear(10, 64),
+    nn.ReLU(),
+    nn.Linear(64, 3)
+).to(device)
+
+loss_fn = nn.CrossEntropyLoss()
+
+optimizer = torch.optim.Adam(
+    model.parameters(),
+    lr=0.001
+)
+
+for epoch in range(10):
+    model.train()
+
+    for x, y in dataloader:
+        x = x.to(device)
+        y = y.to(device)
+
+        logits = model(x)
+        loss = loss_fn(logits, y)
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+model.eval()
+
+with torch.inference_mode():
+    logits = model(test_x.to(device))
+    predictions = logits.argmax(dim=1)
+</code></pre>
+<p>先不要急着把它完全背下来。只需要理解这条主线：</p>
+<p>$$
+\boxed{
+数据
+\rightarrow 模型预测
+\rightarrow 计算损失
+\rightarrow 反向传播
+\rightarrow 更新参数
+}
+$$</p>
+<p>PyTorch 的绝大多数模型，无论是简单的线性回归、CNN，还是 Transformer 和 LLM，训练过程的核心结构都没有脱离这条主线。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

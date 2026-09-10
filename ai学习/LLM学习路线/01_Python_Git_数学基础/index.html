@@ -1,0 +1,8835 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">
+      
+      
+        <link rel="next" href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>模块 1：Python、数据处理与必要数学 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模块 1：Python、数据处理与必要数学
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-tabs__link">
+          
+  
+  
+  Ai学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-tabs__link">
+          
+  
+  
+  耳机
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 项目推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Conda_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy 广播机制：规则、形状与神经网络中的应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PyTorch%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从计算机新手到 LLM Engineer：可执行学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 0：环境、命令行与学习方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习导航与动手方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Python 核心对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Python 核心对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量与类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtupledictset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list、tuple、dict、set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 函数：把数据流切成可测试单元
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 函数：把数据流切成可测试单元">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作用域与可变默认参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nnmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 类和 nn.Module 的前置理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 迭代器、生成器与 DataLoader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 迭代器、生成器与 DataLoader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-def-read_nonempty_linespath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. def read_nonempty_lines(path):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-with-openpath-r-encodingutf-8-as-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. with open(path, "r", encoding="utf-8") as f:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-for-line-in-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. for line in f:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-text-linestrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. text = line.strip()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-if-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. if text:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-yield-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. yield text
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 文件与常见数据格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-numpy-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. NumPy：数组不只是更快的 list
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. NumPy：数组不只是更快的 list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        广播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 线性代数的直觉
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 线性代数的直觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标量、向量、矩阵、张量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        点积和相似度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7a-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A. NumPy 逐句详解：导入、形状、矩阵乘法与广播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7A. NumPy 逐句详解：导入、形状、矩阵乘法与广播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7a1-import-numpy-as-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.1 import numpy as np
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.2 创建二维数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.3 @ 是矩阵乘法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a4-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.4 .shape 是数组形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a5-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.5 LLM 里常用的维度命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a6-hidden-state-b-t-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.6 hidden state [B, T, C]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a7-logits-b-t-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.7 logits [B, T, V]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a8-broadcasting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8 广播 broadcasting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7A.8 广播 broadcasting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7a81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.1 广播的正式判断规则：从右往左对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a82-313-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.2 (3,)、(1,3) 和 (3,1) 不是一回事
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.3 想给每一行加不同的数，要显式制造列维度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.4 高维广播和结果形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a85-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.5 在线性层和 Softmax 中为什么经常遇到广播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a86" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.6 广播检查步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.9 广播的直觉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.10 为什么说广播可能“静默制造错误”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 概率与信息论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 概率与信息论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率分布
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        交叉熵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        困惑度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 1：logits 是“原始分数”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2softmax-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 2：Softmax 把 logits 变成概率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 3：为什么要用指数 $e^x$？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 4：为什么代码里要先减去最大值？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 5：axis=-1 是什么意思？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 6：交叉熵是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 7：为什么不是直接看“对没对”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 8：困惑度 perplexity 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 导数、梯度与链式法则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 导数、梯度与链式法则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数值梯度检查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 统计与实验基础
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 练习讲解：从读题到动手
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 练习讲解：从读题到动手">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 解题提示与逐步讲解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 A：纯 Python 文本分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 A：纯 Python 文本分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.1 先把题目翻译成人话
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-jsonl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.2 先造一个最小 JSONL 文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.3 第一版先只完成“能读每一行”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 第二版再加 JSON 解析和坏行处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A.4 第二版再加 JSON 解析和坏行处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第一行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第二行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第三行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：完整运行过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.5 第三版再提取文本字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.6 第四版统计长度、空样本、重复样本和字符频率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a7-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.7 A 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bnumpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 B：NumPy 形状体操
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 B：NumPy 形状体操">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.1 先设定一个能肉眼检查的小形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.2 写代码前先写形状注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.3 代码骨架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b4-1-token-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.4 第 1 问：计算每个 token 在 C 维的均值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b5-2-btc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.5 第 2 问：把最后两个维度展平为 [B,T*C]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b6-3-wcv-btv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.6 第 3 问：与 W:[C,V] 相乘得到 [B,T,V]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b7-4-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.7 第 4 问：稳定 softmax，并验证概率和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b8-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.8 B 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 C：线性回归
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 C：线性回归">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.1 先理解你要训练什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 第一版先生成数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.2 第一版先生成数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c2-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 补充：为什么要写 42
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 补充：一个容易忽略的地方
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 第二版写预测函数和 loss
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.3 第二版写预测函数和 loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c3-xmean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 补充：x.mean()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 补充：axis=-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.4 第三版手写梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 第四版写训练循环
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.5 第四版写训练循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-1-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 1：最简单的 print
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 2：打印变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 3：一次打印多个内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-4-f-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 4：什么是 f-string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 5：{} 里面可以放什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 6：回到你的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-74f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 7：:.4f 到底是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 8：为什么外面要有文字，里面还要有变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-9print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 9：print() 默认会换行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.6 你应该观察到什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 如果要画训练曲线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.7 如果要画训练曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 1：导入画图工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 2：依次测试三种学习率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 3：调用训练函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 4：把损失画成曲线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-labelflrlr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：label=f"lr={lr}"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 5：设置横轴名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 6：设置纵轴名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 7：显示图例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 8：保存图片
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-dpi150" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：dpi=150
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：整个循环实际相当于
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c8-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.8 C 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作业报告怎么写
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验收与复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课后 Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="课后 Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 1：纯 Python 文本分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-2numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 2：NumPy 形状体操
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-3numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 3：NumPy 线性回归
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统一提交物
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1 课后 Project 标准答案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学补充：从变化率到梯度下降
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 与 PyTorch MLP 完整模型代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2 标准答案：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Tokenizer_Attention_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 3：Tokenizer、Attention 与 Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03A_Attention%E4%B8%8ETransformer%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention 与 Transformer 手算讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_MiniGPT%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 4：MiniGPT 与预训练
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04A_%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%98%BE%E5%AD%98%E4%BC%B0%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT 训练原理、优化器与显存估算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_%E6%8E%A8%E7%90%86%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 5：推理、量化与本地部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05A_%E9%87%87%E6%A0%B7_KVCache%E4%B8%8E%E9%87%8F%E5%8C%96%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    采样、KV Cache 与量化推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_%E5%BE%AE%E8%B0%83_LoRA_QLoRA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 6：SFT、LoRA 与 QLoRA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06A_LoRA%E4%B8%8EQLoRA%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoRA、QLoRA 与监督微调推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_RAG%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 7：RAG——从最小检索到高级与 GraphRAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07A_RAG%E6%A3%80%E7%B4%A2%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 检索、排序与评估手算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ToolCalling%E4%B8%8E%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 8：Tool Calling、Code Interpreter 与安全执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08A_%E4%BB%8ETool%E5%88%B0Agent%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从 Tool Calling 到可恢复 Agent：完整案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Memory%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 9：Memory——从上下文到长期记忆
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_Agent%E4%B8%8EMultiAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 10：Agent、Browser/Coding Agent 与 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_MCP_AI_OS%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 11：MCP、Second Brain OS 与工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11A_SecondBrain%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%93%9D%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain OS 工程实现蓝图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 12（选修）：多模态、ROS 2 与机器人
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_%E9%A1%B9%E7%9B%AE%E4%B8%8E%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与学习资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线 框架优先版
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线 框架优先版
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从整机到零件：LLM 框架优先学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/00_LLM%E5%85%A8%E5%B1%80%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 0 课：从预测任务推导出 GPT 的结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/01_%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8CMiniGPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之一：第一次运行完整 MiniGPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/02_%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%AE%8C%E6%95%B4%E9%97%AD%E7%8E%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之二：训练与生成的完整闭环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/03_%E5%BC%A0%E9%87%8F_Linear_Softmax%E4%B8%8E%E6%8D%9F%E5%A4%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之一：张量、Linear、Softmax 与损失
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/04_Tokenizer_Embedding%E4%B8%8E%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之二：Tokenizer、Embedding 与位置信息
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/05_Attention%E4%B8%8ETransformerBlock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之三：Attention 与 Transformer Block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/06_%E6%A2%AF%E5%BA%A6_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之四：梯度、反向传播与参数优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/07_%E5%AE%8C%E6%95%B4MiniGPT%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%AF%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之五：完整 MiniGPT 的装配与源码导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/08_%E6%95%B0%E6%8D%AE_%E9%A2%84%E8%AE%AD%E7%BB%83_%E8%AF%84%E4%BC%B0%E4%B8%8ECheckpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之一：数据、预训练、评估与 Checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/09_%E6%8E%A8%E7%90%86_%E9%87%87%E6%A0%B7_KVCache_%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之二：推理、采样、KV Cache、量化与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/10_%E5%BE%AE%E8%B0%83_RAG_Agent%E4%B8%8E%E5%90%8E%E7%BB%AD%E6%96%B9%E5%90%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之三：微调、RAG、Agent 与后续方向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/11_%E9%A1%B9%E7%9B%AE%E9%98%B6%E6%A2%AF%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程终章：从全局地图到可复现 MiniGPT 项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/12_%E9%A1%B9%E7%9B%AE%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课后项目标准答案与结果核对
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM 框架优先学习记录模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_16" id="__nav_3_6_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniGPT 完整代码运行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳机
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    耳机
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOMENTUM 4 完整使用建议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统讲解耳机音质（拆分版）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/01-%E6%92%AD%E6%94%BE%E9%93%BE%E8%B7%AF%E4%B8%8E%E6%95%B0%E5%AD%97%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（1）：播放链路与数字基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/02-%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8E%E9%AB%98%E8%A7%84%E6%A0%BC%E9%9F%B3%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（2）：音频文件格式与高规格音频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/03-%E8%93%9D%E7%89%99%E9%9F%B3%E9%A2%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（3）：蓝牙音频与传输编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/04-%E6%89%8B%E6%9C%BA%E3%80%81DAC%E3%80%81%E8%80%B3%E6%94%BE%E4%B8%8E%E9%A9%B1%E5%8A%A8%E5%8A%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（4）：手机、DAC、耳放与驱动力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/05-DAP%E3%80%81%E5%B0%8F%E5%B0%BE%E5%B7%B4%E4%B8%8E%E5%B9%B3%E8%A1%A1%E8%BE%93%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（5）：DAP、小尾巴与平衡输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/06-%E6%92%AD%E6%94%BE%E8%AE%BE%E7%BD%AE%E3%80%81EQ%E4%B8%8E%E8%AE%BE%E5%A4%87%E9%80%89%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（6）：播放设置、EQ与设备选购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/07-%E8%80%B3%E6%9C%BA%E6%9C%AC%E4%BD%93%E4%B8%8E%E5%90%AC%E6%84%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（7）：耳机本体与听感
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/08-%E9%80%89%E8%B4%AD%E5%8E%9F%E5%88%99%E4%B8%8E%E7%9F%A5%E8%AF%86%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（8）：选购原则与知识树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习导航与动手方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Python 核心对象
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Python 核心对象">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量与类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#listtupledictset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        list、tuple、dict、set
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 函数：把数据流切成可测试单元
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 函数：把数据流切成可测试单元">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作用域与可变默认参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nnmodule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 类和 nn.Module 的前置理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 迭代器、生成器与 DataLoader
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 迭代器、生成器与 DataLoader">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-def-read_nonempty_linespath" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. def read_nonempty_lines(path):
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-with-openpath-r-encodingutf-8-as-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. with open(path, "r", encoding="utf-8") as f:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-for-line-in-f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. for line in f:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-text-linestrip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. text = line.strip()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-if-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. if text:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-yield-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. yield text
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 文件与常见数据格式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-numpy-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. NumPy：数组不只是更快的 list
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. NumPy：数组不只是更快的 list">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        广播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 线性代数的直觉
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 线性代数的直觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标量、向量、矩阵、张量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        点积和相似度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        转置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7a-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A. NumPy 逐句详解：导入、形状、矩阵乘法与广播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7A. NumPy 逐句详解：导入、形状、矩阵乘法与广播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7a1-import-numpy-as-np" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.1 import numpy as np
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.2 创建二维数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.3 @ 是矩阵乘法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a4-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.4 .shape 是数组形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a5-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.5 LLM 里常用的维度命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a6-hidden-state-b-t-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.6 hidden state [B, T, C]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a7-logits-b-t-v" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.7 logits [B, T, V]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a8-broadcasting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8 广播 broadcasting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7A.8 广播 broadcasting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7a81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.1 广播的正式判断规则：从右往左对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a82-313-31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.2 (3,)、(1,3) 和 (3,1) 不是一回事
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.3 想给每一行加不同的数，要显式制造列维度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.4 高维广播和结果形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a85-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.5 在线性层和 Softmax 中为什么经常遇到广播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a86" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.8.6 广播检查步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.9 广播的直觉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7a10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7A.10 为什么说广播可能“静默制造错误”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 概率与信息论
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 概率与信息论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率分布
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        交叉熵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        困惑度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 1：logits 是“原始分数”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2softmax-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 2：Softmax 把 logits 变成概率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 3：为什么要用指数 $e^x$？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 4：为什么代码里要先减去最大值？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 5：axis=-1 是什么意思？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 6：交叉熵是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 7：为什么不是直接看“对没对”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-perplexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概率补充 8：困惑度 perplexity 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 导数、梯度与链式法则
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 导数、梯度与链式法则">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数值梯度检查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 统计与实验基础
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 练习讲解：从读题到动手
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 练习讲解：从读题到动手">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 解题提示与逐步讲解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 A：纯 Python 文本分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 A：纯 Python 文本分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.1 先把题目翻译成人话
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a2-jsonl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.2 先造一个最小 JSONL 文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.3 第一版先只完成“能读每一行”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 第二版再加 JSON 解析和坏行处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="A.4 第二版再加 JSON 解析和坏行处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第一行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第二行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：第三行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.4 补充：完整运行过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.5 第三版再提取文本字段
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.6 第四版统计长度、空样本、重复样本和字符频率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a7-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A.7 A 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bnumpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 B：NumPy 形状体操
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 B：NumPy 形状体操">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.1 先设定一个能肉眼检查的小形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.2 写代码前先写形状注释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.3 代码骨架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b4-1-token-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.4 第 1 问：计算每个 token 在 C 维的均值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b5-2-btc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.5 第 2 问：把最后两个维度展平为 [B,T*C]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b6-3-wcv-btv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.6 第 3 问：与 W:[C,V] 相乘得到 [B,T,V]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b7-4-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.7 第 4 问：稳定 softmax，并验证概率和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b8-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B.8 B 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        练习 C：线性回归
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="练习 C：线性回归">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.1 先理解你要训练什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 第一版先生成数据
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.2 第一版先生成数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c2-42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 补充：为什么要写 42
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.2 补充：一个容易忽略的地方
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 第二版写预测函数和 loss
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.3 第二版写预测函数和 loss">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c3-xmean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 补充：x.mean()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.3 补充：axis=-1
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.4 第三版手写梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 第四版写训练循环
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.5 第四版写训练循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-1-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 1：最简单的 print
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 2：打印变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 3：一次打印多个内容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-4-f-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 4：什么是 f-string
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 5：{} 里面可以放什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 6：回到你的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-74f" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 7：:.4f 到底是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 8：为什么外面要有文字，里面还要有变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c5-print-9print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.5 print 补充 9：print() 默认会换行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.6 你应该观察到什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 如果要画训练曲线
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C.7 如果要画训练曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c7-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 1：导入画图工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 2：依次测试三种学习率
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 3：调用训练函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 4：把损失画成曲线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-labelflrlr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：label=f"lr={lr}"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 5：设置横轴名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 6：设置纵轴名称
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 7：显示图例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充 8：保存图片
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7-dpi150" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：dpi=150
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c7_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.7 画图补充：整个循环实际相当于
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c8-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C.8 C 作业自检清单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        作业报告怎么写
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        验收与复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        课后 Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="课后 Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project-1-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 1：纯 Python 文本分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-2numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 2：NumPy 形状体操
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-3numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 3：NumPy 线性回归
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        统一提交物
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="1python">模块 1：Python、数据处理与必要数学<a class="headerlink" href="#1python" title="Permanent link">&para;</a></h1>
+<h2 id="_1">目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>不是“学完 Python 全部语法”，而是掌握 LLM 项目反复出现的程序结构与数学语言：数据容器、函数、类、迭代器、文件格式、向量矩阵、概率、导数和梯度。</p>
+<blockquote>
+<p>数学部分建议同时打开 <a href="../01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/">数学补充：从变化率到梯度下降</a>，跟着其中的数字完整手算一遍。</p>
+</blockquote>
+<h2 id="_2">学习导航与动手方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>这一章不是让你“背 Python 语法表”，而是训练一种做 LLM 项目会反复用到的基本能力：</p>
+<blockquote>
+<p>看到一段数据，能把它读进来；看到一个数组，能说出它的形状；看到一个公式，能把它翻译成代码；看到一个实验要求，知道先做最小版本，再逐步加功能。</p>
+</blockquote>
+<p>如果你读懂了原理，但不知道作业从哪里下手，先别急着写完整答案。按照下面这个固定流程走：</p>
+<ol>
+<li><strong>把题目改写成输入、处理、输出。</strong></li>
+<li>输入是什么？例如 JSONL 文件、NumPy 数组、随机生成的数据。</li>
+<li>处理是什么？例如清洗文本、计算均值、做 softmax、训练线性回归。</li>
+<li>
+<p>输出是什么？例如统计表、形状检查结果、loss 曲线、实验结论。</p>
+</li>
+<li>
+<p><strong>先造一个很小的假数据。</strong>
+   不要一上来处理大文件。先用 2 到 5 条样本，让你能肉眼看出结果对不对。</p>
+</li>
+<li>
+<p><strong>先写能跑通的直线代码。</strong>
+   开始阶段可以先把所有逻辑写在一个文件里，从上往下执行。等跑通后，再拆成函数。</p>
+</li>
+<li>
+<p><strong>每一步都打印中间结果。</strong>
+   新手最容易卡在“我以为它是这样，其实它不是”。所以要经常打印：</p>
+</li>
+<li><code>type(x)</code></li>
+<li><code>len(x)</code></li>
+<li><code>x.shape</code></li>
+<li>前几条样本 <code>x[:3]</code></li>
+<li>
+<p>概率和、loss、参数值等关键指标</p>
+</li>
+<li>
+<p><strong>最后再整理成函数和报告。</strong>
+   先做出来，再变漂亮。推荐每个练习最终包含：</p>
+</li>
+<li>一个 <code>.py</code> 脚本；</li>
+<li>一小段运行结果；</li>
+<li>一小段解释：我做了什么、验证了什么、遇到什么坑。</li>
+</ol>
+<p>建议你在当前模块旁边建一个练习文件夹：</p>
+<pre><code class="language-text">module01_homework/
+├── exercise_a_jsonl_stats.py
+├── exercise_b_numpy_shapes.py
+├── exercise_c_linear_regression.py
+├── data/
+│   └── demo.jsonl
+└── notes.md
+</code></pre>
+<p>本章后半部分的“练习讲解”已经按这个思路拆成了可执行步骤。先跟着它完成最小版本；文末再独立完成课后 Project，不需要自己重新设计作业结构。</p>
+<p>完整标准答案单独放在：<a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/">模块 1 综合练习标准答案</a>。建议你先自己按题目做一版，卡住时看提示，最后再对照标准答案。</p>
+<h2 id="1-python">1. Python 核心对象<a class="headerlink" href="#1-python" title="Permanent link">&para;</a></h2>
+<h3 id="_3">变量与类型<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>变量是对象的名字，不是固定盒子。</p>
+<pre><code class="language-python">name = &quot;Ada&quot;       # str
+age = 18           # int
+loss = 2.31        # float
+ready = True       # bool
+missing = None     # NoneType
+</code></pre>
+<p>浮点数是有限精度近似，<code>0.1 + 0.2</code> 不保证精确等于 <code>0.3</code>。比较训练指标时用容差，而不是期待完全相等。</p>
+<h3 id="listtupledictset">list、tuple、dict、set<a class="headerlink" href="#listtupledictset" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">tokens = [12, 7, 12]                    # 有序、可变
+shape = (2, 3, 4)                       # 有序、通常表示固定结构
+sample = {&quot;text&quot;: &quot;你好&quot;, &quot;label&quot;: 1} # 键值映射
+unique_ids = {12, 7}                    # 去重集合
+</code></pre>
+<p>数据样本常用 dict，batch 常是“字段到张量”的 dict。切片 <code>tokens[start:end]</code> 包含 start、不包含 end。</p>
+<h3 id="_4">控制流<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">valid = []
+for item in samples:
+    if len(item[&quot;text&quot;].strip()) &gt;= 2:
+        valid.append(item)
+</code></pre>
+<p>先写清楚的循环，再学列表推导式。过度压缩代码会让新手更难观察中间值。</p>
+<h2 id="2">2. 函数：把数据流切成可测试单元<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">def make_windows(token_ids: list[int], size: int) -&gt; list[tuple[list[int], int]]:
+    &quot;&quot;&quot;用前 size 个 token 预测下一个 token。&quot;&quot;&quot;
+    if size &lt;= 0:
+        raise ValueError(&quot;size must be positive&quot;)
+    return [
+        (token_ids[i:i + size], token_ids[i + size])
+        for i in range(len(token_ids) - size)
+    ]
+</code></pre>
+<p>好函数应有单一职责、清楚的输入输出和边界处理。类型标注帮助阅读，但运行时不会自动保证类型正确。</p>
+<h3 id="_5">作用域与可变默认参数<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>不要这样写：</p>
+<pre><code class="language-python">def add_item(item, items=[]):  # 这个 list 会被多次调用共享
+    items.append(item)
+    return items
+</code></pre>
+<p>应写成：</p>
+<pre><code class="language-python">def add_item(item, items=None):
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+</code></pre>
+<p>这讲的是 Python 里一个很经典的坑：<strong>函数参数默认值不要用可变对象，比如 <code>[]</code>、<code>{}</code>、<code>set()</code>。</strong></p>
+<p>你图里这个写法：</p>
+<pre><code class="language-python">def add_item(item, items=[]):
+    items.append(item)
+    return items
+</code></pre>
+<p>看起来意思是：</p>
+<blockquote>
+<p>如果调用时没传 <code>items</code>，就默认用一个空列表。</p>
+</blockquote>
+<p>但实际 Python 不是每次调用都新建一个空列表，而是：<strong>函数定义的时候就创建了这一个 <code>[]</code>，之后每次调用都共用它。</strong></p>
+<p>比如：</p>
+<pre><code class="language-python">def add_item(item, items=[]):
+    items.append(item)
+    return items
+
+print(add_item(&quot;a&quot;))
+print(add_item(&quot;b&quot;))
+print(add_item(&quot;c&quot;))
+</code></pre>
+<p>你可能以为输出是：</p>
+<pre><code>['a']
+['b']
+['c']
+</code></pre>
+<p>但实际是：</p>
+<pre><code>['a']
+['a', 'b']
+['a', 'b', 'c']
+</code></pre>
+<p>因为每次调用用的是<strong>同一个默认列表</strong>。</p>
+<hr />
+<p>所以推荐这样写：</p>
+<pre><code class="language-python">def add_item(item, items=None):
+    if items is None:
+        items = []
+
+    items.append(item)
+    return items
+</code></pre>
+<p>这是什么意思呢？</p>
+<pre><code class="language-python">items=None
+</code></pre>
+<p>意思是：默认先不给列表，用 <code>None</code> 作为“没有传入列表”的标记。</p>
+<p>然后：</p>
+<pre><code class="language-python">if items is None:
+    items = []
+</code></pre>
+<p>意思是：如果调用者没有传 <code>items</code>，那就在这一次函数调用里面新建一个空列表。</p>
+<p>这样每次调用都会得到独立的新列表。</p>
+<p>例如：</p>
+<pre><code class="language-python">print(add_item(&quot;a&quot;))
+print(add_item(&quot;b&quot;))
+print(add_item(&quot;c&quot;))
+</code></pre>
+<p>输出就是：</p>
+<pre><code>['a']
+['b']
+['c']
+</code></pre>
+<hr />
+<p>但如果你主动传入同一个列表，它还是会往那个列表里加：</p>
+<pre><code class="language-python">lst = [1, 2]
+
+print(add_item(3, lst))
+print(add_item(4, lst))
+</code></pre>
+<p>输出：</p>
+<pre><code>[1, 2, 3]
+[1, 2, 3, 4]
+</code></pre>
+<p>这时候是合理的，因为你明确把 <code>lst</code> 传进去了。</p>
+<p>核心记住一句话：</p>
+<p><strong>Python 函数默认参数只在定义函数时创建一次，不是每次调用都重新创建。</strong>
+所以默认参数尽量用 <code>None</code>，不要直接写 <code>[]</code>。</p>
+<h2 id="3-nnmodule">3. 类和 <code>nn.Module</code> 的前置理解<a class="headerlink" href="#3-nnmodule" title="Permanent link">&para;</a></h2>
+<p>类把状态和行为组织在一起。</p>
+<pre><code class="language-python">class Vocabulary:
+    def __init__(self, tokens: list[str]):
+        unique = sorted(set(tokens))
+        self.token_to_id = {token: i for i, token in enumerate(unique)}
+        self.id_to_token = {i: token for token, i in self.token_to_id.items()}
+
+    def encode(self, text: str) -&gt; list[int]:
+        return [self.token_to_id[ch] for ch in text]
+</code></pre>
+<p><code>self</code> 表示当前实例。PyTorch 模型继承 <code>nn.Module</code>，参数作为对象状态，<code>forward</code> 定义数据如何通过模型。</p>
+<h2 id="4-dataloader">4. 迭代器、生成器与 DataLoader<a class="headerlink" href="#4-dataloader" title="Permanent link">&para;</a></h2>
+<p>数据太大时不能一次读进内存。生成器按需产生数据：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line in f:
+            text = line.strip()
+            if text:
+                yield text
+</code></pre>
+<p><code>yield</code> 暂停函数并保留状态。DataLoader 的思想类似：按 batch 取数据，还可打乱和并行读取。
+这段主要在讲：<strong>数据太大时，不要一次性全读进内存，而是用“生成器”一条一条读。</strong></p>
+<p>核心代码是：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line in f:
+            text = line.strip()
+            if text:
+                yield text
+</code></pre>
+<p>它的作用是：<strong>读取一个文本文件，逐行返回非空行。</strong></p>
+<hr />
+<p>关键是 <code>yield</code>。</p>
+<p>普通函数用 <code>return</code>：</p>
+<pre><code class="language-python">def f():
+    return 1
+</code></pre>
+<p>调用后直接返回结果，函数结束。</p>
+<p>但用了 <code>yield</code> 的函数就变成了<strong>生成器函数</strong>：</p>
+<pre><code class="language-python">def g():
+    yield 1
+    yield 2
+    yield 3
+</code></pre>
+<p>调用它：</p>
+<pre><code class="language-python">x = g()
+</code></pre>
+<p>这时函数还没有真正执行，只是得到了一个“生成器对象”。</p>
+<p>只有你开始取数据时，它才会一点一点执行：</p>
+<pre><code class="language-python">for v in x:
+    print(v)
+</code></pre>
+<p>输出：</p>
+<pre><code>1
+2
+3
+</code></pre>
+<hr />
+<p>你图里的函数可以这样用：</p>
+<pre><code class="language-python">for text in read_nonempty_lines(&quot;data.txt&quot;):
+    print(text)
+</code></pre>
+<p>它不是先把整个 <code>data.txt</code> 读完，而是：</p>
+<pre><code>读一行
+处理一行
+yield 返回一行
+暂停
+下次继续读下一行
+</code></pre>
+<p>所以内存占用很小。</p>
+<hr />
+<p>对比一下。</p>
+<p>如果你这样写：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):
+    result = []
+
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line in f:
+            text = line.strip()
+            if text:
+                result.append(text)
+
+    return result
+</code></pre>
+<p>这会把所有非空行都存到 <code>result</code> 里。</p>
+<p>如果文件很大，比如 10GB，就可能爆内存。</p>
+<p>但生成器版本：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line in f:
+            text = line.strip()
+            if text:
+                yield text
+</code></pre>
+<p>不会一次性存所有内容，而是需要一条给一条。</p>
+<hr />
+<p><code>yield</code> 还有一个很重要的特性：<strong>暂停函数，并保留状态。</strong></p>
+<p>比如：</p>
+<pre><code class="language-python">def count():
+    print(&quot;开始&quot;)
+    yield 1
+    print(&quot;继续&quot;)
+    yield 2
+    print(&quot;结束&quot;)
+</code></pre>
+<p>运行：</p>
+<pre><code class="language-python">g = count()
+
+print(next(g))
+print(next(g))
+</code></pre>
+<p>过程是：</p>
+<p>第一次 <code>next(g)</code>：</p>
+<pre><code>开始
+1
+</code></pre>
+<p>函数执行到 <code>yield 1</code> 就暂停。</p>
+<p>第二次 <code>next(g)</code>：</p>
+<pre><code>继续
+2
+</code></pre>
+<p>它会从上次暂停的位置继续执行。</p>
+<p>所以图里说：</p>
+<blockquote>
+<p><code>yield</code> 暂停函数并保留状态。</p>
+</blockquote>
+<p>意思就是：函数不会死掉，它会记住自己读到文件哪一行了，下次继续往后读。</p>
+<hr />
+<p>最后一句说 DataLoader：</p>
+<blockquote>
+<p>DataLoader 的思想类似：按 batch 取数据，还可打乱和并行读取。</p>
+</blockquote>
+<p>比如 PyTorch 训练模型时，数据集可能很大，不能一次性全部塞进显存/内存。</p>
+<p>所以 DataLoader 会一批一批给模型：</p>
+<pre><code class="language-python">for batch_x, batch_y in dataloader:
+    output = model(batch_x)
+</code></pre>
+<p>它的思想和生成器很像：</p>
+<pre><code>需要一批数据
+就读取一批
+处理一批
+再读取下一批
+</code></pre>
+<p>而不是：</p>
+<pre><code>一开始把全部数据读完
+</code></pre>
+<p>所以你可以把它理解成：</p>
+<p><strong>生成器是 Python 层面的“按需吐数据”；DataLoader 是深度学习里更高级的“按 batch 按需吐数据”。</strong>
+这段代码的功能是：</p>
+<blockquote>
+<p>打开一个文本文件，逐行读取，把<strong>非空行</strong>去掉首尾空白后，一个一个“吐出来”。</p>
+</blockquote>
+<p>代码：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+        for line in f:
+            text = line.strip()
+            if text:
+                yield text
+</code></pre>
+<p>逐项拆开看。</p>
+<hr />
+<h3 id="1-def-read_nonempty_linespath">1. <code>def read_nonempty_lines(path):</code><a class="headerlink" href="#1-def-read_nonempty_linespath" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def read_nonempty_lines(path):
+</code></pre>
+<p>定义一个函数，名字叫：</p>
+<pre><code class="language-python">read_nonempty_lines
+</code></pre>
+<p>意思大概是“读取非空行”。</p>
+<p>括号里的：</p>
+<pre><code class="language-python">path
+</code></pre>
+<p>是参数，表示<strong>文件路径</strong>。</p>
+<p>比如你之后可以这样调用：</p>
+<pre><code class="language-python">read_nonempty_lines(&quot;data.txt&quot;)
+</code></pre>
+<p>这里 <code>"data.txt"</code> 就会传给 <code>path</code>。</p>
+<p>也就是说，函数里面的：</p>
+<pre><code class="language-python">path
+</code></pre>
+<p>此时就代表：</p>
+<pre><code class="language-python">&quot;data.txt&quot;
+</code></pre>
+<hr />
+<h3 id="2-with-openpath-r-encodingutf-8-as-f">2. <code>with open(path, "r", encoding="utf-8") as f:</code><a class="headerlink" href="#2-with-openpath-r-encodingutf-8-as-f" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+</code></pre>
+<p>这句是在<strong>打开文件</strong>。</p>
+<p>拆开：</p>
+<pre><code class="language-python">open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+</code></pre>
+<p>意思是：</p>
+<blockquote>
+<p>按照 <code>utf-8</code> 编码，以只读模式打开 <code>path</code> 指向的文件。</p>
+</blockquote>
+<p>其中：</p>
+<pre><code class="language-python">&quot;path&quot;
+</code></pre>
+<p>不是固定的文件名，而是前面传进来的参数。</p>
+<p>比如：</p>
+<pre><code class="language-python">read_nonempty_lines(&quot;data.txt&quot;)
+</code></pre>
+<p>那这里就相当于：</p>
+<pre><code class="language-python">open(&quot;data.txt&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+</code></pre>
+<hr />
+<p>这里的 <code>"r"</code> 是 read 的意思，表示<strong>读取模式</strong>。</p>
+<p>常见模式有：</p>
+<pre><code class="language-python">&quot;r&quot;   # 读文件
+&quot;w&quot;   # 写文件，会覆盖原内容
+&quot;a&quot;   # 追加写入
+</code></pre>
+<hr />
+<p><code>encoding="utf-8"</code> 是指定文本编码。</p>
+<p>很多中文文本都用 <code>utf-8</code>，所以一般写上比较稳。</p>
+<hr />
+<p><code>as f</code> 的意思是：</p>
+<blockquote>
+<p>把打开的文件对象临时命名为 <code>f</code>。</p>
+</blockquote>
+<p>所以后面：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>就是在遍历这个文件对象。</p>
+<hr />
+<p><code>with</code> 的作用是：</p>
+<blockquote>
+<p>文件用完后自动关闭。</p>
+</blockquote>
+<p>如果不用 <code>with</code>，传统写法是：</p>
+<pre><code class="language-python">f = open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;)
+# 读取文件
+f.close()
+</code></pre>
+<p>但是如果中途报错，可能忘记关闭文件。</p>
+<p>所以更推荐：</p>
+<pre><code class="language-python">with open(...) as f:
+    ...
+</code></pre>
+<p>它会自动帮你关闭文件。</p>
+<hr />
+<h3 id="3-for-line-in-f">3. <code>for line in f:</code><a class="headerlink" href="#3-for-line-in-f" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>这句是在<strong>逐行遍历文件</strong>。</p>
+<p>文件对象 <code>f</code> 可以被循环，每次循环取出文件的一行。</p>
+<p>比如文件内容是：</p>
+<pre><code>hello
+
+world
+python
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>会依次得到：</p>
+<pre><code class="language-python">&quot;hello\n&quot;
+&quot;\n&quot;
+&quot;world\n&quot;
+&quot;python&quot;
+</code></pre>
+<p>注意，读出来的每一行通常会带有换行符 <code>\n</code>。</p>
+<hr />
+<h3 id="4-text-linestrip">4. <code>text = line.strip()</code><a class="headerlink" href="#4-text-linestrip" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">text = line.strip()
+</code></pre>
+<p>这句是把当前这一行的<strong>首尾空白字符去掉</strong>。</p>
+<p><code>strip()</code> 会去掉：</p>
+<pre><code>空格
+换行符 \n
+制表符 \t
+</code></pre>
+<p>比如：</p>
+<pre><code class="language-python">line = &quot;   hello world\n&quot;
+text = line.strip()
+</code></pre>
+<p>结果是：</p>
+<pre><code class="language-python">&quot;hello world&quot;
+</code></pre>
+<p>再比如：</p>
+<pre><code class="language-python">line = &quot;\n&quot;
+text = line.strip()
+</code></pre>
+<p>结果是：</p>
+<pre><code class="language-python">&quot;&quot;
+</code></pre>
+<p>也就是空字符串。</p>
+<p>所以这句的作用是：</p>
+<blockquote>
+<p>把一行清理干净，去掉前后的空格和换行。</p>
+</blockquote>
+<hr />
+<h3 id="5-if-text">5. <code>if text:</code><a class="headerlink" href="#5-if-text" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">if text:
+</code></pre>
+<p>这句是在判断：</p>
+<blockquote>
+<p><code>text</code> 是否不是空字符串。</p>
+</blockquote>
+<p>在 Python 里，空字符串：</p>
+<pre><code class="language-python">&quot;&quot;
+</code></pre>
+<p>会被当成 <code>False</code>。</p>
+<p>非空字符串：</p>
+<pre><code class="language-python">&quot;hello&quot;
+</code></pre>
+<p>会被当成 <code>True</code>。</p>
+<p>所以：</p>
+<pre><code class="language-python">if text:
+</code></pre>
+<p>等价于：</p>
+<pre><code class="language-python">if text != &quot;&quot;:
+</code></pre>
+<p>但 Python 里更常写成：</p>
+<pre><code class="language-python">if text:
+</code></pre>
+<p>比如：</p>
+<pre><code class="language-python">text = &quot;&quot;
+if text:
+    print(&quot;非空&quot;)
+</code></pre>
+<p>不会执行。</p>
+<p>而：</p>
+<pre><code class="language-python">text = &quot;hello&quot;
+if text:
+    print(&quot;非空&quot;)
+</code></pre>
+<p>会执行。</p>
+<p>所以这里的意思是：</p>
+<blockquote>
+<p>如果这一行去掉空白后还有内容，就继续处理；如果是空行，就跳过。</p>
+</blockquote>
+<hr />
+<h3 id="6-yield-text">6. <code>yield text</code><a class="headerlink" href="#6-yield-text" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">yield text
+</code></pre>
+<p>这是最关键的一句。</p>
+<p>它不是普通的 <code>return</code>，而是 <code>yield</code>。</p>
+<p><code>yield</code> 的意思是：</p>
+<blockquote>
+<p>先把 <code>text</code> 交出去，然后函数暂停；下一次需要数据时，再从这里继续往下执行。</p>
+</blockquote>
+<p>因此这个函数不是一次性返回一个列表，而是变成了一个<strong>生成器</strong>。</p>
+<hr />
+<p>比如有一个文件 <code>data.txt</code>：</p>
+<pre><code>apple
+
+banana
+
+
+cat
+</code></pre>
+<p>调用：</p>
+<pre><code class="language-python">for x in read_nonempty_lines(&quot;data.txt&quot;):
+    print(x)
+</code></pre>
+<p>输出是：</p>
+<pre><code>apple
+banana
+cat
+</code></pre>
+<p>中间空行会被跳过。</p>
+<hr />
+<p>这段代码的执行过程大概是：</p>
+<pre><code>打开文件
+读第 1 行
+去掉首尾空白
+如果不是空行，就 yield 出去
+
+暂停
+
+下一次循环需要数据
+继续读第 2 行
+如果是空行，跳过
+
+继续读第 3 行
+yield 出去
+
+……
+</code></pre>
+<hr />
+<p>一个非常重要的点是：</p>
+<pre><code class="language-python">read_nonempty_lines(&quot;data.txt&quot;)
+</code></pre>
+<p>这句本身不会立刻把文件全部读完。</p>
+<p>它只是创建了一个生成器对象。</p>
+<p>真正读取发生在你开始遍历它的时候：</p>
+<pre><code class="language-python">for line in read_nonempty_lines(&quot;data.txt&quot;):
+    print(line)
+</code></pre>
+<p>或者手动取：</p>
+<pre><code class="language-python">g = read_nonempty_lines(&quot;data.txt&quot;)
+
+print(next(g))
+print(next(g))
+</code></pre>
+<hr />
+<p>所以这段代码可以理解成：</p>
+<pre><code class="language-python">def read_nonempty_lines(path):        # 定义一个函数，参数是文件路径
+    with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:   # 打开文件，命名为 f
+        for line in f:                # 一行一行读取文件
+            text = line.strip()       # 去掉这一行前后的空白和换行符
+            if text:                  # 如果去掉后不是空字符串
+                yield text            # 把这一行交出去，然后暂停
+</code></pre>
+<p>核心记住：</p>
+<p><strong><code>return</code> 是一次性返回结果，函数结束；<code>yield</code> 是返回一个结果后暂停，下次还能继续。</strong></p>
+<p>因为这一句本身就在<strong>定义/赋值</strong> <code>line</code>：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>它的意思不是“使用一个已经定义好的 <code>line</code>”，而是：</p>
+<blockquote>
+<p>每次从 <code>f</code> 里面取出一个东西，把它临时命名为 <code>line</code>。</p>
+</blockquote>
+<p>所以 <code>line</code> 是在 <code>for</code> 循环中自动产生的变量。</p>
+<p>比如：</p>
+<pre><code class="language-python">for x in [10, 20, 30]:
+    print(x)
+</code></pre>
+<p>这里 <code>x</code> 之前也没有定义，但 Python 会自动让：</p>
+<pre><code>第一次循环：x = 10
+第二次循环：x = 20
+第三次循环：x = 30
+</code></pre>
+<p>同理：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>就是：</p>
+<pre><code>第一次循环：line = 文件第 1 行
+第二次循环：line = 文件第 2 行
+第三次循环：line = 文件第 3 行
+……
+</code></pre>
+<hr />
+<p>为什么 <code>line</code> 是“行”？不是因为名字叫 <code>line</code>，而是因为 <strong><code>f</code> 是文件对象，文件对象被 <code>for</code> 遍历时，每次默认吐出一行文本</strong>。</p>
+<p>也就是说，关键是右边的 <code>f</code>：</p>
+<pre><code class="language-python">with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+</code></pre>
+<p>这里 <code>f</code> 是打开后的文件对象。</p>
+<p>文件对象有一个特性：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>会自动一行一行读取文件。</p>
+<p>所以你写成这样也可以：</p>
+<pre><code class="language-python">for x in f:
+    text = x.strip()
+</code></pre>
+<p>这里 <code>x</code> 也是一行。</p>
+<p>甚至写成：</p>
+<pre><code class="language-python">for abc in f:
+    text = abc.strip()
+</code></pre>
+<p>也可以。</p>
+<p>只是一般为了可读性，大家写成：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>因为它确实代表“当前这一行”。</p>
+<hr />
+<p>所以这句：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>可以理解成更直白的伪代码：</p>
+<pre><code class="language-python">每次从文件 f 里读取一行
+把这一行放进变量 line
+然后执行下面缩进的代码
+</code></pre>
+<p>完整逻辑就是：</p>
+<pre><code class="language-python">with open(path, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line in f:
+        text = line.strip()
+</code></pre>
+<p>等价理解为：</p>
+<pre><code>打开文件，叫它 f
+从 f 里取第一行，赋值给 line
+把 line 去掉首尾空白，赋值给 text
+
+再从 f 里取第二行，赋值给 line
+把 line 去掉首尾空白，赋值给 text
+
+再从 f 里取第三行……
+</code></pre>
+<hr />
+<p>Python 和 C 不太一样，变量通常不需要提前声明。</p>
+<p>C 里你可能要写：</p>
+<pre><code class="language-c">int x;
+x = 10;
+</code></pre>
+<p>但 Python 里直接：</p>
+<pre><code class="language-python">x = 10
+</code></pre>
+<p>变量就产生了。</p>
+<p>所以：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>里的 <code>line</code> 也是在循环开始时由 Python 自动赋值产生的。</p>
+<h2 id="5">5. 文件与常见数据格式<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>TXT：简单语料。</li>
+<li>CSV：表格；文本中可能含逗号和换行，应使用库而非手工 <code>split(',')</code>。</li>
+<li>JSON：一个完整的嵌套对象。</li>
+<li>JSONL：每行一个 JSON，适合流式读取和训练数据。</li>
+<li>Parquet：带类型的列式格式，适合大数据。</li>
+</ul>
+<p>JSONL 示例：</p>
+<pre><code class="language-json">{&quot;instruction&quot;:&quot;计算 2+3&quot;,&quot;output&quot;:&quot;5&quot;}
+{&quot;instruction&quot;:&quot;解释勾股定理&quot;,&quot;output&quot;:&quot;在直角三角形中……&quot;}
+</code></pre>
+<p>读取时明确编码，并把不可信字段当作数据，不用 <code>eval()</code>。</p>
+<h2 id="6-numpy-list">6. NumPy：数组不只是更快的 list<a class="headerlink" href="#6-numpy-list" title="Permanent link">&para;</a></h2>
+<p>NumPy 数组通常是同一数据类型的规则网格。</p>
+<pre><code class="language-python">import numpy as np
+
+x = np.array([[1.0, 2.0], [3.0, 4.0]])
+w = np.array([[0.1, -0.2], [0.3, 0.4]])
+y = x @ w
+print(x.shape, w.shape, y.shape)  # (2,2) (2,2) (2,2)
+</code></pre>
+<p>LLM 学习中最重要的习惯是给每个维度命名：</p>
+<ul>
+<li><code>B</code>：batch size，一次处理多少样本。</li>
+<li><code>T</code>：sequence length，每个样本多少 token。</li>
+<li><code>C</code> 或 <code>D</code>：embedding/model dimension，每个 token 的向量长度。</li>
+<li><code>V</code>：vocabulary size。</li>
+</ul>
+<p>例如隐藏状态 <code>x</code> 为 <code>[B, T, C]</code>，词表 logits 为 <code>[B, T, V]</code>。</p>
+<h3 id="_6">广播<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">x = np.zeros((2, 3, 4))
+bias = np.ones((4,))
+y = x + bias  # bias 被视为 [1,1,4]，沿前两维广播
+</code></pre>
+<p>广播很方便，也可能静默制造错误。写代码前把形状写在注释中。</p>
+<h2 id="7">7. 线性代数的直觉<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="_7">标量、向量、矩阵、张量<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>标量是一个数；向量是一列特征；矩阵可看作多个向量或线性变换；深度学习里“张量”泛指多维数组。</p>
+<p>线性层：</p>
+<p>$$
+Y = XW + b
+$$</p>
+<p>若 <code>X:[B,in]</code>、<code>W:[in,out]</code>、<code>b:[out]</code>，则 <code>Y:[B,out]</code>。<code>W</code> 的每一列可以理解为一个输出特征的检测方向。</p>
+<h3 id="_8">点积和相似度<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>$$
+x \cdot y = \sum_i x_i y_i
+$$</p>
+<p>点积同时受方向和长度影响。余弦相似度消除长度影响：</p>
+<p>$$
+\cos(x,y)=\frac{x\cdot y}{|x||y|}
+$$</p>
+<p>Embedding 检索经常用点积或余弦相似度。是否先归一化会改变二者关系。</p>
+<h3 id="_9">转置<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><code>X:[m,n]</code> 的转置 <code>X.T:[n,m]</code>。Attention 中 <code>Q @ K.transpose(-2,-1)</code> 是让每个 query 和每个 key 做点积。
+这页核心在讲：<strong>NumPy 数组不是“更快的 Python list”，而是有形状、有维度、通常同类型的数学数组。</strong></p>
+<hr />
+<h2 id="7a-numpy">7A. NumPy 逐句详解：导入、形状、矩阵乘法与广播<a class="headerlink" href="#7a-numpy" title="Permanent link">&para;</a></h2>
+<p>这一段是对第 6 节 NumPy 代码的逐句拆解。它保留在这里，是为了让你在看完“线性代数直觉”后，再回头把 NumPy 的形状、矩阵乘法和广播真正落到代码上。</p>
+<h3 id="7a1-import-numpy-as-np">7A.1 <code>import numpy as np</code><a class="headerlink" href="#7a1-import-numpy-as-np" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import numpy as np
+</code></pre>
+<p>导入 NumPy，并起别名叫 <code>np</code>。</p>
+<p>以后写：</p>
+<pre><code class="language-python">np.array(...)
+np.zeros(...)
+np.ones(...)
+</code></pre>
+<p>不用每次写完整的：</p>
+<pre><code class="language-python">numpy.array(...)
+</code></pre>
+<hr />
+<h3 id="7a2">7A.2 创建二维数组<a class="headerlink" href="#7a2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">x = np.array([[1.0, 2.0], [3.0, 4.0]])
+w = np.array([[0.1, -0.2], [0.3, 0.4]])
+</code></pre>
+<p>这里 <code>x</code> 是一个二维数组，可以看成矩阵：</p>
+<pre><code>x =
+[[1.0, 2.0],
+ [3.0, 4.0]]
+</code></pre>
+<p><code>w</code> 也是一个二维数组：</p>
+<pre><code>w =
+[[0.1, -0.2],
+ [0.3,  0.4]]
+</code></pre>
+<p>注意，NumPy 数组和普通 list 不一样。</p>
+<p>普通 list：</p>
+<pre><code class="language-python">a = [[1.0, 2.0], [3.0, 4.0]]
+</code></pre>
+<p>本质上是“列表里面套列表”。</p>
+<p>NumPy 数组：</p>
+<pre><code class="language-python">x = np.array([[1.0, 2.0], [3.0, 4.0]])
+</code></pre>
+<p>更像一个规则网格：</p>
+<pre><code>2 行 × 2 列
+</code></pre>
+<p>它有明确的形状、数据类型，并且可以做矩阵运算。</p>
+<hr />
+<h3 id="7a3">7A.3 <code>@</code> 是矩阵乘法<a class="headerlink" href="#7a3" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">y = x @ w
+</code></pre>
+<p>这里的 <code>@</code> 表示矩阵乘法。</p>
+<p>也就是：</p>
+<pre><code>y = xw
+</code></pre>
+<p>具体算：</p>
+<pre><code>x =
+[[1, 2],
+ [3, 4]]
+
+w =
+[[0.1, -0.2],
+ [0.3,  0.4]]
+</code></pre>
+<p>矩阵乘法结果：</p>
+<pre><code>y[0,0] = 1×0.1 + 2×0.3 = 0.7
+y[0,1] = 1×(-0.2) + 2×0.4 = 0.6
+
+y[1,0] = 3×0.1 + 4×0.3 = 1.5
+y[1,1] = 3×(-0.2) + 4×0.4 = 1.0
+</code></pre>
+<p>所以：</p>
+<pre><code class="language-python">y =
+[[0.7, 0.6],
+ [1.5, 1.0]]
+</code></pre>
+<hr />
+<h3 id="7a4-shape">7A.4 <code>.shape</code> 是数组形状<a class="headerlink" href="#7a4-shape" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">print(x.shape, w.shape, y.shape)
+</code></pre>
+<p>输出：</p>
+<pre><code class="language-python">(2, 2) (2, 2) (2, 2)
+</code></pre>
+<p>意思是：</p>
+<pre><code>x 是 2 行 2 列
+w 是 2 行 2 列
+y 是 2 行 2 列
+</code></pre>
+<p><code>.shape</code> 返回的是一个元组。</p>
+<p>比如：</p>
+<pre><code class="language-python">x.shape
+</code></pre>
+<p>得到：</p>
+<pre><code class="language-python">(2, 2)
+</code></pre>
+<p>第一个 <code>2</code> 是行数，第二个 <code>2</code> 是列数。</p>
+<hr />
+<h3 id="7a5-llm">7A.5 LLM 里常用的维度命名<a class="headerlink" href="#7a5-llm" title="Permanent link">&para;</a></h3>
+<p>这一页说：</p>
+<pre><code>B: batch size
+T: sequence length
+C 或 D: embedding/model dimension
+V: vocabulary size
+</code></pre>
+<p>这些是深度学习里很常见的维度符号。</p>
+<p>比如：</p>
+<pre><code class="language-python">x.shape = [B, T, C]
+</code></pre>
+<p>意思是：</p>
+<pre><code>B 个样本
+每个样本有 T 个 token
+每个 token 用 C 维向量表示
+</code></pre>
+<p>举个例子：</p>
+<pre><code class="language-python">x.shape = [2, 3, 4]
+</code></pre>
+<p>可以理解成：</p>
+<pre><code>一次处理 2 句话
+每句话 3 个 token
+每个 token 是 4 维向量
+</code></pre>
+<p>所以它不是二维矩阵，而是三维数组。</p>
+<hr />
+<h3 id="7a6-hidden-state-b-t-c">7A.6 hidden state <code>[B, T, C]</code><a class="headerlink" href="#7a6-hidden-state-b-t-c" title="Permanent link">&para;</a></h3>
+<p>图里说：</p>
+<pre><code>隐藏状态 x 为 [B, T, C]
+</code></pre>
+<p>比如：</p>
+<pre><code class="language-python">x.shape = [2, 3, 4]
+</code></pre>
+<p>意思是：</p>
+<pre><code>2 个句子
+每个句子 3 个 token
+每个 token 有 4 个隐藏特征
+</code></pre>
+<p>可以想象成：</p>
+<pre><code>第 1 个句子：
+    第 1 个 token: 4 维向量
+    第 2 个 token: 4 维向量
+    第 3 个 token: 4 维向量
+
+第 2 个句子：
+    第 1 个 token: 4 维向量
+    第 2 个 token: 4 维向量
+    第 3 个 token: 4 维向量
+</code></pre>
+<hr />
+<h3 id="7a7-logits-b-t-v">7A.7 logits <code>[B, T, V]</code><a class="headerlink" href="#7a7-logits-b-t-v" title="Permanent link">&para;</a></h3>
+<p>图里又说：</p>
+<pre><code>词表 logits 为 [B, T, V]
+</code></pre>
+<p>这里 <code>V</code> 是 vocabulary size，也就是词表大小。</p>
+<p>比如词表里有 50000 个 token，那么：</p>
+<pre><code class="language-python">logits.shape = [B, T, 50000]
+</code></pre>
+<p>意思是：</p>
+<pre><code>对每个样本
+对每个位置
+模型都输出一个长度为 50000 的向量
+</code></pre>
+<p>这个向量表示：</p>
+<blockquote>
+<p>当前位置下一个 token 是词表中每个 token 的分数。</p>
+</blockquote>
+<p>比如：</p>
+<pre><code>logits[b, t]
+</code></pre>
+<p>就是第 <code>b</code> 个样本、第 <code>t</code> 个位置，对整个词表的预测分数。</p>
+<hr />
+<h3 id="7a8-broadcasting">7A.8 广播 broadcasting<a class="headerlink" href="#7a8-broadcasting" title="Permanent link">&para;</a></h3>
+<p>下面这段：</p>
+<pre><code class="language-python">x = np.zeros((2, 3, 4))
+bias = np.ones((4,))
+y = x + bias
+</code></pre>
+<p>先看：</p>
+<pre><code class="language-python">x = np.zeros((2, 3, 4))
+</code></pre>
+<p>创建一个全 0 数组，形状是：</p>
+<pre><code>(2, 3, 4)
+</code></pre>
+<p>也就是：</p>
+<pre><code>2 层
+每层 3 行
+每行 4 个数
+</code></pre>
+<p>再看：</p>
+<pre><code class="language-python">bias = np.ones((4,))
+</code></pre>
+<p>创建一个长度为 4 的一维数组：</p>
+<pre><code class="language-python">bias = [1, 1, 1, 1]
+</code></pre>
+<p>它的形状是：</p>
+<pre><code>(4,)
+</code></pre>
+<p>然后：</p>
+<pre><code class="language-python">y = x + bias
+</code></pre>
+<p>问题来了：</p>
+<pre><code>x.shape    = (2, 3, 4)
+bias.shape =       (4,)
+</code></pre>
+<p>它们形状不一样，为什么可以相加？</p>
+<p>因为 NumPy 会进行<strong>广播</strong>。</p>
+<p>它会把：</p>
+<pre><code class="language-python">bias.shape = (4,)
+</code></pre>
+<p>理解成：</p>
+<pre><code class="language-python">bias.shape = (1, 1, 4)
+</code></pre>
+<p>然后沿前两个维度复制使用：</p>
+<pre><code>x:    (2, 3, 4)
+bias: (1, 1, 4)
+</code></pre>
+<p>于是 <code>bias</code> 会加到 <code>x</code> 的最后一维上。</p>
+<p>也就是说，每一个长度为 4 的向量都会加上：</p>
+<pre><code class="language-python">[1, 1, 1, 1]
+</code></pre>
+<p>所以：</p>
+<pre><code class="language-python">x = np.zeros((2, 3, 4))
+bias = np.ones((4,))
+y = x + bias
+</code></pre>
+<p>结果 <code>y</code> 的形状还是：</p>
+<pre><code class="language-python">(2, 3, 4)
+</code></pre>
+<p>并且里面每个数都变成了 <code>1</code>。</p>
+<hr />
+<h4 id="7a81">7A.8.1 广播的正式判断规则：从右往左对齐<a class="headerlink" href="#7a81" title="Permanent link">&para;</a></h4>
+<p>广播不是看“两个数组相差几维”，而是把两个 <code>shape</code> <strong>右对齐</strong>，从最右边向左逐项检查。每一对维度满足下面任一条件就兼容：</p>
+<ol>
+<li>两个数字相等；</li>
+<li>其中一个数字是 <code>1</code>；</li>
+<li>某个数组缺少这一维时，把它看成左边补了 <code>1</code>。</li>
+</ol>
+<p>例如：</p>
+<pre><code class="language-text">(4, 2, 3)
+      (3,)
+</code></pre>
+<p>右对齐并在左边补 <code>1</code>：</p>
+<pre><code class="language-text">(4, 2, 3)
+(1, 1, 3)
+</code></pre>
+<p>三组维度分别是“4 与 1、2 与 1、3 与 3”，全部兼容，所以结果形状是 <code>(4, 2, 3)</code>。由此可见，维度数量相差 2 仍然可以广播。</p>
+<p>相反：</p>
+<pre><code class="language-text">(2, 3)
+   (2,)
+</code></pre>
+<p>右对齐后最后一维是 <code>3</code> 与 <code>2</code>，既不相等，也没有一个是 <code>1</code>，因此不能广播。维度数量只差 1 也不一定成功。</p>
+<h4 id="7a82-313-31">7A.8.2 <code>(3,)</code>、<code>(1,3)</code> 和 <code>(3,1)</code> 不是一回事<a class="headerlink" href="#7a82-313-31" title="Permanent link">&para;</a></h4>
+<pre><code class="language-text">(3,)    一维数组，长度为 3
+(1, 3)  二维数组，1 行 3 列
+(3, 1)  二维数组，3 行 1 列
+</code></pre>
+<p>一维数组 <code>(3,)</code> 在广播时从右边对齐，因此经常表现得像 <code>(1,3)</code>，但它本身没有明确的“行”或“列”方向。</p>
+<p>假设：</p>
+<pre><code class="language-python">a = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+])                         # a.shape == (2, 3)
+b = np.array([10, 20, 30]) # b.shape == (3,)
+</code></pre>
+<p>广播比较相当于：</p>
+<pre><code class="language-text">(2, 3)
+(1, 3)
+</code></pre>
+<p>所以 <code>a + b</code> 会给每一行都加上 <code>[10,20,30]</code>。</p>
+<h4 id="7a83">7A.8.3 想给每一行加不同的数，要显式制造列维度<a class="headerlink" href="#7a83" title="Permanent link">&para;</a></h4>
+<p>如果想让第一行整体加 10、第二行整体加 20，<code>(2,)</code> 不够，因为它会与最后一维对齐。需要把它改成 <code>(2,1)</code>：</p>
+<pre><code class="language-python">row_bias = np.array([10, 20])[:, None]
+# 等价写法：
+# row_bias = np.array([10, 20]).reshape(2, 1)
+
+result = a + row_bias
+</code></pre>
+<p>形状比较为：</p>
+<pre><code class="language-text">a:        (2, 3)
+row_bias: (2, 1)
+result:   (2, 3)
+</code></pre>
+<p>长度为 1 的最后一维会扩展到 3，因此结果是：</p>
+<pre><code class="language-text">[[11, 12, 13],
+ [24, 25, 26]]
+</code></pre>
+<h4 id="7a84">7A.8.4 高维广播和结果形状<a class="headerlink" href="#7a84" title="Permanent link">&para;</a></h4>
+<p>只要每个对齐维度都兼容，高维数组也遵守同一条规则。例如：</p>
+<pre><code class="language-text">(2, 2, 2)
+(1, 2, 1)
+</code></pre>
+<p>从右向左比较是“2 与 1、2 与 2、2 与 1”，所以可以广播，结果为 <code>(2,2,2)</code>。</p>
+<p>再例如：</p>
+<pre><code class="language-text">(4, 1, 3)
+(1, 5, 1)
+</code></pre>
+<p>每一维取广播后的有效大小：</p>
+<pre><code class="language-text">4 与 1 → 4
+1 与 5 → 5
+3 与 1 → 3
+</code></pre>
+<p>结果形状是 <code>(4,5,3)</code>。这里所谓“取较大值”只适用于已经确认兼容的维度；如果是 <code>3</code> 与 <code>2</code>，不能直接取 3，而是立即报错。</p>
+<h4 id="7a85-softmax">7A.8.5 在线性层和 Softmax 中为什么经常遇到广播<a class="headerlink" href="#7a85-softmax" title="Permanent link">&para;</a></h4>
+<p>线性层写成：</p>
+<pre><code class="language-python">z = x @ W + b
+</code></pre>
+<p>若：</p>
+<pre><code class="language-text">x.shape     = (B, D_in)
+W.shape     = (D_in, D_out)
+(x @ W).shape = (B, D_out)
+b.shape     = (D_out,)
+</code></pre>
+<p>偏置 <code>b</code> 会被看成 <code>(1,D_out)</code>，于是同一个偏置向量被加到 batch 中每个样本上。它不会在不同样本之间做矩阵乘法。</p>
+<p>Softmax 中常见：</p>
+<pre><code class="language-python">row_max = np.max(x, axis=1, keepdims=True)
+shifted = x - row_max
+</code></pre>
+<p>如果 <code>x.shape == (B,C)</code>，使用 <code>keepdims=True</code> 后 <code>row_max.shape == (B,1)</code>，正好能让每个样本的所有类别减去该样本自己的最大值。若去掉 <code>keepdims=True</code>，结果是 <code>(B,)</code>，它会尝试和最后一维 <code>C</code> 对齐，通常无法广播或产生错误含义。</p>
+<h4 id="7a86">7A.8.6 广播检查步骤<a class="headerlink" href="#7a86" title="Permanent link">&para;</a></h4>
+<p>看到两个不同形状的数组做逐元素运算时，按这个顺序检查：</p>
+<ol>
+<li>写出两个完整 <code>shape</code>。</li>
+<li>从右向左对齐，维度少的一方在左边补 <code>1</code>。</li>
+<li>每一对必须相等，或者其中一个是 <code>1</code>。</li>
+<li>写出结果形状。</li>
+<li>用一句话说明“哪个轴被重复使用”，确认这真是你的意图。</li>
+</ol>
+<p>完整的更多例子仍保留在：<a href="../../numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/">NumPy 广播机制整理</a>。</p>
+<h3 id="7a9">7A.9 广播的直觉<a class="headerlink" href="#7a9" title="Permanent link">&para;</a></h3>
+<p>这句：</p>
+<pre><code class="language-python">y = x + bias
+</code></pre>
+<p>可以想象成：</p>
+<pre><code>对 x 里的每个长度为 4 的小向量，都加上 bias
+</code></pre>
+<p>比如：</p>
+<pre><code>[0, 0, 0, 0] + [1, 1, 1, 1] = [1, 1, 1, 1]
+</code></pre>
+<p>重复很多次。</p>
+<hr />
+<h3 id="7a10">7A.10 为什么说广播可能“静默制造错误”<a class="headerlink" href="#7a10" title="Permanent link">&para;</a></h3>
+<p>因为有时候代码不会报错，但结果不是你想要的。</p>
+<p>比如你本来想让：</p>
+<pre><code>每个 batch 加一个 bias
+</code></pre>
+<p>但 NumPy 可能按照最后一维去广播。</p>
+<p>所以写深度学习代码时，经常要在旁边注释形状：</p>
+<pre><code class="language-python"># x: [B, T, C]
+# bias: [C]
+y = x + bias
+</code></pre>
+<p>这样你能清楚知道：</p>
+<blockquote>
+<p>这个 bias 是加到每个 token 的 C 维特征上的。</p>
+</blockquote>
+<p>这就是图里最后一句：</p>
+<pre><code>写代码前把形状写在注释中。
+</code></pre>
+<p>的意思。</p>
+<hr />
+<p>这页最重要的三句话：</p>
+<pre><code>NumPy 数组有 shape，不是普通 list。
+@ 表示矩阵乘法。
+广播会自动扩展维度，但要小心形状是否符合你的本意。
+</code></pre>
+<h2 id="8">8. 概率与信息论<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="_10">概率分布<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>分类模型输出每个类别的概率，所有概率非负且和为 1。语言模型的类别就是词表中的下一个 token。</p>
+<p>Softmax 把任意 logits 转成概率：</p>
+<p>$$
+p_i=\frac{e^{z_i}}{\sum_j e^{z_j}}
+$$</p>
+<p>数值实现时先减去最大 logit，避免指数溢出：</p>
+<pre><code class="language-python">def softmax(x, axis=-1):
+    shifted = x - np.max(x, axis=axis, keepdims=True)
+    exp = np.exp(shifted)
+    return exp / exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<h3 id="_11">交叉熵<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>真实答案为类别 <code>y</code> 时，单样本损失是：</p>
+<p>$$
+L=-\log p_y
+$$</p>
+<p>模型给正确答案高概率，损失小；给正确答案接近 0 的概率，损失巨大。交叉熵不是“错误率”，它还衡量模型有多自信。</p>
+<h3 id="_12">困惑度<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>语言模型常用 <code>perplexity = exp(cross_entropy)</code>。可粗略理解为模型平均在多少个等可能选择间犹豫。它只能在相同 tokenization 和数据处理下公平比较。</p>
+<p>这页讲的是：<strong>模型怎么把“分数”变成“概率”，以及怎么衡量模型猜得好不好。</strong></p>
+<p>你可以把语言模型想象成在做选择题：</p>
+<blockquote>
+<p>给定前面的文本，模型要从词表里选出“下一个 token”。</p>
+</blockquote>
+<p>比如：</p>
+<pre><code>我今天去食堂吃了一个 [ ? ]
+</code></pre>
+<p>词表里可能有：</p>
+<pre><code>苹果、篮球、微积分、电脑、包子……
+</code></pre>
+<p>模型要给每个候选 token 一个分数，然后转成概率。</p>
+<hr />
+<h3 id="1logits">概率补充 1：logits 是“原始分数”<a class="headerlink" href="#1logits" title="Permanent link">&para;</a></h3>
+<p>模型一开始输出的不是概率，而是一堆原始分数，叫 <strong>logits</strong>。</p>
+<p>比如模型对三个词的打分是：</p>
+<pre><code class="language-python">logits = [2.0, 1.0, 0.1]
+</code></pre>
+<p>可以理解成：</p>
+<pre><code>苹果：2.0
+包子：1.0
+篮球：0.1
+</code></pre>
+<p>分数越大，模型越倾向于选它。</p>
+<p>但 logits 不是概率，因为它们：</p>
+<pre><code>可以是负数
+不一定加起来等于 1
+没有概率意义
+</code></pre>
+<p>所以要用 softmax 把它们变成概率。</p>
+<hr />
+<h3 id="2softmax-logits">概率补充 2：Softmax 把 logits 变成概率<a class="headerlink" href="#2softmax-logits" title="Permanent link">&para;</a></h3>
+<p>公式是：</p>
+<p>$$
+p_i = \frac{e^{z_i}}{\sum_j e^{z_j}}
+$$</p>
+<p>这里：</p>
+<pre><code>z_i 是第 i 个类别的 logit
+p_i 是第 i 个类别的概率
+</code></pre>
+<p>比如 logits 是：</p>
+<pre><code class="language-python">[2.0, 1.0, 0.1]
+</code></pre>
+<p>softmax 之后大概会变成：</p>
+<pre><code class="language-python">[0.659, 0.242, 0.099]
+</code></pre>
+<p>意思就是：</p>
+<pre><code>第一个词概率 65.9%
+第二个词概率 24.2%
+第三个词概率 9.9%
+</code></pre>
+<p>所有概率相加等于 1。</p>
+<hr />
+<h3 id="3-ex">概率补充 3：为什么要用指数 $e^x$？<a class="headerlink" href="#3-ex" title="Permanent link">&para;</a></h3>
+<p>因为指数函数有几个好处：</p>
+<p>第一，它永远是正数：</p>
+<p>$$
+e^x &gt; 0
+$$</p>
+<p>所以 softmax 得到的概率不会是负数。</p>
+<p>第二，分数差距会被放大。</p>
+<p>比如：</p>
+<pre><code>logits: 2, 1, 0
+</code></pre>
+<p>差距看起来只是 1。</p>
+<p>但指数之后：</p>
+<pre><code>e^2 ≈ 7.39
+e^1 ≈ 2.72
+e^0 = 1
+</code></pre>
+<p>大的分数会变得更突出。</p>
+<p>这符合分类直觉：</p>
+<blockquote>
+<p>模型觉得某个词明显更合适时，它的概率应该明显更高。</p>
+</blockquote>
+<hr />
+<h3 id="4">概率补充 4：为什么代码里要先减去最大值？<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<p>图里代码是：</p>
+<pre><code class="language-python">def softmax(x, axis=-1):
+    shifted = x - np.max(x, axis=axis, keepdims=True)
+    exp = np.exp(shifted)
+    return exp / exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<p>数学上，softmax 对所有 logits 同时减去同一个数，结果不变。</p>
+<p>比如：</p>
+<p>$$
+\frac{e^{z_i}}{\sum_j e^{z_j}}
+$$</p>
+<p>如果所有 $z$ 都减去最大值 $m$，变成：</p>
+<p>$$
+\frac{e^{z_i-m}}{\sum_j e^{z_j-m}}
+$$</p>
+<p>因为：</p>
+<p>$$
+e^{z_i-m} = \frac{e^{z_i}}{e^m}
+$$</p>
+<p>分子分母都会除以 $e^m$，所以结果不变。</p>
+<hr />
+<p>为什么要这样做？</p>
+<p>为了防止指数爆炸。</p>
+<p>比如：</p>
+<pre><code class="language-python">np.exp(1000)
+</code></pre>
+<p>这个数巨大无比，计算机会溢出。</p>
+<p>所以先减去最大值：</p>
+<pre><code class="language-python">[1000, 999, 998]
+</code></pre>
+<p>变成：</p>
+<pre><code class="language-python">[0, -1, -2]
+</code></pre>
+<p>这样再算指数：</p>
+<pre><code class="language-python">e^0, e^-1, e^-2
+</code></pre>
+<p>就安全很多。</p>
+<p>所以这句：</p>
+<pre><code class="language-python">shifted = x - np.max(x, axis=axis, keepdims=True)
+</code></pre>
+<p>不是改变结果，而是为了<strong>数值稳定</strong>。</p>
+<hr />
+<h3 id="5axis-1">概率补充 5：<code>axis=-1</code> 是什么意思？<a class="headerlink" href="#5axis-1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">axis=-1
+</code></pre>
+<p>表示沿着<strong>最后一个维度</strong>做 softmax。</p>
+<p>在语言模型里，logits 通常形状是：</p>
+<pre><code class="language-python">[B, T, V]
+</code></pre>
+<p>其中：</p>
+<pre><code>B：batch size，多少个样本
+T：sequence length，每个样本多少个 token
+V：vocabulary size，词表大小
+</code></pre>
+<p>比如：</p>
+<pre><code class="language-python">logits.shape = [2, 3, 50000]
+</code></pre>
+<p>意思是：</p>
+<pre><code>2 个句子
+每个句子 3 个位置
+每个位置对 50000 个词打分
+</code></pre>
+<p>所以 softmax 应该在最后一维 <code>V</code> 上做。</p>
+<p>也就是：</p>
+<pre><code>对每个位置，把 50000 个词的分数转成概率
+</code></pre>
+<p>所以写：</p>
+<pre><code class="language-python">axis=-1
+</code></pre>
+<hr />
+<h3 id="6">概率补充 6：交叉熵是什么？<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<p>图里写：</p>
+<p>$$
+L = -\log p_y
+$$</p>
+<p>这里 $y$ 是真实答案类别。</p>
+<p>比如真实答案是“包子”。</p>
+<p>模型输出概率：</p>
+<pre><code>苹果：0.7
+包子：0.2
+篮球：0.1
+</code></pre>
+<p>那么正确答案“包子”的概率是：</p>
+<p>$$
+p_y = 0.2
+$$</p>
+<p>损失就是：</p>
+<p>$$
+L = -\log 0.2
+$$</p>
+<p>这个值比较大，说明模型不太相信正确答案。</p>
+<p>如果模型输出：</p>
+<pre><code>苹果：0.05
+包子：0.9
+篮球：0.05
+</code></pre>
+<p>那么：</p>
+<p>$$
+p_y = 0.9
+$$</p>
+<p>损失是：</p>
+<p>$$
+L = -\log 0.9
+$$</p>
+<p>这个值很小，说明模型很相信正确答案。</p>
+<p>所以交叉熵的直觉是：</p>
+<blockquote>
+<p>正确答案概率越高，损失越小；正确答案概率越低，损失越大。</p>
+</blockquote>
+<hr />
+<h3 id="7_1">概率补充 7：为什么不是直接看“对没对”？<a class="headerlink" href="#7_1" title="Permanent link">&para;</a></h3>
+<p>比如真实答案是 B。</p>
+<p>模型 1：</p>
+<pre><code>A: 0.49
+B: 0.51
+C: 0.00
+</code></pre>
+<p>模型 2：</p>
+<pre><code>A: 0.01
+B: 0.98
+C: 0.01
+</code></pre>
+<p>两个模型都选 B，都“答对了”。</p>
+<p>但模型 2 显然更自信、更好。</p>
+<p>交叉熵可以区分这两种情况。</p>
+<p>所以图里说：</p>
+<blockquote>
+<p>交叉熵不是“错误率”，它还衡量模型有多自信。</p>
+</blockquote>
+<hr />
+<h3 id="8-perplexity">概率补充 8：困惑度 perplexity 是什么？<a class="headerlink" href="#8-perplexity" title="Permanent link">&para;</a></h3>
+<p>图里写：</p>
+<pre><code>perplexity = exp(cross_entropy)
+</code></pre>
+<p>也就是：</p>
+<p>$$
+\text{perplexity} = e^{\text{cross entropy}}
+$$</p>
+<p>它可以粗略理解为：</p>
+<blockquote>
+<p>模型平均在多少个差不多可能的选择中犹豫。</p>
+</blockquote>
+<p>比如：</p>
+<pre><code>perplexity = 10
+</code></pre>
+<p>可以粗略理解为：</p>
+<blockquote>
+<p>模型平均每一步像是在 10 个差不多可能的 token 里选择。</p>
+</blockquote>
+<p>如果：</p>
+<pre><code>perplexity = 100
+</code></pre>
+<p>说明模型更困惑。</p>
+<p>所以困惑度越低，一般说明语言模型越好。</p>
+<hr />
+<p>但注意，困惑度不能随便跨模型比较。</p>
+<p>图里说：</p>
+<pre><code>只能在相同 tokenization 和数据处理下公平比较
+</code></pre>
+<p>这是因为不同模型切词方式不同。</p>
+<p>比如同一句话：</p>
+<pre><code>我喜欢机械设计
+</code></pre>
+<p>一个 tokenizer 可能切成：</p>
+<pre><code>我 / 喜欢 / 机械 / 设计
+</code></pre>
+<p>另一个可能切成：</p>
+<pre><code>我 / 喜 / 欢 / 机 / 械 / 设 / 计
+</code></pre>
+<p>token 数不同，计算出来的平均损失和困惑度就不可直接比较。</p>
+<hr />
+<p>这页最核心的链条是：</p>
+<pre><code>logits 原始分数
+    ↓ softmax
+概率分布
+    ↓ 看真实答案的概率
+交叉熵 loss
+    ↓ exp(loss)
+困惑度 perplexity
+</code></pre>
+<p>一句话总结：</p>
+<p><strong>softmax 负责把模型输出的分数变成概率；交叉熵负责惩罚“正确答案概率太低”；困惑度是语言模型常用的整体难度指标。</strong></p>
+<h2 id="9">9. 导数、梯度与链式法则<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>导数表示输入微小变化时输出如何变化。多参数函数的梯度是所有偏导数组成的向量，指向函数上升最快方向；因此最小化损失时沿负梯度更新：</p>
+<p>$$
+\theta \leftarrow \theta-\eta\nabla_\theta L
+$$</p>
+<p>其中 <code>η</code> 是学习率。太大可能越过低点甚至发散；太小则训练缓慢。</p>
+<p>链式法则说明复合函数的导数如何相乘：若 <code>L=f(g(x))</code>，则</p>
+<p>$$
+\frac{dL}{dx}=\frac{dL}{dg}\frac{dg}{dx}
+$$</p>
+<p>反向传播就是从损失开始，沿计算图反向反复应用链式法则。</p>
+<h3 id="_13">数值梯度检查<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>$$
+f'(x)\approx\frac{f(x+\epsilon)-f(x-\epsilon)}{2\epsilon}
+$$</p>
+<p>数值梯度慢但直观，适合检查你手写的反向传播。<code>ε</code> 不能过大，也不能小到被浮点误差淹没，常从 <code>1e-5</code> 尝试。</p>
+<h2 id="10">10. 统计与实验基础<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>训练集用于学习参数；验证集用于选择超参数和早停；测试集只在最终评价时使用。反复看测试结果并据此调参，相当于把测试集偷偷变成验证集。</p>
+<p>必须理解：</p>
+<ul>
+<li>均值容易受极端值影响；同时看中位数和分位数。</li>
+<li>相关不等于因果。</li>
+<li>单次随机种子的提升可能是运气；重要实验运行多个 seed。</li>
+<li>只改一个变量，才能判断变化来自哪里。</li>
+<li>数据泄漏会让指标虚高，例如同一文档切出的相邻块分别进入训练和测试。</li>
+</ul>
+<h2 id="11">11. 练习讲解：从读题到动手<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<h3 id="111">11.1 解题提示与逐步讲解<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p>如果你“看懂了，但不知道怎么下手”，先记住一个原则：</p>
+<blockquote>
+<p>作业不是一开始就写完整大程序，而是把题目拆成一个个小检查点。每完成一个检查点，就运行一次、打印一次、确认一次。</p>
+</blockquote>
+<p>建议你按这个顺序做三个练习：</p>
+<ol>
+<li>先做练习 A，因为它主要训练 Python 基本功：读文件、循环、字典、计数。</li>
+<li>再做练习 B，因为它训练 NumPy 形状意识：<code>shape</code>、<code>reshape</code>、矩阵乘法、softmax。</li>
+<li>最后做练习 C，因为它把数学、NumPy 和实验记录合在一起。</li>
+</ol>
+<p>每个练习都建议保存一次 Git：</p>
+<pre><code class="language-bash">git add .
+git commit -m &quot;finish module01 exercise A&quot;
+</code></pre>
+<p>如果你现在还不熟 Git，也可以先简单理解成“给当前作业拍一张快照”。后面出错了，至少知道自己完成过哪个阶段。</p>
+<h3 id="a-python">练习 A：纯 Python 文本分析<a class="headerlink" href="#a-python" title="Permanent link">&para;</a></h3>
+<p>读取 JSONL，对文本长度分桶，统计空样本、重复样本和高频字符；不能用 pandas。</p>
+<h4 id="a1">A.1 先把题目翻译成人话<a class="headerlink" href="#a1" title="Permanent link">&para;</a></h4>
+<p>这个作业不是考你会不会“高级数据分析”，而是考你能不能用纯 Python 完成一个小型数据清洗流程。</p>
+<p>输入：</p>
+<ul>
+<li>一个 <code>.jsonl</code> 文件；</li>
+<li>每一行应该是一个 JSON 对象；</li>
+<li>每个对象里通常有文本字段，比如 <code>text</code>、<code>instruction</code>、<code>output</code>。</li>
+</ul>
+<p>处理：</p>
+<ul>
+<li>逐行读取；</li>
+<li>跳过空行；</li>
+<li>尝试把每行解析成 JSON；</li>
+<li>找到文本内容；</li>
+<li>统计文本长度；</li>
+<li>记录空样本；</li>
+<li>记录重复样本；</li>
+<li>统计高频字符。</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>总行数；</li>
+<li>成功解析多少行；</li>
+<li>坏行多少行；</li>
+<li>空文本多少条；</li>
+<li>重复文本多少条；</li>
+<li>不同长度区间各有多少条；</li>
+<li>出现最多的若干字符。
+  JSON 文件是一种用来<strong>保存结构化数据</strong>的纯文本文件，扩展名通常是 <code>.json</code>。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Polar&quot;,
+  &quot;age&quot;: 20,
+  &quot;isStudent&quot;: true,
+  &quot;skills&quot;: [&quot;Python&quot;, &quot;CAD&quot;, &quot;机械工程&quot;]
+}
+</code></pre>
+<p>它可以理解成 Python 字典和列表写进文件后的样子：</p>
+<pre><code class="language-python">data = {
+    &quot;name&quot;: &quot;Polar&quot;,
+    &quot;age&quot;: 20,
+    &quot;isStudent&quot;: True,
+    &quot;skills&quot;: [&quot;Python&quot;, &quot;CAD&quot;, &quot;机械工程&quot;]
+}
+</code></pre>
+<p>JSON 常见规则：</p>
+<ul>
+<li>对象用 <code>{}</code>，类似 Python 字典</li>
+<li>数组用 <code>[]</code>，类似 Python 列表</li>
+<li>键必须使用双引号</li>
+<li>字符串也必须使用双引号</li>
+<li>布尔值写成 <code>true</code>、<code>false</code></li>
+<li>空值写成 <code>null</code></li>
+<li>不能直接写注释</li>
+</ul>
+<p>Python 读取 JSON 文件：</p>
+<pre><code class="language-python">import json
+
+with open(&quot;data.json&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    data = json.load(f)
+
+print(data[&quot;name&quot;])
+</code></pre>
+<p>Python 写入 JSON 文件：</p>
+<pre><code class="language-python">import json
+
+data = {
+    &quot;name&quot;: &quot;Polar&quot;,
+    &quot;age&quot;: 20
+}
+
+with open(&quot;data.json&quot;, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+    json.dump(data, f, ensure_ascii=False, indent=4)
+</code></pre>
+<p>其中：</p>
+<ul>
+<li><code>ensure_ascii=False</code>：中文不会变成转义字符</li>
+<li><code>indent=4</code>：自动缩进，让文件更容易阅读</li>
+</ul>
+<p>JSON 经常用于保存软件设置、网页接口数据、游戏存档、模型配置和项目参数。
+因为 <code>f</code> 和 <code>data</code> 代表的东西不一样。</p>
+<pre><code class="language-python">with open(&quot;data.json&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    data = json.load(f)
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">f
+</code></pre>
+<p>是<strong>文件对象</strong>，表示“已经打开的这个文件”，它本身不是最终的数据。</p>
+<p>而：</p>
+<pre><code class="language-python">data = json.load(f)
+</code></pre>
+<p>是让 <code>json.load</code> 从 <code>f</code> 里读取内容，并把 JSON 转换成 Python 数据，然后保存到 <code>data</code>。</p>
+<p>例如文件内容是：</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;Polar&quot;,
+  &quot;age&quot;: 20
+}
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">f
+</code></pre>
+<p>类似于“这本书本身”；</p>
+<pre><code class="language-python">data
+</code></pre>
+<p>类似于“从书里读出来并整理好的内容”：</p>
+<pre><code class="language-python">{
+    &quot;name&quot;: &quot;Polar&quot;,
+    &quot;age&quot;: 20
+}
+</code></pre>
+<p>所以才能写：</p>
+<pre><code class="language-python">print(data[&quot;name&quot;])
+</code></pre>
+<p>不能直接写：</p>
+<pre><code class="language-python">print(f[&quot;name&quot;])
+</code></pre>
+<p>因为 <code>f</code> 是文件对象，不是字典。</p>
+<p>完整流程是：</p>
+<pre><code>data.json 文件
+    ↓ open
+f：文件对象
+    ↓ json.load(f)
+data：Python 字典
+</code></pre>
+<p>而且离开 <code>with</code> 后，<code>f</code> 会被关闭，但 <code>data</code> 仍然可以继续使用：</p>
+<pre><code class="language-python">with open(&quot;data.json&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    data = json.load(f)
+
+# 此时 f 已关闭，但 data 还在
+print(data[&quot;name&quot;])
+</code></pre>
+<h4 id="a2-jsonl">A.2 先造一个最小 JSONL 文件<a class="headerlink" href="#a2-jsonl" title="Permanent link">&para;</a></h4>
+<p>不要一开始就找大数据集。先在 <code>module01_homework/data/demo.jsonl</code> 里写几行：</p>
+<pre><code class="language-jsonl">{&quot;text&quot;: &quot;hello world&quot;}
+{&quot;text&quot;: &quot;&quot;}
+{&quot;text&quot;: &quot;机器学习&quot;}
+{&quot;text&quot;: &quot;hello world&quot;}
+这不是合法 JSON
+{&quot;instruction&quot;: &quot;解释 AI&quot;, &quot;output&quot;: &quot;AI 是人工智能。&quot;}
+</code></pre>
+<p>这个小文件故意包含：</p>
+<ul>
+<li>正常文本；</li>
+<li>空文本；</li>
+<li>重复文本；</li>
+<li>坏行；</li>
+<li>没有 <code>text</code>，但有 <code>instruction</code> 和 <code>output</code> 的样本。</li>
+</ul>
+<p>这样你的程序如果能处理它，就说明基本逻辑是对的。</p>
+<h4 id="a3">A.3 第一版先只完成“能读每一行”<a class="headerlink" href="#a3" title="Permanent link">&para;</a></h4>
+<p>先新建 <code>exercise_a_jsonl_stats.py</code>，写最小版本：</p>
+<pre><code class="language-python">from pathlib import Path
+
+path = Path(&quot;data/demo.jsonl&quot;)
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line_no, line in enumerate(f, start=1):
+        line = line.strip()
+        print(line_no, repr(line))
+</code></pre>
+<p>先运行它：</p>
+<pre><code class="language-bash">python exercise_a_jsonl_stats.py
+</code></pre>
+<p>你要先确认：程序真的能读到每一行。不要跳过这一步。很多新手不是卡在算法，而是文件路径一开始就错了。
+这几句的意思是：<strong>用 <code>pathlib</code> 表示一个文件路径，然后以只读方式打开这个文件。</strong></p>
+<pre><code class="language-python">from pathlib import Path
+</code></pre>
+<p>从 Python 的 <code>pathlib</code> 模块中导入 <code>Path</code> 类。<code>Path</code> 专门用来表示和操作文件路径。</p>
+<pre><code class="language-python">path = Path(&quot;data/demo.jsonl&quot;)
+</code></pre>
+<p>创建一个路径对象 <code>path</code>，它表示：</p>
+<pre><code>data/demo.jsonl
+</code></pre>
+<p>也就是当前程序所在目录下：</p>
+<pre><code>data 文件夹
+└── demo.jsonl 文件
+</code></pre>
+<p>此时还<strong>没有读取文件</strong>，只是把路径保存到了 <code>path</code> 变量中。</p>
+<pre><code class="language-python">with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+</code></pre>
+<p>等价于：</p>
+<pre><code class="language-python">with open(&quot;data/demo.jsonl&quot;, &quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+</code></pre>
+<p>各部分含义：</p>
+<ul>
+<li><code>path.open(...)</code>：打开 <code>path</code> 指向的文件</li>
+<li><code>"r"</code>：只读模式</li>
+<li><code>encoding="utf-8"</code>：按照 UTF-8 编码读取</li>
+<li><code>as f</code>：把打开后得到的<strong>文件对象</strong>交给变量 <code>f</code></li>
+<li><code>with</code>：代码块结束后自动关闭文件</li>
+</ul>
+<p>因此这里：</p>
+<pre><code class="language-python">path
+</code></pre>
+<p>保存的是<strong>文件路径对象</strong>，而：</p>
+<pre><code class="language-python">f
+</code></pre>
+<p>保存的是<strong>已经打开的文件对象</strong>。</p>
+<p>可以接着逐行读取：</p>
+<pre><code class="language-python">from pathlib import Path
+
+path = Path(&quot;data/demo.jsonl&quot;)
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line in f:
+        print(line)
+</code></pre>
+<p>这里的 <code>demo.jsonl</code> 不是普通 JSON，而是 <strong>JSON Lines 文件</strong>。通常每一行都是一个独立的 JSON 对象，例如：</p>
+<pre><code class="language-json">{&quot;name&quot;: &quot;小明&quot;, &quot;age&quot;: 18}
+{&quot;name&quot;: &quot;小红&quot;, &quot;age&quot;: 19}
+{&quot;name&quot;: &quot;小刚&quot;, &quot;age&quot;: 20}
+</code></pre>
+<p>读取时一般写成：</p>
+<pre><code class="language-python">import json
+from pathlib import Path
+
+path = Path(&quot;data/demo.jsonl&quot;)
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line in f:
+        data = json.loads(line)
+        print(data[&quot;name&quot;])
+</code></pre>
+<p>注意这里使用的是：</p>
+<pre><code class="language-python">json.loads(line)
+</code></pre>
+<p>因为 <code>line</code> 已经是一个字符串。</p>
+<p>而之前的：</p>
+<pre><code class="language-python">json.load(f)
+</code></pre>
+<p>是直接从整个文件对象 <code>f</code> 中读取一个完整 JSON。</p>
+<h4 id="a4-json">A.4 第二版再加 JSON 解析和坏行处理<a class="headerlink" href="#a4-json" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">import json
+from pathlib import Path
+
+path = Path(&quot;data/demo.jsonl&quot;)
+
+total_lines = 0
+bad_lines = 0
+records = []
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line_no, line in enumerate(f, start=1):
+        total_lines += 1
+        line = line.strip()
+
+        if not line:
+            continue
+
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError:
+            bad_lines += 1
+            print(f&quot;坏行 line={line_no}: {line[:50]}&quot;)
+            continue
+
+        records.append(obj)
+
+print(&quot;total_lines =&quot;, total_lines)
+print(&quot;bad_lines =&quot;, bad_lines)
+print(&quot;valid_records =&quot;, len(records))
+</code></pre>
+<p>这里的关键不是 <code>json.loads</code> 这一句，而是：</p>
+<blockquote>
+<p>不可信的数据一定要用 <code>try/except</code> 包起来。真实数据经常有坏行，程序不能因为一行坏数据直接崩掉。
+这段代码是在<strong>逐行读取文件，同时给每一行编号</strong>：</p>
+</blockquote>
+<pre><code class="language-python">for line_no, line in enumerate(f, start=1):
+    line = line.strip()
+    print(line_no, repr(line))
+</code></pre>
+<h5 id="a4">A.4 补充：第一行<a class="headerlink" href="#a4" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">for line_no, line in enumerate(f, start=1):
+</code></pre>
+<p>前面已经打开了文件：</p>
+<pre><code class="language-python">with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+</code></pre>
+<p>文件对象 <code>f</code> 可以被 <code>for</code> 循环遍历，每循环一次，就从文件中读取一行。</p>
+<p>不过这里没有直接写：</p>
+<pre><code class="language-python">for line in f:
+</code></pre>
+<p>而是写：</p>
+<pre><code class="language-python">enumerate(f, start=1)
+</code></pre>
+<p><code>enumerate()</code> 会在遍历内容的同时，给每个内容添加一个编号。</p>
+<p>假设文件里有：</p>
+<pre><code class="language-json">{&quot;name&quot;: &quot;小明&quot;}
+{&quot;name&quot;: &quot;小红&quot;}
+{&quot;name&quot;: &quot;小刚&quot;}
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">enumerate(f, start=1)
+</code></pre>
+<p>会依次产生类似这样的内容：</p>
+<pre><code class="language-python">(1, '{&quot;name&quot;: &quot;小明&quot;}\n')
+(2, '{&quot;name&quot;: &quot;小红&quot;}\n')
+(3, '{&quot;name&quot;: &quot;小刚&quot;}\n')
+</code></pre>
+<p>因此：</p>
+<pre><code class="language-python">line_no, line
+</code></pre>
+<p>是在把每个二元组拆开：</p>
+<ul>
+<li><code>line_no</code>：当前行号</li>
+<li><code>line</code>：当前这一行的文本</li>
+</ul>
+<p><code>start=1</code> 表示从 <code>1</code> 开始编号。否则默认从 <code>0</code> 开始：</p>
+<pre><code class="language-python">enumerate(f)           # 0、1、2……
+enumerate(f, start=1)  # 1、2、3……
+</code></pre>
+<hr />
+<h5 id="a4_1">A.4 补充：第二行<a class="headerlink" href="#a4_1" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">line = line.strip()
+</code></pre>
+<p><code>line</code> 是一个字符串。文件里的每一行末尾通常带有换行符 <code>\n</code>。</p>
+<p>例如，读取到的实际字符串可能是：</p>
+<pre><code class="language-python">'{&quot;name&quot;: &quot;小明&quot;}\n'
+</code></pre>
+<p>调用：</p>
+<pre><code class="language-python">line.strip()
+</code></pre>
+<p>会删除字符串首尾的空白字符，例如：</p>
+<ul>
+<li>空格</li>
+<li><code>\n</code> 换行符</li>
+<li><code>\t</code> 制表符</li>
+</ul>
+<p>处理后变成：</p>
+<pre><code class="language-python">'{&quot;name&quot;: &quot;小明&quot;}'
+</code></pre>
+<p>然后又赋值给 <code>line</code>：</p>
+<pre><code class="language-python">line = line.strip()
+</code></pre>
+<p>意思是：用处理后的字符串替换原来的 <code>line</code>。</p>
+<hr />
+<h5 id="a4_2">A.4 补充：第三行<a class="headerlink" href="#a4_2" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">print(line_no, repr(line))
+</code></pre>
+<p>它会打印：</p>
+<ol>
+<li>行号 <code>line_no</code></li>
+<li>当前行的字符串表示 <code>repr(line)</code></li>
+</ol>
+<p><code>repr()</code> 会把字符串的边界和特殊字符清楚地显示出来。</p>
+<p>例如：</p>
+<pre><code class="language-python">line = &quot;hello&quot;
+print(line)
+</code></pre>
+<p>输出：</p>
+<pre><code>hello
+</code></pre>
+<p>而：</p>
+<pre><code class="language-python">print(repr(line))
+</code></pre>
+<p>输出：</p>
+<pre><code>'hello'
+</code></pre>
+<p>可以看到引号，因此更容易判断它是字符串。</p>
+<p>再例如：</p>
+<pre><code class="language-python">line = &quot;hello\n&quot;
+</code></pre>
+<p>普通打印：</p>
+<pre><code class="language-python">print(line)
+</code></pre>
+<p><code>\n</code> 会真的产生换行。</p>
+<p>而：</p>
+<pre><code class="language-python">print(repr(line))
+</code></pre>
+<p>会显示：</p>
+<pre><code>'hello\n'
+</code></pre>
+<p>所以 <code>repr()</code> 很适合用来<strong>检查字符串中有没有换行、空格等不可见字符</strong>。</p>
+<hr />
+<h5 id="a4_3">A.4 补充：完整运行过程<a class="headerlink" href="#a4_3" title="Permanent link">&para;</a></h5>
+<p>假设 <code>demo.jsonl</code> 内容是：</p>
+<pre><code class="language-json">{&quot;name&quot;: &quot;小明&quot;}
+{&quot;name&quot;: &quot;小红&quot;}
+
+{&quot;name&quot;: &quot;小刚&quot;}
+</code></pre>
+<p>运行：</p>
+<pre><code class="language-python">from pathlib import Path
+
+path = Path(&quot;data/demo.jsonl&quot;)
+
+with path.open(&quot;r&quot;, encoding=&quot;utf-8&quot;) as f:
+    for line_no, line in enumerate(f, start=1):
+        line = line.strip()
+        print(line_no, repr(line))
+</code></pre>
+<p>输出大致是：</p>
+<pre><code>1 '{&quot;name&quot;: &quot;小明&quot;}'
+2 '{&quot;name&quot;: &quot;小红&quot;}'
+3 ''
+4 '{&quot;name&quot;: &quot;小刚&quot;}'
+</code></pre>
+<p>第三行原本是空行，经过 <code>strip()</code> 后变成空字符串：</p>
+<pre><code class="language-python">''
+</code></pre>
+<p>因此，整段代码可以概括为：</p>
+<blockquote>
+<p>打开文件后逐行读取，从第 1 行开始编号，删除每行首尾的空白，并把行号和该行的准确字符串内容打印出来。</p>
+</blockquote>
+<h4 id="a5">A.5 第三版再提取文本字段<a class="headerlink" href="#a5" title="Permanent link">&para;</a></h4>
+<p>不同 JSONL 数据集字段名不一定一样，所以你可以写一个小函数：</p>
+<pre><code class="language-python">def get_text(obj: dict) -&gt; str:
+    if &quot;text&quot; in obj:
+        return str(obj[&quot;text&quot;])
+    if &quot;instruction&quot; in obj or &quot;output&quot; in obj:
+        return (str(obj.get(&quot;instruction&quot;, &quot;&quot;)) + &quot; &quot; + str(obj.get(&quot;output&quot;, &quot;&quot;))).strip()
+    return &quot;&quot;
+</code></pre>
+<p>这个函数的思路是：</p>
+<ul>
+<li>优先用 <code>text</code>；</li>
+<li>如果没有 <code>text</code>，就拼接 <code>instruction</code> 和 <code>output</code>；</li>
+<li>如果都没有，就返回空字符串。</li>
+</ul>
+<h4 id="a6">A.6 第四版统计长度、空样本、重复样本和字符频率<a class="headerlink" href="#a6" title="Permanent link">&para;</a></h4>
+<p>可以使用 Python 标准库，不用 pandas：</p>
+<pre><code class="language-python">from collections import Counter
+
+length_buckets = Counter()
+char_counter = Counter()
+seen_texts = set()
+duplicate_count = 0
+empty_count = 0
+
+def bucket_length(n: int) -&gt; str:
+    if n == 0:
+        return &quot;0&quot;
+    if n &lt;= 10:
+        return &quot;1-10&quot;
+    if n &lt;= 50:
+        return &quot;11-50&quot;
+    if n &lt;= 100:
+        return &quot;51-100&quot;
+    return &quot;100+&quot;
+
+for obj in records:
+    text = get_text(obj).strip()
+
+    if not text:
+        empty_count += 1
+        continue
+
+    if text in seen_texts:
+        duplicate_count += 1
+    else:
+        seen_texts.add(text)
+
+    length_buckets[bucket_length(len(text))] += 1
+    char_counter.update(text)
+
+print(&quot;empty_count =&quot;, empty_count)
+print(&quot;duplicate_count =&quot;, duplicate_count)
+print(&quot;length_buckets =&quot;, dict(length_buckets))
+print(&quot;top_chars =&quot;, char_counter.most_common(20))
+</code></pre>
+<p>这段代码的核心思路：</p>
+<ul>
+<li><code>Counter</code> 适合做“某个东西出现了多少次”；</li>
+<li><code>set</code> 适合做去重和判断是否见过；</li>
+<li><code>len(text)</code> 是文本长度；</li>
+<li><code>char_counter.update(text)</code> 会把字符串当成字符序列，逐字计数。</li>
+</ul>
+<h4 id="a7-a">A.7 A 作业自检清单<a class="headerlink" href="#a7-a" title="Permanent link">&para;</a></h4>
+<p>完成后你至少要能回答：</p>
+<ul>
+<li>如果某一行不是合法 JSON，程序会不会崩？</li>
+<li>空文本是怎么判断的？</li>
+<li>重复文本是按原始字符串判断，还是按 <code>strip()</code> 后的字符串判断？</li>
+<li>高频字符里是否包含空格、标点？如果包含，是否符合你的预期？</li>
+<li>为什么这个作业要求不能用 pandas？因为它想训练你理解最底层的数据读取和循环处理。</li>
+</ul>
+<h3 id="bnumpy">练习 B：NumPy 形状体操<a class="headerlink" href="#bnumpy" title="Permanent link">&para;</a></h3>
+<p>给定 <code>x:[B,T,C]</code>：</p>
+<ol>
+<li>计算每个 token 在 C 维的均值。</li>
+<li>把最后两个维度展平为 <code>[B,T*C]</code>。</li>
+<li>与 <code>W:[C,V]</code> 相乘得到 <code>[B,T,V]</code>。</li>
+<li>对 V 维做稳定 softmax，验证概率和接近 1。</li>
+</ol>
+<h4 id="b1">B.1 先设定一个能肉眼检查的小形状<a class="headerlink" href="#b1" title="Permanent link">&para;</a></h4>
+<p>不要一开始用很大的数字。先用：</p>
+<pre><code class="language-python">B = 2
+T = 3
+C = 4
+V = 5
+</code></pre>
+<p>这表示：</p>
+<ul>
+<li>一次处理 <code>2</code> 个样本；</li>
+<li>每个样本有 <code>3</code> 个 token；</li>
+<li>每个 token 用 <code>4</code> 维向量表示；</li>
+<li>词表大小或输出类别数是 <code>5</code>。</li>
+</ul>
+<h4 id="b2">B.2 写代码前先写形状注释<a class="headerlink" href="#b2" title="Permanent link">&para;</a></h4>
+<p>这是深度学习代码里非常重要的习惯：</p>
+<pre><code class="language-python"># x: [B, T, C]
+# W: [C, V]
+# logits: [B, T, V]
+</code></pre>
+<p>你应该先在纸上或注释里判断形状，再写代码。否则 NumPy 可能通过广播“帮你算出来”，但结果不是你真正想要的。</p>
+<h4 id="b3">B.3 代码骨架<a class="headerlink" href="#b3" title="Permanent link">&para;</a></h4>
+<p>新建 <code>exercise_b_numpy_shapes.py</code>：</p>
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(42)
+
+B = 2
+T = 3
+C = 4
+V = 5
+
+# x: [B, T, C]
+x = rng.normal(size=(B, T, C))
+
+# W: [C, V]
+W = rng.normal(size=(C, V))
+
+print(&quot;x.shape =&quot;, x.shape)
+print(&quot;W.shape =&quot;, W.shape)
+</code></pre>
+<p>先运行，确认输出：</p>
+<pre><code class="language-text">x.shape = (2, 3, 4)
+W.shape = (4, 5)
+</code></pre>
+<h4 id="b4-1-token-c">B.4 第 1 问：计算每个 token 在 C 维的均值<a class="headerlink" href="#b4-1-token-c" title="Permanent link">&para;</a></h4>
+<p><code>x</code> 的形状是 <code>[B,T,C]</code>。每个 token 是最后一维 <code>C</code> 上的一个向量，所以要沿最后一维求平均：</p>
+<pre><code class="language-python">token_mean = x.mean(axis=-1)
+print(&quot;token_mean.shape =&quot;, token_mean.shape)
+</code></pre>
+<p>结果应该是：</p>
+<pre><code class="language-text">token_mean.shape = (2, 3)
+</code></pre>
+<p>原因是最后的 <code>C</code> 维被平均掉了：</p>
+<pre><code class="language-text">[B, T, C] -&gt; [B, T]
+</code></pre>
+<h4 id="b5-2-btc">B.5 第 2 问：把最后两个维度展平为 <code>[B,T*C]</code><a class="headerlink" href="#b5-2-btc" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">flat = x.reshape(B, T * C)
+print(&quot;flat.shape =&quot;, flat.shape)
+</code></pre>
+<p>结果应该是：</p>
+<pre><code class="language-text">flat.shape = (2, 12)
+</code></pre>
+<p>注意：这里不是把全部维度压成一维，而是保留 batch 维：</p>
+<pre><code class="language-text">[B, T, C] -&gt; [B, T*C]
+</code></pre>
+<h4 id="b6-3-wcv-btv">B.6 第 3 问：与 <code>W:[C,V]</code> 相乘得到 <code>[B,T,V]</code><a class="headerlink" href="#b6-3-wcv-btv" title="Permanent link">&para;</a></h4>
+<p><code>x</code> 是三维，<code>W</code> 是二维。NumPy 的 <code>@</code> 会把最后一维拿去做矩阵乘法：</p>
+<pre><code class="language-python">logits = x @ W
+print(&quot;logits.shape =&quot;, logits.shape)
+</code></pre>
+<p>形状变化是：</p>
+<pre><code class="language-text">[B, T, C] @ [C, V] -&gt; [B, T, V]
+</code></pre>
+<p>也就是：</p>
+<pre><code class="language-text">(2, 3, 4) @ (4, 5) -&gt; (2, 3, 5)
+</code></pre>
+<h4 id="b7-4-softmax">B.7 第 4 问：稳定 softmax，并验证概率和<a class="headerlink" href="#b7-4-softmax" title="Permanent link">&para;</a></h4>
+<p>先写稳定版 softmax：</p>
+<pre><code class="language-python">def softmax(x, axis=-1):
+    shifted = x - np.max(x, axis=axis, keepdims=True)
+    exp = np.exp(shifted)
+    return exp / exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<p>然后对最后一维 <code>V</code> 做 softmax：</p>
+<pre><code class="language-python">probs = softmax(logits, axis=-1)
+print(&quot;probs.shape =&quot;, probs.shape)
+</code></pre>
+<p>验证每个位置的概率和是否接近 1：</p>
+<pre><code class="language-python">prob_sums = probs.sum(axis=-1)
+print(&quot;prob_sums.shape =&quot;, prob_sums.shape)
+print(prob_sums)
+print(&quot;all close to 1:&quot;, np.allclose(prob_sums, 1.0))
+</code></pre>
+<p><code>prob_sums.shape</code> 应该是：</p>
+<pre><code class="language-text">(2, 3)
+</code></pre>
+<p>因为你把最后一维 <code>V</code> 加掉了：</p>
+<pre><code class="language-text">[B, T, V] -&gt; [B, T]
+</code></pre>
+<h4 id="b8-b">B.8 B 作业自检清单<a class="headerlink" href="#b8-b" title="Permanent link">&para;</a></h4>
+<p>完成后你至少要能解释：</p>
+<ul>
+<li>为什么 <code>x.mean(axis=-1)</code> 的结果是 <code>[B,T]</code>？</li>
+<li>为什么 <code>x.reshape(B, T*C)</code> 要保留 <code>B</code>？</li>
+<li>为什么 <code>[B,T,C] @ [C,V]</code> 可以得到 <code>[B,T,V]</code>？</li>
+<li>为什么 softmax 要在 <code>axis=-1</code> 上做？</li>
+<li>为什么验证概率和时，要看 <code>probs.sum(axis=-1)</code>？</li>
+</ul>
+<h3 id="c">练习 C：线性回归<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<p>仅用 NumPy 生成 <code>y=3x+2+noise</code>，手写均方误差、梯度下降和训练曲线；观察学习率 <code>0.0001、0.01、1.0</code> 的差异。</p>
+<h4 id="c1">C.1 先理解你要训练什么<a class="headerlink" href="#c1" title="Permanent link">&para;</a></h4>
+<p>我们假设真实数据来自：</p>
+<p>$$
+y = 3x + 2 + \text{noise}
+$$</p>
+<p>你的模型不知道真实参数是 <code>3</code> 和 <code>2</code>，它只能从数据里学出：</p>
+<p>$$
+\hat{y} = wx + b
+$$</p>
+<p>训练目标是让预测值 $\hat{y}$ 尽量接近真实值 $y$。</p>
+<p>均方误差是：</p>
+<p>$$
+L = \frac{1}{n}\sum_i(\hat{y}_i-y_i)^2
+$$</p>
+<p>梯度是：</p>
+<p>$$
+\frac{\partial L}{\partial w}
+= \frac{2}{n}\sum_i(\hat{y}_i-y_i)x_i
+$$</p>
+<p>$$
+\frac{\partial L}{\partial b}
+= \frac{2}{n}\sum_i(\hat{y}_i-y_i)
+$$</p>
+<p>参数更新是：</p>
+<p>$$
+w \leftarrow w - \eta \frac{\partial L}{\partial w}
+$$</p>
+<p>$$
+b \leftarrow b - \eta \frac{\partial L}{\partial b}
+$$</p>
+<p>其中 $\eta$ 就是学习率。</p>
+<h4 id="c2">C.2 第一版先生成数据<a class="headerlink" href="#c2" title="Permanent link">&para;</a></h4>
+<p>新建 <code>exercise_c_linear_regression.py</code>：</p>
+<pre><code class="language-python">import numpy as np
+
+rng = np.random.default_rng(42)
+
+n = 100
+x = rng.uniform(-5, 5, size=n)
+noise = rng.normal(0, 1.0, size=n)
+y = 3 * x + 2 + noise
+
+print(x[:5])
+print(y[:5])
+</code></pre>
+<p>先确认你真的得到了数据。此时还没有训练。</p>
+<pre><code class="language-python">rng = np.random.default_rng(42)
+</code></pre>
+<p>这句是在创建一个 NumPy 的<strong>随机数生成器</strong>，并把它保存到变量 <code>rng</code> 中。</p>
+<p>前提通常是：</p>
+<pre><code class="language-python">import numpy as np
+</code></pre>
+<p>逐部分看：</p>
+<pre><code class="language-python">np.random.default_rng(42)
+</code></pre>
+<ul>
+<li><code>np</code>：NumPy 模块</li>
+<li><code>random</code>：NumPy 中负责随机数的部分</li>
+<li><code>default_rng()</code>：创建一个新的随机数生成器</li>
+<li><code>42</code>：随机种子，也叫 seed</li>
+</ul>
+<p><code>rng</code> 是变量名，通常是 random number generator 的缩写。</p>
+<p>创建后可以这样生成随机数：</p>
+<pre><code class="language-python">rng.random()
+</code></pre>
+<p>例如可能得到：</p>
+<pre><code>0.7739560485559633
+</code></pre>
+<p>生成 5 个随机数：</p>
+<pre><code class="language-python">rng.random(5)
+</code></pre>
+<p>生成 1 到 9 之间的随机整数：</p>
+<pre><code class="language-python">rng.integers(1, 10)
+</code></pre>
+<p>注意上限 <code>10</code> 不包含在内，因此可能生成的是：</p>
+<pre><code>1, 2, 3, ..., 9
+</code></pre>
+<h5 id="c2-42">C.2 补充：为什么要写 <code>42</code><a class="headerlink" href="#c2-42" title="Permanent link">&para;</a></h5>
+<p><code>42</code> 的作用是让随机结果<strong>可以重复出现</strong>。</p>
+<p>例如每次重新运行：</p>
+<pre><code class="language-python">rng = np.random.default_rng(42)
+print(rng.integers(1, 10, size=5))
+</code></pre>
+<p>都会得到同一组结果：</p>
+<pre><code>[1 7 6 4 4]
+</code></pre>
+<p>这里并不是真的“不随机”，而是使用相同的起点，按照固定算法生成同一串伪随机数。</p>
+<p>种子换了，结果通常也会变：</p>
+<pre><code class="language-python">rng = np.random.default_rng(100)
+</code></pre>
+<p>不写种子：</p>
+<pre><code class="language-python">rng = np.random.default_rng()
+</code></pre>
+<p>那么每次运行通常会得到不同结果。</p>
+<h5 id="c2_1">C.2 补充：一个容易忽略的地方<a class="headerlink" href="#c2_1" title="Permanent link">&para;</a></h5>
+<p>同一个 <code>rng</code> 每调用一次，都会继续向后生成新的数字：</p>
+<pre><code class="language-python">rng = np.random.default_rng(42)
+
+print(rng.integers(1, 10, size=3))
+print(rng.integers(1, 10, size=3))
+</code></pre>
+<p>两次输出通常不同，因为生成器的内部状态已经前进了。</p>
+<p>但重新创建：</p>
+<pre><code class="language-python">rng = np.random.default_rng(42)
+</code></pre>
+<p>就会重新回到相同的起点。</p>
+<p>所以这句话可以概括为：</p>
+<blockquote>
+<p>创建一个随机数生成器，并用种子 42 固定它的初始状态，让程序每次运行时能够复现相同的随机结果。</p>
+</blockquote>
+<h4 id="c3-loss">C.3 第二版写预测函数和 loss<a class="headerlink" href="#c3-loss" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">def predict(x, w, b):
+    return w * x + b
+
+def mse_loss(y_pred, y_true):
+    return np.mean((y_pred - y_true) ** 2)
+
+w = 0.0
+b = 0.0
+
+y_pred = predict(x, w, b)
+loss = mse_loss(y_pred, y)
+
+print(&quot;initial loss =&quot;, loss)
+</code></pre>
+<p>这里的重点是：先让前向计算跑起来。不要一开始就写训练循环。</p>
+<pre><code class="language-python">token_mean = x.mean(axis=-1)
+</code></pre>
+<p>意思是：<strong>对数组 <code>x</code> 的最后一个维度求平均值</strong>，并把结果保存到 <code>token_mean</code>。</p>
+<h5 id="c3-xmean">C.3 补充：<code>x.mean()</code><a class="headerlink" href="#c3-xmean" title="Permanent link">&para;</a></h5>
+<p><code>mean()</code> 是求平均值的方法。</p>
+<p>例如：</p>
+<pre><code class="language-python">x = np.array([1, 2, 3])
+x.mean()
+</code></pre>
+<p>结果是：</p>
+<pre><code>2.0
+</code></pre>
+<h5 id="c3-axis-1">C.3 补充：<code>axis=-1</code><a class="headerlink" href="#c3-axis-1" title="Permanent link">&para;</a></h5>
+<p><code>axis</code> 指定“沿哪个维度进行计算”。</p>
+<p><code>-1</code> 表示<strong>最后一个维度</strong>。因此：</p>
+<pre><code class="language-python">x.mean(axis=-1)
+</code></pre>
+<p>等价于：</p>
+<pre><code class="language-python">x.mean(axis=x.ndim - 1)
+</code></pre>
+<p>例如 <code>x</code> 是二维数组：</p>
+<pre><code class="language-python">x = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+</code></pre>
+<p>它的形状是：</p>
+<pre><code class="language-python">x.shape
+# (2, 3)
+</code></pre>
+<p>最后一个维度的长度是 <code>3</code>，因此会对每一行的三个数求平均：</p>
+<pre><code class="language-python">token_mean = x.mean(axis=-1)
+</code></pre>
+<p>得到：</p>
+<pre><code>[2. 5.]
+</code></pre>
+<p>计算过程是：</p>
+<pre><code>第一行：(1 + 2 + 3) / 3 = 2
+第二行：(4 + 5 + 6) / 3 = 5
+</code></pre>
+<p>原来的形状：</p>
+<pre><code>(2, 3)
+</code></pre>
+<p>求平均后的形状：</p>
+<pre><code>(2,)
+</code></pre>
+<p>最后一个维度被平均掉了。</p>
+<hr />
+<p>在神经网络中，<code>x</code> 可能是三维数组：</p>
+<pre><code>(batch_size, token数量, 特征维度)
+</code></pre>
+<p>例如：</p>
+<pre><code>(4, 10, 768)
+</code></pre>
+<p>执行：</p>
+<pre><code class="language-python">token_mean = x.mean(axis=-1)
+</code></pre>
+<p>就是对每个 token 的 <code>768</code> 个特征取平均：</p>
+<pre><code>(4, 10, 768) → (4, 10)
+</code></pre>
+<p>所以变量叫 <code>token_mean</code>，很可能表示：</p>
+<blockquote>
+<p>每个 token 在其全部特征维度上的平均值。</p>
+</blockquote>
+<p>需要注意，<code>axis=-1</code> 并不固定表示“列”，它始终表示<strong>最后一个维度</strong>。对于二维数组，它看起来像按行求平均；对于三维或更高维数组，则是对最里面那一层求平均。</p>
+<h4 id="c4">C.4 第三版手写梯度<a class="headerlink" href="#c4" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">def gradients(x, y_true, y_pred):
+    n = len(x)
+    error = y_pred - y_true
+    dw = (2 / n) * np.sum(error * x)
+    db = (2 / n) * np.sum(error)
+    return dw, db
+</code></pre>
+<p>你可以先打印一次梯度：</p>
+<pre><code class="language-python">dw, db = gradients(x, y, y_pred)
+print(&quot;dw =&quot;, dw)
+print(&quot;db =&quot;, db)
+</code></pre>
+<p>这一步的意义是确认：你的程序已经知道应该往哪个方向调整 <code>w</code> 和 <code>b</code>。</p>
+<h4 id="c5">C.5 第四版写训练循环<a class="headerlink" href="#c5" title="Permanent link">&para;</a></h4>
+<pre><code class="language-python">def train(lr, steps=200):
+    w = 0.0
+    b = 0.0
+    losses = []
+
+    for step in range(steps):
+        y_pred = predict(x, w, b)
+        loss = mse_loss(y_pred, y)
+        dw, db = gradients(x, y, y_pred)
+
+        w = w - lr * dw
+        b = b - lr * db
+
+        losses.append(loss)
+
+        if step % 20 == 0:
+            print(f&quot;lr={lr} step={step} loss={loss:.4f} w={w:.4f} b={b:.4f}&quot;)
+
+    return w, b, losses
+</code></pre>
+<p>然后分别测试三个学习率：</p>
+<pre><code class="language-python">for lr in [0.0001, 0.01, 1.0]:
+    print(&quot;=&quot; * 60)
+    w, b, losses = train(lr)
+    print(f&quot;final lr={lr}: w={w:.4f}, b={b:.4f}, final_loss={losses[-1]:.4f}&quot;)
+</code></pre>
+<p>可以。你先把 <code>print()</code> 理解成：</p>
+<blockquote>
+<p><strong>让 Python 把括号里面的内容显示到屏幕上。</strong></p>
+</blockquote>
+<h5 id="c5-print-1-print">C.5 print 补充 1：最简单的 <code>print</code><a class="headerlink" href="#c5-print-1-print" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">print(&quot;hello&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>hello
+</code></pre>
+<p>这里：</p>
+<ul>
+<li><code>print</code> 是 Python 内置的打印函数</li>
+<li><code>()</code> 里面放你想显示的东西</li>
+<li><code>"hello"</code> 是字符串，也就是一段文字</li>
+</ul>
+<p>再比如：</p>
+<pre><code class="language-python">print(123)
+</code></pre>
+<p>输出：</p>
+<pre><code>123
+</code></pre>
+<p>数字不需要引号；文字需要引号。</p>
+<pre><code class="language-python">print(&quot;123&quot;)  # 字符串
+print(123)    # 整数
+</code></pre>
+<p>虽然显示起来相似，但类型不同。</p>
+<hr />
+<h5 id="c5-print-2">C.5 print 补充 2：打印变量<a class="headerlink" href="#c5-print-2" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">lr = 0.01
+print(lr)
+</code></pre>
+<p>Python 会先找到变量 <code>lr</code> 保存的值，再显示它：</p>
+<pre><code>0.01
+</code></pre>
+<p>重点是：</p>
+<pre><code class="language-python">print(lr)
+</code></pre>
+<p>打印的是变量的值。</p>
+<p>而：</p>
+<pre><code class="language-python">print(&quot;lr&quot;)
+</code></pre>
+<p>打印的是文字 <code>lr</code>：</p>
+<pre><code>lr
+</code></pre>
+<p>两者完全不同。</p>
+<hr />
+<h5 id="c5-print-3">C.5 print 补充 3：一次打印多个内容<a class="headerlink" href="#c5-print-3" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">lr = 0.01
+step = 20
+
+print(lr, step)
+</code></pre>
+<p>输出：</p>
+<pre><code>0.01 20
+</code></pre>
+<p><code>print()</code> 中可以放多个内容，用逗号隔开：</p>
+<pre><code class="language-python">print(&quot;lr =&quot;, lr, &quot;step =&quot;, step)
+</code></pre>
+<p>输出：</p>
+<pre><code>lr = 0.01 step = 20
+</code></pre>
+<p>Python 默认会在这些内容之间加入一个空格。</p>
+<p>因此，你之前那句话其实可以先写成：</p>
+<pre><code class="language-python">print(&quot;lr=&quot;, lr, &quot;step=&quot;, step, &quot;loss=&quot;, loss)
+</code></pre>
+<p>只是这样输出时可能会出现多余空格：</p>
+<pre><code>lr= 0.01 step= 20 loss= 0.123456
+</code></pre>
+<hr />
+<h5 id="c5-print-4-f-string">C.5 print 补充 4：什么是 f-string<a class="headerlink" href="#c5-print-4-f-string" title="Permanent link">&para;</a></h5>
+<p>f-string 是一种更方便的字符串写法。</p>
+<pre><code class="language-python">lr = 0.01
+print(f&quot;lr={lr}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>lr=0.01
+</code></pre>
+<p>先看外层：</p>
+<pre><code class="language-python">f&quot;lr={lr}&quot;
+</code></pre>
+<p>它整体仍然是一个字符串。</p>
+<p>字符串前面的 <code>f</code> 告诉 Python：</p>
+<blockquote>
+<p>这个字符串里面的 <code>{}</code> 不是普通文字，请计算其中的内容，并把结果放进字符串。</p>
+</blockquote>
+<p>所以：</p>
+<pre><code class="language-python">f&quot;lr={lr}&quot;
+</code></pre>
+<p>会先变成：</p>
+<pre><code class="language-python">&quot;lr=0.01&quot;
+</code></pre>
+<p>然后 <code>print()</code> 再把它显示出来。</p>
+<p>整个过程可以理解为：</p>
+<pre><code>变量 lr 的值是 0.01
+        ↓
+f&quot;lr={lr}&quot;
+        ↓
+&quot;lr=0.01&quot;
+        ↓
+print(...)
+        ↓
+屏幕显示 lr=0.01
+</code></pre>
+<hr />
+<h5 id="c5-print-5">C.5 print 补充 5：<code>{}</code> 里面可以放什么<a class="headerlink" href="#c5-print-5" title="Permanent link">&para;</a></h5>
+<p>可以放变量：</p>
+<pre><code class="language-python">name = &quot;Polar&quot;
+print(f&quot;name={name}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>name=Polar
+</code></pre>
+<p>也可以放计算表达式：</p>
+<pre><code class="language-python">a = 3
+b = 4
+
+print(f&quot;a+b={a+b}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>a+b=7
+</code></pre>
+<p>注意：</p>
+<pre><code class="language-python">&quot;a+b=&quot;
+</code></pre>
+<p>是普通文字，而：</p>
+<pre><code class="language-python">{a+b}
+</code></pre>
+<p>会真的执行加法。</p>
+<hr />
+<h5 id="c5-print-6">C.5 print 补充 6：回到你的代码<a class="headerlink" href="#c5-print-6" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">print(f&quot;lr={lr} step={step} loss={loss:.4f} w={w:.4f} b={b:.4f}&quot;)
+</code></pre>
+<p>这里 <code>print()</code> 的括号里实际上只有<strong>一个东西</strong>：</p>
+<pre><code class="language-python">f&quot;lr={lr} step={step} loss={loss:.4f} w={w:.4f} b={b:.4f}&quot;
+</code></pre>
+<p>这是一个 f-string。</p>
+<p>假设：</p>
+<pre><code class="language-python">lr = 0.01
+step = 20
+loss = 0.123456
+w = 1.987654
+b = -0.456789
+</code></pre>
+<p>Python 会逐个替换：</p>
+<pre><code class="language-python">{lr}        → 0.01
+{step}      → 20
+{loss:.4f}  → 0.1235
+{w:.4f}     → 1.9877
+{b:.4f}     → -0.4568
+</code></pre>
+<p>于是整个字符串变成：</p>
+<pre><code>lr=0.01 step=20 loss=0.1235 w=1.9877 b=-0.4568
+</code></pre>
+<p>最后 <code>print()</code> 把它显示出来。</p>
+<hr />
+<h5 id="c5-print-74f">C.5 print 补充 7：<code>:.4f</code> 到底是什么<a class="headerlink" href="#c5-print-74f" title="Permanent link">&para;</a></h5>
+<p>以：</p>
+<pre><code class="language-python">{loss:.4f}
+</code></pre>
+<p>为例。</p>
+<p>可以拆成：</p>
+<pre><code>{ loss : .4f }
+  变量   显示格式
+</code></pre>
+<ul>
+<li><code>loss</code>：取变量 <code>loss</code> 的值</li>
+<li><code>:</code>：后面开始指定显示格式</li>
+<li><code>.4f</code>：用小数形式显示，保留四位小数</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-python">x = 3.1415926
+
+print(f&quot;{x}&quot;)
+print(f&quot;{x:.2f}&quot;)
+print(f&quot;{x:.4f}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>3.1415926
+3.14
+3.1416
+</code></pre>
+<p>这里并没有修改变量本身：</p>
+<pre><code class="language-python">print(x)
+</code></pre>
+<p>仍然会输出：</p>
+<pre><code>3.1415926
+</code></pre>
+<p><code>:.4f</code> 只是规定这一次打印时怎么显示。</p>
+<hr />
+<h5 id="c5-print-8">C.5 print 补充 8：为什么外面要有文字，里面还要有变量<a class="headerlink" href="#c5-print-8" title="Permanent link">&para;</a></h5>
+<p>例如：</p>
+<pre><code class="language-python">print(f&quot;loss={loss:.4f}&quot;)
+</code></pre>
+<p>其中：</p>
+<pre><code>loss=
+</code></pre>
+<p>只是给人看的标签。</p>
+<p>而：</p>
+<pre><code class="language-python">{loss:.4f}
+</code></pre>
+<p>才是变量的实际值。</p>
+<p>假设直接写：</p>
+<pre><code class="language-python">print(loss)
+</code></pre>
+<p>输出：</p>
+<pre><code>0.1235
+</code></pre>
+<p>你只能看到一个数字，不一定知道它代表什么。</p>
+<p>写成：</p>
+<pre><code class="language-python">print(f&quot;loss={loss:.4f}&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>loss=0.1235
+</code></pre>
+<p>就能看出这个数字是损失值。</p>
+<hr />
+<h5 id="c5-print-9print">C.5 print 补充 9：<code>print()</code> 默认会换行<a class="headerlink" href="#c5-print-9print" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">print(&quot;A&quot;)
+print(&quot;B&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>A
+B
+</code></pre>
+<p>因为每次 <code>print()</code> 结束后默认添加换行。</p>
+<p>不想换行，可以写：</p>
+<pre><code class="language-python">print(&quot;A&quot;, end=&quot;&quot;)
+print(&quot;B&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>AB
+</code></pre>
+<p>或者：</p>
+<pre><code class="language-python">print(&quot;A&quot;, end=&quot; &quot;)
+print(&quot;B&quot;)
+</code></pre>
+<p>输出：</p>
+<pre><code>A B
+</code></pre>
+<hr />
+<p>你目前可以先记住这个核心结构：</p>
+<pre><code class="language-python">变量 = 某个值
+print(变量)              # 打印变量值
+print(&quot;普通文字&quot;)         # 打印固定文字
+print(f&quot;文字{变量}&quot;)      # 把变量值插进文字
+print(f&quot;{变量:.4f}&quot;)      # 把数字保留四位小数后显示
+</code></pre>
+<h4 id="c6">C.6 你应该观察到什么<a class="headerlink" href="#c6" title="Permanent link">&para;</a></h4>
+<p>学习率 <code>0.0001</code>：</p>
+<ul>
+<li>通常很稳定；</li>
+<li>但下降很慢；</li>
+<li><code>w</code> 和 <code>b</code> 可能离 <code>3</code> 和 <code>2</code> 还比较远。</li>
+</ul>
+<p>学习率 <code>0.01</code>：</p>
+<ul>
+<li>通常比较合适；</li>
+<li>loss 会明显下降；</li>
+<li><code>w</code> 会接近 <code>3</code>，<code>b</code> 会接近 <code>2</code>。</li>
+</ul>
+<p>学习率 <code>1.0</code>：</p>
+<ul>
+<li>很可能震荡或发散；</li>
+<li>loss 可能越来越大；</li>
+<li>参数可能变成非常大的数。</li>
+</ul>
+<p>你要写进报告里的不是“哪个数字最好看”，而是：</p>
+<blockquote>
+<p>学习率太小会学得慢；合适的学习率能稳定收敛；学习率太大可能越过最低点，导致震荡甚至发散。</p>
+</blockquote>
+<h4 id="c7">C.7 如果要画训练曲线<a class="headerlink" href="#c7" title="Permanent link">&para;</a></h4>
+<p>如果环境里有 <code>matplotlib</code>，可以加：</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+for lr in [0.0001, 0.01, 1.0]:
+    _, _, losses = train(lr)
+    plt.plot(losses, label=f&quot;lr={lr}&quot;)
+
+plt.xlabel(&quot;step&quot;)
+plt.ylabel(&quot;loss&quot;)
+plt.legend()
+plt.savefig(&quot;linear_regression_losses.png&quot;, dpi=150)
+</code></pre>
+<p>如果暂时不会画图，也可以先不画，直接打印每 20 步的 loss。作业重点是你能解释训练过程。
+这段代码的作用是：</p>
+<blockquote>
+<p>用三种不同的学习率分别训练模型，把每次训练过程中的 <code>loss</code> 画在同一张图上，最后保存成图片。</p>
+</blockquote>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+for lr in [0.0001, 0.01, 1.0]:
+    _, _, losses = train(lr)
+    plt.plot(losses, label=f&quot;lr={lr}&quot;)
+
+plt.xlabel(&quot;step&quot;)
+plt.ylabel(&quot;loss&quot;)
+plt.legend()
+plt.savefig(&quot;linear_regression_losses.png&quot;, dpi=150)
+</code></pre>
+<h5 id="c7-1">C.7 画图补充 1：导入画图工具<a class="headerlink" href="#c7-1" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+</code></pre>
+<ul>
+<li><code>matplotlib</code>：Python 常用绘图库</li>
+<li><code>pyplot</code>：其中负责画图的模块</li>
+<li><code>as plt</code>：把它简称为 <code>plt</code></li>
+</ul>
+<p>之后就可以写：</p>
+<pre><code class="language-python">plt.plot(...)
+plt.xlabel(...)
+</code></pre>
+<p>而不用每次写完整名称。</p>
+<hr />
+<h5 id="c7-2">C.7 画图补充 2：依次测试三种学习率<a class="headerlink" href="#c7-2" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">for lr in [0.0001, 0.01, 1.0]:
+</code></pre>
+<p>这个循环会执行三次：</p>
+<pre><code class="language-python">lr = 0.0001
+lr = 0.01
+lr = 1.0
+</code></pre>
+<p>也就是说，用三种学习率各训练一次模型。</p>
+<hr />
+<h5 id="c7-3">C.7 画图补充 3：调用训练函数<a class="headerlink" href="#c7-3" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">_, _, losses = train(lr)
+</code></pre>
+<p>假设 <code>train(lr)</code> 返回三个结果，例如：</p>
+<pre><code class="language-python">return w, b, losses
+</code></pre>
+<p>那么本来可以写：</p>
+<pre><code class="language-python">w, b, losses = train(lr)
+</code></pre>
+<p>但这里不关心训练后的 <code>w</code> 和 <code>b</code>，只关心每一步的损失 <code>losses</code>，所以写成：</p>
+<pre><code class="language-python">_, _, losses = train(lr)
+</code></pre>
+<p>下划线 <code>_</code> 通常表示：</p>
+<blockquote>
+<p>这个返回值我暂时不需要。</p>
+</blockquote>
+<p>例如：</p>
+<pre><code class="language-python">result = train(0.01)
+</code></pre>
+<p>假设得到：</p>
+<pre><code class="language-python">(2.01, 0.98, [10.2, 7.5, 4.1, 2.0])
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">_, _, losses = result
+</code></pre>
+<p>相当于：</p>
+<pre><code class="language-python">_ = 2.01
+_ = 0.98
+losses = [10.2, 7.5, 4.1, 2.0]
+</code></pre>
+<p>最终真正使用的是 <code>losses</code>。</p>
+<p>需要注意，两个 <code>_</code> 实际上是同一个普通变量，只是大家约定用它表示“不关心”。这里没有问题，因为这些值之后没有被使用。</p>
+<hr />
+<h5 id="c7-4">C.7 画图补充 4：把损失画成曲线<a class="headerlink" href="#c7-4" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">plt.plot(losses, label=f&quot;lr={lr}&quot;)
+</code></pre>
+<p>假设：</p>
+<pre><code class="language-python">losses = [10, 7, 4, 2, 1]
+</code></pre>
+<p><code>plt.plot(losses)</code> 会默认把列表的位置当作横坐标：</p>
+<pre><code>横坐标：0  1  2  3  4
+纵坐标：10 7  4  2  1
+</code></pre>
+<p>因此它画出的点相当于：</p>
+<pre><code>(0, 10)
+(1, 7)
+(2, 4)
+(3, 2)
+(4, 1)
+</code></pre>
+<p>再把这些点连接起来。</p>
+<p>这里的横坐标就代表训练步数 <code>step</code>，纵坐标代表每一步的 <code>loss</code>。</p>
+<h5 id="c7-labelflrlr">C.7 画图补充：<code>label=f"lr={lr}"</code><a class="headerlink" href="#c7-labelflrlr" title="Permanent link">&para;</a></h5>
+<p>这是给当前曲线起名字。</p>
+<p>第一次循环：</p>
+<pre><code class="language-python">lr = 0.0001
+</code></pre>
+<p>于是：</p>
+<pre><code class="language-python">label=f&quot;lr={lr}&quot;
+</code></pre>
+<p>变成：</p>
+<pre><code class="language-python">label=&quot;lr=0.0001&quot;
+</code></pre>
+<p>第二、三次分别变成：</p>
+<pre><code class="language-python">label=&quot;lr=0.01&quot;
+label=&quot;lr=1.0&quot;
+</code></pre>
+<p>这些名字之后会显示在图例中。</p>
+<p>三次循环并不是生成三张图，而是在<strong>当前同一张图上连续添加三条线</strong>。</p>
+<hr />
+<h5 id="c7-5">C.7 画图补充 5：设置横轴名称<a class="headerlink" href="#c7-5" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">plt.xlabel(&quot;step&quot;)
+</code></pre>
+<p>让横轴下方显示：</p>
+<pre><code>step
+</code></pre>
+<p>表示训练步骤。</p>
+<h5 id="c7-6">C.7 画图补充 6：设置纵轴名称<a class="headerlink" href="#c7-6" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">plt.ylabel(&quot;loss&quot;)
+</code></pre>
+<p>让纵轴旁边显示：</p>
+<pre><code>loss
+</code></pre>
+<p>表示损失值。</p>
+<hr />
+<h5 id="c7-7">C.7 画图补充 7：显示图例<a class="headerlink" href="#c7-7" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">plt.legend()
+</code></pre>
+<p>图例用来说明每条曲线对应哪个学习率。</p>
+<p>因为前面为每条曲线设置了：</p>
+<pre><code class="language-python">label=f&quot;lr={lr}&quot;
+</code></pre>
+<p>所以图例中会显示：</p>
+<pre><code>lr=0.0001
+lr=0.01
+lr=1.0
+</code></pre>
+<p>没有 <code>plt.legend()</code>，这些 <code>label</code> 不会自动显示出来。</p>
+<hr />
+<h5 id="c7-8">C.7 画图补充 8：保存图片<a class="headerlink" href="#c7-8" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">plt.savefig(&quot;linear_regression_losses.png&quot;, dpi=150)
+</code></pre>
+<p>把当前绘制的图保存成：</p>
+<pre><code>linear_regression_losses.png
+</code></pre>
+<p>通常会保存在程序运行时的<strong>当前工作目录</strong>中。</p>
+<h5 id="c7-dpi150">C.7 画图补充：<code>dpi=150</code><a class="headerlink" href="#c7-dpi150" title="Permanent link">&para;</a></h5>
+<p><code>dpi</code> 表示图片分辨率，可以粗略理解为保存图片的清晰程度。</p>
+<ul>
+<li><code>dpi=72</code>：较低</li>
+<li><code>dpi=100</code>：普通</li>
+<li><code>dpi=150</code>：比较清晰</li>
+<li><code>dpi=300</code>：适合论文或打印，但文件更大</li>
+</ul>
+<p>它不会影响训练结果，只影响保存图片的清晰度。</p>
+<hr />
+<h5 id="c7_1">C.7 画图补充：整个循环实际相当于<a class="headerlink" href="#c7_1" title="Permanent link">&para;</a></h5>
+<pre><code class="language-python">_, _, losses = train(0.0001)
+plt.plot(losses, label=&quot;lr=0.0001&quot;)
+
+_, _, losses = train(0.01)
+plt.plot(losses, label=&quot;lr=0.01&quot;)
+
+_, _, losses = train(1.0)
+plt.plot(losses, label=&quot;lr=1.0&quot;)
+</code></pre>
+<p>然后统一添加坐标名称、图例并保存：</p>
+<pre><code class="language-python">plt.xlabel(&quot;step&quot;)
+plt.ylabel(&quot;loss&quot;)
+plt.legend()
+plt.savefig(&quot;linear_regression_losses.png&quot;, dpi=150)
+</code></pre>
+<p>最后得到的图一般用于比较：</p>
+<ul>
+<li>学习率太小时，损失下降很慢；</li>
+<li>学习率合适时，损失较快且稳定下降；</li>
+<li>学习率太大时，损失可能震荡甚至越来越大。</li>
+</ul>
+<p>另外，这段代码只保存图片，不一定弹出窗口。想在运行时显示图片，可以最后加：</p>
+<pre><code class="language-python">plt.show()
+</code></pre>
+<h4 id="c8-c">C.8 C 作业自检清单<a class="headerlink" href="#c8-c" title="Permanent link">&para;</a></h4>
+<p>完成后你至少要能回答：</p>
+<ul>
+<li>为什么模型形式写成 $\hat{y}=wx+b$？</li>
+<li>loss 为什么用平方误差？</li>
+<li><code>dw</code> 和 <code>db</code> 分别表示什么？</li>
+<li>学习率太小、合适、太大分别会发生什么？</li>
+<li>最终学到的 <code>w</code> 和 <code>b</code> 为什么不会刚好等于 <code>3</code> 和 <code>2</code>？因为数据里有噪声。</li>
+</ul>
+<h3 id="_14">作业报告怎么写<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>每个练习写一个很短的报告即可，不要写成论文。可以放在 <code>notes.md</code> 里：</p>
+<pre><code class="language-markdown">## Exercise A
+
+### 我做了什么
+
+读取 JSONL，统计空样本、重复样本、长度分桶和高频字符。
+
+### 我如何验证
+
+先用 6 行 demo 数据测试，其中包含坏行、空文本和重复文本。
+
+### 结果
+
+- 总行数：
+- 坏行数：
+- 空样本数：
+- 重复样本数：
+- 高频字符：
+
+### 我遇到的问题
+
+例如：文件路径一开始写错；坏行需要 try/except；空字符串要先 strip。
+
+### 我的结论
+
+纯 Python 也能完成基础文本清洗；真实数据必须考虑坏行、空字段和重复样本。
+</code></pre>
+<p>练习 B 和 C 也按这个模板写。你只要能把“做了什么、怎么验证、结果是什么、我学到什么”讲清楚，就已经达到了这个模块的目的。</p>
+<h2 id="_15">验收与复盘<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li>能解释 list 与 ndarray、参数与超参数、训练/验证/测试的区别。</li>
+<li>看到 <code>[B,T,C] @ [C,V]</code> 能立即说出输出形状。</li>
+<li>能手写稳定 Softmax、交叉熵和数值梯度检查。</li>
+<li>能读写 UTF-8 JSONL，并处理坏行与空字段。</li>
+<li>能用 Git 保存练习，每个实验有假设和结论。</li>
+</ul>
+<h2 id="project">课后 Project<a class="headerlink" href="#project" title="Permanent link">&para;</a></h2>
+<p>先完成上面的讲解和验收，再独立完成下面三个 Project。完整参考答案见：<a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/">模块 1 综合练习标准答案</a>。</p>
+<h3 id="project-1-python">Project 1：纯 Python 文本分析<a class="headerlink" href="#project-1-python" title="Permanent link">&para;</a></h3>
+<p>新建 <code>module01_homework/exercise_a_jsonl_stats.py</code>，只使用 Python 标准库完成 JSONL 文本统计，不能使用 pandas。</p>
+<p>要求：</p>
+<ol>
+<li>读取一个 UTF-8 编码的 JSONL 文件。</li>
+<li>跳过空行。</li>
+<li>对非法 JSON 行做容错处理：记录坏行数量，但程序不能崩溃。</li>
+<li>从每条记录中提取文本：</li>
+<li>优先使用 <code>text</code> 字段；</li>
+<li>如果没有 <code>text</code>，则拼接 <code>instruction</code> 和 <code>output</code>；</li>
+<li>如果都没有，则视为空文本。</li>
+<li>统计总行数、合法 JSON 记录数、坏行数、空文本数、重复文本数、文本长度分桶与高频字符 Top 20。</li>
+<li>写一段简短结论：你认为这个数据集有什么明显问题？</li>
+</ol>
+<h3 id="project-2numpy">Project 2：NumPy 形状体操<a class="headerlink" href="#project-2numpy" title="Permanent link">&para;</a></h3>
+<p>新建 <code>module01_homework/exercise_b_numpy_shapes.py</code>，使用 NumPy 完成张量形状练习。</p>
+<p>给定：</p>
+<pre><code class="language-python">B = 2
+T = 3
+C = 4
+V = 5
+x.shape == (B, T, C)
+W.shape == (C, V)
+</code></pre>
+<p>要求：</p>
+<ol>
+<li>计算每个 token 在 <code>C</code> 维上的均值，输出形状应为 <code>[B,T]</code>。</li>
+<li>把 <code>x</code> 的最后两个维度展平为 <code>[B,T*C]</code>。</li>
+<li>计算 <code>logits = x @ W</code>，输出形状应为 <code>[B,T,V]</code>。</li>
+<li>对 <code>logits</code> 的最后一维做稳定 softmax。</li>
+<li>验证每个 <code>[B,T]</code> 位置上的概率和都接近 <code>1</code>。</li>
+<li>在注释或报告里解释每一步形状为什么这样变化。</li>
+</ol>
+<h3 id="project-3numpy">Project 3：NumPy 线性回归<a class="headerlink" href="#project-3numpy" title="Permanent link">&para;</a></h3>
+<p>新建 <code>module01_homework/exercise_c_linear_regression.py</code>，只用 NumPy 训练一个一元线性回归模型。</p>
+<p>要求：</p>
+<ol>
+<li>随机生成数据：</li>
+</ol>
+<p>$$
+   y = 3x + 2 + \text{noise}
+   $$</p>
+<ol>
+<li>模型形式为：</li>
+</ol>
+<p>$$
+   \hat{y} = wx + b
+   $$</p>
+<ol>
+<li>手写均方误差 MSE、<code>w</code> 和 <code>b</code> 的梯度，并使用梯度下降训练。</li>
+<li>分别测试学习率 <code>0.0001</code>、<code>0.01</code>、<code>1.0</code>，打印 loss、<code>w</code>、<code>b</code> 的变化。</li>
+<li>保存 loss 曲线（可选）并解释：学习率太小、合适、太大会分别发生什么。</li>
+</ol>
+<h3 id="_16">统一提交物<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">module01_homework/
+├── exercise_a_jsonl_stats.py
+├── exercise_b_numpy_shapes.py
+├── exercise_c_linear_regression.py
+├── data/
+│   └── demo.jsonl
+├── linear_regression_losses.png   # 可选
+└── notes.md
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

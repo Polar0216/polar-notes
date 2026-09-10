@@ -1,0 +1,8723 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/">
+      
+      
+        <link rel="next" href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>模块 2：NumPy 神经网络与 PyTorch - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              模块 2：NumPy 神经网络与 PyTorch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-tabs__link">
+          
+  
+  
+  Ai学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-tabs__link">
+          
+  
+  
+  耳机
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 项目推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Conda_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy 广播机制：规则、形状与神经网络中的应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PyTorch%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从计算机新手到 LLM Engineer：可执行学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 0：环境、命令行与学习方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1 课后 Project 标准答案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学补充：从变化率到梯度下降
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习导航
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 多层 MLP 的整体直觉
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 多层 MLP 的整体直觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 多层 MLP 的“逐级加工流水线”类比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 多层网络的层次结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 一次训练的完整信息流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 多层 MLP 的整体数据流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 从直觉过渡到公式的学习顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 单个神经元的计算方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 单个神经元的计算方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 单个神经元的加权打分机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 偏置项提供可学习平移
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 参数与超参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 从单样本计算到批量矩阵计算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 从单样本计算到批量矩阵计算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 矩阵表示支持批量并行计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 线性层的手算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 矩阵乘法不是逐元素相乘
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 激活函数与非线性表达能力
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 激活函数与非线性表达能力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 两个线性层仍然只是一个线性层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 ReLU 引入非线性表达能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 ReLU 的局限性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logits-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 从 Logits 到概率：Softmax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 从 Logits 到概率：Softmax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Logits 不满足概率分布约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 三分类 Softmax 手算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 减去最大值提高数值稳定性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-softmax-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Softmax 的稳定 NumPy 实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 交叉熵损失的原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 交叉熵损失的原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 从最大似然理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 损失值反映模型的置信程度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-pytorch-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 PyTorch 交叉熵直接接收 Logits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 训练目标与梯度下降
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 训练目标与梯度下降">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 损失函数的地形图类比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 学习率控制参数更新幅度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-batchiteration-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Batch、Iteration 与 Epoch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 链式法则与反向传播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 链式法则与反向传播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 标量计算图中的链式法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 多路径梯度需要累加
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 线性层反向传播的矩阵推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 线性层反向传播的矩阵推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 线性层反向传播的符号与形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 对权重的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 对偏置的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 对输入的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 形状检查用于定位矩阵求导错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 多层 MLP 的完整前向与反向传播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 多层 MLP 的完整前向与反向传播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 三层 MLP 的前向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 三层 MLP 的反向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 上一层输出变化由局部梯度确定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-mlp-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 多层 MLP 的 NumPy 实现骨架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 前向缓存支持逐层反向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-mlp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. MLP 的表达能力与决策边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. NumPy MLP 的核心组件实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. NumPy MLP 的核心组件实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Linear 层：线性变换与参数梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 ReLU 层：非线性与梯度掩码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 MLP 容器：按顺序组织网络层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Softmax 与交叉熵的整体数据流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-softmaxcrossentropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 SoftmaxCrossEntropy 的稳定实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6 SGD 参数更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 数值梯度检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. NumPy MLP 的训练循环与故障诊断
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. PyTorch 张量与自动微分概览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. PyTorch 数据集与批量加载
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-nnmodule-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. 使用 nn.Module 定义 MLP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. PyTorch 核心组件的逐句解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. PyTorch 核心组件的逐句解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#181" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.1 张量与自动微分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#182-dataset-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.2 Dataset 与 DataLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#183-nnmodule-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.3 基于 nn.Module 的 MLP 定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#184" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.4 数据、模型、损失与自动微分的连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. PyTorch 完整训练与验证循环
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19. PyTorch 完整训练与验证循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#191-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.1 Epoch 的整体训练结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#192-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.2 单个 Batch 的训练步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#193-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.3 Epoch 指标的累计与返回
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#194-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.4 Checkpoint 的保存、恢复与训练衔接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. 模型检查点的保存与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. 验收标准与知识复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. 课后综合项目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="22. 课后综合项目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22.1 NumPy MLP 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-pytorch-mnistfashionmnist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22.2 PyTorch MNIST/FashionMNIST 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 与 PyTorch MLP 完整模型代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2 标准答案：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_Tokenizer_Attention_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 3：Tokenizer、Attention 与 Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03A_Attention%E4%B8%8ETransformer%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention 与 Transformer 手算讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_MiniGPT%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 4：MiniGPT 与预训练
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04A_%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%98%BE%E5%AD%98%E4%BC%B0%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT 训练原理、优化器与显存估算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_%E6%8E%A8%E7%90%86%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 5：推理、量化与本地部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05A_%E9%87%87%E6%A0%B7_KVCache%E4%B8%8E%E9%87%8F%E5%8C%96%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    采样、KV Cache 与量化推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_%E5%BE%AE%E8%B0%83_LoRA_QLoRA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 6：SFT、LoRA 与 QLoRA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06A_LoRA%E4%B8%8EQLoRA%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoRA、QLoRA 与监督微调推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_RAG%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 7：RAG——从最小检索到高级与 GraphRAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07A_RAG%E6%A3%80%E7%B4%A2%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 检索、排序与评估手算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_ToolCalling%E4%B8%8E%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 8：Tool Calling、Code Interpreter 与安全执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08A_%E4%BB%8ETool%E5%88%B0Agent%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从 Tool Calling 到可恢复 Agent：完整案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_Memory%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 9：Memory——从上下文到长期记忆
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_Agent%E4%B8%8EMultiAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 10：Agent、Browser/Coding Agent 与 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_MCP_AI_OS%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 11：MCP、Second Brain OS 与工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11A_SecondBrain%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%93%9D%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain OS 工程实现蓝图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 12（选修）：多模态、ROS 2 与机器人
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_%E9%A1%B9%E7%9B%AE%E4%B8%8E%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与学习资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线 框架优先版
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线 框架优先版
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从整机到零件：LLM 框架优先学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/00_LLM%E5%85%A8%E5%B1%80%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 0 课：从预测任务推导出 GPT 的结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/01_%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8CMiniGPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之一：第一次运行完整 MiniGPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/02_%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%AE%8C%E6%95%B4%E9%97%AD%E7%8E%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之二：训练与生成的完整闭环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/03_%E5%BC%A0%E9%87%8F_Linear_Softmax%E4%B8%8E%E6%8D%9F%E5%A4%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之一：张量、Linear、Softmax 与损失
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/04_Tokenizer_Embedding%E4%B8%8E%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之二：Tokenizer、Embedding 与位置信息
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/05_Attention%E4%B8%8ETransformerBlock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之三：Attention 与 Transformer Block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/06_%E6%A2%AF%E5%BA%A6_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之四：梯度、反向传播与参数优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/07_%E5%AE%8C%E6%95%B4MiniGPT%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%AF%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之五：完整 MiniGPT 的装配与源码导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/08_%E6%95%B0%E6%8D%AE_%E9%A2%84%E8%AE%AD%E7%BB%83_%E8%AF%84%E4%BC%B0%E4%B8%8ECheckpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之一：数据、预训练、评估与 Checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/09_%E6%8E%A8%E7%90%86_%E9%87%87%E6%A0%B7_KVCache_%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之二：推理、采样、KV Cache、量化与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/10_%E5%BE%AE%E8%B0%83_RAG_Agent%E4%B8%8E%E5%90%8E%E7%BB%AD%E6%96%B9%E5%90%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之三：微调、RAG、Agent 与后续方向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/11_%E9%A1%B9%E7%9B%AE%E9%98%B6%E6%A2%AF%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程终章：从全局地图到可复现 MiniGPT 项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/12_%E9%A1%B9%E7%9B%AE%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课后项目标准答案与结果核对
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM 框架优先学习记录模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_16" id="__nav_3_6_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniGPT 完整代码运行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E5%85%B6%E4%BB%96/%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳机
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    耳机
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOMENTUM 4 完整使用建议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_8_3" id="__nav_8_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_8_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统讲解耳机音质（拆分版）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/01-%E6%92%AD%E6%94%BE%E9%93%BE%E8%B7%AF%E4%B8%8E%E6%95%B0%E5%AD%97%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（1）：播放链路与数字基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/02-%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8E%E9%AB%98%E8%A7%84%E6%A0%BC%E9%9F%B3%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（2）：音频文件格式与高规格音频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/03-%E8%93%9D%E7%89%99%E9%9F%B3%E9%A2%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（3）：蓝牙音频与传输编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/04-%E6%89%8B%E6%9C%BA%E3%80%81DAC%E3%80%81%E8%80%B3%E6%94%BE%E4%B8%8E%E9%A9%B1%E5%8A%A8%E5%8A%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（4）：手机、DAC、耳放与驱动力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/05-DAP%E3%80%81%E5%B0%8F%E5%B0%BE%E5%B7%B4%E4%B8%8E%E5%B9%B3%E8%A1%A1%E8%BE%93%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（5）：DAP、小尾巴与平衡输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/06-%E6%92%AD%E6%94%BE%E8%AE%BE%E7%BD%AE%E3%80%81EQ%E4%B8%8E%E8%AE%BE%E5%A4%87%E9%80%89%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（6）：播放设置、EQ与设备选购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/07-%E8%80%B3%E6%9C%BA%E6%9C%AC%E4%BD%93%E4%B8%8E%E5%90%AC%E6%84%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（7）：耳机本体与听感
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/08-%E9%80%89%E8%B4%AD%E5%8E%9F%E5%88%99%E4%B8%8E%E7%9F%A5%E8%AF%86%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（8）：选购原则与知识树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        学习导航
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 多层 MLP 的整体直觉
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 多层 MLP 的整体直觉">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 多层 MLP 的“逐级加工流水线”类比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 多层网络的层次结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 一次训练的完整信息流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 多层 MLP 的整体数据流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 从直觉过渡到公式的学习顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 单个神经元的计算方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 单个神经元的计算方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 单个神经元的加权打分机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 偏置项提供可学习平移
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 参数与超参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 从单样本计算到批量矩阵计算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 从单样本计算到批量矩阵计算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 矩阵表示支持批量并行计算
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 线性层的手算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 矩阵乘法不是逐元素相乘
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 激活函数与非线性表达能力
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 激活函数与非线性表达能力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 两个线性层仍然只是一个线性层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 ReLU 引入非线性表达能力
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 ReLU 的局限性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logits-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 从 Logits 到概率：Softmax
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 从 Logits 到概率：Softmax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Logits 不满足概率分布约束
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 三分类 Softmax 手算示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 减去最大值提高数值稳定性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-softmax-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Softmax 的稳定 NumPy 实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 交叉熵损失的原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 交叉熵损失的原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 从最大似然理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 损失值反映模型的置信程度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-pytorch-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 PyTorch 交叉熵直接接收 Logits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 训练目标与梯度下降
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 训练目标与梯度下降">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 损失函数的地形图类比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 学习率控制参数更新幅度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-batchiteration-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Batch、Iteration 与 Epoch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 链式法则与反向传播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 链式法则与反向传播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 标量计算图中的链式法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 多路径梯度需要累加
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 线性层反向传播的矩阵推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 线性层反向传播的矩阵推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 线性层反向传播的符号与形状
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 对权重的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 对偏置的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 对输入的梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 形状检查用于定位矩阵求导错误
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 多层 MLP 的完整前向与反向传播
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 多层 MLP 的完整前向与反向传播">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 三层 MLP 的前向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 三层 MLP 的反向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 上一层输出变化由局部梯度确定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-mlp-numpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 多层 MLP 的 NumPy 实现骨架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 前向缓存支持逐层反向传播
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-mlp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. MLP 的表达能力与决策边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. NumPy MLP 的核心组件实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. NumPy MLP 的核心组件实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Linear 层：线性变换与参数梯度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 ReLU 层：非线性与梯度掩码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 MLP 容器：按顺序组织网络层
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 Softmax 与交叉熵的整体数据流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125-softmaxcrossentropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 SoftmaxCrossEntropy 的稳定实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#126-sgd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6 SGD 参数更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 数值梯度检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. NumPy MLP 的训练循环与故障诊断
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. PyTorch 张量与自动微分概览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. PyTorch 数据集与批量加载
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-nnmodule-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. 使用 nn.Module 定义 MLP
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. PyTorch 核心组件的逐句解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18. PyTorch 核心组件的逐句解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#181" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.1 张量与自动微分
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#182-dataset-dataloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.2 Dataset 与 DataLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#183-nnmodule-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.3 基于 nn.Module 的 MLP 定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#184" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.4 数据、模型、损失与自动微分的连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19. PyTorch 完整训练与验证循环
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="19. PyTorch 完整训练与验证循环">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#191-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.1 Epoch 的整体训练结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#192-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.2 单个 Batch 的训练步骤
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#193-epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.3 Epoch 指标的累计与返回
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#194-checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.4 Checkpoint 的保存、恢复与训练衔接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        20. 模型检查点的保存与恢复
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        21. 验收标准与知识复盘
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22. 课后综合项目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="22. 课后综合项目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-numpy-mlp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22.1 NumPy MLP 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-pytorch-mnistfashionmnist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        22.2 PyTorch MNIST/FashionMNIST 项目
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="2numpy-pytorch">模块 2：NumPy 神经网络与 PyTorch<a class="headerlink" href="#2numpy-pytorch" title="Permanent link">&para;</a></h1>
+<h2 id="_1">学习目标<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>先用 NumPy 看清“前向→损失→反向→更新”，再用 PyTorch 认识自动微分、Dataset、DataLoader、Module、Optimizer 和完整训练循环。</p>
+<p>这一章不把神经网络当成几个 API 的组合。我们会从一个神经元开始，手算一次完整的前向传播和反向传播，然后再把手算过程翻译成 NumPy 和 PyTorch。读完后，你不仅应该能运行代码，还应该能回答：</p>
+<ul>
+<li>权重和偏置各自在改变什么？</li>
+<li>为什么连续堆叠线性层没有意义？</li>
+<li>Softmax 为什么要减去最大值？</li>
+<li>交叉熵为什么是负对数？</li>
+<li>反向传播究竟在“反向传播”什么？</li>
+<li>为什么线性层的权重梯度要做转置和矩阵乘法？</li>
+<li>为什么每一轮都要清空梯度？</li>
+</ul>
+<hr />
+<h2 id="_2">学习导航<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>建议按下面的顺序学习：</p>
+<ol>
+<li>先用第 1 节的图像化说明建立直觉：一层层到底在传什么。</li>
+<li>跟着正文分别理解 Linear、ReLU、Softmax、交叉熵和反向传播；例子不是额外作业。</li>
+<li>学完第 9 节后，再看第 10 节用公式把多层 MLP 串起来。</li>
+<li>用第 20 节的 Checkpoint 内容检查训练流程；完成第 21 节“验收标准与知识复盘”后，最后再做第 22 节课后综合项目。</li>
+</ol>
+<p>完整参考实现和文内示例的完整解答放在单独文件：<a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/">模块 2 标准答案</a>。</p>
+<p>如果你已经理解各组件，想直接查看它们如何组成一份可运行程序，请打开：<a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/">NumPy 与 PyTorch MLP 完整模型代码</a>。</p>
+<hr />
+<h2 id="1-mlp">1. 多层 MLP 的整体直觉<a class="headerlink" href="#1-mlp" title="Permanent link">&para;</a></h2>
+<h3 id="11-mlp">1.1 多层 MLP 的“逐级加工流水线”类比<a class="headerlink" href="#11-mlp" title="Permanent link">&para;</a></h3>
+<p>先不要急着看公式。把多层 MLP 想成一条处理信息的流水线：它接收一份原始信息，经过几次“提取特征、组合特征”，最后给出各个答案的分数。</p>
+<p>以“识别手写数字”为例，一张 28×28 的图片可以先摊平成 784 个数字。单个数字本身没有“这是 8”的意思，只是每个位置有多亮。</p>
+<pre><code class="language-text">784 个像素数字
+  ↓ 第一隐藏层：从原始像素中寻找简单线索
+“这里像有一条竖线”“那里像有一个弯”
+  ↓ 第二隐藏层：把简单线索组合成更复杂的形状
+“像一个环”“像上下两个圆”
+  ↓ 输出层：分别给 0～9 打分
+“更像 8 的分数最高”
+</code></pre>
+<p>这只是帮助理解的比喻：某一个隐藏单元不保证真的只负责“竖线”或“圆”。重点是，后一层看到的不是原始像素，而是前一层已经整理过的一组“特征强弱”。</p>
+<h3 id="12">1.2 多层网络的层次结构<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>第一层把输入加工后产生一组数字；这组数字就是第二层的输入。第二层再次加工，产生新的数字；它们再交给输出层。</p>
+<pre><code class="language-text">原始输入
+  → 第一层的输出（简单特征的强弱）
+  → 第二层的输出（组合特征的强弱）
+  → 输出层的分数（每个类别有多像）
+</code></pre>
+<p>所以你问的“上一层输出怎么变化应该怎么知道”，先从前向看很简单：</p>
+<blockquote>
+<p>前一层的输出，就是后一层正在处理的输入。</p>
+</blockquote>
+<p>不同的是，训练时还要反过来判断：这些中间特征让最终答案变好还是变坏？这个“反过来的反馈”就是反向传播；等学完各个零件后再用公式精确说明。</p>
+<h3 id="13">1.3 一次训练的完整信息流<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<p>把一次训练想成老师批改一份答卷：</p>
+<ol>
+<li><strong>前向传播</strong>：图片从第一层一路传到输出层，得到“像 0、1、…、9 的分数”。</li>
+<li><strong>计算损失</strong>：把预测和正确答案比较，判断这次错得多不多。</li>
+<li><strong>反向传播</strong>：从最后的错误开始，逐层追问“哪条连接让错误变大了，应该往哪个方向改一点”。</li>
+<li><strong>更新参数</strong>：SGD 或 Adam 根据这些建议，轻微调整每层的权重和偏置。</li>
+</ol>
+<p>然后换下一张图片，重复很多次。网络不是一次就学会，而是靠大量“小幅纠正”慢慢形成有用的中间特征。</p>
+<h3 id="14-mlp">1.4 多层 MLP 的整体数据流<a class="headerlink" href="#14-mlp" title="Permanent link">&para;</a></h3>
+<pre><code class="language-text">输入数据
+  ↓ 一层层加工（前向）
+预测分数
+  ↓ 和正确答案比较
+损失：这次错了多少
+  ↓ 把“该怎么改”的信息逐层传回去（反向）
+每层参数的小改动
+  ↓
+下一次预测
+</code></pre>
+<p>现在不用背任何公式。接下来的第 2～9 节会分别解释每一个零件；到第 10 节再把它们按严格数学形式连成一个完整多层 MLP。</p>
+<h3 id="15">1.5 从直觉过渡到公式的学习顺序<a class="headerlink" href="#15" title="Permanent link">&para;</a></h3>
+<p>公式版统一放在后面的第 10 节“多层 MLP 的完整前向与反向传播”。现在请直接进入第 2 节，从单个神经元开始。</p>
+<hr />
+<h2 id="2">2. 单个神经元的计算方式<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 单个神经元的加权打分机制<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>假设我们判断一封邮件是否是垃圾邮件，只使用两个特征：</p>
+<ul>
+<li>$x_1$：广告词出现次数；</li>
+<li>$x_2$：发件人是否在通讯录中，取值为 $0$ 或 $1$。</li>
+</ul>
+<p>一个最简单的神经元先计算：</p>
+<p>$$
+z = w_1x_1 + w_2x_2 + b
+$$</p>
+<p>这里：</p>
+<ul>
+<li>$x_1,x_2$ 是输入；</li>
+<li>$w_1,w_2$ 是权重，表示模型对每个特征的重视程度；</li>
+<li>$b$ 是偏置，表示没有任何输入时模型原本的倾向；</li>
+<li>$z$ 是未经归一化的分数。</li>
+</ul>
+<p>例如：</p>
+<p>$$
+x_1=3,\qquad x_2=1
+$$</p>
+<p>$$
+w_1=0.8,\qquad w_2=-1.2,\qquad b=-0.5
+$$</p>
+<p>那么：</p>
+<p>$$
+z=0.8\times 3+(-1.2)\times 1-0.5=0.7
+$$</p>
+<p>正权重会把分数向上推，负权重会把分数向下拉。因为“广告词很多”支持垃圾邮件判断，所以 $w_1$ 可以为正；“发件人在通讯录中”反对垃圾邮件判断，所以 $w_2$ 可以为负。</p>
+<p>这就是神经网络最基本的计算。所谓“训练”，就是根据大量样本自动寻找合适的 $w_1,w_2,b$。</p>
+<h3 id="22">2.2 偏置项提供可学习平移<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>若没有偏置：</p>
+<p>$$
+z=w_1x_1+w_2x_2
+$$</p>
+<p>当所有输入均为零时，输出只能为零。在线性分类的几何图像中，这意味着决策边界必须经过原点。加入偏置后，决策边界可以整体平移。</p>
+<p>以二维情况为例，边界 $z=0$ 为：</p>
+<p>$$
+w_1x_1+w_2x_2+b=0
+$$</p>
+<p>改变权重主要改变直线的方向，改变偏置主要改变直线的位置。</p>
+<h3 id="23">2.3 参数与超参数<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p><strong>参数</strong>由训练数据学习，例如 $W$ 和 $b$。<br />
+<strong>超参数</strong>由我们设定，例如学习率、隐藏层宽度、batch size 和训练轮数。</p>
+<p>这一区别很重要：优化器更新参数，但不会自动决定你的网络应该有多少层。</p>
+<hr />
+<h2 id="3">3. 从单样本计算到批量矩阵计算<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 矩阵表示支持批量并行计算<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>假设一个 batch 有 $B$ 个样本，每个样本有 $D_{\text{in}}$ 个输入特征，希望产生 $D_{\text{out}}$ 个输出分数。把所有样本排成矩阵：</p>
+<p>$$
+X\in\mathbb{R}^{B\times D_{\text{in}}}
+$$</p>
+<p>权重和偏置为：</p>
+<p>$$
+W\in\mathbb{R}^{D_{\text{in}}\times D_{\text{out}}},
+\qquad
+b\in\mathbb{R}^{D_{\text{out}}}
+$$</p>
+<p>线性层为：</p>
+<p>$$
+Z=XW+b
+$$</p>
+<p>输出形状是：</p>
+<p>$$
+Z\in\mathbb{R}^{B\times D_{\text{out}}}
+$$</p>
+<p>偏置 $b$ 会沿 batch 维广播，相当于给每个样本都加同一个偏置向量。</p>
+<p>这里不是把不同样本混在一起，而是将形状为 $(D_{\text{out}},)$ 的偏置向量 $b$ 从右侧对齐为 $(1,D_{\text{out}})$，再沿 Batch 维重复使用。广播的完整判断规则、行向量与列向量的区别，以及 <code>keepdims=True</code> 的示例见 <a href="../01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">模块 1 的广播详解</a>。</p>
+<h3 id="32">3.2 线性层的手算示例<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>设有两个样本，每个样本两个特征，输出三个类别的分数：</p>
+<p>$$
+X=
+\begin{bmatrix}
+1 &amp; 2\
+3 &amp; 4
+\end{bmatrix},
+\qquad
+W=
+\begin{bmatrix}
+1 &amp; 0 &amp; -1\
+0 &amp; 2 &amp; 1
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+0.5 &amp; -0.5 &amp; 1
+\end{bmatrix}
+$$</p>
+<p>先计算第一条样本：</p>
+<p>$$
+\begin{bmatrix}1&amp;2\end{bmatrix}W
+=
+\begin{bmatrix}
+1\times 1+2\times 0 &amp;
+1\times 0+2\times 2 &amp;
+1\times(-1)+2\times1
+\end{bmatrix}
+=
+\begin{bmatrix}1&amp;4&amp;1\end{bmatrix}
+$$</p>
+<p>再加偏置：</p>
+<p>$$
+\begin{bmatrix}1&amp;4&amp;1\end{bmatrix}
++
+\begin{bmatrix}0.5&amp;-0.5&amp;1\end{bmatrix}
+=
+\begin{bmatrix}1.5&amp;3.5&amp;2\end{bmatrix}
+$$</p>
+<p>三个数字不是概率，而是三个类别的 <strong>logits</strong>。Logit 可以是任意实数，也不需要相加等于 $1$。</p>
+<h3 id="33">3.3 矩阵乘法不是逐元素相乘<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>矩阵乘法 $XW$ 会对输入特征做加权求和；逐元素乘法 $X\odot W$ 只把同位置元素相乘。二者表达的运算完全不同。</p>
+<p>判断矩阵乘法形状时使用“内维相等、外维保留”：</p>
+<p>$$
+(B\times D_{\text{in}})
+(D_{\text{in}}\times D_{\text{out}})
+\longrightarrow
+(B\times D_{\text{out}})
+$$</p>
+<p>如果代码报矩阵形状错误，先把每个维度的语义写出来，不要靠反复交换转置碰运气。</p>
+<hr />
+<h2 id="4">4. 激活函数与非线性表达能力<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 两个线性层仍然只是一个线性层<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>如果没有激活函数：</p>
+<p>$$
+H=XW_1+b_1
+$$</p>
+<p>$$
+Z=HW_2+b_2
+$$</p>
+<p>代入 $H$：</p>
+<p>$$
+Z=(XW_1+b_1)W_2+b_2
+$$</p>
+<p>整理得到：</p>
+<p>$$
+Z=X(W_1W_2)+(b_1W_2+b_2)
+$$</p>
+<p>令：</p>
+<p>$$
+W'=W_1W_2,\qquad b'=b_1W_2+b_2
+$$</p>
+<p>就有：</p>
+<p>$$
+Z=XW'+b'
+$$</p>
+<p>所以无论堆叠多少个纯线性层，都可以合并成一个线性层，仍然只能表示线性关系。层数变多了，表达能力却没有本质增加。</p>
+<h3 id="42-relu">4.2 ReLU 引入非线性表达能力<a class="headerlink" href="#42-relu" title="Permanent link">&para;</a></h3>
+<p>ReLU 定义为：</p>
+<p>$$
+\operatorname{ReLU}(z)=\max(0,z)
+$$</p>
+<p>它把负数截断为零，正数保持不变：</p>
+<p>$$
+\operatorname{ReLU}(-2)=0,\qquad
+\operatorname{ReLU}(3)=3
+$$</p>
+<p>经过 ReLU 后，不同输入区域会使用不同的线性关系，多个区域拼接起来就能形成弯曲、分段线性的决策边界。</p>
+<p>其导数在 $z\ne 0$ 时为：</p>
+<p>$$
+\frac{\partial\operatorname{ReLU}(z)}{\partial z}
+=
+\begin{cases}
+0,&amp;z&lt;0\
+1,&amp;z&gt;0
+\end{cases}
+$$</p>
+<p>在 $z=0$ 处数学上不可导，深度学习框架通常约定使用某个次梯度，常见实现取 $0$。单个点的选择通常不会影响实际训练。</p>
+<h3 id="43-relu">4.3 ReLU 的局限性<a class="headerlink" href="#43-relu" title="Permanent link">&para;</a></h3>
+<p>若某个神经元长期处在负半轴，它的梯度一直为零，可能成为“死亡 ReLU”。常见缓解方式包括更合理的初始化、合适的学习率，或使用 Leaky ReLU、GELU 等激活函数。</p>
+<hr />
+<h2 id="5-logits-softmax">5. 从 Logits 到概率：Softmax<a class="headerlink" href="#5-logits-softmax" title="Permanent link">&para;</a></h2>
+<h3 id="51-logits">5.1 Logits 不满足概率分布约束<a class="headerlink" href="#51-logits" title="Permanent link">&para;</a></h3>
+<p>概率必须满足：</p>
+<p>$$
+p_i\ge 0,\qquad \sum_{i=1}^{C}p_i=1
+$$</p>
+<p>而 logits 可能是负数，也不要求总和为 $1$。Softmax 将它们转换为概率：</p>
+<p>$$
+p_i=
+\frac{\exp(z_i)}
+{\sum_{j=1}^{C}\exp(z_j)}
+$$</p>
+<p>指数函数保证结果为正，除以总和保证概率之和为 $1$。</p>
+<h3 id="52-softmax">5.2 三分类 Softmax 手算示例<a class="headerlink" href="#52-softmax" title="Permanent link">&para;</a></h3>
+<p>给定：</p>
+<p>$$
+z=
+\begin{bmatrix}
+2&amp;1&amp;0
+\end{bmatrix}
+$$</p>
+<p>则：</p>
+<p>$$
+\exp(z)=
+\begin{bmatrix}
+e^2&amp;e^1&amp;e^0
+\end{bmatrix}
+\approx
+\begin{bmatrix}
+7.389&amp;2.718&amp;1
+\end{bmatrix}
+$$</p>
+<p>总和约为 $11.107$，因此：</p>
+<p>$$
+p\approx
+\begin{bmatrix}
+0.665&amp;0.245&amp;0.090
+\end{bmatrix}
+$$</p>
+<p>最大的 logit 对应最大的概率，但概率大小还取决于各 logit 之间的差距。</p>
+<h3 id="53">5.3 减去最大值提高数值稳定性<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<p>指数增长很快，$\exp(1000)$ 会溢出。但 Softmax 对所有 logits 同时减去常数 $c$ 后结果不变：</p>
+<p>$$
+\frac{\exp(z_i-c)}
+{\sum_j\exp(z_j-c)}
+=
+\frac{\exp(z_i)/\exp(c)}
+{\sum_j\exp(z_j)/\exp(c)}
+=
+\frac{\exp(z_i)}
+{\sum_j\exp(z_j)}
+$$</p>
+<p>因此选择：</p>
+<p>$$
+c=\max_j z_j
+$$</p>
+<p>可以让最大的指数变为 $\exp(0)=1$，显著提高数值稳定性。</p>
+<hr />
+<p>这段代码定义了一个 <strong>Softmax 函数</strong>：</p>
+<pre><code class="language-python">def softmax(x, axis=-1):
+    shifted = x - np.max(x, axis=axis, keepdims=True)
+    exp = np.exp(shifted)
+    return exp / exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<p>Softmax 的作用是：把一组任意实数转换成一组 <strong>0 到 1 之间、总和为 1</strong> 的数，通常可以理解为概率分布。</p>
+<p>例如：</p>
+<pre><code class="language-python">x = np.array([1.0, 2.0, 3.0])
+</code></pre>
+<p>经过 Softmax 后，大致得到：</p>
+<pre><code>[0.0900, 0.2447, 0.6652]
+</code></pre>
+<p>它们都大于 0，并且：</p>
+<pre><code>0.0900 + 0.2447 + 0.6652 ≈ 1
+</code></pre>
+<hr />
+<h3 id="54-softmax-numpy">5.4 Softmax 的稳定 NumPy 实现<a class="headerlink" href="#54-softmax-numpy" title="Permanent link">&para;</a></h3>
+<p><strong>定义 Softmax 函数</strong></p>
+<pre><code class="language-python">def softmax(x, axis=-1):
+</code></pre>
+<p>这里定义了一个名叫 <code>softmax</code> 的函数。</p>
+<p>它有两个参数：</p>
+<ul>
+<li><code>x</code>：需要处理的数组</li>
+<li><code>axis=-1</code>：默认沿最后一个维度计算 Softmax</li>
+</ul>
+<p>例如 <code>x</code> 是二维数组：</p>
+<pre><code class="language-python">x.shape == (2, 3)
+</code></pre>
+<p>那么 <code>axis=-1</code> 就是沿每一行的 3 个元素计算。</p>
+<hr />
+<p><strong>找到每行最大值并减去</strong></p>
+<pre><code class="language-python">shifted = x - np.max(x, axis=axis, keepdims=True)
+</code></pre>
+<p>先看里面：</p>
+<pre><code class="language-python">np.max(x, axis=axis, keepdims=True)
+</code></pre>
+<p>它会沿指定维度找到最大值。</p>
+<p>例如：</p>
+<pre><code class="language-python">x = np.array([
+    [1, 2, 3],
+    [4, 8, 6]
+])
+</code></pre>
+<p>沿最后一个维度找最大值：</p>
+<pre><code class="language-python">np.max(x, axis=-1, keepdims=True)
+</code></pre>
+<p>得到：</p>
+<pre><code>[[3],
+ [8]]
+</code></pre>
+<p>然后用每一行减去自己这一行的最大值：</p>
+<pre><code>[[1, 2, 3],       [[3],       [[-2, -1,  0],
+ [4, 8, 6]]   -    [8]]   =    [-4,  0, -2]]
+</code></pre>
+<p>所以：</p>
+<pre><code class="language-python">shifted
+</code></pre>
+<p>就是：</p>
+<pre><code>[[-2, -1,  0],
+ [-4,  0, -2]]
+</code></pre>
+<p><strong>减去最大值的数学依据与数值作用</strong></p>
+<p>因为后面要计算指数：</p>
+<pre><code class="language-python">np.exp(x)
+</code></pre>
+<p>如果 <code>x</code> 很大，比如：</p>
+<pre><code class="language-python">x = 1000
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">np.exp(1000)
+</code></pre>
+<p>会大到超出计算机浮点数的范围，造成溢出。</p>
+<p>减去最大值之后，最大的元素一定变为 <code>0</code>，其他元素小于或等于 <code>0</code>：</p>
+<pre><code>[-2, -1, 0]
+</code></pre>
+<p>指数就变成：</p>
+<pre><code>[e^-2, e^-1, e^0]
+</code></pre>
+<p>其中最大的只是：</p>
+<pre><code>e^0 = 1
+</code></pre>
+<p>这样计算更加稳定。</p>
+<p>而减去相同的数不会改变最终 Softmax 结果，因为：</p>
+<p>$$
+\frac{e^{x_i-c}}{\sum_j e^{x_j-c}}
+=
+\frac{e^{x_i}e^{-c}}{e^{-c}\sum_j e^{x_j}}
+=
+\frac{e^{x_i}}{\sum_j e^{x_j}}
+$$</p>
+<p>分子和分母中的 $e^{-c}$ 会相互约掉。</p>
+<hr />
+<p><strong>对平移后的 Logits 求指数</strong></p>
+<pre><code class="language-python">exp = np.exp(shifted)
+</code></pre>
+<p><code>np.exp()</code> 计算的是自然指数：</p>
+<pre><code>e^x
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">shifted = np.array([-2, -1, 0])
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">np.exp(shifted)
+</code></pre>
+<p>大约得到：</p>
+<pre><code>[0.1353, 0.3679, 1.0000]
+</code></pre>
+<p>所以变量 <code>exp</code> 保存的是每个元素的指数值。</p>
+<p>这里的变量名 <code>exp</code> 不会影响 <code>np.exp</code>：</p>
+<pre><code class="language-python">exp = np.exp(shifted)
+</code></pre>
+<p>右边的 <code>np.exp</code> 是 NumPy 函数，左边的 <code>exp</code> 只是自己起的变量名。</p>
+<hr />
+<p><strong>用指数和完成归一化</strong></p>
+<pre><code class="language-python">return exp / exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<p>先计算：</p>
+<pre><code class="language-python">exp.sum(axis=axis, keepdims=True)
+</code></pre>
+<p>假设：</p>
+<pre><code>exp = [0.1353, 0.3679, 1.0000]
+</code></pre>
+<p>那么总和是：</p>
+<pre><code>0.1353 + 0.3679 + 1.0000 = 1.5032
+</code></pre>
+<p>再让每个元素除以总和：</p>
+<pre><code>0.1353 / 1.5032 ≈ 0.0900
+0.3679 / 1.5032 ≈ 0.2447
+1.0000 / 1.5032 ≈ 0.6652
+</code></pre>
+<p>最终得到：</p>
+<pre><code>[0.0900, 0.2447, 0.6652]
+</code></pre>
+<p>它们的总和为 1。</p>
+<hr />
+<p><strong><code>keepdims=True</code> 保留广播所需维度</strong></p>
+<p>它表示：求最大值或求和之后，<strong>保留原来的维度数量</strong>。</p>
+<p>例如：</p>
+<pre><code class="language-python">x = np.array([
+    [1, 2, 3],
+    [4, 5, 6]
+])
+</code></pre>
+<p>它的形状是：</p>
+<pre><code>(2, 3)
+</code></pre>
+<p>不使用 <code>keepdims=True</code>：</p>
+<pre><code class="language-python">np.max(x, axis=-1)
+</code></pre>
+<p>结果是：</p>
+<pre><code>[3, 6]
+</code></pre>
+<p>形状为：</p>
+<pre><code>(2,)
+</code></pre>
+<p>使用：</p>
+<pre><code class="language-python">np.max(x, axis=-1, keepdims=True)
+</code></pre>
+<p>结果是：</p>
+<pre><code>[[3],
+ [6]]
+</code></pre>
+<p>形状为：</p>
+<pre><code>(2, 1)
+</code></pre>
+<p>保留成 <code>(2, 1)</code> 后，NumPy 能通过广播机制，让每一行减去对应的最大值：</p>
+<pre><code>[[1, 2, 3] - [3],
+ [4, 5, 6] - [6]]
+</code></pre>
+<p>同样，求和时保留维度，也方便每一行除以各自的总和。</p>
+<hr />
+<p><strong>Softmax 完整实现示例</strong></p>
+<pre><code class="language-python">import numpy as np
+
+def softmax(x, axis=-1):
+    shifted = x - np.max(x, axis=axis, keepdims=True)
+    exp = np.exp(shifted)
+    return exp / exp.sum(axis=axis, keepdims=True)
+
+x = np.array([
+    [1.0, 2.0, 3.0],
+    [2.0, 2.0, 2.0]
+])
+
+result = softmax(x)
+
+print(result)
+print(result.sum(axis=-1))
+</code></pre>
+<p>输出大致是：</p>
+<pre><code>[[0.09003057 0.24472847 0.66524096]
+ [0.33333333 0.33333333 0.33333333]]
+
+[1. 1.]
+</code></pre>
+<p>第一行中，数字越大，Softmax 后的概率越大；第二行三个数字相同，所以得到三个相同的概率：</p>
+<pre><code>1/3, 1/3, 1/3
+</code></pre>
+<p>整段代码可以概括为：</p>
+<blockquote>
+<p>每组数据先减去这一组的最大值，再取指数，最后除以所有指数之和，将数据转换为总和为 1 的概率分布。</p>
+</blockquote>
+<h2 id="6">6. 交叉熵损失的原理<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h3 id="61">6.1 从最大似然理解<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>若真实类别是 $y$，模型给它的概率为 $p_y$。我们希望 $p_y$ 越大越好，即最大化所有训练样本正确类别概率的乘积：</p>
+<p>$$
+\max_\theta \prod_{n=1}^{N}p_\theta(y_n\mid x_n)
+$$</p>
+<p>许多小概率相乘容易数值下溢，而且乘积难求导。取对数后，乘积变成求和：</p>
+<p>$$
+\max_\theta
+\sum_{n=1}^{N}
+\log p_\theta(y_n\mid x_n)
+$$</p>
+<p>优化器通常执行最小化，于是取负号：</p>
+<p>$$
+L=
+-\frac{1}{N}
+\sum_{n=1}^{N}
+\log p_\theta(y_n\mid x_n)
+$$</p>
+<p>这就是 one-hot 分类目标下的平均交叉熵。</p>
+<h3 id="62">6.2 损失值反映模型的置信程度<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>如果模型给正确类别的概率分别为：</p>
+<p>$$
+p_y=0.9,\quad 0.5,\quad 0.1
+$$</p>
+<p>对应损失约为：</p>
+<p>$$
+-\log 0.9\approx0.105
+$$</p>
+<p>$$
+-\log 0.5\approx0.693
+$$</p>
+<p>$$
+-\log 0.1\approx2.303
+$$</p>
+<p>模型对错误答案越自信，惩罚增长越快。这就是交叉熵比单纯“对或错”包含更多训练信号的原因。</p>
+<h3 id="63-pytorch-logits">6.3 PyTorch 交叉熵直接接收 Logits<a class="headerlink" href="#63-pytorch-logits" title="Permanent link">&para;</a></h3>
+<p>PyTorch 的 CrossEntropyLoss 接收原始 logits，内部使用数值稳定的 log-softmax 与负对数似然组合。如果先手工 Softmax：</p>
+<ul>
+<li>会重复计算；</li>
+<li>更容易出现概率下溢；</li>
+<li>输入语义不再符合函数要求；</li>
+<li>梯度可能变得更差。</li>
+</ul>
+<hr />
+<p>这页想表达的是：</p>
+<blockquote>
+<p><strong>使用 <code>torch.nn.CrossEntropyLoss</code> 时，模型最后一层不要自己写 <code>Softmax</code>，直接把原始输出 <code>logits</code> 交给它。</strong></p>
+</blockquote>
+<p>先看标准写法：</p>
+<pre><code class="language-python">logits = model(x)
+loss = criterion(logits, target)
+</code></pre>
+<p>而不要写成：</p>
+<pre><code class="language-python">probabilities = torch.softmax(model(x), dim=1)
+loss = criterion(probabilities, target)
+</code></pre>
+<p><strong>CrossEntropyLoss：什么是 logits</strong></p>
+<p>假设模型要把一张图片分成三类，最后输出：</p>
+<pre><code class="language-python">logits = [2.0, 1.0, 0.1]
+</code></pre>
+<p>这些数叫 <strong>logits</strong>。</p>
+<p>它们不是概率：</p>
+<ul>
+<li>可以大于 1</li>
+<li>可以小于 0</li>
+<li>总和不需要等于 1</li>
+</ul>
+<p>但它们表示模型对各类别的原始评分。这里第一类得分最高，所以模型更倾向第一类。</p>
+<p>如果对它们做 Softmax：</p>
+<pre><code class="language-python">softmax([2.0, 1.0, 0.1])
+</code></pre>
+<p>大约得到：</p>
+<pre><code>[0.659, 0.242, 0.099]
+</code></pre>
+<p>这才是概率。</p>
+<p><strong>CrossEntropyLoss：内部已经做了什么</strong></p>
+<p>PyTorch 的：</p>
+<pre><code class="language-python">torch.nn.CrossEntropyLoss()
+</code></pre>
+<p>内部可以大致理解为：</p>
+<pre><code class="language-python">log_softmax + NLLLoss
+</code></pre>
+<p>也就是它会自己：</p>
+<ol>
+<li>把 logits 转成对数概率；</li>
+<li>取正确类别对应的值；</li>
+<li>计算损失。</li>
+</ol>
+<p>所以：</p>
+<pre><code class="language-python">loss = CrossEntropyLoss(logits, target)
+</code></pre>
+<p>已经包含了 Softmax 相关计算。</p>
+<p>不过它不是先显式计算普通 Softmax，再取对数，而是直接使用数值更稳定的 <code>log_softmax</code>。</p>
+<p><strong>提前 Softmax 会造成重复归一化</strong></p>
+<p>假设你写：</p>
+<pre><code class="language-python">probabilities = torch.softmax(logits, dim=1)
+loss = criterion(probabilities, target)
+</code></pre>
+<p>此时 <code>CrossEntropyLoss</code> 不知道你传入的是概率。</p>
+<p>它仍然会把这些概率当成新的 logits，再执行一次 <code>log_softmax</code>。</p>
+<p>例如原始 logits：</p>
+<pre><code>[2.0, 1.0, 0.1]
+</code></pre>
+<p>正确的 Softmax：</p>
+<pre><code>[0.659, 0.242, 0.099]
+</code></pre>
+<p>你把这个概率传入 <code>CrossEntropyLoss</code> 后，它又会把：</p>
+<pre><code>[0.659, 0.242, 0.099]
+</code></pre>
+<p>当成原始评分，再做一次 Softmax。新的结果大约是：</p>
+<pre><code>[0.478, 0.315, 0.207]
+</code></pre>
+<p>可以看到，原本第一类的概率是 <code>0.659</code>，结果变成了 <code>0.478</code>。</p>
+<p>信息被扭曲了。</p>
+<p>因此图片里说的“会重复计算”，更准确地说是：</p>
+<blockquote>
+<p>你先做了一次 Softmax，而 <code>CrossEntropyLoss</code> 又把结果当 logits 做了一次类似的归一化。</p>
+</blockquote>
+<p><strong>数值稳定计算可以避免溢出与下溢</strong></p>
+<p>普通 Softmax 的公式是：</p>
+<p>$$
+p_i=\frac{e^{x_i}}{\sum_j e^{x_j}}
+$$</p>
+<p>如果 logits 很大，例如：</p>
+<pre><code>[1000, 999, 998]
+</code></pre>
+<p>直接计算：</p>
+<pre><code>e^1000
+</code></pre>
+<p>会特别大，可能超出浮点数范围。</p>
+<p>如果概率非常小，例如：</p>
+<pre><code>0.00000000000000000001
+</code></pre>
+<p>再计算：</p>
+<pre><code class="language-python">torch.log(probability)
+</code></pre>
+<p>也容易出现精度问题，极端情况下可能变成：</p>
+<pre><code>log(0) = -∞
+</code></pre>
+<p><code>CrossEntropyLoss</code> 内部使用稳定的 <code>log_softmax</code>，会通过减去最大值等方法避免这些问题。</p>
+<p>原始 logits：</p>
+<pre><code>[1000, 999, 998]
+</code></pre>
+<p>先减去最大值：</p>
+<pre><code>[0, -1, -2]
+</code></pre>
+<p>这样再计算指数就安全很多。</p>
+<p><strong><code>CrossEntropyLoss</code> 的输入语义要求</strong></p>
+<p><code>CrossEntropyLoss</code> 要求输入表示：</p>
+<pre><code>每个类别的原始分数 logits
+</code></pre>
+<p>但 Softmax 后的数据表示：</p>
+<pre><code>每个类别的概率
+</code></pre>
+<p>它们含义不同。</p>
+<p>所以虽然它们都是一组数字，形状也可能完全相同，但函数期待的是 logits，不是概率。</p>
+<p>就像某个函数要求输入摄氏度，你却提前转换成华氏度；数字仍然能传进去，但函数会按照摄氏度解释，结果自然不对。</p>
+<p><strong>提前 Softmax 对梯度质量的影响</strong></p>
+<p>训练时，PyTorch 需要根据损失计算梯度，告诉模型参数应该怎么调整。</p>
+<p>正确过程：</p>
+<pre><code>logits
+  ↓
+CrossEntropyLoss
+  ↓
+稳定地得到损失和梯度
+</code></pre>
+<p>提前 Softmax 后：</p>
+<pre><code>logits
+  ↓
+Softmax
+  ↓
+概率
+  ↓
+CrossEntropyLoss 又当成 logits 处理
+</code></pre>
+<p>多出来的 Softmax 会压缩数值差异。</p>
+<p>例如：</p>
+<pre><code>logits = [10, 0, -10]
+</code></pre>
+<p>差异很明显。</p>
+<p>Softmax 后可能接近：</p>
+<pre><code>[0.99995, 0.00005, 0.00000]
+</code></pre>
+<p>很多概率已经非常接近 0 或 1，Softmax 在这些区域的梯度可能很小，使参数更新变慢。</p>
+<p><strong>CrossEntropyLoss：正确代码</strong></p>
+<p>多分类任务通常这样写：</p>
+<pre><code class="language-python">import torch
+import torch.nn as nn
+
+criterion = nn.CrossEntropyLoss()
+
+logits = model(x)          # 不要 Softmax
+loss = criterion(logits, target)
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">logits.shape
+</code></pre>
+<p>通常是：</p>
+<pre><code>(batch_size, 类别数量)
+</code></pre>
+<p>而 <code>target</code> 是每个样本正确类别的编号：</p>
+<pre><code class="language-python">target = torch.tensor([2, 0, 1])
+</code></pre>
+<p>不是 one-hot 概率。</p>
+<p><strong>CrossEntropyLoss：什么时候需要 Softmax</strong></p>
+<p><strong>训练计算损失时：</strong></p>
+<pre><code class="language-python">loss = criterion(logits, target)
+</code></pre>
+<p>不要先 Softmax。</p>
+<p><strong>训练结束后，想查看概率时：</strong></p>
+<pre><code class="language-python">probabilities = torch.softmax(logits, dim=1)
+</code></pre>
+<p>可以使用 Softmax。</p>
+<p>例如：</p>
+<pre><code class="language-python">logits = model(x)
+
+loss = criterion(logits, target)
+
+probabilities = torch.softmax(logits, dim=1)
+predicted_class = probabilities.argmax(dim=1)
+</code></pre>
+<p>其实只想知道预测类别时，甚至不需要 Softmax：</p>
+<pre><code class="language-python">predicted_class = logits.argmax(dim=1)
+</code></pre>
+<p>因为 Softmax 不会改变数字的大小顺序：</p>
+<pre><code>logits 最大的位置
+=
+Softmax 概率最大的位置
+</code></pre>
+<p>一句话记忆：</p>
+<blockquote>
+<p><strong>训练时把 logits 直接交给 <code>CrossEntropyLoss</code>；展示概率时再使用 Softmax。</strong></p>
+</blockquote>
+<h2 id="7">7. 训练目标与梯度下降<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="71">7.1 损失函数的地形图类比<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
+<p>模型的所有参数组成一个高维坐标 $\theta$。每一组参数都对应一个损失值 $L(\theta)$。训练的目标是在这张高维地形图上找到较低的位置。</p>
+<p>梯度：</p>
+<p>$$
+\nabla_\theta L
+$$</p>
+<p>指向损失上升最快的方向，所以梯度下降沿反方向更新：</p>
+<p>$$
+\theta_{t+1}
+=
+\theta_t-\eta\nabla_\theta L
+$$</p>
+<p>其中 $\eta$ 是学习率。</p>
+<h3 id="72">7.2 学习率控制参数更新幅度<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<ul>
+<li>学习率太小：每步移动很少，训练很慢；</li>
+<li>学习率适中：损失稳定下降；</li>
+<li>学习率太大：越过低谷，损失振荡甚至变成 NaN。</li>
+</ul>
+<p>学习率不是越小越安全。若训练预算固定，过小可能根本来不及学到有效参数。</p>
+<h3 id="73-batchiteration-epoch">7.3 Batch、Iteration 与 Epoch<a class="headerlink" href="#73-batchiteration-epoch" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>样本</strong>：一条训练数据；</li>
+<li><strong>batch</strong>：一次前向和反向使用的一组样本；</li>
+<li><strong>iteration/step</strong>：完成一次参数更新；</li>
+<li><strong>epoch</strong>：大致完整遍历一次训练集。</li>
+</ul>
+<p>若训练集有 $1000$ 条数据，batch size 为 $100$，那么一个 epoch 大约有 $10$ 个 step。</p>
+<p>mini-batch 梯度是完整数据梯度的带噪声估计。噪声并非总是坏事，它能降低每步计算成本，有时还帮助优化器离开不理想区域。</p>
+<hr />
+<h2 id="8">8. 链式法则与反向传播<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1 标量计算图中的链式法则<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>设：</p>
+<p>$$
+a=wx+b
+$$</p>
+<p>$$
+\hat y=a^2
+$$</p>
+<p>$$
+L=(\hat y-y)^2
+$$</p>
+<p>计算图是：</p>
+<p>$$
+(w,x,b)\longrightarrow a\longrightarrow \hat y\longrightarrow L
+$$</p>
+<p>反向传播从最后的损失开始，逐节点计算“损失对该节点的敏感度”。</p>
+<p>由链式法则：</p>
+<p>$$
+\frac{\partial L}{\partial w}
+=
+\frac{\partial L}{\partial \hat y}
+\frac{\partial \hat y}{\partial a}
+\frac{\partial a}{\partial w}
+$$</p>
+<p>分别计算：</p>
+<p>$$
+\frac{\partial L}{\partial \hat y}
+=2(\hat y-y)
+$$</p>
+<p>$$
+\frac{\partial \hat y}{\partial a}=2a
+$$</p>
+<p>$$
+\frac{\partial a}{\partial w}=x
+$$</p>
+<p>所以：</p>
+<p>$$
+\frac{\partial L}{\partial w}
+=2(\hat y-y)\cdot2a\cdot x
+$$</p>
+<p>反向传播传递的不是“答案”，而是上游梯度，即损失对中间量的导数。</p>
+<h3 id="82">8.2 多路径梯度需要累加<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
+<p>一个变量可能通过多条路径影响损失。若：</p>
+<p>$$
+L=f(x)+g(x)
+$$</p>
+<p>那么：</p>
+<p>$$
+\frac{\partial L}{\partial x}
+=
+\frac{\partial f}{\partial x}
++
+\frac{\partial g}{\partial x}
+$$</p>
+<p>因此自动微分框架会把来自不同路径的梯度累加。PyTorch 多次调用 backward 时也会继续累加到参数的 grad 字段，所以每个训练 step 前要清梯度。</p>
+<hr />
+<h2 id="9">9. 线性层反向传播的矩阵推导<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>这是从“会调用 backward”走向“真正理解 Transformer 代码”的关键一节。</p>
+<h3 id="91">9.1 线性层反向传播的符号与形状<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<p>前向传播：</p>
+<p>$$
+Z=XW+b
+$$</p>
+<p>形状为：</p>
+<p>$$
+X:[B,D_{\text{in}}],
+\quad
+W:[D_{\text{in}},D_{\text{out}}],
+\quad
+Z:[B,D_{\text{out}}]
+$$</p>
+<p>假设后续网络已经传回：</p>
+<p>$$
+G=\frac{\partial L}{\partial Z}
+$$</p>
+<p>其形状与 $Z$ 相同：</p>
+<p>$$
+G:[B,D_{\text{out}}]
+$$</p>
+<p>我们要得到对 $X,W,b$ 的梯度。</p>
+<h3 id="92">9.2 对权重的梯度<a class="headerlink" href="#92" title="Permanent link">&para;</a></h3>
+<p>单个输出元素为：</p>
+<p>$$
+Z_{n,j}
+=
+\sum_{i=1}^{D_{\text{in}}}
+X_{n,i}W_{i,j}+b_j
+$$</p>
+<p>固定某个权重 $W_{i,j}$，它会影响 batch 中每个样本的 $Z_{n,j}$。根据链式法则：</p>
+<p>$$
+\frac{\partial L}{\partial W_{i,j}}
+=
+\sum_{n=1}^{B}
+\frac{\partial L}{\partial Z_{n,j}}
+\frac{\partial Z_{n,j}}{\partial W_{i,j}}
+$$</p>
+<p>又因为：</p>
+<p>$$
+\frac{\partial Z_{n,j}}{\partial W_{i,j}}=X_{n,i}
+$$</p>
+<p>所以：</p>
+<p>$$
+\frac{\partial L}{\partial W_{i,j}}
+=
+\sum_{n=1}^{B}
+X_{n,i}G_{n,j}
+$$</p>
+<p>写成矩阵：</p>
+<p>$$
+\boxed{
+\frac{\partial L}{\partial W}
+=X^\mathsf{T}G
+}
+$$</p>
+<p>形状检查：</p>
+<p>$$
+[D_{\text{in}},B]
+[B,D_{\text{out}}]
+\longrightarrow
+[D_{\text{in}},D_{\text{out}}]
+$$</p>
+<p>结果恰好与 $W$ 同形状。</p>
+<h3 id="93">9.3 对偏置的梯度<a class="headerlink" href="#93" title="Permanent link">&para;</a></h3>
+<p>同一个偏置 $b_j$ 被 batch 内所有样本共享，因此要沿 batch 维求和：</p>
+<p>$$
+\boxed{
+\frac{\partial L}{\partial b_j}
+=
+\sum_{n=1}^{B}G_{n,j}
+}
+$$</p>
+<p>矩阵写法是：</p>
+<p>$$
+\boxed{
+\frac{\partial L}{\partial b}
+=
+\operatorname{sum}(G,\text{axis}=0)
+}
+$$</p>
+<p><strong>权重与偏置共享同一个上游梯度</strong></p>
+<p>对，<strong>计算权重梯度和偏置梯度时，用到的是同一个上游梯度 $G$</strong>，但最后得到的两个梯度并不一样。</p>
+<p>这里：</p>
+<p>$$
+G_{n,j}=\frac{\partial L}{\partial Z_{n,j}}
+$$</p>
+<p>表示损失 $L$ 对线性层输出 $Z$ 的梯度。</p>
+<p>线性层是：</p>
+<p>$$
+Z=XW+b
+$$</p>
+<p>所以 $W$ 和 $b$ 都通过同一个 $Z$ 影响损失 $L$。反向传播时，梯度从 $L$ 传到 $Z$，先得到同一个：</p>
+<p>$$
+G=\frac{\partial L}{\partial Z}
+$$</p>
+<p>然后在 $Z=XW+b$ 这个位置分成三路：</p>
+<p>$$
+G
+\longrightarrow
+\frac{\partial L}{\partial W},
+\quad
+\frac{\partial L}{\partial b},
+\quad
+\frac{\partial L}{\partial X}
+$$</p>
+<p><strong>用链式法则分别沿两条路径计算</strong></p>
+<p>对于单个输出元素：</p>
+<p>$$
+Z_{n,j}=\sum_i X_{n,i}W_{i,j}+b_j
+$$</p>
+<p><strong>权重路径：$W_{i,j}$</strong></p>
+<p>根据链式法则：</p>
+<p>$$
+\frac{\partial L}{\partial W_{i,j}}
+=
+\sum_n
+\frac{\partial L}{\partial Z_{n,j}}
+\frac{\partial Z_{n,j}}{\partial W_{i,j}}
+$$</p>
+<p>其中：</p>
+<p>$$
+\frac{\partial L}{\partial Z_{n,j}}=G_{n,j}
+$$</p>
+<p>而：</p>
+<p>$$
+\frac{\partial Z_{n,j}}{\partial W_{i,j}}=X_{n,i}
+$$</p>
+<p>所以：</p>
+<p>$$
+\frac{\partial L}{\partial W_{i,j}}
+=
+\sum_n X_{n,i}G_{n,j}
+$$</p>
+<p>写成矩阵：</p>
+<p>$$
+\frac{\partial L}{\partial W}=X^T G
+$$</p>
+<p><strong>偏置路径：$b_j$</strong></p>
+<p>同样：</p>
+<p>$$
+\frac{\partial L}{\partial b_j}
+=
+\sum_n
+\frac{\partial L}{\partial Z_{n,j}}
+\frac{\partial Z_{n,j}}{\partial b_j}
+$$</p>
+<p>仍然有：</p>
+<p>$$
+\frac{\partial L}{\partial Z_{n,j}}=G_{n,j}
+$$</p>
+<p>但是：</p>
+<p>$$
+\frac{\partial Z_{n,j}}{\partial b_j}=1
+$$</p>
+<p>因此：</p>
+<p>$$
+\frac{\partial L}{\partial b_j}
+=
+\sum_n G_{n,j}
+$$</p>
+<p>矩阵写法：</p>
+<pre><code class="language-python">grad_b = G.sum(axis=0)
+</code></pre>
+<p><strong>同一上游梯度沿不同局部路径产生不同结果</strong></p>
+<p>因为链式法则里除了上游梯度 $G$，还要乘上当前运算的局部梯度。</p>
+<p>权重路径：</p>
+<p>$$
+\frac{\partial L}{\partial W}
+=
+\underbrace{\frac{\partial L}{\partial Z}}<em>{G}
+\cdot
+\underbrace{\frac{\partial Z}{\partial W}}</em>{\text{与 }X\text{ 有关}}
+$$</p>
+<p>偏置路径：</p>
+<p>$$
+\frac{\partial L}{\partial b}
+=
+\underbrace{\frac{\partial L}{\partial Z}}<em>{G}
+\cdot
+\underbrace{\frac{\partial Z}{\partial b}}</em>{1}
+$$</p>
+<p>所以：</p>
+<ul>
+<li>权重梯度要乘输入 $X$；</li>
+<li>偏置梯度只需要把 $G$ 在 batch 维度相加。</li>
+</ul>
+<p><strong>用标量例子检查直觉</strong></p>
+<p>假设：</p>
+<p>$$
+z=xw+b
+$$</p>
+<p>损失是 $L$，并且上游已经给出：</p>
+<p>$$
+\frac{\partial L}{\partial z}=g
+$$</p>
+<p>那么：</p>
+<p>$$
+\frac{\partial L}{\partial w}
+=
+\frac{\partial L}{\partial z}
+\frac{\partial z}{\partial w}
+=
+g\cdot x
+$$</p>
+<p>而：</p>
+<p>$$
+\frac{\partial L}{\partial b}
+=
+\frac{\partial L}{\partial z}
+\frac{\partial z}{\partial b}
+=
+g\cdot 1
+=
+g
+$$</p>
+<p>你可以看到，两者都从同一个 $g$ 出发，但：</p>
+<p>$$
+\frac{\partial z}{\partial w}=x
+$$</p>
+<p>而：</p>
+<p>$$
+\frac{\partial z}{\partial b}=1
+$$</p>
+<p>所以结果不同。</p>
+<p><strong>对应到代码</strong></p>
+<pre><code class="language-python">def backward(self, grad_out):
+    self.grad_W = self.x.T @ grad_out
+    self.grad_b = grad_out.sum(axis=0)
+    return grad_out @ self.W.T
+</code></pre>
+<p>这里的：</p>
+<pre><code class="language-python">grad_out
+</code></pre>
+<p>就是：</p>
+<p>$$
+G=\frac{\partial L}{\partial Z}
+$$</p>
+<p>同一个 <code>grad_out</code> 被用于三项计算：</p>
+<pre><code class="language-python">self.x.T @ grad_out       # 得到 ∂L/∂W
+grad_out.sum(axis=0)      # 得到 ∂L/∂b
+grad_out @ self.W.T       # 得到 ∂L/∂X
+</code></pre>
+<p>它们共享同一个上游梯度，但各自乘上不同的局部导数。</p>
+<p>一句话概括：</p>
+<blockquote>
+<p>$W$、$b$ 和 $X$ 都通过同一个输出 $Z$ 影响损失，所以反向传播都从同一个 $G=\partial L/\partial Z$ 开始；但由于 $Z$ 对它们的局部导数不同，最终梯度也不同。</p>
+</blockquote>
+<h3 id="94">9.4 对输入的梯度<a class="headerlink" href="#94" title="Permanent link">&para;</a></h3>
+<p>输入还可能来自前一层，因此必须继续把梯度传回去：</p>
+<p>$$
+\boxed{
+\frac{\partial L}{\partial X}
+=GW^\mathsf{T}
+}
+$$</p>
+<p>形状检查：</p>
+<p>$$
+[B,D_{\text{out}}]
+[D_{\text{out}},D_{\text{in}}]
+\longrightarrow
+[B,D_{\text{in}}]
+$$</p>
+<h3 id="95">9.5 形状检查用于定位矩阵求导错误<a class="headerlink" href="#95" title="Permanent link">&para;</a></h3>
+<p>一个变量的梯度必须与变量本身形状相同：</p>
+<p>$$
+\operatorname{shape}
+\left(
+\frac{\partial L}{\partial W}
+\right)
+=
+\operatorname{shape}(W)
+$$</p>
+<p>如果得到的 grad<em>W 是 $[D</em>{\text{out}},D_{\text{in}}]$，基本可以断定转置位置错了。</p>
+<hr />
+<h2 id="10-mlp">10. 多层 MLP 的完整前向与反向传播<a class="headerlink" href="#10-mlp" title="Permanent link">&para;</a></h2>
+<p>到这里，你已经分别认识了线性层、ReLU、Softmax、交叉熵和单层反向传播。现在再回头看多层 MLP：它没有新的魔法，只是把你已经学会的零件按顺序连接起来。</p>
+<p>上一节只推导了一层：</p>
+<p>$$
+Z=XW+b
+$$</p>
+<p>但多层 MLP 只是把这个结构重复多次。关键点是：</p>
+<blockquote>
+<p>每一层不仅要计算自己的参数梯度，还要计算“损失对本层输入的梯度”，并把它传给前一层。</p>
+</blockquote>
+<p>这就是：</p>
+<p>$$
+\frac{\partial L}{\partial X}=GW^\mathsf{T}
+$$</p>
+<p>为什么重要。</p>
+<h3 id="101-mlp">10.1 三层 MLP 的前向传播<a class="headerlink" href="#101-mlp" title="Permanent link">&para;</a></h3>
+<p>设：</p>
+<p>$$
+A_0=X
+$$</p>
+<p>隐藏层 1：</p>
+<p>$$
+Z_1=A_0W_1+b_1
+$$</p>
+<p>$$
+A_1=ReLU(Z_1)
+$$</p>
+<p>隐藏层 2：</p>
+<p>$$
+Z_2=A_1W_2+b_2
+$$</p>
+<p>$$
+A_2=ReLU(Z_2)
+$$</p>
+<p>输出层：</p>
+<p>$$
+Z_3=A_2W_3+b_3
+$$</p>
+<p>$$
+logits=Z_3
+$$</p>
+<p>代码上就是：</p>
+<pre><code class="language-python">z1 = x @ W1 + b1
+a1 = relu(z1)
+
+z2 = a1 @ W2 + b2
+a2 = relu(z2)
+
+logits = a2 @ W3 + b3
+loss = cross_entropy(logits, y)
+</code></pre>
+<p>假设一个 <code>batch</code> 有 $B$ 个样本，输入维度为 $D_{\text{in}}$，两层隐藏层宽度是 $H_1,H_2$，类别数是 $C$，那么形状应一路这样变化：</p>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th style="text-align: right;">形状</th>
+<th>用人话说</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A_0=X$</td>
+<td style="text-align: right;">$[B,D_{\text{in}}]$</td>
+<td>一批原始输入</td>
+</tr>
+<tr>
+<td>$Z_1,A_1$</td>
+<td style="text-align: right;">$[B,H_1]$</td>
+<td>第一层提取出的特征</td>
+</tr>
+<tr>
+<td>$Z_2,A_2$</td>
+<td style="text-align: right;">$[B,H_2]$</td>
+<td>第二层组合后的特征</td>
+</tr>
+<tr>
+<td>$Z_3=logits$</td>
+<td style="text-align: right;">$[B,C]$</td>
+<td>每个样本对每个类别的分数</td>
+</tr>
+</tbody>
+</table>
+<p>这就是“一层层向前传播”。每一层的输出会成为下一层的输入。</p>
+<h3 id="102-mlp">10.2 三层 MLP 的反向传播<a class="headerlink" href="#102-mlp" title="Permanent link">&para;</a></h3>
+<p>假设交叉熵已经给出：</p>
+<p>$$
+G_3=\frac{\partial L}{\partial Z_3}
+$$</p>
+<p>输出层反向：</p>
+<p>$$
+\frac{\partial L}{\partial W_3}=A_2^\mathsf{T}G_3
+$$</p>
+<p>$$
+\frac{\partial L}{\partial b_3}=\operatorname{sum}(G_3,\text{axis}=0)
+$$</p>
+<p>$$
+\frac{\partial L}{\partial A_2}=G_3W_3^\mathsf{T}
+$$</p>
+<p>注意最后一行：它就是“上一层输出 $A_2$ 对最终 loss 的影响”。</p>
+<p>接着穿过 ReLU：</p>
+<p>$$
+G_2
+=
+\frac{\partial L}{\partial Z_2}
+=
+\frac{\partial L}{\partial A_2}\odot \mathbf{1}[Z_2&gt;0]
+$$</p>
+<p>第二层线性层反向：</p>
+<p>$$
+\frac{\partial L}{\partial W_2}=A_1^\mathsf{T}G_2
+$$</p>
+<p>$$
+\frac{\partial L}{\partial b_2}=\operatorname{sum}(G_2,\text{axis}=0)
+$$</p>
+<p>$$
+\frac{\partial L}{\partial A_1}=G_2W_2^\mathsf{T}
+$$</p>
+<p>再穿过第一层 ReLU：</p>
+<p>$$
+G_1
+=
+\frac{\partial L}{\partial Z_1}
+=
+\frac{\partial L}{\partial A_1}\odot \mathbf{1}[Z_1&gt;0]
+$$</p>
+<p>第一层线性层反向：</p>
+<p>$$
+\frac{\partial L}{\partial W_1}=A_0^\mathsf{T}G_1
+$$</p>
+<p>$$
+\frac{\partial L}{\partial b_1}=\operatorname{sum}(G_1,\text{axis}=0)
+$$</p>
+<p>如果还需要继续往输入传：</p>
+<p>$$
+\frac{\partial L}{\partial A_0}=G_1W_1^\mathsf{T}
+$$</p>
+<p>对于普通训练来说，到这里已经拿到了所有参数梯度，可以更新 $W_1,b_1,W_2,b_2,W_3,b_3$。</p>
+<h3 id="103">10.3 上一层输出变化由局部梯度确定<a class="headerlink" href="#103" title="Permanent link">&para;</a></h3>
+<p>以：</p>
+<p>$$
+Z_3=A_2W_3+b_3
+$$</p>
+<p>为例，$A_2$ 是上一层输出。它通过 $W_3$ 影响 $Z_3$，又通过 $Z_3$ 影响 loss。</p>
+<p>链式法则说：</p>
+<p>$$
+\frac{\partial L}{\partial A_2}
+=
+\frac{\partial L}{\partial Z_3}
+\frac{\partial Z_3}{\partial A_2}
+$$</p>
+<p>矩阵形式就是：</p>
+<p>$$
+\frac{\partial L}{\partial A_2}
+=
+G_3W_3^\mathsf{T}
+$$</p>
+<p>所以不是我们“猜”上一层应该怎么变，而是根据后一层的权重和后一层传回来的梯度算出来。</p>
+<p>直觉上：</p>
+<ul>
+<li>如果某个隐藏特征通过正权重增加了错误类别的 logit，它会收到“往下调”的梯度；</li>
+<li>如果某个隐藏特征通过正权重增加了正确类别的 logit，它会收到“往上调”的梯度；</li>
+<li>如果它前面的 ReLU 是关闭的，也就是 $Z\le0$，那梯度会被 ReLU 截断为 0。</li>
+</ul>
+<h3 id="104-mlp-numpy">10.4 多层 MLP 的 NumPy 实现骨架<a class="headerlink" href="#104-mlp-numpy" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class MLP:
+    def __init__(self, layers):
+        self.layers = layers
+
+    def forward(self, x):
+        for layer in self.layers:
+            x = layer.forward(x)
+        return x
+
+    def backward(self, grad):
+        for layer in reversed(self.layers):
+            grad = layer.backward(grad)
+        return grad
+</code></pre>
+<p>如果 <code>layers</code> 是：</p>
+<pre><code class="language-python">layers = [
+    Linear(2, 16, rng),
+    ReLU(),
+    Linear(16, 16, rng),
+    ReLU(),
+    Linear(16, 2, rng),
+]
+</code></pre>
+<p>那么前向传播就是按列表从前往后执行，反向传播就是按列表从后往前执行。</p>
+<p>这就是多层 MLP 代码的核心框架。</p>
+<h3 id="105">10.5 前向缓存支持逐层反向传播<a class="headerlink" href="#105" title="Permanent link">&para;</a></h3>
+<p>“从后往前”不代表要重新做一次前向计算。前向经过每一层时，要把反向需要的信息保存下来：</p>
+<ul>
+<li>Linear 保存它当时收到的输入；计算权重梯度时需要它。</li>
+<li>ReLU 保存哪些位置大于 0；反向时只有这些位置允许梯度通过。</li>
+<li>每层自己的权重会保留在层对象中；计算“传给前一层的反馈”时需要它。</li>
+</ul>
+<p>因此，<code>cache</code> 不是额外的神秘数据，而是“这层刚才到底看到了什么”的小笔记。下面是把整条公式流程翻译成 NumPy 伪代码的版本：</p>
+<pre><code class="language-python"># 前向：从输入一路走到 logits，并保存每层需要的中间量
+A = X
+caches = []
+
+for layer in hidden_layers:
+    Z = A @ layer.W + layer.b
+    A_next = relu(Z)
+    caches.append((A, Z, layer.W))
+    A = A_next
+
+logits = A @ W_out + b_out
+loss = cross_entropy(logits, y)
+
+# 反向：从输出层的错误开始，按相反顺序把反馈传回去
+G = d_cross_entropy_d_logits(logits, y)
+
+grad_W_out = A.T @ G
+grad_b_out = G.sum(axis=0)
+G = G @ W_out.T
+
+for A_prev, Z, W in reversed(caches):
+    G = G * (Z &gt; 0)       # 先穿过 ReLU
+    grad_W = A_prev.T @ G # 再得到本层参数梯度
+    grad_b = G.sum(axis=0)
+    G = G @ W.T           # 继续传给更前一层
+</code></pre>
+<p>每一层重复同一个规则：接收后一层传来的反馈，算自己的参数该如何改，再把“本层输入应该如何改”的反馈传给前一层。这就是多层反向传播。</p>
+<hr />
+<h2 id="11-mlp_1">11. MLP 的表达能力与决策边界<a class="headerlink" href="#11-mlp_1" title="Permanent link">&para;</a></h2>
+<p>一个 MLP（多层感知机）可以写为：</p>
+<p>$$
+Z_1=XW_1+b_1,\quad H=ReLU(Z_1),\quad Z_2=HW_2+b_2
+$$</p>
+<p><code>Z2</code> 是 logits。线性层叠线性层仍然只是线性变换；ReLU 提供非线性，使网络能表达弯曲的决策边界。</p>
+<p>$$
+ReLU(x)=\max(0,x)
+$$</p>
+<h2 id="12-numpy-mlp">12. NumPy MLP 的核心组件实现<a class="headerlink" href="#12-numpy-mlp" title="Permanent link">&para;</a></h2>
+<p>本节仍然按组件讲解，方便逐个理解和调试；完整拼装后的可运行脚本见：<a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/">完整模型代码</a>。</p>
+<h3 id="121-linear">12.1 Linear 层：线性变换与参数梯度<a class="headerlink" href="#121-linear" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">import numpy as np
+
+class Linear:
+    def __init__(self, in_features, out_features, rng):
+        # 简单的方差缩放初始化，避免激活一开始过大
+        self.W = rng.normal(0, np.sqrt(2 / in_features),
+                            size=(in_features, out_features))
+        self.b = np.zeros(out_features)
+
+    def forward(self, x):
+        self.x = x
+        return x @ self.W + self.b
+
+    def backward(self, grad_out):
+        self.grad_W = self.x.T @ grad_out
+        self.grad_b = grad_out.sum(axis=0)
+        return grad_out @ self.W.T
+</code></pre>
+<p>形状检查：<code>x:[B,in]</code>，<code>W:[in,out]</code>，<code>grad_out:[B,out]</code>，所以 <code>grad_W:[in,out]</code>，传回输入的梯度为 <code>[B,in]</code>。</p>
+<h3 id="122-relu">12.2 ReLU 层：非线性与梯度掩码<a class="headerlink" href="#122-relu" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">class ReLU:
+    def forward(self, x):
+        self.mask = x &gt; 0
+        return np.maximum(x, 0)
+
+    def backward(self, grad_out):
+        return grad_out * self.mask
+</code></pre>
+<h3 id="123-mlp">12.3 MLP 容器：按顺序组织网络层<a class="headerlink" href="#123-mlp" title="Permanent link">&para;</a></h3>
+<p>有了 <code>Linear</code> 和 <code>ReLU</code>，多层 MLP 不需要为每一层写一套新逻辑，只要把层放进列表：</p>
+<pre><code class="language-python">class MLP:
+    def __init__(self, input_dim, hidden_dims, num_classes, rng):
+        dims = [input_dim] + list(hidden_dims) + [num_classes]
+        layers = []
+
+        for i in range(len(dims) - 1):
+            layers.append(Linear(dims[i], dims[i + 1], rng))
+
+            # 最后一层输出 logits，不接 ReLU
+            if i &lt; len(dims) - 2:
+                layers.append(ReLU())
+
+        self.layers = layers
+
+    def forward(self, x):
+        for layer in self.layers:
+            x = layer.forward(x)
+        return x
+
+    def backward(self, grad):
+        for layer in reversed(self.layers):
+            grad = layer.backward(grad)
+        return grad
+</code></pre>
+<p>如果写：</p>
+<pre><code class="language-python">model = MLP(
+    input_dim=2,
+    hidden_dims=[32, 32],
+    num_classes=2,
+    rng=rng,
+)
+</code></pre>
+<p>它实际表示：</p>
+<pre><code class="language-text">Linear(2, 32)
+ReLU()
+Linear(32, 32)
+ReLU()
+Linear(32, 2)
+</code></pre>
+<p>前向传播按顺序执行：</p>
+<pre><code class="language-text">第 1 层 → 第 2 层 → 第 3 层 → ...
+</code></pre>
+<p>反向传播按反方向执行：</p>
+<pre><code class="language-text">最后一层 → 倒数第二层 → ... → 第一层
+</code></pre>
+<p>这就是多层神经网络的程序框架：每一层只负责自己的 forward/backward，<code>MLP</code> 容器负责把层串起来。</p>
+<p>这段代码是在把多个 <code>Linear</code> 和 <code>ReLU</code> 层自动组装成一个多层感知机 MLP，并规定前向传播和反向传播如何依次穿过这些层。</p>
+<hr />
+<p><strong>MLP 类的职责</strong></p>
+<pre><code class="language-python">class MLP:
+</code></pre>
+<p><code>MLP</code> 是多层感知机，英文是 Multi-Layer Perceptron。</p>
+<p>它通常由若干个这样的结构组成：</p>
+<pre><code>Linear → ReLU → Linear → ReLU → Linear
+</code></pre>
+<p>最后一层一般只输出 logits，不接 ReLU。</p>
+<hr />
+<p><strong>初始化网络结构</strong></p>
+<pre><code class="language-python">def __init__(self, input_dim, hidden_dims, num_classes, rng):
+</code></pre>
+<p>参数含义：</p>
+<ul>
+<li><code>input_dim</code>：输入特征数</li>
+<li><code>hidden_dims</code>：隐藏层维度</li>
+<li><code>num_classes</code>：类别数，也就是最终输出维度</li>
+<li><code>rng</code>：随机数生成器，用来初始化权重</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-python">model = MLP(
+    input_dim=4,
+    hidden_dims=[8, 6],
+    num_classes=3,
+    rng=rng
+)
+</code></pre>
+<p>表示网络结构是：</p>
+<pre><code>4 → 8 → 6 → 3
+</code></pre>
+<p>也就是：</p>
+<pre><code>输入层：4 个特征
+第一隐藏层：8 个神经元
+第二隐藏层：6 个神经元
+输出层：3 个类别
+</code></pre>
+<hr />
+<p><strong>构造各层维度列表</strong></p>
+<pre><code class="language-python">dims = [input_dim] + list(hidden_dims) + [num_classes]
+</code></pre>
+<p>假设：</p>
+<pre><code class="language-python">input_dim = 4
+hidden_dims = [8, 6]
+num_classes = 3
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">[input_dim]
+</code></pre>
+<p>是：</p>
+<pre><code class="language-python">[4]
+</code></pre>
+<pre><code class="language-python">list(hidden_dims)
+</code></pre>
+<p>是：</p>
+<pre><code class="language-python">[8, 6]
+</code></pre>
+<pre><code class="language-python">[num_classes]
+</code></pre>
+<p>是：</p>
+<pre><code class="language-python">[3]
+</code></pre>
+<p>拼起来：</p>
+<pre><code class="language-python">dims = [4] + [8, 6] + [3]
+</code></pre>
+<p>得到：</p>
+<pre><code class="language-python">dims = [4, 8, 6, 3]
+</code></pre>
+<p>这串数字描述了每一层的维度。</p>
+<hr />
+<p><strong>创建网络层容器</strong></p>
+<pre><code class="language-python">layers = []
+</code></pre>
+<p>先创建一个空列表，后面逐个把层加入进去。</p>
+<p>最终可能变成：</p>
+<pre><code class="language-python">[
+    Linear(4, 8),
+    ReLU(),
+    Linear(8, 6),
+    ReLU(),
+    Linear(6, 3)
+]
+</code></pre>
+<hr />
+<p><strong>循环构造相邻线性层</strong></p>
+<pre><code class="language-python">for i in range(len(dims) - 1):
+</code></pre>
+<p>假设：</p>
+<pre><code class="language-python">dims = [4, 8, 6, 3]
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">len(dims)
+</code></pre>
+<p>是 <code>4</code>，所以：</p>
+<pre><code class="language-python">range(len(dims) - 1)
+</code></pre>
+<p>就是：</p>
+<pre><code class="language-python">range(3)
+</code></pre>
+<p><code>i</code> 会依次取：</p>
+<pre><code>0、1、2
+</code></pre>
+<p>为什么是 <code>len(dims) - 1</code>？</p>
+<p>因为四个维度之间只有三次连接：</p>
+<pre><code>4 → 8
+8 → 6
+6 → 3
+</code></pre>
+<p>所以需要三个 <code>Linear</code> 层。</p>
+<hr />
+<p><strong>添加 Linear 层并检查形状</strong></p>
+<pre><code class="language-python">layers.append(Linear(dims[i], dims[i + 1], rng))
+</code></pre>
+<p>每次用相邻两个维度创建一个线性层。</p>
+<p><strong>第一次构建：输入层到第一隐藏层</strong></p>
+<pre><code class="language-python">i = 0
+</code></pre>
+<p>所以：</p>
+<pre><code class="language-python">Linear(dims[0], dims[1], rng)
+</code></pre>
+<p>即：</p>
+<pre><code class="language-python">Linear(4, 8, rng)
+</code></pre>
+<p><strong>第二次构建：第一隐藏层到第二隐藏层</strong></p>
+<pre><code class="language-python">i = 1
+</code></pre>
+<p>得到：</p>
+<pre><code class="language-python">Linear(8, 6, rng)
+</code></pre>
+<p><strong>第三次构建：第二隐藏层到输出层</strong></p>
+<pre><code class="language-python">i = 2
+</code></pre>
+<p>得到：</p>
+<pre><code class="language-python">Linear(6, 3, rng)
+</code></pre>
+<hr />
+<p><strong>输出层不接 ReLU 的原因</strong></p>
+<pre><code class="language-python">if i &lt; len(dims) - 2:
+    layers.append(ReLU())
+</code></pre>
+<p>还是假设：</p>
+<pre><code class="language-python">dims = [4, 8, 6, 3]
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">len(dims) - 2 = 2
+</code></pre>
+<p>所以判断条件是：</p>
+<pre><code class="language-python">if i &lt; 2:
+</code></pre>
+<p><strong>索引 <code>i = 0</code> 时的层结构</strong></p>
+<pre><code class="language-python">0 &lt; 2
+</code></pre>
+<p>成立，添加 ReLU。</p>
+<p><strong>索引 <code>i = 1</code> 时的层结构</strong></p>
+<pre><code class="language-python">1 &lt; 2
+</code></pre>
+<p>成立，添加 ReLU。</p>
+<p><strong>索引 <code>i = 2</code> 时的层结构</strong></p>
+<pre><code class="language-python">2 &lt; 2
+</code></pre>
+<p>不成立，不添加 ReLU。</p>
+<p>所以最终结构是：</p>
+<pre><code>Linear(4,8)
+ReLU
+Linear(8,6)
+ReLU
+Linear(6,3)
+</code></pre>
+<p>最后一层输出的是 logits。</p>
+<p>如果最后一层也接 ReLU，那么 logits 会全部变成非负数，这会不必要地限制模型输出。</p>
+<p>分类任务中通常直接把最后的 logits 交给交叉熵：</p>
+<pre><code class="language-python">loss = cross_entropy(logits, labels)
+</code></pre>
+<hr />
+<p><strong>保存构建完成的网络层</strong></p>
+<pre><code class="language-python">self.layers = layers
+</code></pre>
+<p>把局部变量 <code>layers</code> 保存到当前模型对象中。</p>
+<p>以后可以访问：</p>
+<pre><code class="language-python">model.layers
+</code></pre>
+<p>如果不写 <code>self.layers</code>，初始化函数结束后，局部变量 <code>layers</code> 就不能在其他方法中使用了。</p>
+<hr />
+<p><strong>MLP 容器的顺序前向传播</strong></p>
+<pre><code class="language-python">def forward(self, x):
+    for layer in self.layers:
+        x = layer.forward(x)
+    return x
+</code></pre>
+<p>这段代码让输入按顺序穿过所有层。</p>
+<p>假设：</p>
+<pre><code class="language-python">self.layers = [
+    Linear1,
+    ReLU1,
+    Linear2,
+    ReLU2,
+    Linear3
+]
+</code></pre>
+<p>循环等价于：</p>
+<pre><code class="language-python">x = Linear1.forward(x)
+x = ReLU1.forward(x)
+x = Linear2.forward(x)
+x = ReLU2.forward(x)
+x = Linear3.forward(x)
+</code></pre>
+<p>最后：</p>
+<pre><code class="language-python">return x
+</code></pre>
+<p>返回最终 logits。</p>
+<hr />
+<p><strong>逐层覆盖 <code>x</code> 的原因</strong></p>
+<pre><code class="language-python">x = layer.forward(x)
+</code></pre>
+<p>因为每一层的输出，要成为下一层的输入。</p>
+<p>流程是：</p>
+<pre><code>原始 x
+  ↓ Linear1
+新的 x
+  ↓ ReLU1
+新的 x
+  ↓ Linear2
+新的 x
+  ↓ ReLU2
+新的 x
+  ↓ Linear3
+最终 logits
+</code></pre>
+<p>这里变量名一直叫 <code>x</code>，但其中保存的内容不断变化。</p>
+<hr />
+<p><strong>MLP 容器的逆序反向传播</strong></p>
+<pre><code class="language-python">def backward(self, grad):
+    for layer in reversed(self.layers):
+        grad = layer.backward(grad)
+    return grad
+</code></pre>
+<p>前向传播是正序：</p>
+<pre><code>Linear1 → ReLU1 → Linear2 → ReLU2 → Linear3
+</code></pre>
+<p>反向传播必须倒序：</p>
+<pre><code>Linear3 → ReLU2 → Linear2 → ReLU1 → Linear1
+</code></pre>
+<p>因此使用：</p>
+<pre><code class="language-python">reversed(self.layers)
+</code></pre>
+<hr />
+<p><strong>反向传播必须逆序执行的原因</strong></p>
+<p>因为复合函数求导遵循链式法则。</p>
+<p>假设：</p>
+<pre><code>x → layer1 → h1 → layer2 → h2 → loss
+</code></pre>
+<p>求梯度时要从损失开始：</p>
+<pre><code>∂L/∂h2
+   ↓
+layer2.backward
+   ↓
+∂L/∂h1
+   ↓
+layer1.backward
+   ↓
+∂L/∂x
+</code></pre>
+<p>不能从第一层开始，因为第一层要计算梯度时，需要先知道后一层传回来的梯度。</p>
+<hr />
+<p><strong><code>grad = layer.backward(grad)</code> 的数据含义</strong></p>
+<p>最开始的 <code>grad</code> 通常是：</p>
+<p>$$
+\frac{\partial L}{\partial \text{logits}}
+$$</p>
+<p>它先传给最后一层：</p>
+<pre><code class="language-python">grad = last_layer.backward(grad)
+</code></pre>
+<p>最后一层返回：</p>
+<p>$$
+\frac{\partial L}{\partial \text{它的输入}}
+$$</p>
+<p>这个返回值再传给前一层：</p>
+<pre><code class="language-python">grad = previous_layer.backward(grad)
+</code></pre>
+<p>所以每一次循环，<code>grad</code> 的含义都在变化。</p>
+<p>例如：</p>
+<pre><code>最开始：
+grad = ∂L/∂Z3
+
+经过最后一个 Linear：
+grad = ∂L/∂A2
+
+经过 ReLU：
+grad = ∂L/∂Z2
+
+经过前一个 Linear：
+grad = ∂L/∂A1
+</code></pre>
+<hr />
+<p><strong>两层隐藏层的完整 MLP 示例</strong></p>
+<pre><code class="language-python">model = MLP(
+    input_dim=4,
+    hidden_dims=[8, 6],
+    num_classes=3,
+    rng=rng
+)
+</code></pre>
+<p>构造出的层：</p>
+<pre><code>self.layers[0] = Linear(4, 8)
+self.layers[1] = ReLU()
+self.layers[2] = Linear(8, 6)
+self.layers[3] = ReLU()
+self.layers[4] = Linear(6, 3)
+</code></pre>
+<p>前向：</p>
+<pre><code>X: (batch, 4)
+ ↓ Linear(4,8)
+(batch, 8)
+ ↓ ReLU
+(batch, 8)
+ ↓ Linear(8,6)
+(batch, 6)
+ ↓ ReLU
+(batch, 6)
+ ↓ Linear(6,3)
+logits: (batch, 3)
+</code></pre>
+<p>反向：</p>
+<pre><code>∂L/∂logits: (batch, 3)
+ ↓ Linear(6,3).backward
+(batch, 6)
+ ↓ ReLU.backward
+(batch, 6)
+ ↓ Linear(8,6).backward
+(batch, 8)
+ ↓ ReLU.backward
+(batch, 8)
+ ↓ Linear(4,8).backward
+(batch, 4)
+</code></pre>
+<hr />
+<p><strong>MLP 容器实现的核心要点</strong></p>
+<p>前向传播：</p>
+<pre><code class="language-python">for layer in self.layers:
+</code></pre>
+<p>按正常顺序经过每一层。</p>
+<p>反向传播：</p>
+<pre><code class="language-python">for layer in reversed(self.layers):
+</code></pre>
+<p>按相反顺序经过每一层。</p>
+<p>整个类的核心就是：</p>
+<pre><code>初始化：自动搭建网络
+forward：从前往后计算
+backward：从后往前传梯度
+</code></pre>
+<p>你问的其实是两个关键点：</p>
+<ol>
+<li><code>CrossEntropy</code> 到底是什么；</li>
+<li><code>MLP.forward()</code> 看起来没有保存中间结果，反向传播怎么还能算。</li>
+</ol>
+<hr />
+<h3 id="124-softmax">12.4 Softmax 与交叉熵的整体数据流<a class="headerlink" href="#124-softmax" title="Permanent link">&para;</a></h3>
+<p><code>CrossEntropy</code> 中文叫<strong>交叉熵损失</strong>，主要用于分类任务。</p>
+<p>假设有三个类别，模型最后输出：</p>
+<pre><code>logits = [2.0, 1.0, 0.1]
+</code></pre>
+<p>这些不是概率，只是模型对三个类别的原始评分。</p>
+<p>如果真实类别是第 0 类，可以写成 one-hot：</p>
+<pre><code>y = [1, 0, 0]
+</code></pre>
+<p>先经过 Softmax 得到概率：</p>
+<pre><code>p ≈ [0.659, 0.242, 0.099]
+</code></pre>
+<p>交叉熵损失是：</p>
+<p>$$
+L=-\sum_j y_j\log p_j
+$$</p>
+<p>因为真实标签中只有正确类别位置是 1，所以实际相当于：</p>
+<p>$$
+L=-\log p_{\text{正确类别}}
+$$</p>
+<p>这里正确类别概率是 <code>0.659</code>，所以：</p>
+<p>$$
+L=-\log 0.659
+$$</p>
+<p>大约是：</p>
+<pre><code>0.417
+</code></pre>
+<p><strong>交叉熵衡量的对象</strong></p>
+<p>交叉熵在惩罚：</p>
+<blockquote>
+<p>模型给正确类别的概率太低。</p>
+</blockquote>
+<p>例如正确类别概率：</p>
+<pre><code>0.9  → 损失很小
+0.5  → 损失较大
+0.01 → 损失非常大
+</code></pre>
+<p>所以训练目标就是让正确类别的概率越来越高。</p>
+<hr />
+<p><strong>交叉熵不需要预先执行 Softmax 的原因</strong></p>
+<p>代码一般写成：</p>
+<pre><code class="language-python">loss, grad = cross_entropy(logits, labels)
+</code></pre>
+<p>而不是：</p>
+<pre><code class="language-python">probs = softmax(logits)
+loss, grad = cross_entropy(probs, labels)
+</code></pre>
+<p>因为交叉熵函数通常内部已经完成：</p>
+<pre><code>logits
+  ↓
+softmax / log-softmax
+  ↓
+计算损失
+</code></pre>
+<p>并且它还能直接得到对 logits 的梯度：</p>
+<p>$$
+\frac{\partial L}{\partial Z}
+=
+p-y
+$$</p>
+<p>其中：</p>
+<ul>
+<li>$Z$：logits</li>
+<li>$p$：Softmax 概率</li>
+<li>$y$：真实标签 one-hot</li>
+</ul>
+<p>例如：</p>
+<pre><code>p = [0.659, 0.242, 0.099]
+y = [1,     0,     0]
+</code></pre>
+<p>梯度就是：</p>
+<pre><code>grad = [-0.341, 0.242, 0.099]
+</code></pre>
+<p>这个梯度会成为整个神经网络反向传播的起点：</p>
+<pre><code class="language-python">model.backward(grad)
+</code></pre>
+<hr />
+<p><strong>各层对象独立管理前向缓存</strong></p>
+<p>代码是：</p>
+<pre><code class="language-python">def forward(self, x):
+    for layer in self.layers:
+        x = layer.forward(x)
+    return x
+</code></pre>
+<p>看起来只是让 <code>x</code> 一路向后走，并没有写：</p>
+<pre><code class="language-python">cache.append(x)
+</code></pre>
+<p>但缓存并不是保存在 <code>MLP</code> 里，而是保存在<strong>每个层对象自己内部</strong>。</p>
+<p>例如你之前的 <code>Linear</code>：</p>
+<pre><code class="language-python">def forward(self, x):
+    self.x = x
+    return x @ self.W + self.b
+</code></pre>
+<p>这里：</p>
+<pre><code class="language-python">self.x = x
+</code></pre>
+<p>就是在缓存中间数据。</p>
+<p>每个 <code>Linear</code> 实例都有自己的 <code>self.x</code>。</p>
+<hr />
+<p><strong>各 Linear 层独立保存输入缓存</strong></p>
+<p>假设网络是：</p>
+<pre><code>Linear1 → ReLU1 → Linear2 → ReLU2 → Linear3
+</code></pre>
+<p>前向传播时：</p>
+<pre><code class="language-python">x = Linear1.forward(x)
+</code></pre>
+<p><code>Linear1</code> 内部保存：</p>
+<pre><code class="language-python">Linear1.x = 原始输入
+</code></pre>
+<p>然后：</p>
+<pre><code class="language-python">x = ReLU1.forward(x)
+</code></pre>
+<p><code>ReLU1</code> 内部可能保存：</p>
+<pre><code class="language-python">ReLU1.mask = 输入是否大于 0
+</code></pre>
+<p>然后：</p>
+<pre><code class="language-python">x = Linear2.forward(x)
+</code></pre>
+<p><code>Linear2</code> 内部保存：</p>
+<pre><code class="language-python">Linear2.x = ReLU1 的输出
+</code></pre>
+<p>虽然这些对象都属于 <code>Linear</code> 类，但它们是不同实例，所以各自有独立的数据：</p>
+<pre><code>Linear1.x
+Linear2.x
+Linear3.x
+</code></pre>
+<p>互不覆盖。</p>
+<hr />
+<p><strong>逐层前向传播的数据变化</strong></p>
+<p>假设原始输入是 $X$。</p>
+<p>第一层：</p>
+<p>$$
+Z_1=XW_1+b_1
+$$</p>
+<p>此时第一个 Linear 保存：</p>
+<pre><code>Linear1.x = X
+</code></pre>
+<p>经过 ReLU：</p>
+<p>$$
+A_1=\operatorname{ReLU}(Z_1)
+$$</p>
+<p>ReLU 保存：</p>
+<pre><code>ReLU1.mask = Z1 &gt; 0
+</code></pre>
+<p>第二个 Linear：</p>
+<p>$$
+Z_2=A_1W_2+b_2
+$$</p>
+<p>第二个 Linear 保存：</p>
+<pre><code>Linear2.x = A1
+</code></pre>
+<p>所以虽然 MLP 没有统一建立一个大缓存，每一层都保存了自己反向传播所需的信息。</p>
+<hr />
+<p><strong>ReLU 层需要保存的缓存</strong></p>
+<p>一个可能的 <code>ReLU</code> 实现是：</p>
+<pre><code class="language-python">class ReLU:
+    def forward(self, x):
+        self.mask = x &gt; 0
+        return np.maximum(0, x)
+
+    def backward(self, grad_out):
+        return grad_out * self.mask
+</code></pre>
+<p>前向传播时：</p>
+<pre><code class="language-python">self.mask = x &gt; 0
+</code></pre>
+<p>记录哪些位置原来是正数。</p>
+<p>例如输入：</p>
+<pre><code>[-2, 3, 0, 5]
+</code></pre>
+<p>mask 是：</p>
+<pre><code>[False, True, False, True]
+</code></pre>
+<p>反向传播时：</p>
+<pre><code class="language-python">grad_out * self.mask
+</code></pre>
+<p>负数位置的梯度变成 0，正数位置保留。</p>
+<p>因此 ReLU 不一定要保存完整的 <code>x</code>，只保存一个布尔掩码就够了。</p>
+<hr />
+<p><strong>反向传播对各层缓存的使用</strong></p>
+<p>MLP 的反向传播是：</p>
+<pre><code class="language-python">def backward(self, grad):
+    for layer in reversed(self.layers):
+        grad = layer.backward(grad)
+    return grad
+</code></pre>
+<p>它反向经过所有层。</p>
+<p>假设正向是：</p>
+<pre><code>Linear1 → ReLU1 → Linear2 → ReLU2 → Linear3
+</code></pre>
+<p>反向就是：</p>
+<pre><code>Linear3 → ReLU2 → Linear2 → ReLU1 → Linear1
+</code></pre>
+<p>当走到 <code>Linear3.backward()</code> 时，它使用自己前向保存的：</p>
+<pre><code class="language-python">Linear3.x
+</code></pre>
+<p>计算：</p>
+<pre><code class="language-python">self.grad_W = self.x.T @ grad_out
+self.grad_b = grad_out.sum(axis=0)
+grad_x = grad_out @ self.W.T
+</code></pre>
+<p>走到 <code>ReLU2.backward()</code> 时，它使用自己保存的：</p>
+<pre><code class="language-python">ReLU2.mask
+</code></pre>
+<p>走到 <code>Linear2.backward()</code> 时，它使用：</p>
+<pre><code class="language-python">Linear2.x
+</code></pre>
+<p>所以每层都知道自己该怎么反向计算。</p>
+<hr />
+<p><strong>中间激活值与模型参数的更新方式</strong></p>
+<p>这里要区分两种东西。</p>
+<p><strong>中间激活值在前向传播中重新计算</strong></p>
+<p>例如：</p>
+<pre><code>Z1、A1、Z2、A2
+</code></pre>
+<p>它们通常不是被梯度下降“更新”的参数。</p>
+<p>每一次前向传播，都会根据当前输入和参数重新计算，并覆盖旧缓存：</p>
+<pre><code class="language-python">self.x = x
+</code></pre>
+<p>它们只是临时数据。</p>
+<p><strong>模型参数由优化器更新</strong></p>
+<p>真正需要训练更新的是：</p>
+<pre><code>W、b
+</code></pre>
+<p><code>backward()</code> 只负责算出梯度：</p>
+<pre><code class="language-python">self.grad_W
+self.grad_b
+</code></pre>
+<p>还需要优化器或手动代码更新：</p>
+<pre><code class="language-python">layer.W -= lr * layer.grad_W
+layer.b -= lr * layer.grad_b
+</code></pre>
+<p>所以完整流程是：</p>
+<pre><code class="language-python">#### 1. 前向传播，并由各层缓存中间数据
+logits = model.forward(x)
+
+#### 2. 交叉熵计算损失和对 logits 的梯度
+loss, grad_logits = cross_entropy(logits, labels)
+
+#### 3. 反向传播，各层利用自己的缓存计算梯度
+model.backward(grad_logits)
+
+#### 4. 更新各个 Linear 层的 W 和 b
+for layer in model.layers:
+    if isinstance(layer, Linear):
+        layer.W -= lr * layer.grad_W
+        layer.b -= lr * layer.grad_b
+</code></pre>
+<hr />
+<p><strong>MLP 容器不集中保存中间值的原因</strong></p>
+<p>当然也可以集中保存：</p>
+<pre><code class="language-python">activations = [x]
+</code></pre>
+<p>但面向对象的写法通常让每个层自己负责：</p>
+<pre><code>Linear 保存输入 x
+ReLU 保存 mask
+其他层保存自己需要的信息
+</code></pre>
+<p>这样 <code>MLP</code> 只负责安排顺序：</p>
+<pre><code>谁先执行
+谁后执行
+反向时谁先回来
+</code></pre>
+<p>而每个层负责自己的数学计算和缓存。</p>
+<p>可以理解为：</p>
+<blockquote>
+<p>MLP 是总调度员，每个 layer 是独立工位。工位自己保存工作记录，反向检查时再拿出来用。</p>
+</blockquote>
+<hr />
+<p><strong>缓存机制的使用限制</strong></p>
+<p>因为缓存保存在：</p>
+<pre><code class="language-python">self.x
+self.mask
+</code></pre>
+<p>所以一般必须按顺序：</p>
+<pre><code>forward → backward
+</code></pre>
+<p>如果你连续做两次前向：</p>
+<pre><code class="language-python">model.forward(x1)
+model.forward(x2)
+model.backward(grad)
+</code></pre>
+<p>第一次 <code>x1</code> 的缓存会被第二次 <code>x2</code> 覆盖，反向传播使用的会是 <code>x2</code> 的缓存。</p>
+<p>这种简化实现适合：</p>
+<pre><code>一次 forward
+一次 backward
+再更新参数
+</code></pre>
+<p>真正的 PyTorch 会建立计算图，能管理更复杂的情形。</p>
+<p>最核心的一句话是：</p>
+<blockquote>
+<p><code>MLP.forward()</code> 本身没有集中缓存，但每个 <code>Linear</code>、<code>ReLU</code> 对象在自己的 <code>forward()</code> 中保存了反向传播所需的信息；<code>backward()</code> 倒序调用它们时，各层会取出自己的缓存计算梯度。</p>
+</blockquote>
+<h3 id="125-softmaxcrossentropy">12.5 SoftmaxCrossEntropy 的稳定实现<a class="headerlink" href="#125-softmaxcrossentropy" title="Permanent link">&para;</a></h3>
+<p>把二者合并可得到更稳定、简洁的梯度：</p>
+<pre><code class="language-python">class SoftmaxCrossEntropy:
+    def forward(self, logits, targets):
+        shifted = logits - logits.max(axis=1, keepdims=True)
+        exp = np.exp(shifted)
+        self.probs = exp / exp.sum(axis=1, keepdims=True)
+        self.targets = targets
+        n = logits.shape[0]
+        return -np.log(self.probs[np.arange(n), targets] + 1e-12).mean()
+
+    def backward(self):
+        n = self.probs.shape[0]
+        grad = self.probs.copy()
+        grad[np.arange(n), self.targets] -= 1
+        return grad / n
+</code></pre>
+<p>为什么梯度是 <code>p-y_onehot</code>？Softmax 的各类别互相耦合，与交叉熵求导后恰好化简：错误类别按当前概率向下压，正确类别增加 <code>-1</code> 的纠正项。</p>
+<p>这段代码是在手写一个<strong>“Softmax + 交叉熵损失”合并层</strong>。</p>
+<p>它做两件事：</p>
+<pre><code>forward：根据 logits 和真实标签，算出一个损失值
+backward：算出损失对 logits 的梯度
+</code></pre>
+<p>最关键的结果是：</p>
+<p>$$
+\frac{\partial L}{\partial logits}
+=
+\frac{p-y_{\text{one-hot}}}{n}
+$$</p>
+<p>也就是图片最下面写的：</p>
+<pre><code>p - y_onehot
+</code></pre>
+<hr />
+<p><strong>输入的 Logits 与真实标签</strong></p>
+<p>假设一个 batch 有 3 个样本，要分成 4 类：</p>
+<pre><code class="language-python">logits.shape == (3, 4)
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">logits = np.array([
+    [2.0, 1.0, 0.1, -1.0],
+    [0.2, 1.5, 0.4, 0.8],
+    [1.0, 0.5, 2.0, 0.1]
+])
+</code></pre>
+<p>每一行对应一个样本，每一列对应一个类别。</p>
+<p>真实类别可能是：</p>
+<pre><code class="language-python">targets = np.array([0, 3, 2])
+</code></pre>
+<p>意思是：</p>
+<ul>
+<li>第 1 个样本正确类别是第 0 类；</li>
+<li>第 2 个样本正确类别是第 3 类；</li>
+<li>第 3 个样本正确类别是第 2 类。</li>
+</ul>
+<hr />
+<p><strong>SoftmaxCrossEntropy 的前向计算</strong></p>
+<pre><code class="language-python">def forward(self, logits, targets):
+</code></pre>
+<p>接收：</p>
+<ul>
+<li><code>logits</code>：模型原始输出；</li>
+<li><code>targets</code>：每个样本的正确类别编号。</li>
+</ul>
+<hr />
+<p><strong>稳定计算 Softmax 概率</strong></p>
+<pre><code class="language-python">shifted = logits - logits.max(axis=1, keepdims=True)
+</code></pre>
+<p>每一行减去这一行的最大值。</p>
+<p>例如：</p>
+<pre><code>[2.0, 1.0, 0.1]
+</code></pre>
+<p>减去最大值 <code>2.0</code>：</p>
+<pre><code>[0.0, -1.0, -1.9]
+</code></pre>
+<p>这样是为了防止：</p>
+<pre><code class="language-python">np.exp(logits)
+</code></pre>
+<p>出现指数溢出。</p>
+<p><code>axis=1</code> 表示每一行分别处理。</p>
+<hr />
+<pre><code class="language-python">exp = np.exp(shifted)
+</code></pre>
+<p>对每个数取指数。</p>
+<hr />
+<pre><code class="language-python">self.probs = exp / exp.sum(axis=1, keepdims=True)
+</code></pre>
+<p>每一行除以这一行指数的总和，得到 Softmax 概率。</p>
+<p>例如：</p>
+<pre><code>logits = [2.0, 1.0, 0.1]
+</code></pre>
+<p>可能得到：</p>
+<pre><code>probs ≈ [0.659, 0.242, 0.099]
+</code></pre>
+<p>并把它保存到：</p>
+<pre><code class="language-python">self.probs
+</code></pre>
+<p>因为反向传播还要用。</p>
+<hr />
+<p><strong>保存真实标签用于反向传播</strong></p>
+<pre><code class="language-python">self.targets = targets
+</code></pre>
+<p>把正确类别也缓存起来，反向传播需要知道哪个位置是正确类别。</p>
+<hr />
+<p><strong>读取 Batch 大小</strong></p>
+<pre><code class="language-python">n = logits.shape[0]
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">logits.shape == (32, 10)
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">n = 32
+</code></pre>
+<p>代表有 32 个样本。</p>
+<hr />
+<p><strong>提取每个样本的正确类别概率</strong></p>
+<p>最难的是这一句：</p>
+<pre><code class="language-python">self.probs[np.arange(n), targets]
+</code></pre>
+<p>假设：</p>
+<pre><code class="language-python">targets = [0, 2, 1]
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">np.arange(n)
+</code></pre>
+<p>是：</p>
+<pre><code>[0, 1, 2]
+</code></pre>
+<p>组合起来取的是：</p>
+<pre><code>self.probs[0, 0]
+self.probs[1, 2]
+self.probs[2, 1]
+</code></pre>
+<p>也就是：</p>
+<blockquote>
+<p>对第 0 个样本，取第 0 类的概率；
+对第 1 个样本，取第 2 类的概率；
+对第 2 个样本，取第 1 类的概率。</p>
+</blockquote>
+<p>这些正好都是每个样本的<strong>正确类别概率</strong>。</p>
+<p>例如：</p>
+<pre><code class="language-python">probs = np.array([
+    [0.7, 0.2, 0.1],
+    [0.1, 0.3, 0.6],
+    [0.2, 0.5, 0.3]
+])
+
+targets = np.array([0, 2, 1])
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">probs[np.arange(3), targets]
+</code></pre>
+<p>得到：</p>
+<pre><code>[0.7, 0.6, 0.5]
+</code></pre>
+<hr />
+<p><strong>计算批量平均交叉熵</strong></p>
+<pre><code class="language-python">return -np.log(
+    self.probs[np.arange(n), targets] + 1e-12
+).mean()
+</code></pre>
+<p>交叉熵对每个样本做：</p>
+<p>$$
+L_n=-\log p_{\text{正确类别}}
+$$</p>
+<p>如果正确类别概率很高：</p>
+<pre><code>p = 0.9
+</code></pre>
+<p>那么损失很小：</p>
+<p>$$
+-\log 0.9\approx 0.105
+$$</p>
+<p>如果正确类别概率很低：</p>
+<pre><code>p = 0.01
+</code></pre>
+<p>那么损失很大：</p>
+<p>$$
+-\log 0.01\approx 4.605
+$$</p>
+<p>最后：</p>
+<pre><code class="language-python">.mean()
+</code></pre>
+<p>对 batch 中所有样本的损失取平均。</p>
+<hr />
+<p><strong><code>1e-12</code> 防止对零取对数</strong></p>
+<pre><code class="language-python">+ 1e-12
+</code></pre>
+<p>其中：</p>
+<pre><code>1e-12 = 0.000000000001
+</code></pre>
+<p>它是一个非常小的数，用来避免：</p>
+<pre><code class="language-python">np.log(0)
+</code></pre>
+<p>因为：</p>
+<p>$$
+\log 0=-\infty
+$$</p>
+<p>会导致数值问题。</p>
+<hr />
+<p><strong>SoftmaxCrossEntropy 的反向计算</strong></p>
+<pre><code class="language-python">def backward(self):
+</code></pre>
+<p>它要计算：</p>
+<p>$$
+\frac{\partial L}{\partial logits}
+$$</p>
+<p>这是传给最后一个 <code>Linear</code> 层的上游梯度。</p>
+<hr />
+<p><strong>读取 Batch 大小</strong></p>
+<pre><code class="language-python">n = self.probs.shape[0]
+</code></pre>
+<p>与前面的 <code>n</code> 含义相同。</p>
+<hr />
+<p><strong>复制概率矩阵以避免破坏缓存</strong></p>
+<pre><code class="language-python">grad = self.probs.copy()
+</code></pre>
+<p>先让梯度等于 Softmax 概率：</p>
+<pre><code>grad = p
+</code></pre>
+<p>为什么用 <code>.copy()</code>？</p>
+<p>因为后面要修改 <code>grad</code>。如果直接写：</p>
+<pre><code class="language-python">grad = self.probs
+</code></pre>
+<p>那么修改 <code>grad</code> 也会修改 <code>self.probs</code>，因为两者指向同一个数组。</p>
+<hr />
+<p><strong>在正确类别位置减去 1</strong></p>
+<pre><code class="language-python">grad[np.arange(n), self.targets] -= 1
+</code></pre>
+<p>这就是把：</p>
+<pre><code>p
+</code></pre>
+<p>变成：</p>
+<pre><code>p - y_onehot
+</code></pre>
+<p>举个例子。</p>
+<p>模型概率：</p>
+<pre><code>p = [0.7, 0.2, 0.1]
+</code></pre>
+<p>真实类别是第 0 类，对应 one-hot：</p>
+<pre><code>y = [1, 0, 0]
+</code></pre>
+<p>那么：</p>
+<pre><code>p - y
+=
+[0.7, 0.2, 0.1] - [1, 0, 0]
+=
+[-0.3, 0.2, 0.1]
+</code></pre>
+<p>代码没有真的构造：</p>
+<pre><code class="language-python">[1, 0, 0]
+</code></pre>
+<p>而是直接在正确类别位置减 <code>1</code>：</p>
+<pre><code class="language-python">grad[正确类别] -= 1
+</code></pre>
+<p>这样更节省内存。</p>
+<hr />
+<p><strong>按 Batch 大小平均梯度</strong></p>
+<pre><code class="language-python">return grad / n
+</code></pre>
+<p>因为前向损失用了：</p>
+<pre><code class="language-python">.mean()
+</code></pre>
+<p>也就是对 <code>n</code> 个样本取平均。</p>
+<p>所以反向梯度也要除以 <code>n</code>：</p>
+<p>$$
+\frac{\partial L}{\partial logits}
+=
+\frac{p-y}{n}
+$$</p>
+<p>如果前向使用的是求和：</p>
+<pre><code class="language-python">.sum()
+</code></pre>
+<p>而不是 <code>.mean()</code>，这里通常就不需要除以 <code>n</code>。</p>
+<hr />
+<p><strong>梯度化简为 $p-y$ 的原因</strong></p>
+<p>先看直观含义。</p>
+<p>假设真实类别是第 0 类：</p>
+<pre><code>y = [1, 0, 0]
+</code></pre>
+<p>模型概率：</p>
+<pre><code>p = [0.7, 0.2, 0.1]
+</code></pre>
+<p>那么：</p>
+<pre><code>p - y = [-0.3, 0.2, 0.1]
+</code></pre>
+<p>梯度下降的更新方向是：</p>
+<pre><code>参数 -= 学习率 × 梯度
+</code></pre>
+<p>对正确类别，梯度是负数：</p>
+<pre><code>-0.3
+</code></pre>
+<p>减去负数，相当于增加正确类别的 logit。</p>
+<p>对错误类别，梯度是正数：</p>
+<pre><code>0.2, 0.1
+</code></pre>
+<p>减去正数，会降低错误类别的 logits。</p>
+<p>所以它的作用是：</p>
+<pre><code>正确类别：往上推
+错误类别：往下压
+</code></pre>
+<p>而且错误类别当前概率越高，受到的惩罚就越大。</p>
+<hr />
+<p><strong>Softmax 与交叉熵合并实现的原因</strong></p>
+<p>理论上可以拆成两层：</p>
+<pre><code>logits
+  ↓ Softmax
+probs
+  ↓ CrossEntropy
+loss
+</code></pre>
+<p>反向时还要分别求：</p>
+<pre><code>CrossEntropy.backward
+Softmax.backward
+</code></pre>
+<p>但是两者连在一起求导后，会大幅简化为：</p>
+<p>$$
+\frac{\partial L}{\partial logits}=p-y
+$$</p>
+<p>因此可以直接写成一个类：</p>
+<pre><code class="language-python">SoftmaxCrossEntropy
+</code></pre>
+<p>好处是：</p>
+<ul>
+<li>公式更简单；</li>
+<li>计算更快；</li>
+<li>不需要显式构造 Softmax 的雅可比矩阵；</li>
+<li>数值通常更稳定。</li>
+</ul>
+<hr />
+<p><strong>SoftmaxCrossEntropy 与 MLP 的连接方式</strong></p>
+<p>完整训练过程大致是：</p>
+<pre><code class="language-python">#### 1. 模型前向传播，得到 logits
+logits = model.forward(x)
+
+#### 2. 交叉熵前向传播，得到损失
+loss = criterion.forward(logits, targets)
+
+#### 3. 得到损失对 logits 的梯度
+grad_logits = criterion.backward()
+
+#### 4. 把梯度传回整个 MLP
+model.backward(grad_logits)
+</code></pre>
+<p>其中：</p>
+<pre><code class="language-python">grad_logits
+</code></pre>
+<p>就是你前面一直看到的：</p>
+<p>$$
+G=\frac{\partial L}{\partial Z}
+$$</p>
+<p>最后一个 <code>Linear</code> 层接收到它：</p>
+<pre><code class="language-python">grad = last_linear.backward(grad_logits)
+</code></pre>
+<p>然后梯度再一层层向前传。</p>
+<hr />
+<p><strong>损失层与 MLP 的连接结构</strong></p>
+<pre><code>输入 X
+  ↓
+MLP.forward
+  ↓
+logits
+  ↓
+SoftmaxCrossEntropy.forward
+  ↓
+loss
+</code></pre>
+<p>反向：</p>
+<pre><code>loss
+  ↓
+SoftmaxCrossEntropy.backward
+  ↓
+grad_logits = (p - y) / n
+  ↓
+MLP.backward
+  ↓
+各个 Linear 得到 grad_W、grad_b
+</code></pre>
+<p>所以这段代码本质上就是：</p>
+<blockquote>
+<p>在前向传播中计算分类损失，在反向传播中给出神经网络开始反传所需的第一个梯度。</p>
+</blockquote>
+<h3 id="126-sgd">12.6 SGD 参数更新<a class="headerlink" href="#126-sgd" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def sgd_step(layers, lr):
+    for layer in layers:
+        if hasattr(layer, &quot;W&quot;):
+            layer.W -= lr * layer.grad_W
+            layer.b -= lr * layer.grad_b
+</code></pre>
+<p>这段代码是在给你前面手写的 NumPy 神经网络做一次最基础的 <strong>SGD 参数更新</strong>。</p>
+<pre><code class="language-python">def sgd_step(layers, lr):
+    for layer in layers:
+        if hasattr(layer, &quot;W&quot;):
+            layer.W -= lr * layer.grad_W
+            layer.b -= lr * layer.grad_b
+</code></pre>
+<p>先说整体意思：</p>
+<blockquote>
+<p>遍历网络中的所有层，只要这一层有权重 <code>W</code>，就按照梯度下降公式更新它的 <code>W</code> 和 <code>b</code>。</p>
+</blockquote>
+<hr />
+<p><strong><code>sgd_step</code> 函数的输入</strong></p>
+<p>定义一个函数：</p>
+<pre><code class="language-python">sgd_step(layers, lr)
+</code></pre>
+<p>两个参数：</p>
+<ul>
+<li><code>layers</code>：模型中所有层的列表</li>
+<li><code>lr</code>：学习率 learning rate</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-python">model.layers
+</code></pre>
+<p>可能是：</p>
+<pre><code class="language-python">[
+    Linear(...),
+    ReLU(),
+    Linear(...),
+    ReLU(),
+    Linear(...)
+]
+</code></pre>
+<p>调用：</p>
+<pre><code class="language-python">sgd_step(model.layers, lr=0.01)
+</code></pre>
+<p>就是让所有可训练层更新一次参数。</p>
+<hr />
+<p><strong>逐层遍历网络参数</strong></p>
+<pre><code class="language-python">for layer in layers:
+</code></pre>
+<p>逐个取出网络中的层。</p>
+<p>例如第一次循环：</p>
+<pre><code class="language-python">layer = 第一个 Linear 对象
+</code></pre>
+<p>第二次：</p>
+<pre><code class="language-python">layer = 第一个 ReLU 对象
+</code></pre>
+<p>第三次：</p>
+<pre><code class="language-python">layer = 第二个 Linear 对象
+</code></pre>
+<p>依次检查所有层。</p>
+<hr />
+<p><strong>使用 <code>hasattr</code> 筛选参数层的原因</strong></p>
+<pre><code class="language-python">if hasattr(layer, &quot;W&quot;):
+</code></pre>
+<p><code>hasattr()</code> 的意思是：</p>
+<blockquote>
+<p>检查这个对象是否拥有某个属性。</p>
+</blockquote>
+<p>这里检查当前层有没有：</p>
+<pre><code class="language-python">layer.W
+</code></pre>
+<p>你的 <code>Linear</code> 类有：</p>
+<pre><code class="language-python">self.W
+self.b
+</code></pre>
+<p>所以：</p>
+<pre><code class="language-python">hasattr(linear_layer, &quot;W&quot;)
+</code></pre>
+<p>结果是：</p>
+<pre><code class="language-python">True
+</code></pre>
+<p>而 <code>ReLU</code> 没有权重：</p>
+<pre><code class="language-python">hasattr(relu_layer, &quot;W&quot;)
+</code></pre>
+<p>结果是：</p>
+<pre><code class="language-python">False
+</code></pre>
+<p>所以这句实际上是在筛选：</p>
+<blockquote>
+<p>只更新 Linear 层，跳过 ReLU 层。</p>
+</blockquote>
+<p>因为 ReLU 没有可以训练的参数。</p>
+<hr />
+<p><strong>根据梯度更新权重</strong></p>
+<pre><code class="language-python">layer.W -= lr * layer.grad_W
+</code></pre>
+<p>它等价于：</p>
+<pre><code class="language-python">layer.W = layer.W - lr * layer.grad_W
+</code></pre>
+<p>数学上是：</p>
+<p>$$
+W_{\text{new}}
+=
+W_{\text{old}}
+-
+\eta \frac{\partial L}{\partial W}
+$$</p>
+<p>其中：</p>
+<ul>
+<li>$W$：权重</li>
+<li>$\frac{\partial L}{\partial W}$：损失对权重的梯度</li>
+<li>$\eta$：学习率，也就是 <code>lr</code></li>
+</ul>
+<p>你之前在反向传播中已经算出了：</p>
+<pre><code class="language-python">self.grad_W = self.x.T @ grad_out
+</code></pre>
+<p>所以 <code>sgd_step()</code> 只是拿这个梯度来更新权重。</p>
+<hr />
+<p><strong>根据梯度更新偏置</strong></p>
+<pre><code class="language-python">layer.b -= lr * layer.grad_b
+</code></pre>
+<p>等价于：</p>
+<pre><code class="language-python">layer.b = layer.b - lr * layer.grad_b
+</code></pre>
+<p>数学公式：</p>
+<p>$$
+b_{\text{new}}
+=
+b_{\text{old}}
+-
+\eta \frac{\partial L}{\partial b}
+$$</p>
+<p>其中 <code>grad_b</code> 是之前反向传播得到的：</p>
+<pre><code class="language-python">self.grad_b = grad_out.sum(axis=0)
+</code></pre>
+<hr />
+<p><strong>沿负梯度方向更新的原因</strong></p>
+<p>梯度指向函数增长最快的方向。</p>
+<p>如果想让损失 $L$ 变小，就要沿梯度的反方向走：</p>
+<p>$$
+参数 \leftarrow 参数-\text{学习率}\times梯度
+$$</p>
+<p>例如：</p>
+<p>$$
+L(w)=w^2
+$$</p>
+<p>当：</p>
+<p>$$
+w=3
+$$</p>
+<p>梯度为：</p>
+<p>$$
+\frac{dL}{dw}=2w=6
+$$</p>
+<p>若学习率：</p>
+<p>$$
+lr=0.1
+$$</p>
+<p>更新：</p>
+<p>$$
+w_{\text{new}}
+=
+3-0.1\times6
+=
+2.4
+$$</p>
+<p>损失从：</p>
+<p>$$
+3^2=9
+$$</p>
+<p>变为：</p>
+<p>$$
+2.4^2=5.76
+$$</p>
+<p>确实下降了。</p>
+<hr />
+<p><strong>SGD 数组更新示例</strong></p>
+<p>假设某层当前：</p>
+<pre><code class="language-python">layer.W = np.array([
+    [1.0, 2.0],
+    [3.0, 4.0]
+])
+
+layer.grad_W = np.array([
+    [0.2, -0.1],
+    [0.5, 0.3]
+])
+
+lr = 0.1
+</code></pre>
+<p>更新：</p>
+<pre><code class="language-python">layer.W -= lr * layer.grad_W
+</code></pre>
+<p>先算：</p>
+<pre><code>lr * grad_W
+=
+0.1 *
+[[ 0.2, -0.1],
+ [ 0.5,  0.3]]
+=
+[[ 0.02, -0.01],
+ [ 0.05,  0.03]]
+</code></pre>
+<p>然后：</p>
+<pre><code>新 W
+=
+[[1.0, 2.0],
+ [3.0, 4.0]]
+-
+[[0.02, -0.01],
+ [0.05,  0.03]]
+</code></pre>
+<p>得到：</p>
+<pre><code>[[0.98, 2.01],
+ [2.95, 3.97]]
+</code></pre>
+<p>正梯度位置会减小，负梯度位置会增大。</p>
+<hr />
+<p><strong>SGD 与 <code>backward()</code> 的职责分工</strong></p>
+<p><code>backward()</code> 做的是：</p>
+<pre><code>计算梯度
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">layer.grad_W
+layer.grad_b
+</code></pre>
+<p>而 <code>sgd_step()</code> 做的是：</p>
+<pre><code>使用梯度修改参数
+</code></pre>
+<p>所以两者不能混淆。</p>
+<p>流程是：</p>
+<pre><code class="language-python">model.forward(x)       # 算预测
+loss.forward(...)      # 算损失
+model.backward(...)    # 算 grad_W、grad_b
+sgd_step(...)          # 真正修改 W、b
+</code></pre>
+<hr />
+<p><strong>先计算梯度再更新参数的原因</strong></p>
+<p>假设你还没有执行：</p>
+<pre><code class="language-python">model.backward(grad)
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">layer.grad_W
+layer.grad_b
+</code></pre>
+<p>可能还不存在，或者还是上一轮留下的旧梯度。</p>
+<p>因此必须先：</p>
+<pre><code class="language-python">model.backward(...)
+</code></pre>
+<p>再：</p>
+<pre><code class="language-python">sgd_step(...)
+</code></pre>
+<p>正确顺序：</p>
+<pre><code>前向
+→ 损失
+→ 反向算梯度
+→ SGD 更新参数
+</code></pre>
+<hr />
+<p><strong>参数更新后必须重新前向传播的原因</strong></p>
+<p>前向传播时，各层保存了缓存，例如：</p>
+<pre><code class="language-python">self.x
+self.mask
+</code></pre>
+<p>这些缓存对应的是更新前的参数。</p>
+<p>做完：</p>
+<pre><code class="language-python">layer.W -= ...
+layer.b -= ...
+</code></pre>
+<p>参数已经变了。</p>
+<p>所以旧缓存只属于上一次计算，下一轮必须重新执行：</p>
+<pre><code class="language-python">model.forward(new_x)
+</code></pre>
+<p>重新生成与新参数对应的中间结果。</p>
+<hr />
+<p><strong>SGD 更新顺序总结</strong></p>
+<pre><code class="language-python">def sgd_step(layers, lr):
+</code></pre>
+<p>就是手写版的：</p>
+<pre><code class="language-python">optimizer.step()
+</code></pre>
+<p>它遍历所有层，找到有权重的 <code>Linear</code> 层，然后执行：</p>
+<p>$$
+W\leftarrow W-lr\cdot grad_W
+$$</p>
+<p>$$
+b\leftarrow b-lr\cdot grad_b
+$$</p>
+<p><code>backward()</code> 负责算梯度，<code>sgd_step()</code> 负责真正更新参数。</p>
+<p>每轮顺序必须是：前向、计算损失、反向、更新。更新后旧计算图/缓存对应的已是旧参数。</p>
+<h2 id="13_1">13. 数值梯度检查<a class="headerlink" href="#13_1" title="Permanent link">&para;</a></h2>
+<p>随机挑一个参数 <code>W[i,j]</code>，比较反向传播的解析梯度和中心差分数值梯度。相对误差：</p>
+<pre><code class="language-python">relative_error = abs(a - b) / max(1e-8, abs(a) + abs(b))
+</code></pre>
+<p>先用 <code>float64</code> 和很小的网络检查。若误差大，常见原因是漏除 batch size、转置错误、缓存被覆盖、ReLU 在 0 附近不可导。</p>
+<h2 id="14-numpy-mlp">14. NumPy MLP 的训练循环与故障诊断<a class="headerlink" href="#14-numpy-mlp" title="Permanent link">&para;</a></h2>
+<p>最小训练循环：</p>
+<pre><code class="language-text">初始化参数
+重复多个 epoch：
+    打乱训练数据
+    对每个 batch：
+        logits = model(x)
+        loss = criterion(logits, y)
+        grads = backward(loss)
+        update(parameters, grads)
+    在验证集评估
+保存验证指标最好的 checkpoint
+</code></pre>
+<p>诊断顺序：</p>
+<ol>
+<li>能否在 20 个样本上过拟合到接近 100%？不能则实现可能有 bug。</li>
+<li>损失是否有限且总体下降？</li>
+<li>随机标签是否无法泛化？若仍高分可能泄漏。</li>
+<li>零学习率时参数是否保持不变？</li>
+<li>保存再加载后，同一输入输出是否一致？</li>
+</ol>
+<h2 id="15-pytorch">15. PyTorch 张量与自动微分概览<a class="headerlink" href="#15-pytorch" title="Permanent link">&para;</a></h2>
+<p>第 15～17 节先用最小代码快速建立 PyTorch 的整体数据流；第 18 节再把你补充的逐句笔记整合起来详细解释。建议先看一遍全局，再进入细节。</p>
+<pre><code class="language-python">import torch
+
+x = torch.tensor([2.0], requires_grad=True)
+y = x ** 2 + 3 * x
+y.backward()
+print(x.grad)  # 2*x+3 = 7
+</code></pre>
+<p>PyTorch 在前向时记录计算图，<code>backward()</code> 用链式法则累积梯度。注意是“累积”：每个训练 step 前要清梯度。</p>
+<pre><code class="language-python">optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+</code></pre>
+<p>评估时：</p>
+<pre><code class="language-python">model.eval()
+with torch.no_grad():
+    logits = model(x)
+</code></pre>
+<p><code>eval()</code> 改变 Dropout/BatchNorm 等层的行为；<code>no_grad()</code> 停止记录梯度，二者解决不同问题。</p>
+<h2 id="16-pytorch">16. PyTorch 数据集与批量加载<a class="headerlink" href="#16-pytorch" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">from torch.utils.data import Dataset, DataLoader
+
+class PairDataset(Dataset):
+    def __init__(self, xs, ys):
+        self.xs = torch.as_tensor(xs, dtype=torch.float32)
+        self.ys = torch.as_tensor(ys, dtype=torch.long)
+
+    def __len__(self):
+        return len(self.ys)
+
+    def __getitem__(self, idx):
+        return self.xs[idx], self.ys[idx]
+
+loader = DataLoader(PairDataset(xs, ys), batch_size=32, shuffle=True)
+</code></pre>
+<p>分类目标通常用 <code>long</code>，特征通常用 <code>float32</code>。文本长度不同需要 padding 和 <code>collate_fn</code>；不能简单堆叠不同形状。</p>
+<h2 id="17-nnmodule-mlp">17. 使用 <code>nn.Module</code> 定义 MLP<a class="headerlink" href="#17-nnmodule-mlp" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">from torch import nn
+
+class MLP(nn.Module):
+    def __init__(self, input_dim=784, hidden_dim=256, classes=10):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, classes),
+        )
+
+    def forward(self, x):
+        return self.net(x.flatten(1))
+</code></pre>
+<p><code>CrossEntropyLoss</code> 需要原始 logits，不要先手工 Softmax；它内部进行了数值稳定的 <code>log_softmax + NLLLoss</code>。</p>
+<h2 id="18-pytorch">18. PyTorch 核心组件的逐句解析<a class="headerlink" href="#18-pytorch" title="Permanent link">&para;</a></h2>
+<p>这张图在讲：<strong>从“手写神经网络”切换到 PyTorch 的标准训练方式</strong>。主要分成三块：</p>
+<ol>
+<li>PyTorch 张量与自动微分</li>
+<li>Dataset 与 DataLoader</li>
+<li>用 <code>nn.Module</code> 搭建 MLP</li>
+</ol>
+<hr />
+<h3 id="181">18.1 张量与自动微分<a class="headerlink" href="#181" title="Permanent link">&para;</a></h3>
+<p>先看这段：</p>
+<pre><code class="language-python">import torch
+
+x = torch.tensor([2.0], requires_grad=True)
+y = x ** 2 + 3 * x
+y.backward()
+
+print(x.grad)
+</code></pre>
+<p>它在计算：</p>
+<p>$$
+y=x^2+3x
+$$</p>
+<p>并自动求：</p>
+<p>$$
+\frac{dy}{dx}=2x+3
+$$</p>
+<p>因为：</p>
+<pre><code class="language-python">x = 2
+</code></pre>
+<p>所以：</p>
+<p>$$
+\frac{dy}{dx}=2\times 2+3=7
+$$</p>
+<p>因此：</p>
+<pre><code class="language-python">print(x.grad)
+</code></pre>
+<p>输出大致是：</p>
+<pre><code>tensor([7.])
+</code></pre>
+<p><strong><code>requires_grad=True</code>：启用梯度跟踪</strong></p>
+<pre><code class="language-python">x = torch.tensor([2.0], requires_grad=True)
+</code></pre>
+<p>意思是：</p>
+<blockquote>
+<p>告诉 PyTorch，需要追踪所有与 <code>x</code> 有关的运算，之后要对 <code>x</code> 求梯度。</p>
+</blockquote>
+<p>如果不写：</p>
+<pre><code class="language-python">requires_grad=True
+</code></pre>
+<p>PyTorch 通常不会为这个张量建立求导所需的计算图。</p>
+<hr />
+<p><strong><code>y.backward()</code>：触发反向传播</strong></p>
+<pre><code class="language-python">y.backward()
+</code></pre>
+<p>意思是：</p>
+<blockquote>
+<p>从 <code>y</code> 开始，按照链式法则向前反向求导，把梯度存进相关张量的 <code>.grad</code> 属性。</p>
+</blockquote>
+<p>所以最后可以访问：</p>
+<pre><code class="language-python">x.grad
+</code></pre>
+<p>之前你手写网络时，是自己写：</p>
+<pre><code class="language-python">grad_W = x.T @ grad_out
+grad_b = grad_out.sum(axis=0)
+</code></pre>
+<p>而 PyTorch 的自动微分会自动完成这些求导。</p>
+<hr />
+<p><strong>梯度累积与参数更新顺序</strong></p>
+<p>图中写了：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+</code></pre>
+<p>这是最标准的训练三步。</p>
+<p><strong>清除上一轮累积梯度</strong></p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>PyTorch 默认会<strong>累加梯度</strong>，不是覆盖梯度。</p>
+<p>例如第一次：</p>
+<pre><code>w.grad = 3
+</code></pre>
+<p>第二次再反向传播得到 <code>4</code>，如果没有清零，最后会是：</p>
+<pre><code>w.grad = 3 + 4 = 7
+</code></pre>
+<p>所以每一轮训练开始前通常要：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>把上一轮梯度清掉。</p>
+<hr />
+<p><strong>根据当前损失执行反向传播</strong></p>
+<pre><code class="language-python">loss.backward()
+</code></pre>
+<p>自动计算损失对所有可训练参数的梯度：</p>
+<pre><code>W.grad
+b.grad
+...
+</code></pre>
+<hr />
+<p><strong>使用优化器更新参数</strong></p>
+<pre><code class="language-python">optimizer.step()
+</code></pre>
+<p>优化器根据梯度更新参数。</p>
+<p>例如 SGD 大致相当于：</p>
+<pre><code class="language-python">W = W - lr * W.grad
+b = b - lr * b.grad
+</code></pre>
+<p>所以完整顺序不能乱：</p>
+<pre><code class="language-python">optimizer.zero_grad()  # 清旧梯度
+loss.backward()        # 算新梯度
+optimizer.step()       # 更新参数
+</code></pre>
+<hr />
+<p><strong>训练模式与评估模式</strong></p>
+<p>图片中还有：</p>
+<pre><code class="language-python">model.eval()
+
+with torch.no_grad():
+    logits = model(x)
+</code></pre>
+<p>这两句话解决的是两个不同问题。</p>
+<p><strong><code>model.eval()</code>：切换到评估模式</strong></p>
+<pre><code class="language-python">model.eval()
+</code></pre>
+<p>把模型切换到评估状态。</p>
+<p>它主要会影响：</p>
+<ul>
+<li><code>Dropout</code></li>
+<li><code>BatchNorm</code></li>
+</ul>
+<p>例如 Dropout 在训练时会随机丢弃部分神经元，但测试时不应该再随机丢弃，因此要调用：</p>
+<pre><code class="language-python">model.eval()
+</code></pre>
+<p>普通的 <code>Linear</code> 和 <code>ReLU</code> 在训练、评估模式下通常没有区别。</p>
+<hr />
+<p><strong><code>torch.no_grad()</code>：关闭梯度记录</strong></p>
+<pre><code class="language-python">with torch.no_grad():
+    logits = model(x)
+</code></pre>
+<p>意思是：</p>
+<blockquote>
+<p>这段代码只做前向计算，不建立计算图，也不准备反向传播。</p>
+</blockquote>
+<p>因为测试时通常只需要预测，不需要求梯度。</p>
+<p>优点是：</p>
+<ul>
+<li>减少内存占用；</li>
+<li>提高计算速度；</li>
+<li>避免意外记录梯度。</li>
+</ul>
+<p>所以：</p>
+<pre><code class="language-python">model.eval()
+</code></pre>
+<p>控制某些层的行为；</p>
+<pre><code class="language-python">torch.no_grad()
+</code></pre>
+<p>关闭自动求导记录。</p>
+<p>二者不能互相替代。</p>
+<hr />
+<h3 id="182-dataset-dataloader">18.2 Dataset 与 DataLoader<a class="headerlink" href="#182-dataset-dataloader" title="Permanent link">&para;</a></h3>
+<p>这部分是在解决：</p>
+<blockquote>
+<p>数据怎么组织？怎么每次拿出一个 batch 训练？</p>
+</blockquote>
+<p>代码大致是：</p>
+<pre><code class="language-python">from torch.utils.data import Dataset, DataLoader
+
+class PairDataset(Dataset):
+    def __init__(self, xs, ys):
+        self.xs = torch.as_tensor(xs, dtype=torch.float32)
+        self.ys = torch.as_tensor(ys, dtype=torch.long)
+
+    def __len__(self):
+        return len(self.ys)
+
+    def __getitem__(self, idx):
+        return self.xs[idx], self.ys[idx]
+</code></pre>
+<hr />
+<p><strong><code>Dataset</code> 的数据索引职责</strong></p>
+<p><code>Dataset</code> 可以理解成：</p>
+<blockquote>
+<p>一套规定数据如何存储、总共有多少条、如何取出第 <code>idx</code> 条数据的规则。</p>
+</blockquote>
+<p>这里每条数据由一对内容组成：</p>
+<pre><code>特征 x
+标签 y
+</code></pre>
+<p>所以叫：</p>
+<pre><code class="language-python">PairDataset
+</code></pre>
+<hr />
+<p><strong><code>__init__</code>：保存特征与标签</strong></p>
+<pre><code class="language-python">def __init__(self, xs, ys):
+    self.xs = torch.as_tensor(xs, dtype=torch.float32)
+    self.ys = torch.as_tensor(ys, dtype=torch.long)
+</code></pre>
+<p>把输入数据转成 PyTorch 张量。</p>
+<p><strong>特征张量通常使用浮点类型</strong></p>
+<pre><code class="language-python">dtype=torch.float32
+</code></pre>
+<p>因为神经网络里的矩阵乘法、权重等通常使用浮点数。</p>
+<p><strong>分类标签通常使用整数类型</strong></p>
+<pre><code class="language-python">dtype=torch.long
+</code></pre>
+<p>例如：</p>
+<pre><code class="language-python">ys = [0, 2, 1, 0]
+</code></pre>
+<p>每个数字表示正确类别编号。</p>
+<p><code>CrossEntropyLoss</code> 通常要求类别标签是 <code>long</code> 类型。</p>
+<hr />
+<p><strong><code>__len__</code>：返回样本数量</strong></p>
+<pre><code class="language-python">def __len__(self):
+    return len(self.ys)
+</code></pre>
+<p>规定：</p>
+<pre><code class="language-python">len(dataset)
+</code></pre>
+<p>应该返回多少。</p>
+<p>假设有 1000 个标签，那么：</p>
+<pre><code class="language-python">len(dataset)
+</code></pre>
+<p>返回：</p>
+<pre><code>1000
+</code></pre>
+<hr />
+<p><strong><code>__getitem__</code>：按索引返回单个样本</strong></p>
+<pre><code class="language-python">def __getitem__(self, idx):
+    return self.xs[idx], self.ys[idx]
+</code></pre>
+<p>规定如何取出一条数据。</p>
+<p>例如：</p>
+<pre><code class="language-python">dataset[5]
+</code></pre>
+<p>会返回：</p>
+<pre><code>第 5 个样本的特征
+第 5 个样本的标签
+</code></pre>
+<p>即：</p>
+<pre><code class="language-python">(x, y)
+</code></pre>
+<hr />
+<p><strong><code>DataLoader</code> 的批量迭代职责</strong></p>
+<pre><code class="language-python">loader = DataLoader(
+    PairDataset(xs, ys),
+    batch_size=32,
+    shuffle=True
+)
+</code></pre>
+<p><code>DataLoader</code> 是负责从 Dataset 中批量拿数据的工具。</p>
+<p><strong><code>batch_size=32</code>：每批样本数量</strong></p>
+<p>每次拿出 32 个样本：</p>
+<pre><code>第一个 batch：32 条
+第二个 batch：32 条
+第三个 batch：32 条
+……
+</code></pre>
+<p>最后剩余不足 32 条时，通常会返回一个较小的 batch。</p>
+<p><strong><code>shuffle=True</code>：每轮打乱训练样本</strong></p>
+<p>每一轮训练前打乱数据顺序。</p>
+<p>避免模型总是按照完全相同的顺序看到数据。</p>
+<p>训练时通常写：</p>
+<pre><code class="language-python">for xb, yb in loader:
+    logits = model(xb)
+    loss = criterion(logits, yb)
+</code></pre>
+<p>这里：</p>
+<pre><code>xb：一个 batch 的特征
+yb：一个 batch 的标签
+</code></pre>
+<hr />
+<h3 id="183-nnmodule-mlp">18.3 基于 <code>nn.Module</code> 的 MLP 定义<a class="headerlink" href="#183-nnmodule-mlp" title="Permanent link">&para;</a></h3>
+<p>前面你手写的 MLP 是：</p>
+<pre><code>Linear
+ReLU
+Linear
+ReLU
+Linear
+</code></pre>
+<p>PyTorch 已经提供了现成版本：</p>
+<pre><code class="language-python">from torch import nn
+</code></pre>
+<p>模型一般这样写：</p>
+<pre><code class="language-python">class MLP(nn.Module):
+    def __init__(self, input_dim=784, hidden_dim=256, classes=10):
+        super().__init__()
+
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Linear(hidden_dim, classes)
+        )
+
+    def forward(self, x):
+        return self.net(x)
+</code></pre>
+<hr />
+<p><strong>继承 <code>nn.Module</code> 的原因</strong></p>
+<pre><code class="language-python">class MLP(nn.Module):
+</code></pre>
+<p>表示这个类是一个 PyTorch 模型。</p>
+<p>继承以后，PyTorch 才能自动管理：</p>
+<ul>
+<li>模型参数；</li>
+<li><code>.parameters()</code>；</li>
+<li><code>.train()</code> 和 <code>.eval()</code>；</li>
+<li>把模型放到 GPU；</li>
+<li>保存和加载参数；</li>
+<li>自动微分关联。</li>
+</ul>
+<hr />
+<p><strong><code>super().__init__()</code>：初始化父类能力</strong></p>
+<pre><code class="language-python">super().__init__()
+</code></pre>
+<p>调用父类 <code>nn.Module</code> 的初始化函数。</p>
+<p>可以理解成：</p>
+<blockquote>
+<p>先把 PyTorch 模型的基础功能初始化好，再创建自己的网络层。</p>
+</blockquote>
+<p>漏掉这一句，参数注册等机制可能无法正常工作。</p>
+<hr />
+<p><strong><code>nn.Linear</code>：定义全连接层</strong></p>
+<pre><code class="language-python">nn.Linear(input_dim, hidden_dim)
+</code></pre>
+<p>就是你之前手写的：</p>
+<p>$$
+y=xW+b
+$$</p>
+<p>它内部自动创建：</p>
+<pre><code>weight
+bias
+</code></pre>
+<p>并且自动参与梯度计算。</p>
+<hr />
+<p><strong><code>nn.Sequential</code>：按顺序组合网络层</strong></p>
+<pre><code class="language-python">self.net = nn.Sequential(
+    nn.Linear(...),
+    nn.ReLU(),
+    nn.Linear(...)
+)
+</code></pre>
+<p>作用是：</p>
+<blockquote>
+<p>按顺序把各层串起来。</p>
+</blockquote>
+<p>输入会自动执行：</p>
+<pre><code>x
+↓ Linear
+↓ ReLU
+↓ Linear
+输出
+</code></pre>
+<p>相当于你之前手写的：</p>
+<pre><code class="language-python">for layer in self.layers:
+    x = layer.forward(x)
+</code></pre>
+<hr />
+<h3 id="184">18.4 数据、模型、损失与自动微分的连接<a class="headerlink" href="#184" title="Permanent link">&para;</a></h3>
+<p>完整训练代码大概是：</p>
+<pre><code class="language-python">model = MLP()
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+
+for xb, yb in loader:
+    logits = model(xb)
+    loss = criterion(logits, yb)
+
+    optimizer.zero_grad()
+    loss.backward()
+    optimizer.step()
+</code></pre>
+<p>逐句对应：</p>
+<pre><code class="language-python">for xb, yb in loader:
+</code></pre>
+<p>DataLoader 提供一个 batch。</p>
+<pre><code class="language-python">logits = model(xb)
+</code></pre>
+<p>MLP 前向传播。</p>
+<pre><code class="language-python">loss = criterion(logits, yb)
+</code></pre>
+<p>交叉熵计算损失。</p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>清空旧梯度。</p>
+<pre><code class="language-python">loss.backward()
+</code></pre>
+<p>自动反向传播。</p>
+<pre><code class="language-python">optimizer.step()
+</code></pre>
+<p>更新权重和偏置。</p>
+<p>整张图可以概括为：</p>
+<blockquote>
+<p><code>Dataset/DataLoader</code> 负责喂数据，<code>nn.Module</code> 负责定义模型，自动微分负责求梯度，<code>optimizer</code> 负责更新参数。</p>
+</blockquote>
+<h2 id="19-pytorch">19. PyTorch 完整训练与验证循环<a class="headerlink" href="#19-pytorch" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">def train_one_epoch(model, loader, optimizer, criterion, device):
+    model.train()
+    total_loss = 0.0
+    total_correct = 0
+    total = 0
+
+    for x, y in loader:
+        x, y = x.to(device), y.to(device)
+        optimizer.zero_grad()
+        logits = model(x)
+        loss = criterion(logits, y)
+        loss.backward()
+        optimizer.step()
+
+        total_loss += loss.item() * y.size(0)
+        total_correct += (logits.argmax(dim=-1) == y).sum().item()
+        total += y.size(0)
+
+    return {&quot;loss&quot;: total_loss / total, &quot;accuracy&quot;: total_correct / total}
+</code></pre>
+<p>乘 <code>y.size(0)</code> 是因为 <code>loss.item()</code> 通常是 batch 均值；最后除总样本数，避免最后一个小 batch 被赋予同样权重。</p>
+<p>这张图主要讲两件事：</p>
+<ol>
+<li><code>train_one_epoch()</code>：模型怎样完整训练一轮；</li>
+<li>checkpoint：怎样把训练进度保存下来。</li>
+</ol>
+<hr />
+<h3 id="191-epoch">19.1 Epoch 的整体训练结构<a class="headerlink" href="#191-epoch" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">def train_one_epoch(model, loader, optimizer, criterion, device):
+</code></pre>
+<p><code>epoch</code> 是“把整个训练集完整学习一遍”。</p>
+<p>假设：</p>
+<pre><code>训练集：1000 个样本
+batch_size：32
+</code></pre>
+<p>那么一个 epoch 大约要处理 32 个 batch。</p>
+<p>这个函数的五个参数分别是：</p>
+<pre><code class="language-python">model       # 模型
+loader      # 分批提供训练数据
+optimizer   # 更新模型参数
+criterion   # 损失函数
+device      # CPU 或 GPU
+</code></pre>
+<hr />
+<h3 id="192-batch">19.2 单个 Batch 的训练步骤<a class="headerlink" href="#192-batch" title="Permanent link">&para;</a></h3>
+<p><strong>切换到训练模式</strong></p>
+<pre><code class="language-python">model.train()
+</code></pre>
+<p>它告诉模型：</p>
+<blockquote>
+<p>现在处于训练阶段。</p>
+</blockquote>
+<p>它主要影响 <code>Dropout</code> 和 <code>BatchNorm</code>。</p>
+<p>注意，它本身不会自动进行前向、反向和更新，只是切换模型状态。</p>
+<hr />
+<p><strong>初始化 Epoch 统计变量</strong></p>
+<pre><code class="language-python">total_loss = 0.0
+total_correct = 0
+total = 0
+</code></pre>
+<p>用于统计整个 epoch 的表现：</p>
+<ul>
+<li><code>total_loss</code>：所有样本的损失总和；</li>
+<li><code>total_correct</code>：预测正确的样本总数；</li>
+<li><code>total</code>：处理过的样本总数。</li>
+</ul>
+<p>这些变量不参与模型训练，只是最后计算平均损失和准确率。</p>
+<hr />
+<p><strong>逐 Batch 读取训练数据</strong></p>
+<pre><code class="language-python">for x, y in loader:
+</code></pre>
+<p><code>loader</code> 每次给出一个 batch：</p>
+<ul>
+<li><code>x</code>：这一批样本的特征；</li>
+<li><code>y</code>：这一批样本的真实标签。</li>
+</ul>
+<p>例如：</p>
+<pre><code>x.shape = (32, 784)
+y.shape = (32,)
+</code></pre>
+<p>表示：</p>
+<ul>
+<li>有 32 个样本；</li>
+<li>每个样本有 784 个特征；</li>
+<li>每个样本有一个类别编号。</li>
+</ul>
+<p>循环会执行很多次，直到整个训练集都处理完。</p>
+<hr />
+<p><strong>把数据移动到计算设备</strong></p>
+<pre><code class="language-python">x, y = x.to(device), y.to(device)
+</code></pre>
+<p>假设：</p>
+<pre><code class="language-python">device = &quot;cuda&quot;
+</code></pre>
+<p>那么就是把 <code>x</code> 和 <code>y</code> 移到 GPU。</p>
+<p>模型和数据必须在同一个设备上，否则无法计算。</p>
+<p>例如不能：</p>
+<pre><code>模型在 GPU
+数据在 CPU
+</code></pre>
+<hr />
+<p><strong>清空优化器中的旧梯度</strong></p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<p>PyTorch 的梯度默认是累加的。</p>
+<p>假设上一个 batch 得到：</p>
+<pre><code>W.grad = 2
+</code></pre>
+<p>当前 batch 又得到：</p>
+<pre><code>3
+</code></pre>
+<p>如果不清空，结果会变成：</p>
+<pre><code>W.grad = 2 + 3 = 5
+</code></pre>
+<p>普通训练中，我们希望每个 batch 独立计算梯度，所以要先：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+</code></pre>
+<hr />
+<p><strong>调用模型完成前向传播</strong></p>
+<pre><code class="language-python">logits = model(x)
+</code></pre>
+<p>这相当于调用：</p>
+<pre><code class="language-python">logits = model.forward(x)
+</code></pre>
+<p>模型把输入一层层处理，最后得到 <code>logits</code>。</p>
+<p>假设分类数量是 10：</p>
+<pre><code>x.shape      = (32, 784)
+logits.shape = (32, 10)
+</code></pre>
+<p>每一行对应一个样本，每一列对应一个类别的原始评分。</p>
+<hr />
+<p><strong>根据 Logits 与标签计算损失</strong></p>
+<pre><code class="language-python">loss = criterion(logits, y)
+</code></pre>
+<p><code>criterion</code> 通常是：</p>
+<pre><code class="language-python">criterion = torch.nn.CrossEntropyLoss()
+</code></pre>
+<p>它根据：</p>
+<ul>
+<li>模型预测的 <code>logits</code></li>
+<li>真实标签 <code>y</code></li>
+</ul>
+<p>计算当前 batch 的平均损失。</p>
+<p>例如：</p>
+<pre><code>loss = tensor(0.7234)
+</code></pre>
+<p>这里的 <code>loss</code> 是一个只有一个数的张量。</p>
+<hr />
+<p><strong>调用 <code>loss.backward()</code> 计算梯度</strong></p>
+<pre><code class="language-python">loss.backward()
+</code></pre>
+<p>PyTorch 会根据前向传播记录的计算图，自动使用链式法则计算：</p>
+<p>$$
+\frac{\partial L}{\partial W},
+\qquad
+\frac{\partial L}{\partial b}
+$$</p>
+<p>然后把梯度保存进各参数的：</p>
+<pre><code class="language-python">parameter.grad
+</code></pre>
+<p>这一步只是计算梯度，还没有修改参数。</p>
+<p>对应你之前的手写代码：</p>
+<pre><code class="language-python">model.backward(grad)
+</code></pre>
+<hr />
+<p><strong>调用优化器更新模型参数</strong></p>
+<pre><code class="language-python">optimizer.step()
+</code></pre>
+<p>优化器读取所有参数的 <code>.grad</code>，然后更新参数。</p>
+<p>以 SGD 为例，大致是：</p>
+<p>$$
+W \leftarrow W-lr\frac{\partial L}{\partial W}
+$$</p>
+<p>$$
+b \leftarrow b-lr\frac{\partial L}{\partial b}
+$$</p>
+<p>它对应你之前手写的：</p>
+<pre><code class="language-python">layer.W -= lr * layer.grad_W
+layer.b -= lr * layer.grad_b
+</code></pre>
+<p>所以这三句是一套：</p>
+<pre><code class="language-python">optimizer.zero_grad()  # 清空旧梯度
+loss.backward()        # 计算新梯度
+optimizer.step()       # 用梯度更新参数
+</code></pre>
+<hr />
+<h3 id="193-epoch">19.3 Epoch 指标的累计与返回<a class="headerlink" href="#193-epoch" title="Permanent link">&para;</a></h3>
+<pre><code class="language-python">total_loss += loss.item() * y.size(0)
+</code></pre>
+<p>这句要拆开看。</p>
+<p><strong><code>loss.item()</code>：读取标量损失</strong></p>
+<pre><code class="language-python">loss.item()
+</code></pre>
+<p>把只有一个数的 PyTorch 张量转成普通 Python 数字。</p>
+<p>例如：</p>
+<pre><code class="language-python">loss
+# tensor(0.7234)
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">loss.item()
+# 0.7234
+</code></pre>
+<p><strong><code>y.size(0)</code>：读取当前 Batch 样本数</strong></p>
+<p>当前 batch 的样本数量。</p>
+<p>如果：</p>
+<pre><code>y.shape = (32,)
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">y.size(0)
+</code></pre>
+<p>就是：</p>
+<pre><code>32
+</code></pre>
+<p><strong>按 Batch 样本数加权损失的原因</strong></p>
+<p><code>CrossEntropyLoss</code> 默认给出的是当前 batch 的平均损失。</p>
+<p>假设这一批有 32 个样本：</p>
+<pre><code>平均损失 = 0.5
+</code></pre>
+<p>则这一批所有样本的损失总和为：</p>
+<pre><code>0.5 × 32 = 16
+</code></pre>
+<p>所以先累加损失总和：</p>
+<pre><code class="language-python">total_loss += loss.item() * y.size(0)
+</code></pre>
+<p>最终再除以总样本数：</p>
+<pre><code class="language-python">total_loss / total
+</code></pre>
+<p>得到整个 epoch 的平均损失。</p>
+<hr />
+<p><strong>不能直接累加 Batch 平均损失的原因</strong></p>
+<p>因为最后一个 batch 可能比较小。</p>
+<p>例如一共 100 个样本：</p>
+<pre><code>第 1 批：32
+第 2 批：32
+第 3 批：32
+第 4 批：4
+</code></pre>
+<p>如果直接对四个 batch 的平均损失再平均，那么最后 4 个样本会和前面每组 32 个样本占相同权重。</p>
+<p>所以要按照每个 batch 的样本数量加权。</p>
+<hr />
+<p><strong>统计分类正确的样本数</strong></p>
+<pre><code class="language-python">total_correct += (logits.argmax(dim=1) == y).sum().item()
+</code></pre>
+<p>逐步拆开。</p>
+<p><strong><code>logits.argmax(dim=1)</code>：取得预测类别</strong></p>
+<p>对每一个样本，在所有类别中找评分最大的位置。</p>
+<p>例如：</p>
+<pre><code class="language-python">logits = torch.tensor([
+    [0.2, 1.5, 0.3],
+    [2.0, 0.1, 0.4]
+])
+</code></pre>
+<p>那么：</p>
+<pre><code class="language-python">logits.argmax(dim=1)
+</code></pre>
+<p>得到：</p>
+<pre><code>tensor([1, 0])
+</code></pre>
+<p>表示：</p>
+<ul>
+<li>第一个样本预测为第 1 类；</li>
+<li>第二个样本预测为第 0 类。</li>
+</ul>
+<p>这里不需要先 Softmax，因为 Softmax 不改变最大值的位置。</p>
+<p><strong><code>== y</code>：比较预测与真实标签</strong></p>
+<p>把预测结果和真实标签逐个比较：</p>
+<pre><code>预测：[1, 0, 2]
+真实：[1, 2, 2]
+</code></pre>
+<p>得到：</p>
+<pre><code>[True, False, True]
+</code></pre>
+<p><strong><code>.sum()</code>：累计正确样本数</strong></p>
+<p>布尔值求和时：</p>
+<pre><code>True  = 1
+False = 0
+</code></pre>
+<p>所以结果是：</p>
+<pre><code>2
+</code></pre>
+<p>说明这一批有两个样本预测正确。</p>
+<p>最后 <code>.item()</code> 把张量变成普通整数。</p>
+<hr />
+<p><strong>累计已处理的样本总数</strong></p>
+<pre><code class="language-python">total += y.size(0)
+</code></pre>
+<p>每处理一批，就把这一批的样本数加进去。</p>
+<p>最后 <code>total</code> 是这一整个 epoch 处理的样本总数。</p>
+<hr />
+<p><strong>返回 Epoch 损失与准确率</strong></p>
+<pre><code class="language-python">return {
+    &quot;loss&quot;: total_loss / total,
+    &quot;accuracy&quot;: total_correct / total
+}
+</code></pre>
+<p>返回的是一个字典，例如：</p>
+<pre><code class="language-python">{
+    &quot;loss&quot;: 0.427,
+    &quot;accuracy&quot;: 0.863
+}
+</code></pre>
+<p>意思是：</p>
+<pre><code>平均损失：0.427
+准确率：86.3%
+</code></pre>
+<hr />
+<p><strong>单个 Batch 的训练顺序汇总</strong></p>
+<p>循环内部最核心的流程是：</p>
+<pre><code class="language-python">optimizer.zero_grad()
+
+logits = model(x)
+loss = criterion(logits, y)
+
+loss.backward()
+optimizer.step()
+</code></pre>
+<p>也就是：</p>
+<pre><code>清梯度
+→ 前向传播
+→ 计算损失
+→ 反向求梯度
+→ 更新参数
+</code></pre>
+<p>每一个 batch 都会更新一次参数。</p>
+<p>所以一个 epoch 内，参数通常会更新很多次，而不是只在整个 epoch 结束后更新一次。</p>
+<hr />
+<h3 id="194-checkpoint">19.4 Checkpoint 的保存、恢复与训练衔接<a class="headerlink" href="#194-checkpoint" title="Permanent link">&para;</a></h3>
+<p>下面这段：</p>
+<pre><code class="language-python">torch.save({
+    &quot;model&quot;: model.state_dict(),
+    &quot;optimizer&quot;: optimizer.state_dict(),
+    &quot;epoch&quot;: epoch,
+    &quot;best_val_loss&quot;: best_val_loss,
+}, &quot;checkpoint.pt&quot;)
+</code></pre>
+<p>是在保存训练存档。</p>
+<p>可以类比游戏存档：</p>
+<blockquote>
+<p>不仅保存角色当前能力，还保存游戏进度以及其他状态。</p>
+</blockquote>
+<hr />
+<p><strong><code>model.state_dict()</code>：模型参数状态</strong></p>
+<pre><code class="language-python">&quot;model&quot;: model.state_dict()
+</code></pre>
+<p>保存模型的参数和状态，例如：</p>
+<pre><code>各层 weight
+各层 bias
+BatchNorm 的统计信息
+</code></pre>
+<p>这部分决定模型当前学到了什么。</p>
+<hr />
+<p><strong><code>optimizer.state_dict()</code>：优化器状态</strong></p>
+<pre><code class="language-python">&quot;optimizer&quot;: optimizer.state_dict()
+</code></pre>
+<p>保存优化器状态。</p>
+<p>例如 Adam 还保存：</p>
+<pre><code>一阶动量
+二阶动量
+当前训练步数
+</code></pre>
+<p>带 momentum 的 SGD 也有动量状态。</p>
+<p>如果想无缝恢复训练，仅保存模型参数往往不够，还应保存优化器状态。</p>
+<hr />
+<p><strong><code>epoch</code>：已完成的训练轮次</strong></p>
+<pre><code class="language-python">&quot;epoch&quot;: epoch
+</code></pre>
+<p>记录训练到了第几轮。</p>
+<p>例如：</p>
+<pre><code>epoch = 15
+</code></pre>
+<p>恢复训练时就知道下一次从第 16 轮开始。</p>
+<hr />
+<p><strong><code>best_val_loss</code>：最佳验证损失</strong></p>
+<pre><code class="language-python">&quot;best_val_loss&quot;: best_val_loss
+</code></pre>
+<p>记录历史上最好的验证集损失。</p>
+<p>这样恢复训练后，还能继续判断新模型是否打破之前的最好成绩。</p>
+<hr />
+<p><strong><code>checkpoint.pt</code>：检查点文件路径</strong></p>
+<pre><code class="language-python">&quot;checkpoint.pt&quot;
+</code></pre>
+<p>是保存的文件名。</p>
+<p>最终会生成一个 PyTorch 存档文件：</p>
+<pre><code>checkpoint.pt
+</code></pre>
+<hr />
+<p><strong>恢复 Checkpoint 的标准流程</strong></p>
+<pre><code class="language-python">checkpoint = torch.load(&quot;checkpoint.pt&quot;)
+
+model.load_state_dict(checkpoint[&quot;model&quot;])
+optimizer.load_state_dict(checkpoint[&quot;optimizer&quot;])
+
+start_epoch = checkpoint[&quot;epoch&quot;] + 1
+best_val_loss = checkpoint[&quot;best_val_loss&quot;]
+</code></pre>
+<p>这就恢复了：</p>
+<ul>
+<li>模型参数；</li>
+<li>优化器状态；</li>
+<li>训练轮数；</li>
+<li>最佳验证损失。</li>
+</ul>
+<hr />
+<p><strong>训练循环与 Checkpoint 的配合</strong></p>
+<p>训练时通常外面还有一个 epoch 循环：</p>
+<pre><code class="language-python">for epoch in range(num_epochs):
+    metrics = train_one_epoch(
+        model,
+        loader,
+        optimizer,
+        criterion,
+        device
+    )
+
+    print(metrics)
+
+    torch.save({
+        &quot;model&quot;: model.state_dict(),
+        &quot;optimizer&quot;: optimizer.state_dict(),
+        &quot;epoch&quot;: epoch,
+    }, &quot;checkpoint.pt&quot;)
+</code></pre>
+<p>整体结构就是：</p>
+<pre><code>第 1 个 epoch
+    处理所有 batch
+    保存进度
+
+第 2 个 epoch
+    处理所有 batch
+    保存进度
+
+第 3 个 epoch
+    ...
+</code></pre>
+<p>一句话概括：</p>
+<blockquote>
+<p><code>train_one_epoch()</code> 负责用整个训练集训练一轮；checkpoint 负责把训练到当前时刻的模型、优化器和进度保存下来。</p>
+</blockquote>
+<h2 id="20">20. 模型检查点的保存与恢复<a class="headerlink" href="#20" title="Permanent link">&para;</a></h2>
+<pre><code class="language-python">torch.save({
+    &quot;model&quot;: model.state_dict(),
+    &quot;optimizer&quot;: optimizer.state_dict(),
+    &quot;epoch&quot;: epoch,
+    &quot;best_val_loss&quot;: best_val_loss,
+}, &quot;checkpoint.pt&quot;)
+</code></pre>
+<p>恢复训练时同时恢复优化器状态。只做推理可只保存模型权重和构建模型所需配置。不要随意加载不可信来源的 pickle 型 checkpoint；优先使用安全权重格式并核验来源。</p>
+<h2 id="21_1">21. 验收标准与知识复盘<a class="headerlink" href="#21_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>能不看答案写出四段训练循环。</li>
+<li>能解释为什么清梯度、为什么评估要 <code>eval()</code> 和 <code>no_grad()</code>。</li>
+<li>能从张量形状定位矩阵乘法错误。</li>
+<li>NumPy 反向传播通过数值梯度检查。</li>
+<li>PyTorch 模型保存加载后，同一输入的 logits 在容差内一致。</li>
+</ul>
+<p>如果其中任一项无法独立完成，先回到对应讲解和文内例子复盘；不要直接跳到 Project。</p>
+<h2 id="22_1">22. 课后综合项目<a class="headerlink" href="#22_1" title="Permanent link">&para;</a></h2>
+<p>完整参考实现见：<a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/">模块 2 标准答案</a>。建议先独立完成，再对照实现定位差异。</p>
+<p>只想核对“完整程序从导入到训练结束如何组织”时，可对照：<a href="../02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/">NumPy 与 PyTorch MLP 完整模型代码</a>。</p>
+<h3 id="221-numpy-mlp">22.1 NumPy MLP 项目<a class="headerlink" href="#221-numpy-mlp" title="Permanent link">&para;</a></h3>
+<p>任务：在二维合成分类数据或小型手写数字子集上，实现 <code>Linear/ReLU/SoftmaxCrossEntropy/SGD</code>。</p>
+<p>必须提交：</p>
+<ul>
+<li>每层 forward/backward 的形状表。</li>
+<li>梯度检查脚本。</li>
+<li>训练/验证损失曲线和决策边界（二维数据）。</li>
+<li>至少一次消融：去掉 ReLU 或改变隐藏宽度。</li>
+<li>失败记录：至少解释一个训练不收敛的配置。</li>
+</ul>
+<h3 id="222-pytorch-mnistfashionmnist">22.2 PyTorch MNIST/FashionMNIST 项目<a class="headerlink" href="#222-pytorch-mnistfashionmnist" title="Permanent link">&para;</a></h3>
+<p>任务：用 Dataset、DataLoader、Module、Optimizer 完成训练、验证、推理和保存加载。环境准备请按 <a href="../../PyTorch%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">PyTorch 使用指南</a> 完成。</p>
+<p>建议实验：</p>
+<ol>
+<li>SGD 与 Adam 的收敛曲线。</li>
+<li>隐藏宽度 64/256/1024 的参数量、速度和精度。</li>
+<li>随机展示 20 个错误分类，分析是否有共同模式。</li>
+<li>固定随机种子后重复运行；说明“可复现”仍可能受硬件算子影响。</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
