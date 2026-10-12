@@ -1,0 +1,5419 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../02_%E5%A4%9A%E9%87%8D%E7%A7%AF%E5%88%86/">
+      
+      
+        <link rel="next" href="../04_%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B_%E5%8A%BF%E5%87%BD%E6%95%B0_%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>曲线积分与曲面积分 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_2" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              曲线积分与曲面积分
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai%E5%AD%A6%E4%B9%A0/AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-tabs__link">
+          
+  
+  
+  Ai学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C_%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E6%9F%A5/" class="md-tabs__link">
+          
+  
+  
+  实验数据处理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/" class="md-tabs__link">
+          
+  
+  
+  数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-tabs__link">
+          
+  
+  
+  耳机
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 项目推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/Conda_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy 广播机制：规则、形状与神经网络中的应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/PyTorch%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从计算机新手到 LLM Engineer：可执行学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 0：环境、命令行与学习方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1 课后 Project 标准答案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学补充：从变化率到梯度下降
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 与 PyTorch MLP 完整模型代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2 标准答案：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03_Tokenizer_Attention_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 3：Tokenizer、Attention 与 Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03A_Attention%E4%B8%8ETransformer%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention 与 Transformer 手算讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04_MiniGPT%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 4：MiniGPT 与预训练
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04A_%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%98%BE%E5%AD%98%E4%BC%B0%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT 训练原理、优化器与显存估算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05_%E6%8E%A8%E7%90%86%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 5：推理、量化与本地部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05A_%E9%87%87%E6%A0%B7_KVCache%E4%B8%8E%E9%87%8F%E5%8C%96%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    采样、KV Cache 与量化推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06_%E5%BE%AE%E8%B0%83_LoRA_QLoRA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 6：SFT、LoRA 与 QLoRA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06A_LoRA%E4%B8%8EQLoRA%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoRA、QLoRA 与监督微调推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07_RAG%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 7：RAG——从最小检索到高级与 GraphRAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07A_RAG%E6%A3%80%E7%B4%A2%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 检索、排序与评估手算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08_ToolCalling%E4%B8%8E%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 8：Tool Calling、Code Interpreter 与安全执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08A_%E4%BB%8ETool%E5%88%B0Agent%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从 Tool Calling 到可恢复 Agent：完整案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/09_Memory%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 9：Memory——从上下文到长期记忆
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/10_Agent%E4%B8%8EMultiAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 10：Agent、Browser/Coding Agent 与 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11_MCP_AI_OS%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 11：MCP、Second Brain OS 与工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11A_SecondBrain%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%93%9D%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain OS 工程实现蓝图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/12_%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 12（选修）：多模态、ROS 2 与机器人
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/13_%E9%A1%B9%E7%9B%AE%E4%B8%8E%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与学习资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线 框架优先版
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线 框架优先版
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从整机到零件：LLM 框架优先学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/00_LLM%E5%85%A8%E5%B1%80%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 0 课：从预测任务推导出 GPT 的结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/01_%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8CMiniGPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之一：第一次运行完整 MiniGPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/02_%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%AE%8C%E6%95%B4%E9%97%AD%E7%8E%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之二：训练与生成的完整闭环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/03_%E5%BC%A0%E9%87%8F_Linear_Softmax%E4%B8%8E%E6%8D%9F%E5%A4%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之一：张量、Linear、Softmax 与损失
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/04_Tokenizer_Embedding%E4%B8%8E%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之二：Tokenizer、Embedding 与位置信息
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/05_Attention%E4%B8%8ETransformerBlock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之三：Attention 与 Transformer Block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/06_%E6%A2%AF%E5%BA%A6_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之四：梯度、反向传播与参数优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/07_%E5%AE%8C%E6%95%B4MiniGPT%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%AF%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之五：完整 MiniGPT 的装配与源码导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/08_%E6%95%B0%E6%8D%AE_%E9%A2%84%E8%AE%AD%E7%BB%83_%E8%AF%84%E4%BC%B0%E4%B8%8ECheckpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之一：数据、预训练、评估与 Checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/09_%E6%8E%A8%E7%90%86_%E9%87%87%E6%A0%B7_KVCache_%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之二：推理、采样、KV Cache、量化与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/10_%E5%BE%AE%E8%B0%83_RAG_Agent%E4%B8%8E%E5%90%8E%E7%BB%AD%E6%96%B9%E5%90%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之三：微调、RAG、Agent 与后续方向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/11_%E9%A1%B9%E7%9B%AE%E9%98%B6%E6%A2%AF%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程终章：从全局地图到可复现 MiniGPT 项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/12_%E9%A1%B9%E7%9B%AE%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课后项目标准答案与结果核对
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM 框架优先学习记录模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_16" id="__nav_3_6_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniGPT 完整代码运行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/%E9%85%8D%E7%BD%AELaTeX%E5%85%AC%E5%BC%8F%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 配置 LaTeX 数学公式总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C_%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大学物理实验：实验数据处理速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E7%BB%AA%E8%AE%BA_%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大学物理实验绪论详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总索引与知识地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 多元函数微分学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_%E5%A4%9A%E9%87%8D%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 多重积分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    曲线积分与曲面积分
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    曲线积分与曲面积分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节真正要回答的问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么多重积分之后仍需要曲线积分和曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="为什么多重积分之后仍需要曲线积分和曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 环境维数不等于积分域维数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 多重积分不能直接替代曲线或曲面上的累加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-riemann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 一套共同的 Riemann 和思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参数化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 为什么需要参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 参数化不是把曲线变成另一条曲线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 正则性与局部描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一类曲线积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一类曲线积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 定义来自“数值乘弧长”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 参数化计算公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 为什么它没有取向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二类曲线积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二类曲线积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 从微小做功理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 参数化公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 为什么反向会变号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 做功与环流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 两类曲线积分之间的精确关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一类曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一类曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 曲面参数化与面积伸缩
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 为什么第一类曲面积分不需取向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二类曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二类曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 为什么通量必须有方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 参数化公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 坐标形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 两类曲面积分之间的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与多重积分的关系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="与多重积分的关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 定义对象不同，计算时可以互相转化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 不要用积分号个数判断积分域
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 积分定理为何会连接不同积分域
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与复积分的连接
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正式知识结构小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我的理解记录：为什么“参数化以后变成一元积分”曾经不够清楚
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="我的理解记录：为什么“参数化以后变成一元积分”曾经不够清楚">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 我最初的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 我当时容易混合的三个层次
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 问题出在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 关键转折
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 现在比较稳定的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 仍需亲自确认
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见混淆与自检
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见混淆与自检">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 “曲线积分就是一重积分”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 “曲面积分就是二重积分”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 “第二类一定比第一类更高级”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 “通量就是场的大小乘面积”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 “只要是闭曲线，第二类曲线积分就是零”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        材料边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回知识地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B_%E5%8A%BF%E5%87%BD%E6%95%B0_%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    全微分方程、势函数与路径无关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    向量分析与积分定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    复变函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_%E7%94%B5%E7%A3%81%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电磁学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跨课程联系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳机
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    耳机
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOMENTUM 4 完整使用建议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_10_3" id="__nav_10_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统讲解耳机音质（拆分版）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/01-%E6%92%AD%E6%94%BE%E9%93%BE%E8%B7%AF%E4%B8%8E%E6%95%B0%E5%AD%97%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（1）：播放链路与数字基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/02-%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8E%E9%AB%98%E8%A7%84%E6%A0%BC%E9%9F%B3%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（2）：音频文件格式与高规格音频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/03-%E8%93%9D%E7%89%99%E9%9F%B3%E9%A2%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（3）：蓝牙音频与传输编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/04-%E6%89%8B%E6%9C%BA%E3%80%81DAC%E3%80%81%E8%80%B3%E6%94%BE%E4%B8%8E%E9%A9%B1%E5%8A%A8%E5%8A%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（4）：手机、DAC、耳放与驱动力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/05-DAP%E3%80%81%E5%B0%8F%E5%B0%BE%E5%B7%B4%E4%B8%8E%E5%B9%B3%E8%A1%A1%E8%BE%93%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（5）：DAP、小尾巴与平衡输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/06-%E6%92%AD%E6%94%BE%E8%AE%BE%E7%BD%AE%E3%80%81EQ%E4%B8%8E%E8%AE%BE%E5%A4%87%E9%80%89%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（6）：播放设置、EQ与设备选购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/07-%E8%80%B3%E6%9C%BA%E6%9C%AC%E4%BD%93%E4%B8%8E%E5%90%AC%E6%84%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（7）：耳机本体与听感
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/08-%E9%80%89%E8%B4%AD%E5%8E%9F%E5%88%99%E4%B8%8E%E7%9F%A5%E8%AF%86%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（8）：选购原则与知识树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节真正要回答的问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么多重积分之后仍需要曲线积分和曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="为什么多重积分之后仍需要曲线积分和曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 环境维数不等于积分域维数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 多重积分不能直接替代曲线或曲面上的累加
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-riemann" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 一套共同的 Riemann 和思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参数化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="参数化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 为什么需要参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 参数化不是把曲线变成另一条曲线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 正则性与局部描述
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一类曲线积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一类曲线积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 定义来自“数值乘弧长”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 参数化计算公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 为什么它没有取向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二类曲线积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二类曲线积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 从微小做功理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 参数化公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 为什么反向会变号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 做功与环流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 两类曲线积分之间的精确关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一类曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一类曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 曲面参数化与面积伸缩
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 为什么第一类曲面积分不需取向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二类曲面积分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二类曲面积分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 为什么通量必须有方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 参数化公式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 坐标形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 两类曲面积分之间的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与多重积分的关系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="与多重积分的关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 定义对象不同，计算时可以互相转化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 不要用积分号个数判断积分域
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 积分定理为何会连接不同积分域
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与复积分的连接
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        正式知识结构小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我的理解记录：为什么“参数化以后变成一元积分”曾经不够清楚
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="我的理解记录：为什么“参数化以后变成一元积分”曾经不够清楚">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 我最初的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 我当时容易混合的三个层次
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 问题出在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 关键转折
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.5 现在比较稳定的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.6 仍需亲自确认
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见混淆与自检
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="常见混淆与自检">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 “曲线积分就是一重积分”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 “曲面积分就是二重积分”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 “第二类一定比第一类更高级”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 “通量就是场的大小乘面积”
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.5 “只要是闭曲线，第二类曲线积分就是零”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        材料边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回知识地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">曲线积分与曲面积分<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本文件先建立曲线、曲面上的积分本体，再通过链接连接多重积分、复积分、向量分析与电磁学。正式定义和推导放在“正式知识结构”中；后半部分的“我的理解记录”只还原已有聊天材料所显示的疑问与认知转折，不把自动转录或聊天回答直接当成定理来源。</p>
+</blockquote>
+<h2 id="_2">本节位置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>前置：</p>
+<ul>
+<li><a href="../01_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/#链式法则">多元函数微分学：链式法则与参数化</a></li>
+<li><a href="../02_%E5%A4%9A%E9%87%8D%E7%A7%AF%E5%88%86/">多重积分：积分域、面积元、体积元与换元</a></li>
+</ul>
+<p>后续：</p>
+<ul>
+<li><a href="../04_%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B_%E5%8A%BF%E5%87%BD%E6%95%B0_%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3/">全微分方程、势函数与路径无关</a></li>
+<li><a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">向量分析与积分定理</a></li>
+</ul>
+<p>相关：</p>
+<ul>
+<li><a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#复曲线与参数化">复变函数：复曲线与参数化</a></li>
+<li><a href="../07_%E7%94%B5%E7%A3%81%E5%AD%A6/">电磁学：做功、电通量与磁通量</a></li>
+</ul>
+<p>跨课程联系：</p>
+<ul>
+<li><a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/#桥梁-b一重二重三重曲线与曲面积分">积分域维数与积分家族</a></li>
+<li><a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/#桥梁-c局部量与整体量">局部量与整体量</a></li>
+</ul>
+<h2 id="_3">本节真正要回答的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>学完一重、二重、三重积分以后，很容易形成一种错误的章节直觉：</p>
+<div class="arithmatex">\[
+\text{一重积分}\to\text{二重积分}\to\text{三重积分}
+\to\text{曲线积分}\to\text{曲面积分}.
+\]</div>
+<p>这条排列只是某些教材的授课顺序，不是数学对象的推导顺序。真正应先问的是：</p>
+<blockquote>
+<p>被累加的点位于什么几何对象上？每个小块该用长度、面积还是体积衡量？被积对象是标量，还是要与切向或法向比较的向量？</p>
+</blockquote>
+<p>本节用两个彼此独立的维度分类：</p>
+<ol>
+<li><strong>积分域的几何类型</strong>：区间、平面区域、空间区域、曲线、曲面；</li>
+<li><strong>被积对象与方向结构</strong>：标量累加，或向量的切向/法向累加。</li>
+</ol>
+<p>这比数积分号更可靠。</p>
+<h2 id="_4">为什么多重积分之后仍需要曲线积分和曲面积分<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 环境维数不等于积分域维数<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>一条空间曲线可以位于 <span class="arithmatex">\(\mathbb R^3\)</span> 中，但沿它移动仍然只有一个独立参数；一个空间曲面也位于 <span class="arithmatex">\(\mathbb R^3\)</span> 中，但在面上定位通常需要两个独立参数。因此：</p>
+<table>
+<thead>
+<tr>
+<th>积分域</th>
+<th style="text-align: right;">所在空间示例</th>
+<th style="text-align: right;">积分域自身的维数</th>
+<th>自然微元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区间 <span class="arithmatex">\([a,b]\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\mathbb R\)</span></td>
+<td style="text-align: right;">1</td>
+<td><span class="arithmatex">\(dx\)</span></td>
+</tr>
+<tr>
+<td>平面区域 <span class="arithmatex">\(D\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\mathbb R^2\)</span></td>
+<td style="text-align: right;">2</td>
+<td><span class="arithmatex">\(dA\)</span></td>
+</tr>
+<tr>
+<td>空间区域 <span class="arithmatex">\(V\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\mathbb R^3\)</span></td>
+<td style="text-align: right;">3</td>
+<td><span class="arithmatex">\(dV\)</span></td>
+</tr>
+<tr>
+<td>平面或空间曲线 <span class="arithmatex">\(C\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\mathbb R^2\)</span> 或 <span class="arithmatex">\(\mathbb R^3\)</span></td>
+<td style="text-align: right;">1</td>
+<td><span class="arithmatex">\(ds\)</span> 或 <span class="arithmatex">\(d\mathbf r\)</span></td>
+</tr>
+<tr>
+<td>空间曲面 <span class="arithmatex">\(S\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(\mathbb R^3\)</span></td>
+<td style="text-align: right;">2</td>
+<td><span class="arithmatex">\(dS\)</span> 或 <span class="arithmatex">\(\mathbf n\,dS\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>“曲线是一维的”说的是曲线自身的局部自由度，不是说它只能位于数轴上。“曲面是二维的”也不妨碍它弯曲地嵌在三维空间中。</p>
+<h3 id="12">1.2 多重积分不能直接替代曲线或曲面上的累加<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>设一根细导线弯成空间曲线 <span class="arithmatex">\(C\)</span>。它有线密度 <span class="arithmatex">\(\rho\)</span>，总质量应当是</p>
+<div class="arithmatex">\[
+m=\int_C\rho\,ds.
+\]</div>
+<p>若把它当成三维区域做三重积分，理想化的零粗细导线在体积意义下为零，不能表达“每单位长度有质量”。同样，一张理想薄膜的质量由面积密度在曲面上累加，而不是由三维体积积分直接给出。</p>
+<p>因此新积分不是因为“变量更多”，而是因为<strong>承载分布的几何对象变了</strong>：</p>
+<ul>
+<li>线密度配长度微元；</li>
+<li>面密度配面积微元；</li>
+<li>体密度配体积微元。</li>
+</ul>
+<h3 id="13-riemann">1.3 一套共同的 Riemann 和思想<a class="headerlink" href="#13-riemann" title="Permanent link">&para;</a></h3>
+<p>无论哪种积分，都可先理解为：</p>
+<ol>
+<li>把积分域切成许多小块；</li>
+<li>在每块选一点，读取被积量；</li>
+<li>乘以该小块的几何大小或有向微元；</li>
+<li>求和；</li>
+<li>让分割不断变细并取极限。</li>
+</ol>
+<p>不同之处在第 3 步：</p>
+<ul>
+<li>曲线的无向大小是弧长 <span class="arithmatex">\(\Delta s\)</span>；</li>
+<li>曲线的有向位移是 <span class="arithmatex">\(\Delta\mathbf r\)</span>；</li>
+<li>曲面的无向大小是面积 <span class="arithmatex">\(\Delta S\)</span>；</li>
+<li>曲面的有向面积是 <span class="arithmatex">\(\mathbf n\,\Delta S\)</span>。</li>
+</ul>
+<p>这四种小量分别导向两类曲线积分和两类曲面积分。</p>
+<h2 id="_5">参数化<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>参数化的核心作用，是把几何对象翻译成可计算的坐标域，同时保留长度、面积与取向信息。</p>
+<h3 id="21">2.1 为什么需要参数<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>曲线或曲面不是天然按 <span class="arithmatex">\(x\)</span> 从小到大排列的。圆的同一个 <span class="arithmatex">\(x\)</span> 通常对应上下两个点，球面更不能由一个全局的 <span class="arithmatex">\(z=g(x,y)\)</span> 单值表示。参数化给几何对象上的点建立内部坐标：</p>
+<div class="arithmatex">\[
+\text{曲线：}\quad \mathbf r(t),\qquad a\le t\le b,
+\]</div>
+<div class="arithmatex">\[
+\text{曲面：}\quad \mathbf r(u,v),\qquad (u,v)\in D.
+\]</div>
+<p>参数 <span class="arithmatex">\(t\)</span> 不一定是时间，也不一定是弧长；它只是给曲线上的位置编号。<span class="arithmatex">\((u,v)\)</span> 则给曲面上的位置编号。</p>
+<p>参数化做了两件不同的事：</p>
+<ol>
+<li>描述“积分域上的点在哪里”；</li>
+<li>记录参数小变化在真实几何对象上造成多大的长度或面积变化。</li>
+</ol>
+<p>第二件事正是公式中 <span class="arithmatex">\(|\mathbf r'(t)|\)</span> 或 <span class="arithmatex">\(|\mathbf r_u\times\mathbf r_v|\)</span> 出现的原因。</p>
+<h3 id="22">2.2 参数化不是把曲线变成另一条曲线<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>同一条有向曲线可以有许多参数化。例如单位圆可写为</p>
+<div class="arithmatex">\[
+\mathbf r(t)=(\cos t,\sin t),\qquad 0\le t\le 2\pi,
+\]</div>
+<p>也可换用单调增加的新参数 <span class="arithmatex">\(t=\psi(\tau)\)</span>。参数运行速度改变了，但曲线本身没有改变。正确的积分公式会同时改变微元，从而使积分值不依赖这种“走得快或慢”的选择。</p>
+<p>如果新参数使方向反转，则：</p>
+<ul>
+<li><span class="arithmatex">\(ds\)</span> 仍是非负长度，所以第一类曲线积分不变；</li>
+<li><span class="arithmatex">\(d\mathbf r\)</span> 的方向反转，所以第二类曲线积分变号。</li>
+</ul>
+<h3 id="23">2.3 正则性与局部描述<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>对光滑曲线，通常要求 <span class="arithmatex">\(\mathbf r'(t)\ne\mathbf 0\)</span>，以保证局部存在明确切向。对光滑曲面，通常要求</p>
+<div class="arithmatex">\[
+\mathbf r_u\times\mathbf r_v\ne\mathbf 0,
+\]</div>
+<p>以保证两条参数切向独立并张成切平面。复杂曲线或曲面可以分片参数化，再利用积分的可加性拼合。</p>
+<h2 id="_6">第一类曲线积分<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>第一类曲线积分沿曲线累加标量。</p>
+<h3 id="31">3.1 定义来自“数值乘弧长”<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>设标量函数 <span class="arithmatex">\(f\)</span> 定义在曲线 <span class="arithmatex">\(C\)</span> 上。把 <span class="arithmatex">\(C\)</span> 分成短弧 <span class="arithmatex">\(\Delta s_k\)</span>，在每段取点 <span class="arithmatex">\(P_k\)</span>，形成</p>
+<div class="arithmatex">\[
+\sum_k f(P_k)\Delta s_k.
+\]</div>
+<p>极限存在时定义</p>
+<div class="arithmatex">\[
+\int_C f\,ds.
+\]</div>
+<p>它回答的是：</p>
+<blockquote>
+<p>曲线上每个位置有一个标量密度，沿整条曲线累计后得到多少？</p>
+</blockquote>
+<p>若 <span class="arithmatex">\(f=\rho\)</span> 是线密度，结果是质量；若 <span class="arithmatex">\(f=1\)</span>，则</p>
+<div class="arithmatex">\[
+\int_C1\,ds
+\]</div>
+<p>就是曲线长度。</p>
+<h3 id="32">3.2 参数化计算公式<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>对 <span class="arithmatex">\(\mathbf r(t)\)</span>，微小参数变化 <span class="arithmatex">\(dt\)</span> 对应的位移近似为 <span class="arithmatex">\(\mathbf r'(t)dt\)</span>，弧长为</p>
+<div class="arithmatex">\[
+ds=|\mathbf r'(t)|\,dt.
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\int_C f\,ds
+=\int_a^b f(\mathbf r(t))|\mathbf r'(t)|\,dt.
+\]</div>
+<p>这里有两个容易混在一起的代入：</p>
+<ul>
+<li><span class="arithmatex">\(f(\mathbf r(t))\)</span>：把曲线上的点写成参数；</li>
+<li><span class="arithmatex">\(|\mathbf r'(t)|dt\)</span>：把参数长度换成真实弧长。</li>
+</ul>
+<p>只做第一步而漏掉第二步，就等于把“参数跑了多远”错当成“曲线有多长”。</p>
+<h3 id="33">3.3 为什么它没有取向<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>反向参数化时 <span class="arithmatex">\(\mathbf r'\)</span> 变号，但 <span class="arithmatex">\(|\mathbf r'|\)</span> 不变，因此</p>
+<div class="arithmatex">\[
+\int_{-C}f\,ds=\int_C f\,ds.
+\]</div>
+<p>这里的 <span class="arithmatex">\(-C\)</span> 表示同一条曲线取相反方向。第一类曲线积分只看哪些点被经过及其弧长，不问按哪个方向经过。</p>
+<h2 id="_7">第二类曲线积分<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>第二类曲线积分沿切向位移累加向量场。</p>
+<h3 id="41">4.1 从微小做功理解<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>设向量场 <span class="arithmatex">\(\mathbf F\)</span> 作用于沿曲线移动的对象。一次小位移 <span class="arithmatex">\(\Delta\mathbf r\)</span> 上的近似做功是</p>
+<div class="arithmatex">\[
+\mathbf F(P_k)\cdot\Delta\mathbf r_k.
+\]</div>
+<p>累加并取极限得到</p>
+<div class="arithmatex">\[
+\int_C\mathbf F\cdot d\mathbf r.
+\]</div>
+<p>点积只保留 <span class="arithmatex">\(\mathbf F\)</span> 沿运动切向的分量。与运动垂直的场分量不做这一步位移上的功。</p>
+<p>平面上若 <span class="arithmatex">\(\mathbf F=(P,Q)\)</span>，则</p>
+<div class="arithmatex">\[
+\mathbf F\cdot d\mathbf r=P\,dx+Q\,dy.
+\]</div>
+<p>空间中若 <span class="arithmatex">\(\mathbf F=(P,Q,R)\)</span>，则</p>
+<div class="arithmatex">\[
+\mathbf F\cdot d\mathbf r=P\,dx+Q\,dy+R\,dz.
+\]</div>
+<p>因此“对坐标的曲线积分”不是把 <span class="arithmatex">\(dx,dy,dz\)</span> 当作三个互不相关的积分；它们共同来自曲线上的同一个有向位移 <span class="arithmatex">\(d\mathbf r\)</span>。</p>
+<h3 id="42">4.2 参数化公式<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<p>若 <span class="arithmatex">\(C\)</span> 由 <span class="arithmatex">\(\mathbf r(t)\)</span> 给出，则</p>
+<div class="arithmatex">\[
+d\mathbf r=\mathbf r'(t)\,dt,
+\]</div>
+<p>从而</p>
+<div class="arithmatex">\[
+\int_C\mathbf F\cdot d\mathbf r
+=\int_a^b\mathbf F(\mathbf r(t))\cdot\mathbf r'(t)\,dt.
+\]</div>
+<p>曲线参数化把几何线积分化成一元定积分，但并不说明原来的积分域是一段直线；弯曲几何已经编码进 <span class="arithmatex">\(\mathbf r(t)\)</span> 与 <span class="arithmatex">\(\mathbf r'(t)\)</span>。</p>
+<h3 id="43">4.3 为什么反向会变号<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<p>路径反向时，每个微小位移变成 <span class="arithmatex">\(-d\mathbf r\)</span>，所以</p>
+<div class="arithmatex">\[
+\int_{-C}\mathbf F\cdot d\mathbf r
+=-\int_C\mathbf F\cdot d\mathbf r.
+\]</div>
+<p>这不是人为规定符号，而是“沿场方向走”和“逆场方向走”的切向投影本就相反。</p>
+<h3 id="44">4.4 做功与环流<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<ul>
+<li>从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的开放曲线积分常解释为场沿该运动路径所做的功；</li>
+<li>沿闭曲线的积分
+  $$
+  \oint_C\mathbf F\cdot d\mathbf r
+  $$
+  常解释为总环流。</li>
+</ul>
+<p>“环流”是沿整个闭合回路累加切向分量；“旋度”则是点附近单位面积环流的极限。两者属于整体量与局部量，不能直接当成同一个对象。它们由 <a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/#stokes-定理">Stokes 定理</a> 联系。</p>
+<h3 id="45">4.5 两类曲线积分之间的精确关系<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
+<p>若 <span class="arithmatex">\(\mathbf T\)</span> 是与曲线取向一致的单位切向量，则</p>
+<div class="arithmatex">\[
+d\mathbf r=\mathbf T\,ds.
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\int_C\mathbf F\cdot d\mathbf r
+=\int_C(\mathbf F\cdot\mathbf T)\,ds.
+\]</div>
+<p>这说明第二类曲线积分可以看成：先取向量场的有符号切向分量，再做第一类曲线积分。它没有把两类积分变成同一个定义；方向信息藏在 <span class="arithmatex">\(\mathbf F\cdot\mathbf T\)</span> 中。</p>
+<h2 id="_8">第一类曲面积分<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>第一类曲面积分在曲面上累加标量。</p>
+<h3 id="51">5.1 定义<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p>把曲面 <span class="arithmatex">\(S\)</span> 分成小面片 <span class="arithmatex">\(\Delta S_k\)</span>，选点 <span class="arithmatex">\(P_k\)</span>，形成</p>
+<div class="arithmatex">\[
+\sum_k f(P_k)\Delta S_k.
+\]</div>
+<p>极限定义</p>
+<div class="arithmatex">\[
+\iint_S f\,dS.
+\]</div>
+<p>若 <span class="arithmatex">\(f\)</span> 是面密度，积分给出薄膜总质量；若 <span class="arithmatex">\(f=1\)</span>，积分给出曲面面积。</p>
+<h3 id="52">5.2 曲面参数化与面积伸缩<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>设</p>
+<div class="arithmatex">\[
+\mathbf r=\mathbf r(u,v),\qquad (u,v)\in D.
+\]</div>
+<p>参数平面中的小矩形边向量，经映射后近似变成</p>
+<div class="arithmatex">\[
+\mathbf r_u\,du,\qquad \mathbf r_v\,dv.
+\]</div>
+<p>二者张成的小平行四边形面积为</p>
+<div class="arithmatex">\[
+dS=|\mathbf r_u\times\mathbf r_v|\,du\,dv.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\iint_S f\,dS
+=\iint_D f(\mathbf r(u,v))
+|\mathbf r_u\times\mathbf r_v|\,du\,dv.
+\]</div>
+<p><span class="arithmatex">\(|\mathbf r_u\times\mathbf r_v|\)</span> 是曲面参数化的局部面积缩放因子，角色类似多重积分换元中的 Jacobian，但要根据“二维参数域嵌入三维空间”的几何来计算。</p>
+<p>若曲面是图像 <span class="arithmatex">\(z=g(x,y)\)</span>，取 <span class="arithmatex">\(\mathbf r(x,y)=(x,y,g(x,y))\)</span>，便得到</p>
+<div class="arithmatex">\[
+dS=\sqrt{1+g_x^2+g_y^2}\,dx\,dy.
+\]</div>
+<p>根号因子补偿曲面倾斜导致的真实面积大于水平投影面积。</p>
+<h3 id="53">5.3 为什么第一类曲面积分不需取向<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<p>交换参数次序会使 <span class="arithmatex">\(\mathbf r_u\times\mathbf r_v\)</span> 反向，但其长度不变。因此第一类曲面积分只累加面积，不区分曲面的“哪一侧”。</p>
+<h2 id="_9">第二类曲面积分<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>第二类曲面积分表达有向通量。</p>
+<h3 id="61">6.1 为什么通量必须有方向<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(\mathbf F\)</span> 表示流体速度场。穿过小面片的净流量，取决于场在法向上的分量：</p>
+<div class="arithmatex">\[
+\mathbf F\cdot\mathbf n.
+\]</div>
+<ul>
+<li>场沿法向穿过时贡献最大；</li>
+<li>场与曲面相切时点积为零，不穿过曲面；</li>
+<li>从选定正侧穿向负侧时贡献为负。</li>
+</ul>
+<p>所以通量定义为</p>
+<div class="arithmatex">\[
+\iint_S\mathbf F\cdot\mathbf n\,dS
+=\iint_S\mathbf F\cdot d\mathbf S.
+\]</div>
+<p>曲面若改取相反单位法向，整个积分变号。封闭曲面通常约定外法向为正，此时正通量表示净流出。</p>
+<h3 id="62">6.2 参数化公式<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>若参数方向选定的法向与 <span class="arithmatex">\(\mathbf r_u\times\mathbf r_v\)</span> 一致，则有向面积元是</p>
+<div class="arithmatex">\[
+d\mathbf S=(\mathbf r_u\times\mathbf r_v)\,du\,dv,
+\]</div>
+<p>于是</p>
+<div class="arithmatex">\[
+\iint_S\mathbf F\cdot d\mathbf S
+=\iint_D
+\mathbf F(\mathbf r(u,v))
+\cdot(\mathbf r_u\times\mathbf r_v)\,du\,dv.
+\]</div>
+<p>若要相反取向，在右端加负号。计算前必须先说清曲面取向，不能等算完再凭感觉补符号。</p>
+<h3 id="63">6.3 坐标形式<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
+<p>令 <span class="arithmatex">\(\mathbf F=(P,Q,R)\)</span>，有向面积元也可写成</p>
+<div class="arithmatex">\[
+d\mathbf S=(dy\,dz,\ dz\,dx,\ dx\,dy),
+\]</div>
+<p>于是形式上</p>
+<div class="arithmatex">\[
+\iint_S\mathbf F\cdot d\mathbf S
+=\iint_S P\,dy\,dz+Q\,dz\,dx+R\,dx\,dy.
+\]</div>
+<p>这些“坐标面积”带有投影与取向信息。其统一含义仍是 <span class="arithmatex">\(\mathbf F\cdot\mathbf n\,dS\)</span>，不宜只靠三个符号机械记忆。</p>
+<h3 id="64">6.4 两类曲面积分之间的关系<a class="headerlink" href="#64" title="Permanent link">&para;</a></h3>
+<p>固定取向后，</p>
+<div class="arithmatex">\[
+\iint_S\mathbf F\cdot d\mathbf S
+=\iint_S(\mathbf F\cdot\mathbf n)\,dS.
+\]</div>
+<p>也就是说：先取向量场的有符号法向分量，再按无向面积累加。与曲线情形完全平行：</p>
+<table>
+<thead>
+<tr>
+<th>几何对象</th>
+<th>无向标量累加</th>
+<th>有向向量累加</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曲线</td>
+<td><span class="arithmatex">\(\int_C f\,ds\)</span></td>
+<td><span class="arithmatex">\(\int_C\mathbf F\cdot\mathbf T\,ds=\int_C\mathbf F\cdot d\mathbf r\)</span></td>
+</tr>
+<tr>
+<td>曲面</td>
+<td><span class="arithmatex">\(\iint_S f\,dS\)</span></td>
+<td><span class="arithmatex">\(\iint_S\mathbf F\cdot\mathbf n\,dS=\iint_S\mathbf F\cdot d\mathbf S\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_10">与多重积分的关系<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="71">7.1 定义对象不同，计算时可以互相转化<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
+<p>曲线积分和曲面积分的积分域分别是曲线与曲面；参数化后，它们被化为参数区间上的一重积分或参数平面上的二重积分：</p>
+<div class="arithmatex">\[
+\int_C f\,ds
+\longrightarrow
+\int_a^b f(\mathbf r(t))|\mathbf r'(t)|\,dt,
+\]</div>
+<div class="arithmatex">\[
+\iint_S f\,dS
+\longrightarrow
+\iint_D f(\mathbf r(u,v))
+|\mathbf r_u\times\mathbf r_v|\,du\,dv.
+\]</div>
+<p>“化成一重/二重积分”是计算工具，不会改变原积分的几何含义。正如球坐标把三重积分化为三个累次一重积分，不能据此说原积分域是三条区间。</p>
+<h3 id="72">7.2 不要用积分号个数判断积分域<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<p>常见符号 <span class="arithmatex">\(\int_C\)</span> 与 <span class="arithmatex">\(\iint_S\)</span> 有助于提醒维数，但数学本质是下标所标识的积分域与所采用的微元。尤其是：</p>
+<ul>
+<li>一条空间曲线仍是一维积分域；</li>
+<li>一个空间曲面仍是二维积分域；</li>
+<li>第二类曲线积分虽写有 <span class="arithmatex">\(dx,dy,dz\)</span>，仍沿同一条曲线；</li>
+<li>曲面积分参数化后出现 <span class="arithmatex">\(du\,dv\)</span>，仍在原曲面上累加。</li>
+</ul>
+<h3 id="73">7.3 积分定理为何会连接不同积分域<a class="headerlink" href="#73" title="Permanent link">&para;</a></h3>
+<p><a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">Green、Gauss、Stokes</a> 会把内部的积分与边界上的积分联系起来。例如 Stokes 定理连接：</p>
+<div class="arithmatex">\[
+\iint_S(\nabla\times\mathbf F)\cdot\mathbf n\,dS
+=\oint_{\partial S}\mathbf F\cdot d\mathbf r.
+\]</div>
+<p>左边在二维曲面上积分，右边在一维边界曲线上积分。这是定理建立的局部—整体关系，不表示曲面积分和曲线积分原本没有区别。</p>
+<h2 id="_11">与复积分的连接<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>复平面中的路径 <span class="arithmatex">\(\gamma\)</span> 仍是一条需要参数化的曲线，因此复积分首先继承本文件的曲线参数化、取向和分段可加性，而不是凭空出现的另一套积分。它不是二重积分；参数化后虽写成一元定积分，几何路径仍由参数映射保存。</p>
+<p>至于 <span class="arithmatex">\(f(z)\,dz\)</span> 怎样完整拆成两个实的第二类曲线积分、解析性又怎样带来 Cauchy 定理与复原函数，知识本体统一放在 <a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#复积分">复积分</a> 与 <a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#复曲线与参数化">复曲线和参数化</a>。实向量场中的路径无关和势函数则见 <a href="../04_%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B_%E5%8A%BF%E5%87%BD%E6%95%B0_%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3/#路径无关">全微分方程、势函数与路径无关</a>。</p>
+<h2 id="_12">正式知识结构小结<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>积分</th>
+<th>积分域</th>
+<th>被积结构</th>
+<th>方向是否影响符号</th>
+<th>参数化后的计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\int_C f\,ds\)</span></td>
+<td>曲线</td>
+<td>标量乘弧长</td>
+<td>否</td>
+<td>一重积分，含 <span class="arithmatex">\(\lVert\mathbf r'\rVert\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\int_C\mathbf F\cdot d\mathbf r\)</span></td>
+<td>有向曲线</td>
+<td>切向分量乘有向位移</td>
+<td>是</td>
+<td>一重积分，含 <span class="arithmatex">\(\mathbf r'\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\iint_S f\,dS\)</span></td>
+<td>曲面</td>
+<td>标量乘面积</td>
+<td>否</td>
+<td>二重积分，含 <span class="arithmatex">\(\lVert\mathbf r_u\times\mathbf r_v\rVert\)</span></td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\iint_S\mathbf F\cdot d\mathbf S\)</span></td>
+<td>有向曲面</td>
+<td>法向分量乘有向面积</td>
+<td>是</td>
+<td>二重积分，含 <span class="arithmatex">\(\mathbf r_u\times\mathbf r_v\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>辨认一道题时，可按以下顺序问：</p>
+<ol>
+<li>积分域是区域、曲线还是曲面？</li>
+<li>被积对象是标量还是向量？</li>
+<li>若是向量，取切向分量还是法向分量？</li>
+<li>是否需要选取向？</li>
+<li>用什么参数化覆盖积分域？</li>
+<li>参数变化与真实长度/面积之间的缩放因子是什么？</li>
+</ol>
+<h2 id="_13">我的理解记录：为什么“参数化以后变成一元积分”曾经不够清楚<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="101">10.1 我最初的问题<a class="headerlink" href="#101" title="Permanent link">&para;</a></h3>
+<p>已有聊天材料中，相关疑问不是一次提出，而是逐步推进的：</p>
+<ol>
+<li>复数可以表示轨迹，参数方程与复数表示怎样转换？</li>
+<li>复积分的几何意义是什么，具体怎样计算？</li>
+<li>所谓“微小量相加”到底在相加什么？它与多元函数有什么联系？</li>
+<li>既然每一小段都先经过函数变换，为什么不能先把小段叠加，再整体变换？</li>
+<li>当两个类比对象并不相同时，为什么仍说它们“类似”？</li>
+<li>经过重新解释后，才进一步辨认：复积分拆开后不是“两个二元积分”，而是两个实的曲线积分。</li>
+</ol>
+<p>这组问题说明，当时的困难不是少记了一个参数公式，而是没有先固定三件事：积分域、每段贡献、求和后的输出类型。</p>
+<h3 id="102">10.2 我当时容易混合的三个层次<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>轨迹本身</strong>：<span class="arithmatex">\(\gamma\)</span> 是复平面中的曲线，也可看成 <span class="arithmatex">\(\mathbb R^2\)</span> 中的曲线；</li>
+<li><strong>参数化</strong>：<span class="arithmatex">\(z(t)\)</span> 只是给轨迹上的点编号并给出有向切向；</li>
+<li><strong>被积函数</strong>：<span class="arithmatex">\(f(z(t))\)</span> 在每个轨迹点产生新的复数值。</li>
+</ul>
+<p>表达式</p>
+<div class="arithmatex">\[
+f(z(t))z'(t)\,dt
+\]</div>
+<p>不是“先把所有 <span class="arithmatex">\(z\)</span> 相加再送入 <span class="arithmatex">\(f\)</span>”。积分的每个局部贡献都同时依赖当前位置的函数值和该处的有向微小位移。一般而言，</p>
+<div class="arithmatex">\[
+\sum f(z_k)\Delta z_k
+\ne
+f\left(\sum\Delta z_k\right).
+\]</div>
+<p>两边代表不同运算，也没有可交换的理由。</p>
+<h3 id="103">10.3 问题出在哪里<a class="headerlink" href="#103" title="Permanent link">&para;</a></h3>
+<p>“参数化后是一元积分”容易被误听成“这个问题原来只是一元函数问题”。实际情况是：</p>
+<ul>
+<li>曲线是一维积分域，所以用一个参数遍历；</li>
+<li><span class="arithmatex">\(f\)</span> 仍可能依赖曲线在二维或三维空间中的位置；</li>
+<li><span class="arithmatex">\(\mathbf r'(t)\)</span> 或 <span class="arithmatex">\(z'(t)\)</span> 保留了切向、速度和取向；</li>
+<li>参数化只把几何约束显式写进普通积分。</li>
+</ul>
+<p>因此，计算形式降为一元定积分，不等于几何信息被删掉。</p>
+<h3 id="104">10.4 关键转折<a class="headerlink" href="#104" title="Permanent link">&para;</a></h3>
+<p>已有聊天索引记录的稳定转折是：</p>
+<div class="arithmatex">\[
+\text{沿复平面曲线积分}
+\to
+\text{拆成两个实曲线积分}
+\to
+\text{参数化为一元定积分}
+\to
+\text{使用 Green 时才成为二重积分}.
+\]</div>
+<p>这条链把“沿曲线”“在区域内”“积分值为复数”三个层次分开了。</p>
+<h3 id="105">10.5 现在比较稳定的理解<a class="headerlink" href="#105" title="Permanent link">&para;</a></h3>
+<p>参数化不是额外制造一层神秘符号，而是选择曲线或曲面的内部坐标。弧长因子、切向量、面积伸缩因子和法向量负责让最终结果仍属于原来的几何对象，而不是属于任意选择的参数域。</p>
+<p>第一类与第二类的根本差异也不是“公式长得不同”，而是：</p>
+<ul>
+<li>第一类使用无向几何大小；</li>
+<li>第二类把向量场投影到选定切向或法向，因此保留方向。</li>
+</ul>
+<h3 id="106">10.6 仍需亲自确认<a class="headerlink" href="#106" title="Permanent link">&para;</a></h3>
+<ul>
+<li>选两种不同速度但同方向的圆周参数化，分别计算同一第一类和第二类曲线积分，确认结果不变。</li>
+<li>再把参数方向反转，检查第一类不变、第二类变号。</li>
+<li>从 <span class="arithmatex">\(\mathbf r(u,v)\)</span> 画出 <span class="arithmatex">\(\mathbf r_u\,du\)</span>、<span class="arithmatex">\(\mathbf r_v\,dv\)</span> 及其叉积，亲自解释面积因子。</li>
+<li>在复积分中亲自展开 <span class="arithmatex">\((u+iv)(dx+i\,dy)\)</span>，不要只记“可拆成两个实积分”。</li>
+</ul>
+<h2 id="_14">常见混淆与自检<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="111">11.1 “曲线积分就是一重积分”<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p>不准确。它在参数化后用一重积分计算，但定义域是曲线，微元由曲线几何决定。</p>
+<h3 id="112">11.2 “曲面积分就是二重积分”<a class="headerlink" href="#112" title="Permanent link">&para;</a></h3>
+<p>同样不准确。参数化后转成参数域上的二重积分；真实面积需要乘局部面积伸缩因子。</p>
+<h3 id="113">11.3 “第二类一定比第一类更高级”<a class="headerlink" href="#113" title="Permanent link">&para;</a></h3>
+<p>“第一类/第二类”是结构分类，不是难度等级。第二类多了取向以及向量投影；第一类仍是独立而完整的标量累加。</p>
+<h3 id="114">11.4 “通量就是场的大小乘面积”<a class="headerlink" href="#114" title="Permanent link">&para;</a></h3>
+<p>只有法向分量 <span class="arithmatex">\(\mathbf F\cdot\mathbf n\)</span> 在整个曲面上恒为常数时，才可简化为“该常数 × 曲面面积”；“场大小恒定且处处同向垂直曲面”只是这一条件的常见特例。若场虽处处垂直但大小随位置变化，仍必须积分。</p>
+<h3 id="115">11.5 “只要是闭曲线，第二类曲线积分就是零”<a class="headerlink" href="#115" title="Permanent link">&para;</a></h3>
+<p>错误。闭合只意味着起终点相同，不保证环流为零。闭路积分何时为零，取决于场是否保守以及定义域的全局条件，见 <a href="../04_%E5%85%A8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B_%E5%8A%BF%E5%87%BD%E6%95%B0_%E8%B7%AF%E5%BE%84%E6%97%A0%E5%85%B3/#闭路积分为零与路径无关">路径无关与闭路积分</a>。</p>
+<h2 id="_15">材料边界<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li>对话问题链来自 <a href="../sources/聊天材料索引.md">聊天材料索引</a>，尤其是“参数化、调和共轭与方向”和“复积分与实曲线积分”两段。</li>
+<li>第一/第二类曲线积分、第一/第二类曲面积分的课程顺序与典型用途参考 <a href="../sources/视频来源索引.md">视频来源索引</a>。</li>
+<li>视频转录为自动识别文本，存在数学术语误识别；本文件没有把无法独立核验的转录句子写成正式结论。</li>
+</ul>
+<h2 id="_16">返回知识地图<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p><a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">返回总索引</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

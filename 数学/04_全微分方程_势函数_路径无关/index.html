@@ -1,0 +1,5788 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Polar 的个人学习笔记">
+      
+      
+      
+      
+        <link rel="prev" href="../03_%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/">
+      
+      
+        <link rel="next" href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>全微分方程、势函数与路径无关 - Polar Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_2" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Polar Notes" class="md-header__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Polar Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              全微分方程、势函数与路径无关
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Polar Notes
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-tabs__link">
+          
+  
+  
+  Apple
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../ai%E5%AD%A6%E4%B9%A0/AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-tabs__link">
+          
+  
+  
+  Ai学习
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-tabs__link">
+          
+  
+  
+  English
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-tabs__link">
+          
+  
+  
+  Github
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-tabs__link">
+          
+  
+  
+  其他
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C_%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E6%9F%A5/" class="md-tabs__link">
+          
+  
+  
+  实验数据处理
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/" class="md-tabs__link">
+          
+  
+  
+  数学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  经济政治
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-tabs__link">
+          
+  
+  
+  耳机
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Polar Notes" class="md-nav__button md-logo" aria-label="Polar Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Polar Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Polar Notes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apple
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Apple
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iCloud%E4%B8%8Eappstore%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E7%99%BB%E5%BD%95%E4%B8%8D%E5%90%8C%E8%B4%A6%E5%8F%B7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么苹果设置里和appstore里可以分别登录两个账号
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iphone%E5%8A%A8%E6%80%81%E5%A3%81%E7%BA%B8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iphone动态壁纸
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/iTunes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iTunes的前世今生
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Apple/%E5%A4%96%E5%8C%BAappleID%E6%B3%A8%E5%86%8C%E6%95%99%E7%A8%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外区apple ID注册教程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ai学习
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Ai学习
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/AI_%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 项目推荐
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/Conda_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/numpy%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NumPy 广播机制：规则、形状与神经网络中的应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/PyTorch%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch 从零使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从计算机新手到 LLM Engineer：可执行学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/00_%E7%8E%AF%E5%A2%83%E4%B8%8E%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 0：环境、命令行与学习方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1：Python、数据处理与必要数学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01_Python_Git_%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80_%E7%BB%BC%E5%90%88%E7%BB%83%E4%B9%A0%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 1 课后 Project 标准答案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/01A_%E6%95%B0%E5%AD%A6%E7%9B%B4%E8%A7%89%E4%B8%8E%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学补充：从变化率到梯度下降
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E5%AE%8C%E6%95%B4%E6%A8%A1%E5%9E%8B%E4%BB%A3%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2：NumPy 与 PyTorch MLP 完整模型代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/02_NumPy%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8EPyTorch_%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 2 标准答案：NumPy 神经网络与 PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03_Tokenizer_Attention_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 3：Tokenizer、Attention 与 Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/03A_Attention%E4%B8%8ETransformer%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention 与 Transformer 手算讲义
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04_MiniGPT%E4%B8%8E%E9%A2%84%E8%AE%AD%E7%BB%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 4：MiniGPT 与预训练
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/04A_%E8%AE%AD%E7%BB%83%E5%8E%9F%E7%90%86%E4%B8%8E%E6%98%BE%E5%AD%98%E4%BC%B0%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT 训练原理、优化器与显存估算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05_%E6%8E%A8%E7%90%86%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 5：推理、量化与本地部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/05A_%E9%87%87%E6%A0%B7_KVCache%E4%B8%8E%E9%87%8F%E5%8C%96%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    采样、KV Cache 与量化推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06_%E5%BE%AE%E8%B0%83_LoRA_QLoRA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 6：SFT、LoRA 与 QLoRA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/06A_LoRA%E4%B8%8EQLoRA%E6%8E%A8%E5%AF%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LoRA、QLoRA 与监督微调推导
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07_RAG%E4%BB%8E%E5%9F%BA%E7%A1%80%E5%88%B0%E9%AB%98%E7%BA%A7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 7：RAG——从最小检索到高级与 GraphRAG
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/07A_RAG%E6%A3%80%E7%B4%A2%E4%B8%8E%E8%AF%84%E4%BC%B0%E6%89%8B%E7%AE%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RAG 检索、排序与评估手算
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08_ToolCalling%E4%B8%8E%E5%AE%89%E5%85%A8%E6%89%A7%E8%A1%8C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 8：Tool Calling、Code Interpreter 与安全执行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/08A_%E4%BB%8ETool%E5%88%B0Agent%E5%AE%8C%E6%95%B4%E6%A1%88%E4%BE%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从 Tool Calling 到可恢复 Agent：完整案例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/09_Memory%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 9：Memory——从上下文到长期记忆
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/10_Agent%E4%B8%8EMultiAgent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 10：Agent、Browser/Coding Agent 与 Multi-Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11_MCP_AI_OS%E4%B8%8E%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 11：MCP、Second Brain OS 与工程化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/11A_SecondBrain%E5%B7%A5%E7%A8%8B%E5%AE%9E%E7%8E%B0%E8%93%9D%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain OS 工程实现蓝图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/12_%E5%A4%9A%E6%A8%A1%E6%80%81%E4%B8%8E%E6%9C%BA%E5%99%A8%E4%BA%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    模块 12（选修）：多模态、ROS 2 与机器人
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/13_%E9%A1%B9%E7%9B%AE%E4%B8%8E%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    项目与学习资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM学习路线 框架优先版
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM学习路线 框架优先版
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    从整机到零件：LLM 框架优先学习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/00_LLM%E5%85%A8%E5%B1%80%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第 0 课：从预测任务推导出 GPT 的结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/01_%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%BF%90%E8%A1%8CMiniGPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之一：第一次运行完整 MiniGPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/02_%E8%AE%AD%E7%BB%83%E4%B8%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%AE%8C%E6%95%B4%E9%97%AD%E7%8E%AF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第一遍之二：训练与生成的完整闭环
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/03_%E5%BC%A0%E9%87%8F_Linear_Softmax%E4%B8%8E%E6%8D%9F%E5%A4%B1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之一：张量、Linear、Softmax 与损失
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/04_Tokenizer_Embedding%E4%B8%8E%E4%BD%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之二：Tokenizer、Embedding 与位置信息
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/05_Attention%E4%B8%8ETransformerBlock/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之三：Attention 与 Transformer Block
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/06_%E6%A2%AF%E5%BA%A6_%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E4%B8%8E%E4%BC%98%E5%8C%96/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之四：梯度、反向传播与参数优化
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/07_%E5%AE%8C%E6%95%B4MiniGPT%E5%AE%9E%E7%8E%B0%E5%AF%BC%E8%AF%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第二遍之五：完整 MiniGPT 的装配与源码导读
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/08_%E6%95%B0%E6%8D%AE_%E9%A2%84%E8%AE%AD%E7%BB%83_%E8%AF%84%E4%BC%B0%E4%B8%8ECheckpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之一：数据、预训练、评估与 Checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/09_%E6%8E%A8%E7%90%86_%E9%87%87%E6%A0%B7_KVCache_%E9%87%8F%E5%8C%96%E4%B8%8E%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之二：推理、采样、KV Cache、量化与部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/10_%E5%BE%AE%E8%B0%83_RAG_Agent%E4%B8%8E%E5%90%8E%E7%BB%AD%E6%96%B9%E5%90%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第三遍之三：微调、RAG、Agent 与后续方向
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/11_%E9%A1%B9%E7%9B%AE%E9%98%B6%E6%A2%AF%E4%B8%8E%E9%AA%8C%E6%94%B6%E6%A0%87%E5%87%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课程终章：从全局地图到可复现 MiniGPT 项目
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/12_%E9%A1%B9%E7%9B%AE%E6%A0%87%E5%87%86%E7%AD%94%E6%A1%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    课后项目标准答案与结果核对
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM 框架优先学习记录模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_16" id="__nav_3_6_16_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ai%E5%AD%A6%E4%B9%A0/LLM%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF_%E6%A1%86%E6%9E%B6%E4%BC%98%E5%85%88%E7%89%88/code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiniGPT 完整代码运行指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    English
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    English
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../English/%E5%9B%9B%E5%85%AD%E7%BA%A7%E4%BD%9C%E6%96%87%E6%A8%A1%E6%9D%BF/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作文模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Github
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Github
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/Git_GitHub_%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git 与 GitHub 使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/github%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Markdown 学习笔记保存与建站总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../github/%E9%85%8D%E7%BD%AELaTeX%E5%85%AC%E5%BC%8F%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MkDocs 配置 LaTeX 数学公式总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    其他
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    其他
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/EMP%E3%80%81%E8%BE%90%E5%B0%84%E4%B8%8E%E8%8A%AF%E7%89%87/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    为什么EMP会导致常见晶体管芯片失效，但是对电子管芯片没什么影响
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二维码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E6%B5%81%E5%AA%92%E4%BD%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流媒体
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E7%8E%B0%E4%BB%A3%E5%9D%A6%E5%85%8B%E8%A3%85%E7%94%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    现代坦克装甲
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E8%A1%80%E6%9C%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    血月
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%85%B6%E4%BB%96/%E9%93%81%E8%B7%AFwifi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    铁路 WiFi 与高铁通信原理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验数据处理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    实验数据处理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C_%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E9%80%9F%E6%9F%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大学物理实验：实验数据处理速查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%9E%E9%AA%8C%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E5%AE%9E%E9%AA%8C%E7%BB%AA%E8%AE%BA_%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    大学物理实验绪论详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    总索引与知识地图
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 多元函数微分学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_%E5%A4%9A%E9%87%8D%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 多重积分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    曲线积分与曲面积分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    全微分方程、势函数与路径无关
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    全微分方程、势函数与路径无关
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节主线与箭头含义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从全微分开始
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从全微分开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 全微分是局部变化的线性主部
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 沿曲线看，全微分就是链式法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全微分方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="全微分方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么叫恰当
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 全微分方程在说什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-dphi0-phic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 为什么 \(d\phi=0\) 会得到 \(\phi=C\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恰当条件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="恰当条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必要条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 局部充分性：在小矩形内直接构造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 全局充分性还需要区域条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 必要、局部充分、全局充分不要混在一起
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量场、势函数与保守场
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        路径无关
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        闭路积分为零与路径无关
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="闭路积分为零与路径无关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 路径无关推出闭路积分为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 闭路积分为零推出路径无关
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从路径无关反过来构造势函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从路径无关反过来构造势函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 先固定基点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 为什么这个定义是良定义的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-nablaphimathbf-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 为什么构造出的函数满足 \(\nabla\phi=\mathbf G\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 能量直觉应放在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无旋条件：局部与全局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="无旋条件：局部与全局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 二维无旋条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-c1-c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 \(C^1\) 与 \(C^2\) 到底在说谁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 无旋为什么只能先保证局部有势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        洞如何破坏从局部到全局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="洞如何破坏从局部到全局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 标准反例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 局部势仍然存在
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 “单连通”在这里排除什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心等价链：哪些无条件，哪些有条件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在常微分方程体系中的位置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在常微分方程体系中的位置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 它是一类一阶常微分方程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 为什么求势时会出现偏导，却仍不是偏微分方程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 不恰当时怎么办
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一套不丢条件的求解流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一套不丢条件的求解流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 一个完整例子
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与复原函数和静电势的连接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="与复原函数和静电势的连接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 与复分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 与静电学
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我的理解记录：从“能量直觉”到“良定义的势函数”
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="我的理解记录：从“能量直觉”到“良定义的势函数”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 我最初的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 我当时的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 问题出在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-c1c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 关键转折一：\(C^1/C^2\) 不是两套无关规定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 关键转折二：势不是由“能量”先验保证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 关键转折三：互推必须连条件一起说
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 现在比较稳定的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#148" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.8 仍需确认
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一页自检：每个箭头能否解释
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        材料边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回知识地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    向量分析与积分定理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    复变函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_%E7%94%B5%E7%A3%81%E5%AD%A6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    电磁学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    跨课程联系
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    经济政治
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    经济政治
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%8F%E6%B5%8E%E6%94%BF%E6%B2%BB/%E5%8F%91%E7%A5%A8%E4%B8%8E%E7%A8%8E%E5%8A%A1%E8%A7%A3%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    发票与税务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    耳机
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    耳机
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/MOMENTUM%204%20%E5%AE%8C%E6%95%B4%E4%BD%BF%E7%94%A8%E5%BB%BA%E8%AE%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MOMENTUM 4 完整使用建议
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_10_3" id="__nav_10_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_10_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    系统讲解耳机音质（拆分版）
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/01-%E6%92%AD%E6%94%BE%E9%93%BE%E8%B7%AF%E4%B8%8E%E6%95%B0%E5%AD%97%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（1）：播放链路与数字基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/02-%E9%9F%B3%E9%A2%91%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F%E4%B8%8E%E9%AB%98%E8%A7%84%E6%A0%BC%E9%9F%B3%E9%A2%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（2）：音频文件格式与高规格音频
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/03-%E8%93%9D%E7%89%99%E9%9F%B3%E9%A2%91%E4%B8%8E%E4%BC%A0%E8%BE%93%E7%BC%96%E7%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（3）：蓝牙音频与传输编码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/04-%E6%89%8B%E6%9C%BA%E3%80%81DAC%E3%80%81%E8%80%B3%E6%94%BE%E4%B8%8E%E9%A9%B1%E5%8A%A8%E5%8A%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（4）：手机、DAC、耳放与驱动力
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/05-DAP%E3%80%81%E5%B0%8F%E5%B0%BE%E5%B7%B4%E4%B8%8E%E5%B9%B3%E8%A1%A1%E8%BE%93%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（5）：DAP、小尾巴与平衡输出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/06-%E6%92%AD%E6%94%BE%E8%AE%BE%E7%BD%AE%E3%80%81EQ%E4%B8%8E%E8%AE%BE%E5%A4%87%E9%80%89%E8%B4%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（6）：播放设置、EQ与设备选购
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/07-%E8%80%B3%E6%9C%BA%E6%9C%AC%E4%BD%93%E4%B8%8E%E5%90%AC%E6%84%9F/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（7）：耳机本体与听感
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/08-%E9%80%89%E8%B4%AD%E5%8E%9F%E5%88%99%E4%B8%8E%E7%9F%A5%E8%AF%86%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（8）：选购原则与知识树
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%80%B3%E6%9C%BA/%E7%B3%BB%E7%BB%9F%E8%AE%B2%E8%A7%A3%E8%80%B3%E6%9C%BA%E9%9F%B3%E8%B4%A8%EF%BC%88%E6%8B%86%E5%88%86%E7%89%88%EF%BC%89/%E7%9B%AE%E5%BD%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    系统讲解耳机音质（拆分版）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本节主线与箭头含义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从全微分开始
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从全微分开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 全微分是局部变化的线性主部
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 沿曲线看，全微分就是链式法则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        全微分方程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="全微分方程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 什么叫恰当
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 全微分方程在说什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-dphi0-phic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 为什么 \(d\phi=0\) 会得到 \(\phi=C\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恰当条件
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="恰当条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 必要条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 局部充分性：在小矩形内直接构造
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 全局充分性还需要区域条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 必要、局部充分、全局充分不要混在一起
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        向量场、势函数与保守场
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        路径无关
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        闭路积分为零与路径无关
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="闭路积分为零与路径无关">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 路径无关推出闭路积分为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 闭路积分为零推出路径无关
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从路径无关反过来构造势函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="从路径无关反过来构造势函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 先固定基点
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 为什么这个定义是良定义的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-nablaphimathbf-g" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 为什么构造出的函数满足 \(\nabla\phi=\mathbf G\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 能量直觉应放在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        无旋条件：局部与全局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="无旋条件：局部与全局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 二维无旋条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-c1-c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 \(C^1\) 与 \(C^2\) 到底在说谁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 无旋为什么只能先保证局部有势
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        洞如何破坏从局部到全局
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="洞如何破坏从局部到全局">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 标准反例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 局部势仍然存在
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 “单连通”在这里排除什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心等价链：哪些无条件，哪些有条件
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在常微分方程体系中的位置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="在常微分方程体系中的位置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 它是一类一阶常微分方程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 为什么求势时会出现偏导，却仍不是偏微分方程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 不恰当时怎么办
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一套不丢条件的求解流程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一套不丢条件的求解流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 一个完整例子
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与复原函数和静电势的连接
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="与复原函数和静电势的连接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1 与复分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2 与静电学
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        我的理解记录：从“能量直觉”到“良定义的势函数”
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="我的理解记录：从“能量直觉”到“良定义的势函数”">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 我最初的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 我当时的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 问题出在哪里
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144-c1c2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 关键转折一：\(C^1/C^2\) 不是两套无关规定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 关键转折二：势不是由“能量”先验保证
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 关键转折三：互推必须连条件一起说
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 现在比较稳定的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#148" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.8 仍需确认
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一页自检：每个箭头能否解释
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        材料边界
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回知识地图
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">全微分方程、势函数与路径无关<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>这是连接多元微分学、常微分方程、第二类曲线积分、向量场与静电势的核心模块。本文将“正式知识结构”与“我的理解记录”分开：前者给出定义、条件和推导；后者保留已有对话中从疑惑到转折的过程。</p>
+</blockquote>
+<h2 id="_2">本节位置<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>前置：</p>
+<ul>
+<li><a href="../01_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/#全微分与可微">多元函数微分学：全微分、可微与链式法则</a></li>
+<li><a href="../03_%E6%9B%B2%E7%BA%BF%E7%A7%AF%E5%88%86%E4%B8%8E%E6%9B%B2%E9%9D%A2%E7%A7%AF%E5%88%86/#第二类曲线积分">曲线积分与曲面积分：第二类曲线积分</a></li>
+</ul>
+<p>后续：</p>
+<ul>
+<li><a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">向量分析与积分定理：旋度、Green 与 Stokes</a></li>
+<li><a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#原函数与路径无关">复变函数：原函数与路径无关</a></li>
+<li><a href="../07_%E7%94%B5%E7%A3%81%E5%AD%A6/#电势势能与静电场">电磁学：静电势</a></li>
+</ul>
+<p>相关：</p>
+<ul>
+<li><a href="../02_%E5%A4%9A%E9%87%8D%E7%A7%AF%E5%88%86/">多重积分</a></li>
+<li><a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/#桥梁-a全微分势函数路径无关">跨课程联系：全微分—势函数—路径无关</a></li>
+</ul>
+<p>跨课程联系：</p>
+<ul>
+<li><a href="../08_%E8%B7%A8%E8%AF%BE%E7%A8%8B%E8%81%94%E7%B3%BB/">实势函数、复原函数与静电势的比较</a></li>
+</ul>
+<h2 id="_3">本节主线与箭头含义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>本节不是把若干近义词排成一串，而是要说明哪些对象相同、哪些命题等价、哪些推论需要额外条件：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{可微标量函数 }\phi
+&amp;\xrightarrow{\text{取全微分}}
+d\phi,\\
+d\phi=M\,dx+N\,dy
+&amp;\Longleftrightarrow
+\nabla\phi=(M,N)\quad\text{（分量相等）},\\
+M\,dx+N\,dy=0
+&amp;\xrightarrow{\text{沿解曲线}}
+d\phi=0
+\xrightarrow{\text{链式法则}}
+\phi=C,\\
+\mathbf G=\nabla\phi
+&amp;\xrightarrow{\text{线积分基本定理}}
+\int_A^B\mathbf G\cdot d\mathbf r
+=\phi(B)-\phi(A).
+\end{aligned}
+\]</div>
+<p>还要特别分开：</p>
+<div class="arithmatex">\[
+\text{有势}\Longrightarrow\text{无旋}
+\]</div>
+<p>与</p>
+<div class="arithmatex">\[
+\text{无旋}\Longrightarrow\text{有势}.
+\]</div>
+<p>前者主要是局部微分结论，后者从局部条件提升到全局势函数时会遇到区域拓扑，不能省略“洞”和单连通条件。</p>
+<h2 id="_4">从全微分开始<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 全微分是局部变化的线性主部<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(\phi(x,y)\)</span> 在点 <span class="arithmatex">\((x,y)\)</span> 可微。对小增量 <span class="arithmatex">\((\Delta x,\Delta y)\)</span>，</p>
+<div class="arithmatex">\[
+\phi(x+\Delta x,y+\Delta y)-\phi(x,y)
+=\phi_x\Delta x+\phi_y\Delta y
++o\left(\sqrt{\Delta x^2+\Delta y^2}\right).
+\]</div>
+<p>其中线性部分</p>
+<div class="arithmatex">\[
+d\phi=\phi_x\,dx+\phi_y\,dy
+\]</div>
+<p>就是全微分。<span class="arithmatex">\(dx,dy\)</span> 表示输入方向的微小分量；<span class="arithmatex">\(d\phi\)</span> 是微分这个线性映射对位移的作用：</p>
+<div class="arithmatex">\[
+d\phi_{(x,y)}(h,k)=\phi_x(x,y)h+\phi_y(x,y)k.
+\]</div>
+<p>所以 <span class="arithmatex">\(d\phi\)</span> 不是凭空拼出的两个符号，也不是有限增量 <span class="arithmatex">\(\Delta\phi\)</span> 的无条件等号。它来自多元可微的统一局部线性近似。完整前置见 <a href="../01_%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%AD%A6/#全微分与可微">全微分与可微</a>。</p>
+<h3 id="12">1.2 沿曲线看，全微分就是链式法则<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>令</p>
+<div class="arithmatex">\[
+\gamma(t)=(x(t),y(t)).
+\]</div>
+<p>复合函数 <span class="arithmatex">\(\phi(\gamma(t))\)</span> 的导数为</p>
+<div class="arithmatex">\[
+\frac{d}{dt}\phi(x(t),y(t))
+=\phi_xx'(t)+\phi_yy'(t).
+\]</div>
+<p>同时</p>
+<div class="arithmatex">\[
+d\mathbf r=(dx,dy)=(x'(t),y'(t))dt,
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+d\phi
+=\nabla\phi\cdot d\mathbf r.
+\]</div>
+<p>这条式子是后面“梯度场的线积分只看端点”的真正计算核心。</p>
+<h2 id="_5">全微分方程<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>本节同时说明恰当微分形式与全微分方程的含义。</p>
+<h3 id="21">2.1 什么叫恰当<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>考虑一阶微分形式</p>
+<div class="arithmatex">\[
+\omega=M(x,y)\,dx+N(x,y)\,dy.
+\]</div>
+<p>如果存在标量函数 <span class="arithmatex">\(\phi(x,y)\)</span>，使</p>
+<div class="arithmatex">\[
+\phi_x=M,\qquad \phi_y=N,
+\]</div>
+<p>那么</p>
+<div class="arithmatex">\[
+\omega=d\phi.
+\]</div>
+<p>此时称 <span class="arithmatex">\(\omega\)</span> 是<strong>恰当的</strong>或<strong>全微分的</strong>，<span class="arithmatex">\(\phi\)</span> 称为它的势函数。这里的“恰当”不是说方程计算正确，而是说这两个系数确实来自同一个标量函数的两个偏导。</p>
+<p>势函数不是唯一的。若区域连通，则 <span class="arithmatex">\(\phi+C_0\)</span> 给出同一个 <span class="arithmatex">\(d\phi\)</span>；势函数至多相差一个常数。</p>
+<h3 id="22">2.2 全微分方程在说什么<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<p>方程</p>
+<div class="arithmatex">\[
+M(x,y)\,dx+N(x,y)\,dy=0
+\]</div>
+<p>描述平面中的解曲线。若一段解写成 <span class="arithmatex">\(y=y(x)\)</span>，代入 <span class="arithmatex">\(dy=y'(x)dx\)</span> 可得</p>
+<div class="arithmatex">\[
+M(x,y)+N(x,y)y'=0.
+\]</div>
+<p>所以它是一阶常微分方程的微分形式。它虽然同时写有变量 <span class="arithmatex">\(x,y\)</span>，但未知对象仍是一条函数曲线 <span class="arithmatex">\(y(x)\)</span> 或更一般的参数曲线，而不是一个二元未知函数，因此不要与偏微分方程混淆。</p>
+<h3 id="23-dphi0-phic">2.3 为什么 <span class="arithmatex">\(d\phi=0\)</span> 会得到 <span class="arithmatex">\(\phi=C\)</span><a class="headerlink" href="#23-dphi0-phic" title="Permanent link">&para;</a></h3>
+<p>如果 <span class="arithmatex">\(\omega=d\phi\)</span>，那么沿解曲线 <span class="arithmatex">\(\gamma(t)=(x(t),y(t))\)</span>，</p>
+<div class="arithmatex">\[
+0=Mx'(t)+Ny'(t)
+=\phi_xx'(t)+\phi_yy'(t)
+=\frac{d}{dt}\phi(\gamma(t)).
+\]</div>
+<p>一元微积分告诉我们：一个函数在连通参数区间上导数恒为零，则它是常数。因此</p>
+<div class="arithmatex">\[
+\phi(x(t),y(t))=C.
+\]</div>
+<p>这才是</p>
+<div class="arithmatex">\[
+d\phi=0\Longrightarrow\phi=C
+\]</div>
+<p>在全微分方程中的完整含义：<strong><span class="arithmatex">\(\phi\)</span> 沿每条解曲线保持常值</strong>。它不是说 <span class="arithmatex">\(d\phi\)</span> 作为整个二维开集上的微分处处为零；若后者成立，<span class="arithmatex">\(\phi\)</span> 才会在整个连通区域上恒定。</p>
+<p>反过来，一条正则等值线</p>
+<div class="arithmatex">\[
+\phi(x,y)=C
+\]</div>
+<p>上的切向量满足</p>
+<div class="arithmatex">\[
+\nabla\phi\cdot d\mathbf r=0,
+\]</div>
+<p>也就满足 <span class="arithmatex">\(M\,dx+N\,dy=0\)</span>。在 <span class="arithmatex">\(\nabla\phi=\mathbf0\)</span> 的临界点附近，等值线可能出现交叉、尖点或分支，需另外检查解曲线结构。</p>
+<h2 id="_6">恰当条件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 必要条件<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<p>若</p>
+<div class="arithmatex">\[
+M=\phi_x,\qquad N=\phi_y,
+\]</div>
+<p>并且 <span class="arithmatex">\(\phi\)</span> 有连续二阶偏导，则</p>
+<div class="arithmatex">\[
+M_y=\phi_{xy},\qquad N_x=\phi_{yx}.
+\]</div>
+<p>由混合偏导相等，</p>
+<div class="arithmatex">\[
+M_y=N_x.
+\]</div>
+<p>因此，在常见光滑条件下，恰当一定推出交叉偏导相等。</p>
+<p>必须注意逻辑方向：</p>
+<div class="arithmatex">\[
+\omega=d\phi
+\xRightarrow[\phi\in C^2]{}
+M_y=N_x.
+\]</div>
+<p>这一步首先给出必要条件，还没有自动证明反向结论。</p>
+<h3 id="32">3.2 局部充分性：在小矩形内直接构造<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(M,N\in C^1\)</span>，并在某个小矩形内满足</p>
+<div class="arithmatex">\[
+M_y=N_x.
+\]</div>
+<p>固定矩形中的基点 <span class="arithmatex">\((x_0,y_0)\)</span>，定义</p>
+<div class="arithmatex">\[
+\phi(x,y)
+=\int_{x_0}^{x}M(s,y_0)\,ds
++\int_{y_0}^{y}N(x,t)\,dt.
+\]</div>
+<p>先求 <span class="arithmatex">\(y\)</span> 偏导：</p>
+<div class="arithmatex">\[
+\phi_y(x,y)=N(x,y).
+\]</div>
+<p>再求 <span class="arithmatex">\(x\)</span> 偏导：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\phi_x(x,y)
+&amp;=M(x,y_0)+\int_{y_0}^{y}N_x(x,t)\,dt\\
+&amp;=M(x,y_0)+\int_{y_0}^{y}M_y(x,t)\,dt\\
+&amp;=M(x,y).
+\end{aligned}
+\]</div>
+<p>因此 <span class="arithmatex">\(d\phi=M\,dx+N\,dy\)</span>。这说明在足够小、没有拓扑障碍的邻域内，<span class="arithmatex">\(M_y=N_x\)</span> 配合 <span class="arithmatex">\(C^1\)</span> 光滑性可推出局部势函数存在。</p>
+<h3 id="33">3.3 全局充分性还需要区域条件<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p>局部能构造势，不代表这些局部势一定能在整个定义域上无矛盾地拼成单值函数。一个常用的全局工作定理是：</p>
+<blockquote>
+<p>若 <span class="arithmatex">\(D\subset\mathbb R^2\)</span> 是开且单连通的区域，<span class="arithmatex">\(M,N\in C^1(D)\)</span>，并且 <span class="arithmatex">\(M_y=N_x\)</span> 在 <span class="arithmatex">\(D\)</span> 上处处成立，则存在全局势函数 <span class="arithmatex">\(\phi\)</span>，使 <span class="arithmatex">\(d\phi=M\,dx+N\,dy\)</span>。</p>
+</blockquote>
+<p>这里：</p>
+<ul>
+<li><span class="arithmatex">\(C^1\)</span> 控制微分与积分运算；</li>
+<li><span class="arithmatex">\(M_y=N_x\)</span> 是局部闭合条件；</li>
+<li>单连通排除闭曲线绕着无法收缩的洞所产生的全局环量。</li>
+</ul>
+<p>单连通是一个方便而有力的<strong>域条件充分假设</strong>，不是某个特定向量场拥有势函数的必要条件。即使区域有洞，某些特殊场仍然可能有全局势；只是不能再由“无旋”单独保证。</p>
+<h3 id="34">3.4 必要、局部充分、全局充分不要混在一起<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>结论</th>
+<th>典型条件</th>
+<th>关系类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恰当 <span class="arithmatex">\(\Rightarrow M_y=N_x\)</span></td>
+<td>势函数有足够二阶正则性</td>
+<td>必要条件</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M_y=N_x\Rightarrow\)</span> 局部恰当</td>
+<td><span class="arithmatex">\(M,N\in C^1\)</span>，在小矩形或可缩邻域</td>
+<td>局部充分</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M_y=N_x\Rightarrow\)</span> 全局恰当</td>
+<td>再加定义域开、连通且单连通</td>
+<td>常用全局充分</td>
+</tr>
+<tr>
+<td>全局恰当 <span class="arithmatex">\(\Rightarrow M_y=N_x\)</span></td>
+<td>同第一行的光滑性</td>
+<td>全局也必然局部成立</td>
+</tr>
+</tbody>
+</table>
+<p>“交叉偏导相等”和“全局有势”不能脱离这张条件表直接画成无条件双箭头。</p>
+<h2 id="_7">向量场、势函数与保守场<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>为避免把势函数和向量场都记为 <span class="arithmatex">\(F\)</span>，本节统一记</p>
+<div class="arithmatex">\[
+\mathbf G=(M,N),\qquad \phi=\text{标量势}.
+\]</div>
+<p>沿曲线，</p>
+<div class="arithmatex">\[
+\mathbf G\cdot d\mathbf r
+=(M,N)\cdot(dx,dy)
+=M\,dx+N\,dy.
+\]</div>
+<p>于是以下两种语言完全对应：</p>
+<div class="arithmatex">\[
+M\,dx+N\,dy=d\phi
+\]</div>
+<p>与</p>
+<div class="arithmatex">\[
+\mathbf G=\nabla\phi.
+\]</div>
+<p>称 <span class="arithmatex">\(\mathbf G\)</span> 为梯度场或保守场，称 <span class="arithmatex">\(\phi\)</span> 为势函数。从对象类型看：</p>
+<ul>
+<li><span class="arithmatex">\(\phi\)</span>：每个点对应一个标量；</li>
+<li><span class="arithmatex">\(\nabla\phi=\mathbf G\)</span>：每个点对应一个向量；</li>
+<li><span class="arithmatex">\(d\phi=\mathbf G\cdot d\mathbf r\)</span>：把位移方向送到该方向上的一阶变化。</li>
+</ul>
+<p>数学教材常用 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>。物理中保守力常写为 <span class="arithmatex">\(\mathbf F=-\nabla U\)</span>，静电场写为 <span class="arithmatex">\(\mathbf E=-\nabla V\)</span>。负号是相应势能或电势的约定，不改变“由一个标量势的梯度生成”的数学结构。</p>
+<h2 id="_8">路径无关<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>先从“有势为什么推出路径无关”开始。</p>
+<p>设 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>，<span class="arithmatex">\(\gamma(t)\)</span> 是从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的任意分段光滑曲线。由参数化和链式法则，</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\int_\gamma\mathbf G\cdot d\mathbf r
+&amp;=\int_a^b
+\nabla\phi(\gamma(t))\cdot\gamma'(t)\,dt\\
+&amp;=\int_a^b\frac{d}{dt}\phi(\gamma(t))\,dt\\
+&amp;=\phi(\gamma(b))-\phi(\gamma(a))\\
+&amp;=\phi(B)-\phi(A).
+\end{aligned}
+\]</div>
+<p>右端只含端点，不含路径形状。因此任意两条从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的允许路径都给出同一个积分值。</p>
+<p>关键不是一句“梯度场保守”，而是中间的链式法则：</p>
+<div class="arithmatex">\[
+\nabla\phi(\gamma(t))\cdot\gamma'(t)
+=\frac{d}{dt}\phi(\gamma(t)).
+\]</div>
+<p>第二类曲线积分由此退化为一个一元全导数的积分。</p>
+<h2 id="_9">闭路积分为零与路径无关<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="61">6.1 路径无关推出闭路积分为零<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p>若积分只依赖端点，闭曲线的起点和终点相同，所以</p>
+<div class="arithmatex">\[
+\oint_C\mathbf G\cdot d\mathbf r
+=\phi(A)-\phi(A)=0.
+\]</div>
+<p>即使尚未使用势函数表达，只要已经知道路径无关，也可把闭路看成“从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(A\)</span> 的路径”，得到同样结论。</p>
+<h3 id="62">6.2 闭路积分为零推出路径无关<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
+<p>取两条都从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的路径 <span class="arithmatex">\(\gamma_1,\gamma_2\)</span>。先沿 <span class="arithmatex">\(\gamma_1\)</span> 从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span>，再沿反向路径 <span class="arithmatex">\(-\gamma_2\)</span> 回到 <span class="arithmatex">\(A\)</span>，组成闭路：</p>
+<div class="arithmatex">\[
+C=\gamma_1+(-\gamma_2).
+\]</div>
+<p>若所有允许闭路积分均为零，则</p>
+<div class="arithmatex">\[
+0=\oint_C\mathbf G\cdot d\mathbf r
+=\int_{\gamma_1}\mathbf G\cdot d\mathbf r
+-\int_{\gamma_2}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\int_{\gamma_1}\mathbf G\cdot d\mathbf r
+=\int_{\gamma_2}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>这里的反向路径和积分可加性是推理中不能跳过的步骤。</p>
+<h2 id="_10">从路径无关反过来构造势函数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>这是本模块最重要的反向构造。</p>
+<h3 id="71">7.1 先固定基点<a class="headerlink" href="#71" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(D\)</span> 是开且路径连通的区域，固定 <span class="arithmatex">\(P_0\in D\)</span>。对任意 <span class="arithmatex">\(P\in D\)</span>，定义</p>
+<div class="arithmatex">\[
+\phi(P)=\int_{P_0}^{P}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>右端看似缺少具体路径；这正是必须先假设路径无关的原因。</p>
+<h3 id="72">7.2 为什么这个定义是良定义的<a class="headerlink" href="#72" title="Permanent link">&para;</a></h3>
+<p>“良定义”意味着同一个输入 <span class="arithmatex">\(P\)</span> 只能得到一个输出值。若从 <span class="arithmatex">\(P_0\)</span> 到 <span class="arithmatex">\(P\)</span> 有两条路径 <span class="arithmatex">\(\gamma_1,\gamma_2\)</span>，路径无关保证</p>
+<div class="arithmatex">\[
+\int_{\gamma_1}\mathbf G\cdot d\mathbf r
+=
+\int_{\gamma_2}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>所以无论计算时选哪条路径，<span class="arithmatex">\(\phi(P)\)</span> 都是同一个数。没有路径无关，同一点可能因绕行方式不同得到多个值，<span class="arithmatex">\(\phi\)</span> 就不是通常意义下的单值函数。</p>
+<h3 id="73-nablaphimathbf-g">7.3 为什么构造出的函数满足 <span class="arithmatex">\(\nabla\phi=\mathbf G\)</span><a class="headerlink" href="#73-nablaphimathbf-g" title="Permanent link">&para;</a></h3>
+<p>取 <span class="arithmatex">\(P=(x,y)\)</span>，让 <span class="arithmatex">\(h\)</span> 足够小，使从 <span class="arithmatex">\(P\)</span> 到 <span class="arithmatex">\(P+h\mathbf e_x\)</span> 的短水平线段仍在 <span class="arithmatex">\(D\)</span> 内。利用积分的可加性与路径无关，</p>
+<div class="arithmatex">\[
+\phi(P+h\mathbf e_x)-\phi(P)
+=\int_P^{P+h\mathbf e_x}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>在线段上写 <span class="arithmatex">\(\mathbf r(s)=P+s\mathbf e_x\)</span>，得到</p>
+<div class="arithmatex">\[
+\frac{\phi(P+h\mathbf e_x)-\phi(P)}{h}
+=\frac1h\int_0^h
+\mathbf G(P+s\mathbf e_x)\cdot\mathbf e_x\,ds.
+\]</div>
+<p>若 <span class="arithmatex">\(\mathbf G\)</span> 连续，让 <span class="arithmatex">\(h\to0\)</span>，右边趋于</p>
+<div class="arithmatex">\[
+\mathbf G(P)\cdot\mathbf e_x=M(P).
+\]</div>
+<p>所以 <span class="arithmatex">\(\phi_x=M\)</span>。对竖直短线段同理，</p>
+<div class="arithmatex">\[
+\phi_y=N.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+\nabla\phi=\mathbf G.
+\]</div>
+<p>这段证明揭示势函数不是“猜出来的”：它可以由从固定基点到当前点的累积功直接定义，再通过局部短线段证明其梯度恢复原向量场。</p>
+<h3 id="74">7.4 能量直觉应放在哪里<a class="headerlink" href="#74" title="Permanent link">&para;</a></h3>
+<p>物理上，保守力做功可以用势能差表示，静电场可以用电势差表示。这些是势函数结构的重要实现，但数学上不能用“看起来与能量有关”保证任意场都有势。</p>
+<p>正确顺序是：</p>
+<div class="arithmatex">\[
+\text{路径无关}
+\xrightarrow{\text{定义积分函数}}
+\phi(P)
+\xrightarrow{\text{求局部增量}}
+\nabla\phi=\mathbf G.
+\]</div>
+<p>然后物理学再赋予 <span class="arithmatex">\(\phi\)</span> 或 <span class="arithmatex">\(-\phi\)</span> 能量、电势等含义。</p>
+<h2 id="_11">无旋条件：局部与全局<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1 二维无旋条件<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
+<p>对</p>
+<div class="arithmatex">\[
+\mathbf G=(M,N),
+\]</div>
+<p>二维旋度的垂直分量为</p>
+<div class="arithmatex">\[
+\operatorname{curl}\mathbf G
+=N_x-M_y.
+\]</div>
+<p>若 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>，则</p>
+<div class="arithmatex">\[
+N_x-M_y
+=\phi_{yx}-\phi_{xy}=0,
+\]</div>
+<p>前提是混合偏导可以交换。</p>
+<h3 id="82-c1-c2">8.2 <span class="arithmatex">\(C^1\)</span> 与 <span class="arithmatex">\(C^2\)</span> 到底在说谁<a class="headerlink" href="#82-c1-c2" title="Permanent link">&para;</a></h3>
+<p>已有对话中曾连续追问：混合偏导相等需要连续性，为什么“有势”就能无旋？<span class="arithmatex">\(\mathbf G\in C^1\)</span> 和 <span class="arithmatex">\(\phi\in C^2\)</span> 又是什么层级？</p>
+<p>具体关系是：</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf G=(M,N)\in C^1\)</span>：<span class="arithmatex">\(M,N\)</span> 及其一阶偏导连续；</li>
+<li>若 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>，则 <span class="arithmatex">\(M=\phi_x,N=\phi_y\)</span>；</li>
+<li><span class="arithmatex">\(M,N\)</span> 的一阶偏导，就是 <span class="arithmatex">\(\phi\)</span> 的二阶偏导；</li>
+<li>因而“<span class="arithmatex">\(\mathbf G\in C^1\)</span> 且 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>”会给出通常意义下的 <span class="arithmatex">\(\phi\in C^2\)</span>；</li>
+<li>这时可使用 Clairaut 定理交换 <span class="arithmatex">\(\phi_{xy}\)</span> 与 <span class="arithmatex">\(\phi_{yx}\)</span>。</li>
+</ul>
+<p>所以常见定理写成</p>
+<div class="arithmatex">\[
+\mathbf G=\nabla\phi,\quad \mathbf G\in C^1
+\Longrightarrow
+\nabla\times\mathbf G=\mathbf0.
+\]</div>
+<p>不是偷偷省略混合偏导条件，而是把它编码在向量场的 <span class="arithmatex">\(C^1\)</span> 正则性里。更弱正则性下也有更精细的版本，但不属于当前主线。</p>
+<h3 id="83">8.3 无旋为什么只能先保证局部有势<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(\nabla\times\mathbf G=\mathbf0\)</span> 是逐点检查的一阶微分条件。它说明足够小的可缩邻域内没有局部环流密度，但并不自动检查一条大闭路是否绕过了定义域中缺失的部分。</p>
+<p>在 <span class="arithmatex">\(C^1\)</span> 条件下：</p>
+<div class="arithmatex">\[
+\text{有势}\Longrightarrow\text{无旋}
+\]</div>
+<p>不需要单连通；而</p>
+<div class="arithmatex">\[
+\text{无旋}\Longrightarrow\text{全局有势}
+\]</div>
+<p>通常还需要单连通等全局条件。</p>
+<h2 id="_12">洞如何破坏从局部到全局<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="91">9.1 标准反例<a class="headerlink" href="#91" title="Permanent link">&para;</a></h3>
+<p>在</p>
+<div class="arithmatex">\[
+D=\mathbb R^2\setminus\{(0,0)\}
+\]</div>
+<p>上定义</p>
+<div class="arithmatex">\[
+\mathbf G(x,y)
+=\left(
+-\frac{y}{x^2+y^2},
+\frac{x}{x^2+y^2}
+\right).
+\]</div>
+<p><img alt="穿孔平面上的向量场沿圆周切向分布" src="assets/复变函数/穿孔平面向量场.svg" /></p>
+<p>令 <span class="arithmatex">\(x=r\cos\theta\)</span>、<span class="arithmatex">\(y=r\sin\theta\)</span>。在能够连续选择角度 <span class="arithmatex">\(\theta\)</span> 的局部区域内，</p>
+<div class="arithmatex">\[
+d\theta
+=\frac{-y\,dx+x\,dy}{x^2+y^2}
+=\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>所以这个场的几何意义很直接：它沿绕原点的圆周切向分布；沿任意路径的积分记录角度的累计变化。</p>
+<p>在 <span class="arithmatex">\(D\)</span> 内逐点计算可得</p>
+<div class="arithmatex">\[
+N_x-M_y=0.
+\]</div>
+<p>也就是说，原点之外处处无旋。但是沿逆时针单位圆</p>
+<div class="arithmatex">\[
+\gamma(t)=(\cos t,\sin t),\qquad 0\le t\le2\pi,
+\]</div>
+<p>有</p>
+<div class="arithmatex">\[
+\mathbf G(\gamma(t))=(-\sin t,\cos t)
+=\gamma'(t),
+\]</div>
+<p>所以</p>
+<div class="arithmatex">\[
+\oint_\gamma\mathbf G\cdot d\mathbf r
+=\int_0^{2\pi}1\,dt
+=2\pi.
+\]</div>
+<p><img alt="绕原点一周后角度累计增加 2π" src="assets/复变函数/绕原点一周.svg" /></p>
+<p>闭路积分不为零，因此该场在整个 <span class="arithmatex">\(D\)</span> 上不存在单值全局势函数。</p>
+<h3 id="92">9.2 局部势仍然存在<a class="headerlink" href="#92" title="Permanent link">&para;</a></h3>
+<p>若切开平面，限制在不绕原点的适当区域内，可以选取连续角度函数 <span class="arithmatex">\(\theta\)</span>，并有</p>
+<div class="arithmatex">\[
+\nabla\theta=\mathbf G.
+\]</div>
+<p>例如在右半平面 <span class="arithmatex">\(x&gt;0\)</span> 上，可以取</p>
+<div class="arithmatex">\[
+\theta(x,y)=\arctan\frac{y}{x},
+\]</div>
+<p>直接求导就得到上面的两个分量。换到别的支割区域时，可选另一支连续角度；不同局部分支相差 <span class="arithmatex">\(2\pi\)</span> 的整数倍，梯度却相同。</p>
+<p>问题出在绕原点一周后角度增加 <span class="arithmatex">\(2\pi\)</span>，无法在穿孔平面上成为单值连续的全局函数。这正是：</p>
+<div class="arithmatex">\[
+\text{局部恰当}\not\Rightarrow\text{全局恰当}.
+\]</div>
+<h3 id="93">9.3 “单连通”在这里排除什么<a class="headerlink" href="#93" title="Permanent link">&para;</a></h3>
+<p>直观上，单连通意味着区域内每条闭曲线都能在区域内部连续收缩成一点。穿孔平面中的绕原点圆周无法这样收缩，因为收缩时会撞上被删去的原点。</p>
+<p>对于当前层级，可把单连通理解为：不允许闭路以拓扑方式锁住一个洞，从而让局部无旋积累出非零全局环量。严格的拓扑定义及更一般情形可在以后学习微分形式时补充。</p>
+<p>单连通是“所有合适的无旋场都有全局势”的常用充分域条件，不是某个具体场有势的必要条件。例如穿孔平面不是单连通，但零向量场仍有全局势。这个反例与复对数的多值性是同一个局部—全局障碍；精确对应见<a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#原函数与路径无关">复变函数：<span class="arithmatex">\(1/z\)</span>、角度与复对数</a>。</p>
+<h2 id="_13">核心等价链：哪些无条件，哪些有条件<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>设 <span class="arithmatex">\(D\)</span> 是开且路径连通的区域，<span class="arithmatex">\(\mathbf G\)</span> 连续。以下三项彼此等价：</p>
+<ol>
+<li>存在 <span class="arithmatex">\(\phi\)</span>，使 <span class="arithmatex">\(\mathbf G=\nabla\phi\)</span>；</li>
+<li>从 <span class="arithmatex">\(A\)</span> 到 <span class="arithmatex">\(B\)</span> 的第二类曲线积分与路径无关；</li>
+<li><span class="arithmatex">\(D\)</span> 内每条允许闭曲线的积分都为零。</li>
+</ol>
+<p>其证明链为：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\text{有势}
+&amp;\xrightarrow{\text{链式法则与微积分基本定理}}
+\text{路径无关},\\
+\text{路径无关}
+&amp;\xrightarrow{\text{起终点相同}}
+\text{闭路积分为零},\\
+\text{闭路积分为零}
+&amp;\xrightarrow{\text{两路径拼成闭路}}
+\text{路径无关},\\
+\text{路径无关}
+&amp;\xrightarrow{\phi(P)=\int_{P_0}^{P}\mathbf G\cdot d\mathbf r}
+\text{有势}.
+\end{aligned}
+\]</div>
+<p>若再有足够光滑性，则上述任一项推出无旋：</p>
+<div class="arithmatex">\[
+\text{有势}\Longrightarrow\text{无旋}.
+\]</div>
+<p>若还假设 <span class="arithmatex">\(D\)</span> 单连通、<span class="arithmatex">\(\mathbf G\in C^1\)</span>，才可把无旋也加入等价链：</p>
+<div class="arithmatex">\[
+\boxed{
+\begin{gathered}
+\mathbf G=\nabla\phi\\
+\Updownarrow\\
+\text{路径无关}\\
+\Updownarrow\\
+\text{所有闭路积分为零}\\
+\Updownarrow\quad
+\text{在单连通域且 }\mathbf G\in C^1\text{ 时}\\
+\nabla\times\mathbf G=\mathbf0
+\end{gathered}}
+\]</div>
+<p>最后一个双向关系比前三项多条件，复习时不能把方框中的注记擦掉。</p>
+<h2 id="_14">在常微分方程体系中的位置<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h3 id="111">11.1 它是一类一阶常微分方程<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<p>一般一阶方程</p>
+<div class="arithmatex">\[
+y'=f(x,y)
+\]</div>
+<p>在适当区域可改写为</p>
+<div class="arithmatex">\[
+M(x,y)\,dx+N(x,y)\,dy=0.
+\]</div>
+<p>如果 <span class="arithmatex">\(M\,dx+N\,dy\)</span> 恰当，就能找到 <span class="arithmatex">\(\phi\)</span>，把微分方程化为隐式解</p>
+<div class="arithmatex">\[
+\phi(x,y)=C.
+\]</div>
+<p>因此恰当微分方程与可分离变量方程、一阶线性方程、Bernoulli 方程等并列，是一阶常微分方程中的一个可识别类型，而不是全部一阶方程的总称。</p>
+<h3 id="112">11.2 为什么求势时会出现偏导，却仍不是偏微分方程<a class="headerlink" href="#112" title="Permanent link">&para;</a></h3>
+<p>为寻找 <span class="arithmatex">\(\phi\)</span>，我们要求</p>
+<div class="arithmatex">\[
+\phi_x=M,\qquad \phi_y=N.
+\]</div>
+<p>这是一组关于势函数偏导的兼容关系，是解题中的构造步骤。原问题要找的仍是一族平面解曲线 <span class="arithmatex">\(\phi(x,y)=C\)</span>。偏微分方程则通常把一个多元函数本身作为未知量，并规定它的偏导之间满足某种关系；二者的问题类型不同。</p>
+<h3 id="113">11.3 不恰当时怎么办<a class="headerlink" href="#113" title="Permanent link">&para;</a></h3>
+<p>若</p>
+<div class="arithmatex">\[
+M_y\ne N_x,
+\]</div>
+<p>原式不是恰当微分。某些方程存在积分因子 <span class="arithmatex">\(\mu(x,y)\)</span>，使</p>
+<div class="arithmatex">\[
+\mu M\,dx+\mu N\,dy
+\]</div>
+<p>变成恰当形式。积分因子不是总能用简单公式找到；它属于常微分方程的后续方法，不改变本节关于“恰当为何意味着存在势”的核心结构。</p>
+<h2 id="_15">一套不丢条件的求解流程<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>面对</p>
+<div class="arithmatex">\[
+M\,dx+N\,dy=0,
+\]</div>
+<p>可按以下顺序：</p>
+<ol>
+<li>确认 <span class="arithmatex">\(M,N\)</span> 的定义域，标出奇点与缺失点；</li>
+<li>计算 <span class="arithmatex">\(M_y,N_x\)</span>；</li>
+<li>若二者相等，先确认所讨论区域是否足以支持全局势；</li>
+<li>由 <span class="arithmatex">\(\phi_x=M\)</span> 对 <span class="arithmatex">\(x\)</span> 积分：
+   $$
+   \phi(x,y)=\int M(x,y)\,dx+g(y);
+   $$</li>
+<li>对 <span class="arithmatex">\(y\)</span> 求偏导，与 <span class="arithmatex">\(N\)</span> 比较，解出 <span class="arithmatex">\(g'(y)\)</span>；</li>
+<li>写出 <span class="arithmatex">\(\phi(x,y)=C\)</span>；</li>
+<li>反向微分检查 <span class="arithmatex">\(d\phi=M\,dx+N\,dy\)</span>；</li>
+<li>检查构造过程中是否除掉了可能为零的因子、遗漏奇解或跨越定义域的不同连通分支。</li>
+</ol>
+<h3 id="121">12.1 一个完整例子<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
+<p>考虑</p>
+<div class="arithmatex">\[
+(2x+y)\,dx+(x+2y)\,dy=0.
+\]</div>
+<p>这里</p>
+<div class="arithmatex">\[
+M_y=1,\qquad N_x=1,
+\]</div>
+<p>且系数在整个平面光滑。由</p>
+<div class="arithmatex">\[
+\phi_x=2x+y
+\]</div>
+<p>对 <span class="arithmatex">\(x\)</span> 积分：</p>
+<div class="arithmatex">\[
+\phi=x^2+xy+g(y).
+\]</div>
+<p>再由</p>
+<div class="arithmatex">\[
+\phi_y=x+g'(y)=x+2y
+\]</div>
+<p>得到 <span class="arithmatex">\(g'(y)=2y\)</span>，故可取 <span class="arithmatex">\(g(y)=y^2\)</span>。所以</p>
+<div class="arithmatex">\[
+\phi(x,y)=x^2+xy+y^2,
+\]</div>
+<p>解族为</p>
+<div class="arithmatex">\[
+x^2+xy+y^2=C.
+\]</div>
+<p>最后验证：</p>
+<div class="arithmatex">\[
+d\phi=(2x+y)\,dx+(x+2y)\,dy.
+\]</div>
+<p>这一步验证的对象是整个微分形式，不只是再次检查 <span class="arithmatex">\(M_y=N_x\)</span>。</p>
+<h2 id="_16">与复原函数和静电势的连接<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="131">13.1 与复分析<a class="headerlink" href="#131" title="Permanent link">&para;</a></h3>
+<p>复函数的原函数 <span class="arithmatex">\(F\)</span> 满足</p>
+<div class="arithmatex">\[
+F'(z)=f(z).
+\]</div>
+<p>若复曲线积分只依赖端点，则可以类似地固定 <span class="arithmatex">\(z_0\)</span> 并定义</p>
+<div class="arithmatex">\[
+F(z)=\int_{z_0}^{z}f(\zeta)\,d\zeta.
+\]</div>
+<p>“路径无关 <span class="arithmatex">\(\Rightarrow\)</span> 用积分构造原函数”的逻辑与本节相同，但复积分拆成两个受 Cauchy–Riemann 条件共同约束的实曲线积分，不能把复原函数直接等同于一个普通实向量场势函数。见 <a href="../06_%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0/#原函数与路径无关">复变函数：原函数与路径无关</a>。</p>
+<h3 id="132">13.2 与静电学<a class="headerlink" href="#132" title="Permanent link">&para;</a></h3>
+<p>静电场满足</p>
+<div class="arithmatex">\[
+\mathbf E=-\nabla V.
+\]</div>
+<p>因此</p>
+<div class="arithmatex">\[
+V(B)-V(A)
+=-\int_A^B\mathbf E\cdot d\mathbf r.
+\]</div>
+<p>这是本节“势—端点差—路径无关”结构的物理应用。但一般时变电场可满足</p>
+<div class="arithmatex">\[
+\nabla\times\mathbf E
+=-\frac{\partial\mathbf B}{\partial t}\ne\mathbf0,
+\]</div>
+<p>此时不能无条件使用全局静电势。见 <a href="../07_%E7%94%B5%E7%A3%81%E5%AD%A6/#电势势能与静电场">电磁学：电势与静电场</a>。</p>
+<h2 id="_17">我的理解记录：从“能量直觉”到“良定义的势函数”<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h3 id="141">14.1 我最初的问题<a class="headerlink" href="#141" title="Permanent link">&para;</a></h3>
+<p>已有对话中的追问顺序大致是：</p>
+<ol>
+<li>曲线/曲面积分、Green、Stokes、散度、旋度、有源/无源、有势/无势和 Maxwell 方程到底怎样分层？</li>
+<li>若有势就无旋，难道不需要混合偏导连续才能交换吗？</li>
+<li><span class="arithmatex">\(\mathbf G\in C^1\)</span> 与 <span class="arithmatex">\(\phi\in C^2\)</span> 分别在约束谁？第一次解释后仍没有理解。</li>
+<li>即使懂了光滑性层级，数学上又如何保证能找到标量势？原来的直觉是场和能量有关。</li>
+<li>“有势”和“无旋”最后是不是等价、可以互相推出？</li>
+</ol>
+<p>这不是五个无关问题，而是一条逐渐暴露条件的链：</p>
+<div class="arithmatex">\[
+\text{记住结论}
+\to
+\text{追问微分条件}
+\to
+\text{追问对象的正则性}
+\to
+\text{追问势如何存在}
+\to
+\text{追问反向箭头与全局条件}.
+\]</div>
+<h3 id="142">14.2 我当时的理解<a class="headerlink" href="#142" title="Permanent link">&para;</a></h3>
+<p>原有直觉接近于：</p>
+<blockquote>
+<p>物理场和能量有关，所以应该有一个势函数；有了势函数，场大概就是无旋的；于是“有势”和“无旋”可能天然等价。</p>
+</blockquote>
+<p>这一直觉抓住了静电场和保守力的重要例子，却把物理实现当成了普遍数学保证，也把局部微分条件与全局存在性合并了。</p>
+<h3 id="143">14.3 问题出在哪里<a class="headerlink" href="#143" title="Permanent link">&para;</a></h3>
+<p>有三个不同问题曾被压成一句“有势等价无旋”：</p>
+<ol>
+<li><strong>若势已经给出，为什么它的梯度无旋？</strong><br />
+   这是混合偏导与光滑性的局部问题。</li>
+<li><strong>若只知道无旋，为什么势存在？</strong><br />
+   这是局部构造能否拼成全局单值函数的问题。</li>
+<li><strong>如何不靠猜测实际构造势？</strong><br />
+   这是路径无关积分的良定义问题。</li>
+</ol>
+<p>三个问题分别需要正则性、拓扑条件和积分构造，不能用同一句话回答。</p>
+<h3 id="144-c1c2">14.4 关键转折一：<span class="arithmatex">\(C^1/C^2\)</span> 不是两套无关规定<a class="headerlink" href="#144-c1c2" title="Permanent link">&para;</a></h3>
+<p>若</p>
+<div class="arithmatex">\[
+\mathbf G=\nabla\phi,
+\]</div>
+<p>那么 <span class="arithmatex">\(\mathbf G\)</span> 的一阶偏导正是 <span class="arithmatex">\(\phi\)</span> 的二阶偏导。因而 <span class="arithmatex">\(\mathbf G\in C^1\)</span> 与势函数具备常用的 <span class="arithmatex">\(C^2\)</span> 光滑性，是同一导数层级从不同对象上看的表达。这个转折回答了“混合偏导连续性究竟由谁提供”。</p>
+<h3 id="145">14.5 关键转折二：势不是由“能量”先验保证<a class="headerlink" href="#145" title="Permanent link">&para;</a></h3>
+<p>稳定的数学构造是</p>
+<div class="arithmatex">\[
+\phi(P)=\int_{P_0}^{P}\mathbf G\cdot d\mathbf r.
+\]</div>
+<p>路径无关使同一点 <span class="arithmatex">\(P\)</span> 不会因选择不同路线得到不同数值，于是 <span class="arithmatex">\(\phi\)</span> 才是良定义函数。随后用短线段增量证明 <span class="arithmatex">\(\nabla\phi=\mathbf G\)</span>。</p>
+<p>“势能”或“电势”应在这个结构建立后作为物理解释，而不是替代存在性证明。</p>
+<h3 id="146">14.6 关键转折三：互推必须连条件一起说<a class="headerlink" href="#146" title="Permanent link">&para;</a></h3>
+<p>现在较稳定的说法应是：</p>
+<ul>
+<li>有势、路径无关、所有闭路积分为零，在路径连通区域和通常连续性假设下彼此等价；</li>
+<li>有势在足够光滑时推出无旋；</li>
+<li>无旋在局部通常能推出局部有势；</li>
+<li>无旋要推出全局有势，还需排除洞造成的全局障碍；单连通是常用充分域条件。</li>
+</ul>
+<p>所以不能只记</p>
+<div class="arithmatex">\[
+\text{有势}\Longleftrightarrow\text{无旋},
+\]</div>
+<p>而应把双箭头旁的假设也视为结论的一部分。</p>
+<h3 id="147">14.7 现在比较稳定的理解<a class="headerlink" href="#147" title="Permanent link">&para;</a></h3>
+<p>全微分、势函数、保守场和路径无关不是四个偶然相似的词：</p>
+<div class="arithmatex">\[
+d\phi
+=\nabla\phi\cdot d\mathbf r
+=M\,dx+N\,dy.
+\]</div>
+<p>同一个对象在不同课程中的读法是：</p>
+<ul>
+<li>多元微分学：标量函数的全微分；</li>
+<li>常微分方程：恰当微分形式及隐式积分；</li>
+<li>向量分析：梯度场或保守场；</li>
+<li>曲线积分：积分只依赖端点；</li>
+<li>静电学：静电势差描述电场做功。</li>
+</ul>
+<p>这些读法共享结构，但各自的符号约定与适用条件仍须保留。</p>
+<h3 id="148">14.8 仍需确认<a class="headerlink" href="#148" title="Permanent link">&para;</a></h3>
+<ul>
+<li>“单连通”的严格定义及其在二维、三维中的几何差异。</li>
+<li>更一般区域上，闭微分形式何时为恰当形式。</li>
+<li>积分因子如何改变一个非恰当方程的结构。</li>
+<li>新增材料中已经能大致理解穿孔平面的无旋场反例，但“角度势—复对数—<span class="arithmatex">\(1/z\)</span>”仍未完全串联；本轮已补入正式桥梁，仍应通过自检确认。</li>
+<li>“单连通与 Green 定理有什么联系”是新增材料最后提出、尚未由原对话回答的问题；正式解释见<a href="../05_%E5%90%91%E9%87%8F%E5%88%86%E6%9E%90%E4%B8%8E%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/#单连通与-green-定理到底怎样连接">单连通与 Green 定理</a>，不把补写内容误记为原有理解。</li>
+</ul>
+<h2 id="_18">一页自检：每个箭头能否解释<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>从</th>
+<th>到</th>
+<th>为什么</th>
+<th>条件提醒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多元可微 <span class="arithmatex">\(\phi\)</span></td>
+<td><span class="arithmatex">\(d\phi\)</span></td>
+<td>取局部线性主部</td>
+<td>不是仅有偏导就自动可微</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(d\phi=Mdx+Ndy\)</span></td>
+<td><span class="arithmatex">\(\mathbf G=\nabla\phi\)</span></td>
+<td>比较坐标分量</td>
+<td><span class="arithmatex">\(\mathbf G=(M,N)\)</span></td>
+</tr>
+<tr>
+<td>恰当方程</td>
+<td><span class="arithmatex">\(\phi=C\)</span></td>
+<td>沿解曲线用链式法则</td>
+<td>是沿曲线恒定</td>
+</tr>
+<tr>
+<td>有势</td>
+<td>路径无关</td>
+<td>线积分化为端点势差</td>
+<td>曲线须位于定义域</td>
+</tr>
+<tr>
+<td>路径无关</td>
+<td>势函数</td>
+<td>基点积分良定义并求局部增量</td>
+<td>域路径连通，场连续</td>
+</tr>
+<tr>
+<td>有势</td>
+<td>无旋</td>
+<td>混合偏导相等</td>
+<td>常用 <span class="arithmatex">\(\mathbf G\in C^1\)</span></td>
+</tr>
+<tr>
+<td>无旋</td>
+<td>局部有势</td>
+<td>局部闭形式可积分</td>
+<td>常用 <span class="arithmatex">\(C^1\)</span> 与小可缩邻域</td>
+</tr>
+<tr>
+<td>无旋</td>
+<td>全局有势</td>
+<td>消除绕洞的全局环量</td>
+<td>单连通是常用充分条件</td>
+</tr>
+<tr>
+<td>静电场</td>
+<td>电势</td>
+<td>静电场保守</td>
+<td>一般时变电场不可照搬</td>
+</tr>
+</tbody>
+</table>
+<p>若无法说明某个箭头的“为什么”和“条件提醒”，就还没有真正建立这条联系。</p>
+<h2 id="_19">材料边界<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<ul>
+<li>认知问题链来自 <a href="../sources/聊天材料索引.md">聊天材料索引</a> 中“有势为何推出无旋”“势函数为何存在”“等价是否真的可以互推”三段。</li>
+<li>第二类曲线积分、Green、区域有洞与路径无关的课程材料索引见 <a href="../sources/视频来源索引.md">视频来源索引</a>。</li>
+<li>本轮新增材料：《复变函数.zip》中的《复变函数.md》及两张绕原点示意图；用于扩充角度势、局部与全局障碍以及与复对数的接口。</li>
+<li>自动转录中存在同音词和公式误识别；正式结论均按可独立验证的微积分与向量分析推导重写，没有把转录措辞直接当成证明。</li>
+</ul>
+<h2 id="_20">返回知识地图<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p><a href="../00_%E6%80%BB%E7%B4%A2%E5%BC%95%E4%B8%8E%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/">返回总索引</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "search.suggest", "search.highlight", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
